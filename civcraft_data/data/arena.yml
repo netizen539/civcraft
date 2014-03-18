@@ -1,0 +1,25 @@
+#
+# This yaml specifies the configurations for specific arena maps.
+#
+
+
+arenas:
+   - id: 'arena_test'
+     name: 'Test Arena'
+     world_folder: 'arena_test'
+     teams:
+         - number: 1
+           name: 'Team 1'
+           controlblocks:
+              - '-611,18,-763'
+              - '-598,18,-764'
+              - '-596,18,-743'
+              - '-613,18,-743'
+         - number: 2
+           name: 'Team 2'
+           controlblocks:
+              - '-598,18,-960'
+              - '-611,18,-960'
+              - '-613,18,-981'
+              - '-596,18,-981'
+

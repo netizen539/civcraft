@@ -1,0 +1,71 @@
+#
+# Contains configuration options for camps.
+# 
+camp:
+    # Number of hitpoints a camp has.
+    hitpoints: 5000
+  
+    # Number of hitpoints to regenerate per second
+    regen_rate: 2
+
+    # Number of hours a camp can survive without coal.
+    firepoints: 48
+
+    # Number of coal it takes to revive one hour worth
+    # of camp life.
+    coal_per_firepoint: 4
+
+    # Template path to the camp. Starting from the templates directory.
+    template: 'camp'
+
+    # cost of the camp in coins.
+    cost: 2500.0
+
+    # Sifter Settings
+    sifter_gold_nugget_chance: 0.10
+    sifter_iron_ingot_chance: 0.025
+   
+    # number of hours to let camp be raidable
+    raid_length: 2 
+
+longhouse_levels:
+   - level: 1
+     consumes:
+         - 297,1
+     count: 5
+     coins: 15.0
+   
+   - level: 2
+     consumes:
+         - 297,2
+     count: 10
+     coins: 40.0
+
+   - level: 3
+     consumes:
+         - 297,4
+     count: 15
+     coins: 80.0
+        
+   - level: 4
+     consumes:
+         - 297,7
+     count: 24
+     coins: 150.0
+     
+upgrades:
+    - id: 'camp_upgrade_sifter'
+      name: 'Enable Sifter'
+      cost: 500.0
+      action: 'enable_sifter'
+      require_upgrade:
+    - id: 'camp_upgrade_longhouse'
+      name: 'Enable Longhouse'
+      cost: 500.0
+      action: 'enable_longhouse'
+      require_upgrade:
+    - id: 'camp_upgrade_garden'
+      name: 'Enable Garden'
+      cost: 500.0
+      action: 'enable_garden'
+      require_upgrade:

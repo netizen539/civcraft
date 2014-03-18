@@ -1,0 +1,41 @@
+#
+# This configuration file holds information about our
+# nocheatplus settings/hooks. Some of these may be controlled by
+# nocheat, others may be custom anti-cheat measures implemented
+# directly into civcraft.
+
+nocheatplus:
+   survivalfly:
+      # Violation levels that we'll let 'slide' useful for iron armor speed dependencies.
+      violation_grace: 30
+
+civcraft_ac_version: '1'
+civcraft_ac_key: 'FGAZFWAQ'
+
+valid_mods:
+    - name: 'CivCraft Anti-Cheat'
+      checksums:
+        - '2428100271'
+
+    - name: 'Forge Mod Loader'
+      checksums: 
+        - '3682366158'
+        - '2157093643'
+
+    - name: 'net.minecraft.client.main.Main'
+      checksums: 
+        - '569927350'
+
+    - name: 'Minecraft Forge'
+      checksums: 
+        - '3682366158'
+        - '2157093643'
+
+    - name: 'Optifine'
+      checksums: 
+        - '193410396'
+        - '2942626117'
+    
+    - name: 'ReiMinimap - Forge'
+      checksums: 
+        - '3522544750'
