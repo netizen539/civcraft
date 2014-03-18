@@ -11,6 +11,7 @@ You May Not:
 - Hold AvRGaming LLC liable for any reason related to the use of this software.
 - Remove AvRGaming LLC from the credits or headers of the source files provided by this modification.
 - Use the CivCraft trademark without permission. 
+- At this time, you MAY NOT run unauthorized public or private servers.(This excludes development/test servers) If you wish to play CivCraft, do so at http://shotbow.net
 
 Installation Instructions
 ==========================
