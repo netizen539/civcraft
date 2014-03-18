@@ -12,6 +12,10 @@ You May Not:
 - Remove AvRGaming LLC from the credits or headers of the source files provided by this modification.
 - Use the CivCraft trademark without permission. 
 
+Installation Instructions
+==========================
+See INSTALL.txt
+
 Credits
 =======
 AvRGaming LLC
@@ -22,5 +26,6 @@ AvRGaming LLC
 
 Additional Contributors
 ========================
-The community at civcraft.net
-A special thanks to HighlifeTTU and LazerTester from the ShotBow network at http://shotbow.net.
+The community at http://civcraft.net/
+
+A special thanks to HighlifeTTU and LazerTester from the ShotBow Network at http://shotbow.net.
