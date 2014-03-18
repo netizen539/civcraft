@@ -1,0 +1,15 @@
+#
+# Database configuration for CivRegister
+# Configure this for the CakePHP database used to
+# keep track of online accounts.
+# 
+
+mysql:
+  hostname: 'localhost'
+  port: '3306'
+  db_name: 'civ_cake_db'
+  username: 'cake'
+  password: 'ddr2k0'
+
+# CakePHP Salt used for password hashing
+salt: 1337539sdfwwfWWDWFwwdfwQWFSCQQEFSAZ

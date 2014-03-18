@@ -1,0 +1,17 @@
+name: CivRegister
+main: com.avrgaming.civregister.CivRegister
+version: 1.0
+
+commands:
+  reg:
+    description: Registers you with the website.
+    usage: /reg [code]
+    permission: civregister.reg
+    permission-message: You don't have permission.
+    
+  resetpassword:
+    description: Resets your password on the website.
+    usage: /resetpassword
+    permission: civregister.reg
+    permission-message: You don't have permission.
+    
