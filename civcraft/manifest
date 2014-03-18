@@ -1,0 +1,2 @@
+Manifest-Version: 1.0
+Class-Path: CivCraft/lib/bonecp.jar CivCraft/lib/guava.jar CivCraft/lib/slf4j-api.jar CivCraft/lib/slf4j-simple.jar CivCraft/lib/json.jar

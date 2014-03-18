@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/bukkit-1.7.2-R0.2.jar"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/dhutils.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/Herochat.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/ServerStatusUpdater.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/TagAPI.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/Vault.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/VanishNoPacket.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/ProtocolLib-2.7.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/WorldBorder.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/NoCheatPlus.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/bonecp-0.8.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/guava-15.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/slf4j-simple-1.7.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/slf4j-api-1.7.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/junit-4.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/mockito-all-1.9.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/BarAPI.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/lib/craftbukkit-1.7.2-R0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource_beta7_2/lib/remoteentities-1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/MobLib_trunk/MobLib.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource_beta7_2/lib/spigot-1.7.2-R0.3-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource_beta7_2/lib/json.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
