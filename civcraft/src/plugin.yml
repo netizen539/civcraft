@@ -1,0 +1,52 @@
+name: CivCraft
+main: com.avrgaming.civcraft.main.CivCraft
+version: 1.0
+depend: [Herochat, TagAPI]
+
+commands:
+    town:
+        aliases: [t]
+    plot:
+        aliases: [p]
+    resident:
+        aliases: [res]
+    dbg:
+        aliases: []
+    accept:
+        aliases: [yes]
+    deny:
+        aliases: [no]
+    civ:
+        aliases:
+    tc:
+        aliases:
+    cc:
+        aliases:
+    ac:
+        aliases:
+    gc:
+        aliases:
+    ad:
+        aliases:
+    build:
+        aliases:
+    market:
+        aliases: [m]
+    select:
+        aliases:
+    econ:
+        aliases: [money]
+    pay:
+        aliases:
+    mod:
+        aliases:
+    here:
+        aliases:
+    camp:
+        aliases:
+    report:
+        aliases:
+    vote:
+        aliases: [v]
+    trade:
+        aliases:

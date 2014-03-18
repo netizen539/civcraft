@@ -1,0 +1,277 @@
+package com.avrgaming.civcraft.tutorial;
+
+import gpl.AttributeUtil;
+
+import java.util.LinkedList;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.MaterialData;
+
+import com.avrgaming.civcraft.config.CivSettings;
+import com.avrgaming.civcraft.config.ConfigIngredient;
+import com.avrgaming.civcraft.config.ConfigMaterial;
+import com.avrgaming.civcraft.config.ConfigMaterialCategory;
+import com.avrgaming.civcraft.config.ConfigTech;
+import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
+import com.avrgaming.civcraft.lorestorage.LoreGuiItem;
+import com.avrgaming.civcraft.lorestorage.LoreGuiItemListener;
+import com.avrgaming.civcraft.lorestorage.LoreMaterial;
+import com.avrgaming.civcraft.main.CivGlobal;
+import com.avrgaming.civcraft.main.Colors;
+import com.avrgaming.civcraft.util.ItemManager;
+
+public class CivTutorial {
+
+	public static Inventory tutorialInventory = null;
+	public static Inventory craftingHelpInventory = null;
+	public static Inventory guiInventory = null;
+	public static final int MAX_CHEST_SIZE = 6;
+	
+	public static void showTutorialInventory(Player player) {	
+		if (tutorialInventory == null) {
+			tutorialInventory = Bukkit.getServer().createInventory(player, 9*3, "CivCraft Tutorial");
+		
+	
+			tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"What is CivCraft?", ItemManager.getId(Material.WORKBENCH), 0, 
+				ChatColor.RESET+"CivCraft is a game about building civilizations set in a large,",
+				ChatColor.RESET+"persistent world filled with players.",
+				ChatColor.RESET+"Players start out as nomads, gathering",
+				ChatColor.RESET+"resources and making allies until they can build a camp.",
+				ChatColor.RESET+"Gather more resources and allies and found a civilization!",
+				ChatColor.RESET+Colors.LightGreen+"Research technology! Build structures! Conquer the world!"
+				));
+		
+			tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"Explore", ItemManager.getId(Material.COMPASS), 0, 
+					ChatColor.RESET+"Venture outward from spawn into the wild",
+					ChatColor.RESET+"and find a spot to settle. You may encounter",
+					ChatColor.RESET+"trade resources, and other player towns which",
+					ChatColor.RESET+"will infulence your decision on where to settle.",
+					ChatColor.RESET+"Different biomes generate different resources."
+					));
+			
+			tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"Resources and Materials", ItemManager.getId(Material.DIAMOND_ORE), 0, 
+					ChatColor.RESET+"CivCraft contains many new custom items.",
+					ChatColor.RESET+"These items are crafted using a crafting bench",
+					ChatColor.RESET+"and combining many more normal Minecraft items",
+					ChatColor.RESET+"into higher tier items. Certain items like iron, gold,",
+					ChatColor.RESET+"diamonds and emeralds can be exchanged for coins at "+Colors.Yellow+"Bank",
+					ChatColor.RESET+"structures. Coins can be traded for materials at the "+Colors.Yellow+"Market"
+					));
+			
+			tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"Towns", ItemManager.getId(Material.FENCE), 0, 
+					ChatColor.RESET+"Towns can be created by players to protect",
+					ChatColor.RESET+"areas from outsiders. Inside a town the owners are",
+					ChatColor.RESET+"free to build creatively without interference from griefers",
+					ChatColor.RESET+"Towns cost materials to create and coins to maintain.",
+					ChatColor.RESET+"Towns can build functional structures which allow it's",
+					ChatColor.RESET+"residents access to more features. Towns can only be built",
+					ChatColor.RESET+"inside of a civilization."
+					));
+			
+			tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"Civilizations", ItemManager.getId(Material.GOLD_HELMET), 0, 
+					ChatColor.RESET+"Civilizations are collections of towns",
+					ChatColor.RESET+"All towns inside of the civilization share technology",
+					ChatColor.RESET+"which is researched by the civ. Many items and structures",
+					ChatColor.RESET+"in CivCraft are only obtainable through the use of technology",
+					ChatColor.RESET+"Founding your own civ is a lot of work, you must be a natural",
+					ChatColor.RESET+"leader and bring people together in order for your civ to survive",
+					ChatColor.RESET+"and flourish."
+					));
+			
+			if (CivGlobal.isCasualMode()) {
+				tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"Casual War!", ItemManager.getId(Material.FIREWORK), 0, 
+						ChatColor.RESET+"War allows civilizations to settle their differences.",
+						ChatColor.RESET+"In casual mode, Civs have to the option to request war from",
+						ChatColor.RESET+"each other. The winner of a war is awarded a trophy which can be",
+						ChatColor.RESET+"displayed in an item frame for bragging rights.",
+						ChatColor.RESET+"After a civilization is defeated in war, war must be requested again."
+						));
+			} else {
+				tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"War!", ItemManager.getId(Material.IRON_SWORD), 0, 
+						ChatColor.RESET+"War allows civilizations to settle their differences.",
+						ChatColor.RESET+"Normally, all structures inside a civilization are protected",
+						ChatColor.RESET+"from damage. However civs have to the option to declare war on",
+						ChatColor.RESET+"each other and do damage to each other's structures, and even capture",
+						ChatColor.RESET+"towns from each other. Each weekend, WarTime is enabled for two hours",
+						ChatColor.RESET+"during which players at war must defend their civ and conquer their enemies."
+						));
+			}
+			
+			tutorialInventory.setItem(8, LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"More Info?", ItemManager.getId(Material.BOOK_AND_QUILL), 0, 
+					ChatColor.RESET+"There is much more information you will require for your",
+					ChatColor.RESET+"journey into CivCraft. Please visit the wiki at ",
+					ChatColor.RESET+Colors.LightGreen+ChatColor.BOLD+"http://civcraft.net/wiki",
+					ChatColor.RESET+"For more detailed information about CivCraft and it's features."
+					));
+			
+			tutorialInventory.setItem(9, LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"QUEST: Build a Camp", ItemManager.getId(Material.BOOK_AND_QUILL), 0, 
+					ChatColor.RESET+"First things first, in order to start your journey",
+					ChatColor.RESET+"you must first build a camp. Camps allow you to store",
+					ChatColor.RESET+"your materials safely, and allow you to obtain leadership",
+					ChatColor.RESET+"tokens which can be crafted into a civ. The recipe for a camp is below."
+					));
+			
+			tutorialInventory.setItem(18,getInfoBookForItem("mat_found_camp"));
+			
+			tutorialInventory.setItem(10, LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"QUEST: Found a Civ", ItemManager.getId(Material.BOOK_AND_QUILL), 0, 
+					ChatColor.RESET+"Next, you'll want to start a civilization.",
+					ChatColor.RESET+"To do this, you must first obtain leadership tokens",
+					ChatColor.RESET+"by feeding bread to your camp's longhouse.",
+					ChatColor.RESET+"Once you have enough leadership tokens.",
+					ChatColor.RESET+"You can craft the founding flag item below."
+					));
+			
+			tutorialInventory.setItem(19,getInfoBookForItem("mat_found_civ"));
+			
+			tutorialInventory.setItem(11, LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"Need to know a recipe?", ItemManager.getId(Material.WORKBENCH), 0, 
+					ChatColor.RESET+"Type /res book to obtain the tutorial book",
+					ChatColor.RESET+"and then click on 'Crafting Recipies'",
+					ChatColor.RESET+"Every new item in CivCraft is listed here",
+					ChatColor.RESET+"along with how to craft them.",
+					ChatColor.RESET+"Good luck!"
+					));
+		
+			LoreGuiItemListener.guiInventories.put(tutorialInventory.getName(), tutorialInventory);
+		}
+		
+		if (player != null && player.isOnline() && player.isValid()) {
+			player.openInventory(tutorialInventory);	
+		}
+	}
+	
+	public static ItemStack getInfoBookForItem(String matID) {
+		LoreCraftableMaterial loreMat = LoreCraftableMaterial.getCraftMaterialFromId(matID);
+		ItemStack stack = LoreMaterial.spawn(loreMat);
+							
+		if (!loreMat.isCraftable()) {
+			return null;
+		}
+		
+		AttributeUtil attrs = new AttributeUtil(stack);
+		attrs.removeAll(); /* Remove all attribute modifiers to prevent them from displaying */
+		LinkedList<String> lore = new LinkedList<String>();
+		
+		if (!loreMat.isShaped()) {
+			lore.add(ChatColor.RESET+Colors.Gold+"Shapeless");
+			for (ConfigIngredient cfgIngred : loreMat.getConfigMaterial().incredients.values()) {
+				String name;
+				
+				if (cfgIngred.custom_id == null) {
+					MaterialData data = ItemManager.getMaterialData(cfgIngred.type_id, cfgIngred.data);
+					name = data.getItemType().toString();
+				} else {
+					name = LoreMaterial.materialMap.get(cfgIngred.custom_id).getName();
+				}
+				
+				lore.add(ChatColor.RESET+Colors.White+cfgIngred.count+" "+Colors.LightBlue+name);
+			}
+			
+		} else {
+			lore.add(ChatColor.RESET+Colors.Gold+"x"+Colors.White+" is "+Colors.LightBlue+"empty");
+			
+			for (ConfigIngredient cfgIngred : loreMat.getConfigMaterial().incredients.values()) {
+				String name;
+				
+				if (cfgIngred.custom_id == null) {
+					MaterialData data = ItemManager.getMaterialData(cfgIngred.type_id, cfgIngred.data);
+					name = data.getItemType().name();
+				} else {
+					name = LoreMaterial.materialMap.get(cfgIngred.custom_id).getName();
+				}
+				
+				lore.add(ChatColor.RESET+Colors.Gold+cfgIngred.letter+Colors.White+" is "+Colors.LightBlue+name);
+			}
+			
+			for (String shapeStr : loreMat.getConfigMaterial().shape) {
+				String line;
+				line = Colors.LightGreen+shapeStr.replace(" ", Colors.LightGray+"x"+Colors.LightGreen);
+				lore.add(ChatColor.RESET+line);
+			}
+			
+		}
+		
+		if (loreMat.getConfigMaterial().required_tech != null) {
+			ConfigTech tech = CivSettings.techs.get(loreMat.getConfigMaterial().required_tech);
+			if (tech != null) {
+				lore.add(Colors.Rose+"Requires: "+Colors.LightBlue+tech.name);
+			}
+		}
+		
+		attrs.setLore(lore);				
+		stack = attrs.getStack();
+		return stack;
+	}
+	
+	public static void showCraftingHelp(Player player) {
+		if (craftingHelpInventory == null) {
+			craftingHelpInventory = Bukkit.getServer().createInventory(player, MAX_CHEST_SIZE*9, "CivCraft Custom Item Recipes");
+
+			/* Build the Category Inventory. */
+			for (ConfigMaterialCategory cat : ConfigMaterialCategory.getCategories()) {
+				if (cat.craftableCount == 0) {
+					continue;
+				}
+				
+				ItemStack infoRec = LoreGuiItem.build(cat.name, 
+						ItemManager.getId(Material.WRITTEN_BOOK), 
+						0, 
+						Colors.LightBlue+cat.materials.size()+" Items",
+						Colors.Gold+"<Click To Open>");
+						infoRec = LoreGuiItem.setAction(infoRec, "openinv:showGuiInv:"+cat.name+" Recipies");
+						craftingHelpInventory.addItem(infoRec);
+						
+//				/* Build a new GUI Inventory. */
+//				for (ConfigMaterial mat : cat.materials.values()) {
+//					LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterialFromId(mat.id);
+//					ItemStack stack = LoreMaterial.spawn(craftMat);
+//					stack = LoreGuiItem.asGuiItem(stack);
+//					stack = LoreGuiItem.setAction(stack, "spawn");
+//					inv.addItem(stack);
+//				}
+						
+				Inventory inv = Bukkit.createInventory(player, LoreGuiItem.MAX_INV_SIZE, cat.name+" Recipies");
+				for (ConfigMaterial mat : cat.materials.values()) {
+
+					ItemStack stack = getInfoBookForItem(mat.id);
+					if (stack != null) {
+						inv.addItem(LoreGuiItem.asGuiItem(stack));
+					}
+				}
+				LoreGuiItemListener.guiInventories.put(inv.getName(), inv);
+			}
+			
+			LoreGuiItemListener.guiInventories.put(craftingHelpInventory.getName(), craftingHelpInventory);
+		}
+		
+		player.openInventory(craftingHelpInventory);
+	}
+	
+	public static void spawnGuiBook(Player player) {
+		if (guiInventory == null) {
+			guiInventory = Bukkit.getServer().createInventory(player, 3*9, "CivCraft Information");
+
+			ItemStack infoRec = LoreGuiItem.build("CivCraft Info", 
+					ItemManager.getId(Material.WRITTEN_BOOK), 
+							0, Colors.Gold+"<Click To View>");
+			infoRec = LoreGuiItem.setAction(infoRec, "openinv:showTutorialInventory");
+			guiInventory.addItem(infoRec);
+			
+			ItemStack craftRec = LoreGuiItem.build("Crafting Recipes", 
+					ItemManager.getId(Material.WRITTEN_BOOK), 
+					0, Colors.Gold+"<Click To View>");
+			craftRec = LoreGuiItem.setAction(craftRec, "openinv:showCraftingHelp");
+			guiInventory.addItem(craftRec);
+			LoreGuiItemListener.guiInventories.put(guiInventory.getName(), guiInventory);
+		}
+		
+		player.openInventory(guiInventory);
+
+	}
+	
+	
+}

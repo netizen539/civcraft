@@ -1,0 +1,33 @@
+#
+# CivCraft Configuration file. Mostly just system stuff, balancing info is in the data
+# directory. 
+#
+#
+
+# MySQL database settings
+mysql:
+   hostname: localhost
+   port: '3306'
+   database: 
+   username: 
+   password: 
+   table_prefix: 
+   min_conns: '5'
+   max_conns: '10'
+   parts: '3'
+   
+global_database:
+    database: 
+    hostname:
+    port: '3306'
+    username:
+    password:
+    min_conns: '5'
+    max_conns: '10'
+    parts: '3'
+
+server_name: 'civcraft'
+server_timezone: 'PST'
+server_phase: 'beta7'
+
+ 
