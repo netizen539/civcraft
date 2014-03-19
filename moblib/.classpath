@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/MobLib_trunk/lib/craftbukkit-1.7.2-R0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/MobLib_trunk/lib/bukkit-1.7.2-R0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryan/civcraft/civcraftsource/CivCraft1.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

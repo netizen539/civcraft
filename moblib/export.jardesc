@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="MobLib_trunk/MobLib.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/MobLib_trunk/export.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="/civcraftsource/manifest" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/MobLib_trunk/.project"/>
+        <file path="/MobLib_trunk/export.jardesc"/>
+        <javaElement handleIdentifier="=MobLib_trunk/src"/>
+        <file path="/MobLib_trunk/plugin.yml"/>
+        <file path="/MobLib_trunk/.classpath"/>
+    </selectedElements>
+</jardesc>

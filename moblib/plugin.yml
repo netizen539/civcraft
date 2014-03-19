@@ -1,0 +1,7 @@
+name: MobLib
+main: com.avrgaming.moblib.MobLib
+version: 1.0
+
+commands:
+    moblib:
+        aliases:
