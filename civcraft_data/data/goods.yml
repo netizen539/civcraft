@@ -248,7 +248,7 @@ land_goods:
       buffs: 'buff_innovation, buff_extraction, buff_rush'
       material: 372 # nether wart seed
       material_data: 0
-      hemispheres: 'hemi_northeast'
+      hemispheres: 'hemi_northwest'
 
     - id: 'good_limestone'
       name: Limestone
