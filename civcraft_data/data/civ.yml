@@ -48,7 +48,7 @@ global:
    # Amount of extra attack each +1 gives to weapons
    attack_catalyst_multiplier: 1.0
 
-   # Amount of extra attack each +1 gives to armor
+   # Amount of extra armor each +1 gives to armor
    defense_catalyst_multiplier: 1.0
 
    # Casual mode, war disabled. Wonders for all. No spies.
