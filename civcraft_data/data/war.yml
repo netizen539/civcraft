@@ -82,8 +82,8 @@ revolution:
     # Number of coins paid per point of all of your civ and town scores
     coins_per_point: 0.1
 
-    # Maximum revolution fee you can pay
-    maximum_fee: 500000.0
+    # Maximum revolution fee you can pay --> 50 Millions
+    maximum_fee: 50000000.0
 
 
 scout_tower:
