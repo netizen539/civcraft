@@ -391,14 +391,13 @@ public class ConsumeLevelComponent extends Component {
 				}
 				
 				this.count = 0;
-				this.level++;
 				if (hasEnoughToConsume()) {
 					// we have what we need for the next level, process it as a levelup.
+					this.level++;
 					lastResult = Result.LEVELUP;
 					return lastResult;			
 				} else {
 					// we don't have enough for the next level, process as a MAXED.
-					this.level--;
 					this.count = currentCountMax;
 					lastResult = Result.MAXED;
 					return lastResult;
