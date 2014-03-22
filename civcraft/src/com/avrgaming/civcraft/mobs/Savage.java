@@ -58,8 +58,8 @@ public class Savage extends CommonCustomMob implements ICustomMob {
 		    
 		    this.addDrop("mat_metallic_crystal_fragment_2", 0.05);
 
-		    this.addDrop("mat_aged_wood_stave", 0.01);
-		    this.addDrop("mat_crafted_string", 0.03);
+		    this.addDrop("mat_aged_wood_stave", 0.1);
+		    this.addDrop("mat_crafted_string", 0.05);
 
 		    this.addDrop("mat_varnish", 0.01);
 		    this.addDrop("mat_sticky_resin", 0.01);
@@ -75,8 +75,8 @@ public class Savage extends CommonCustomMob implements ICustomMob {
 		    this.addDrop("mat_metallic_crystal_fragment_3", 0.05);
 
 		    this.addDrop("mat_longbow_stave", 0.01);
-		    this.addDrop("mat_reinforced_braid", 0.01);
-		    this.addDrop("mat_crafted_string", 0.03);
+		    this.addDrop("mat_reinforced_braid", 0.03);
+		    this.addDrop("mat_crafted_string", 0.15);
 
 		    this.addDrop("mat_sticky_resin", 0.1);
 		    this.addDrop("mat_smithy_resin", 0.01);
@@ -92,7 +92,7 @@ public class Savage extends CommonCustomMob implements ICustomMob {
 		    this.addDrop("mat_metallic_crystal_fragment_4", 0.05);
 
 		    this.addDrop("mat_composite_bow_stave", 0.01);
-		    this.addDrop("mat_reinforced_braid", 0.03);
+		    this.addDrop("mat_reinforced_braid", 0.05);
 		    this.addDrop("mat_composite_bow_string", 0.01);
 
 		    this.addDrop("mat_sticky_resin", 0.1);
