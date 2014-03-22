@@ -3141,6 +3141,29 @@ materials:
               - "mmm"
               - " s "
               - " s "
+              
+       - id: 'mat_vanilla_dispenser'
+          item_id: 23
+          item_data: 0
+          name: 'Dispenser'
+          craftable: true
+          vanilla: true
+          shaped: true
+          ingredients:
+              - type_id: 55 #redstone
+                data: 0
+                letter: 'r'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_hunting_bow'
+                letter: 'b'
+              - type_id: 4 #cobblestone
+                data: 0
+                letter: 'c' 
+          shape:
+              - "ccc"
+              - "cbc"
+              - "crc"
 #
 # This is a list of removed recpies based on the typeID and 
 # data value of the vanilla item.
