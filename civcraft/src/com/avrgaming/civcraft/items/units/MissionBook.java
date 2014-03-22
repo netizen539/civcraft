@@ -178,7 +178,7 @@ public class MissionBook extends UnitItemMaterial {
 			}
 			
 			if ((cc != null && cc.getCiv().isAdminCiv()) || (tc != null && tc.getTown().getCiv().isAdminCiv())) {
-				throw new CivException("You cannot spy on and admin civ.");
+				throw new CivException("You cannot spy on an admin civ.");
 			}
 			
 			if (CivGlobal.isCasualMode()) {
