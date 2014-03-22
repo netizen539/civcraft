@@ -76,7 +76,6 @@ public class AngryYobo  extends CommonCustomMob implements ICustomMob {
 		    this.addDrop("mat_steel_sword_hilt", 0.01);
 		    this.addDrop("mat_steel_sword_blade", 0.01);
 		    this.addDrop("mat_clay_steel_cast", 0.05);
-		    this.addDrop("mat_leather_straps", 0.05);
 		    this.addDrop("mat_steel_ingot", 0.1);
 
 		    this.addDrop("mat_varnish", 0.01);
@@ -93,7 +92,6 @@ public class AngryYobo  extends CommonCustomMob implements ICustomMob {
 		    this.addDrop("mat_carbide_steel_sword_hilt", 0.01);
 		    this.addDrop("mat_carbide_steel_sword_blade", 0.01);
 		    this.addDrop("mat_clay_steel_cast", 0.05);
-		    this.addDrop("mat_leather_straps", 0.05);
 		    this.addDrop("mat_steel_ingot", 0.1);
 
 		    this.addDrop("mat_sticky_resin", 0.1);
