@@ -2575,7 +2575,9 @@ public class Town extends SQLObject {
 		rate = newRate;
 	
 		/* Additional rate increases from buffs. */
+		/* Great Library buff is made to not stack with Science_Rate */
 		double additional = rate*getBuffManager().getEffectiveDouble(Buff.SCIENCE_RATE);
+		additional += rate*getBuffManager().getEffectiveDouble("buff_greatlibrary_extra_beakers");
 		rate += additional;
 		rates.put("Goodies/Wonders", additional);
 
@@ -2625,7 +2627,8 @@ public class Town extends SQLObject {
 		
 		/* Grab any extra beakers from buffs. */
 		double wondersTrade = 0;
-		wondersTrade += getBuffManager().getEffectiveDouble("buff_greatlibrary_extra_beakers");
+		
+		//No more flat bonuses here, leaving it in case of new buffs
 		
 		beakers += wondersTrade;
 		sources.put("Goodies/Wonders", wondersTrade);
