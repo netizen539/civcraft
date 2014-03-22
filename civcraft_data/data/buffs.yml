@@ -184,8 +184,8 @@ buffs:
 # Great library buffs
     - id: 'buff_greatlibrary_extra_beakers'
       name: 'Great Library Extra Beakers'
-      description: 'Grants 100 extra beakers to this town per hour.'
-      value: '100'
+      description: 'Grants 10% extra beakers for the civ.'
+      value: '0.1'
       stackable: false
       parent:
 
