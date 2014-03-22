@@ -40,7 +40,8 @@ espionage:
 
     # Chance that the poison will cause an entire
     # cottage level to be lost.
-    poison_granary_famine_chance: 0.2
+    # Nerfed from 0.2 to 0.05 was way too op, would bring ALL cottages down a level
+    poison_granary_famine_chance: 0.05
 
     # Number of mins a resident must have registered
     # before being allowed to use a spy unit.
@@ -109,7 +110,7 @@ missions:
     - id: 'spy_poison_granary'
       name: 'Poison Granary'
       description: 
-          - 'Causes all cottages to starve for 10 hours.'
+          - 'Causes all cottages to starve for 3 to 50 hours. 5% chances to bring famine and down level all cottages.'
           - 'Must be within 50 blocks of a granary.'
       range: 50.0
       cost: 20000.0
@@ -129,7 +130,7 @@ missions:
       cost: 1000.0
       cooldown: 2.0
       fail_chance: 0.0
-      compromise_chance: 0.01
+      compromise_chance: 0.00
       intel: 0
       length: 60
       slot: 3
