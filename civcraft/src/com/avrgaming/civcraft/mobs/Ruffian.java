@@ -109,7 +109,7 @@ public class Ruffian extends CommonCustomMob implements ICustomMob {
 		    this.addDrop("mat_ionic_crystal_fragment_3", 0.05);
 
 		    this.addDrop("mat_leather_straps", 0.1);
-		    this.addDrop("mat_crafted_string", 0.03);
+		    this.addDrop("mat_crafted_string", 0.05);
 		    this.addDrop("mat_refined_slime", 0.05);
 
 		    this.addDrop("mat_varnish", 0.01);
@@ -126,7 +126,7 @@ public class Ruffian extends CommonCustomMob implements ICustomMob {
 		    this.addDrop("mat_ionic_crystal_fragment_4", 0.05);
 
 		    this.addDrop("mat_artisan_leather", 0.1);
-		    this.addDrop("mat_crafted_string", 0.03);
+		    this.addDrop("mat_crafted_string", 0.1);
 		    this.addDrop("mat_refined_slime", 0.05);
 
 		    this.addDrop("mat_varnish", 0.01);
