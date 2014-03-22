@@ -323,7 +323,7 @@ public class CivDiplomacyCommand extends CommandBase {
 		try {
 			Relation.Status status = Relation.Status.valueOf(args[2].toUpperCase());
 			Relation.Status currentStatus = ourCiv.getDiplomacyManager().getRelationStatus(otherCiv);
-			boolean aidingAlly = false;
+			//boolean aidingAlly = false;
 
 			if (currentStatus == status) {
 				throw new CivException("Already "+status.name()+" with "+otherCiv.getName());
@@ -349,7 +349,7 @@ public class CivDiplomacyCommand extends CommandBase {
 						if (War.isWithinAllyDeclareHours()) {
 							throw new CivException("Too soon to next WarTime. Allies can only aid other allies within "+War.getAllyDeclareHours()+" hours before WarTime.");
 						} else {
-							aidingAlly = true;
+							//aidingAlly = true;
 						}
 					} else {		
 						throw new CivException("Too soon to next WarTime. Cannot declare "+War.getTimeDeclareDays()+" before WarTime.");
@@ -366,12 +366,14 @@ public class CivDiplomacyCommand extends CommandBase {
 			}
 			
 			CivGlobal.setRelation(ourCiv, otherCiv, status);
-			if (aidingAlly) {
-				/* If we're aiding an ally, the other civ is the true aggressor. */
-				CivGlobal.setAggressor(otherCiv, ourCiv, otherCiv);
-			} else {
-				CivGlobal.setAggressor(ourCiv, otherCiv, ourCiv);
-			}
+			//Boolean aidingAlly is in commentaries a couple lines higher (2 times) 
+			//if (aidingAlly) {
+			//	/* If we're aiding an ally, the other civ is the true aggressor. */
+			//	CivGlobal.setAggressor(otherCiv, ourCiv, otherCiv);
+			//} else {
+			//	CivGlobal.setAggressor(ourCiv, otherCiv, ourCiv);
+			//} 
+			CivGlobal.setAggressor(ourCiv, otherCiv, ourCiv);
 						
 		} catch (IllegalArgumentException e) {
 			throw new CivException("Unknown relationship type, options hostile or war");
