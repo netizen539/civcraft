@@ -505,7 +505,7 @@ materials:
               - type_id: 0
                 custom_id: 'mat_refined_slime'
                 data: 0
-                count: 3
+                count: 2
               - type_id: 0
                 custom_id: 'mat_refined_sugar'
                 data: 0
