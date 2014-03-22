@@ -52,7 +52,7 @@ public class Behemoth extends CommonCustomMob implements ICustomMob {
 		    modifySpeed(1.4);
 		    this.addDrop("mat_ionic_crystal_fragment_2", 0.05);
 
-		    this.addDrop("mat_steel_plate", 0.01);
+		    this.addDrop("mat_steel_plate", 0.1);
 		    this.addDrop("mat_steel_ingot", 0.1);
 		    this.addDrop("mat_clay_molding", 0.05);
 
@@ -66,7 +66,7 @@ public class Behemoth extends CommonCustomMob implements ICustomMob {
 		    modifySpeed(1.5);
 		    this.addDrop("mat_ionic_crystal_fragment_3", 0.05);
 
-		    this.addDrop("mat_carbide_steel_plate", 0.01);
+		    this.addDrop("mat_carbide_steel_plate", 0.1);
 		    this.addDrop("mat_carbide_steel_ingot", 0.1);
 		    this.addDrop("mat_clay_molding", 0.05);
 
@@ -77,7 +77,7 @@ public class Behemoth extends CommonCustomMob implements ICustomMob {
 		case BRUTAL:
 		    this.addDrop("mat_ionic_crystal_fragment_4", 0.05);
 		    
-		    this.addDrop("mat_tungsten_plate", 0.01);
+		    this.addDrop("mat_tungsten_plate", 0.1);
 		    this.addDrop("mat_tungsten_ingot", 0.1);
 		    this.addDrop("mat_clay_tungsten_casting", 0.05);
 		    
