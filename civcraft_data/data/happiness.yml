@@ -87,7 +87,7 @@ happiness:
         - level: 1
           name: 'Unrest'
           color: 'Rose'
-          amount: 0.20
+          amount: 0.195
           beaker_rate: 0.5
           coin_rate: 0.5
           culture_rate: 0.5
@@ -96,7 +96,7 @@ happiness:
         - level: 2
           name: 'Unhappy'
           color: 'Gold'
-          amount: 0.40
+          amount: 0.395
           beaker_rate: 0.75
           coin_rate: 0.75
           culture_rate: 0.75
@@ -105,7 +105,7 @@ happiness:
         - level: 3
           name:  'Content'
           color: 'White'
-          amount: 0.50
+          amount: 0.495
           beaker_rate: 1.0
           coin_rate: 1.0
           culture_rate: 1.0
@@ -114,7 +114,7 @@ happiness:
         - level: 4
           name:  'Happy'
           color: 'LightGreen'
-          amount: 0.70
+          amount: 0.695
           beaker_rate: 1.15
           coin_rate: 1.15
           culture_rate: 1.15
@@ -123,7 +123,7 @@ happiness:
         - level: 5
           name:  'Elated'
           color: 'LightBlue'
-          amount: 0.85
+          amount: 0.845
           beaker_rate: 1.30
           coin_rate: 1.30
           culture_rate: 1.30
@@ -132,7 +132,7 @@ happiness:
         - level: 6
           name:  'Ecstatic'
           color: 'LightPurple'
-          amount: 0.92
+          amount: 0.915
           beaker_rate: 1.5
           coin_rate: 1.5
           culture_rate: 1.5
