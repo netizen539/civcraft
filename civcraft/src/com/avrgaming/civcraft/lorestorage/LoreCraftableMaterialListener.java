@@ -58,7 +58,7 @@ public class LoreCraftableMaterialListener implements Listener {
 			}
 			
 			if (!craftMat.getConfigMaterial().playerHasTechnology(player)) {
-				CivMessage.sendError(player, "You do not have the required technology ("+craftMat.getConfigMaterial().getRequireString()+") to craft this item.");
+				CivMessage.sendError(player, "You do not have the required technology ("+craftMat.getConfigMaterial().getRequireString()+") to craft this item. :2");
 				event.setCancelled(true);
 				return;
 			}
