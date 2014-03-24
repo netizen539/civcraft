@@ -49,7 +49,7 @@ public class LoreCraftableMaterialListener implements Listener {
 				ConfigTechItem restrictedTechItem = CivSettings.techItems.get(ItemManager.getId(resultStack));
 				if (restrictedTechItem != null) {
 					ConfigTech tech = CivSettings.techs.get(restrictedTechItem.require_tech);
-					CivMessage.sendError(player, "You do not have the required technology ("+tech.name+") to craft this item.");
+					CivMessage.sendError(player, "Your civilization doesn't have the required technology ("+tech.name+") to craft this item.");
 					event.setCancelled(true);
 					return;
 				}
@@ -58,7 +58,7 @@ public class LoreCraftableMaterialListener implements Listener {
 			}
 			
 			if (!craftMat.getConfigMaterial().playerHasTechnology(player)) {
-				CivMessage.sendError(player, "You do not have the required technology ("+craftMat.getConfigMaterial().getRequireString()+") to craft this item. :2");
+				CivMessage.sendError(player, "You do not have the required technology ("+craftMat.getConfigMaterial().getRequireString()+") to craft this item.");
 				event.setCancelled(true);
 				return;
 			}
