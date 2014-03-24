@@ -32,7 +32,7 @@ public class Behemoth extends CommonCustomMob implements ICustomMob {
 	public void onCreateAttributes() {
 		MobComponentDefense defense;
 	    this.setKnockbackResistance(1.0D);
-	    this.setMovementSpeed(0.25);
+	    this.setMovementSpeed(0.15);
 
 		switch (this.level) {
 		case LESSER:
@@ -53,11 +53,11 @@ public class Behemoth extends CommonCustomMob implements ICustomMob {
 		    this.addDrop("mat_ionic_crystal_fragment_2", 0.05);
 
 		    this.addDrop("mat_steel_plate", 0.1);
-		    this.addDrop("mat_steel_ingot", 0.1);
+		    this.addDrop("mat_steel_ingot", 0.05);
 		    this.addDrop("mat_clay_molding", 0.05);
 
 		    this.addDrop("mat_varnish", 0.01);
-		    this.addDrop("mat_sticky_resin", 0.01);
+		    this.addDrop("mat_sticky_resin", 0.05);
 		    this.coinDrop(10, 50);
 		    break;
 		case ELITE:
@@ -67,22 +67,22 @@ public class Behemoth extends CommonCustomMob implements ICustomMob {
 		    this.addDrop("mat_ionic_crystal_fragment_3", 0.05);
 
 		    this.addDrop("mat_carbide_steel_plate", 0.1);
-		    this.addDrop("mat_carbide_steel_ingot", 0.1);
+		    this.addDrop("mat_carbide_steel_ingot", 0.05);
 		    this.addDrop("mat_clay_molding", 0.05);
 
 		    this.addDrop("mat_sticky_resin", 0.1);
-		    this.addDrop("mat_smithy_resin", 0.01);
+		    this.addDrop("mat_smithy_resin", 0.51);
 		    this.coinDrop(20, 80);
 			break;
 		case BRUTAL:
 		    this.addDrop("mat_ionic_crystal_fragment_4", 0.05);
 		    
 		    this.addDrop("mat_tungsten_plate", 0.1);
-		    this.addDrop("mat_tungsten_ingot", 0.1);
+		    this.addDrop("mat_tungsten_ingot", 0.05);
 		    this.addDrop("mat_clay_tungsten_casting", 0.05);
 		    
 		    this.addDrop("mat_sticky_resin", 0.1);
-		    this.addDrop("mat_smithy_resin", 0.01);
+		    this.addDrop("mat_smithy_resin", 0.05);
 
 		    defense = new MobComponentDefense(20);
 		    setMaxHealth(160.0);
