@@ -3348,7 +3348,7 @@ materials:
               - " s "
               - " s "
               
-       - id: 'mat_vanilla_dispenser'
+        - id: 'mat_vanilla_dispenser'
           item_id: 23
           item_data: 0
           name: 'Dispenser'
