@@ -597,7 +597,7 @@ public class Town extends SQLObject {
 	
 	public AttrSource getCulture() {
 
-		AttrCache cache = this.attributeCache.get("CULUTRE");
+		AttrCache cache = this.attributeCache.get("CULTURE");
 		if (cache == null) {
 			cache = new AttrCache();
 			cache.lastUpdate = new Date();
@@ -940,7 +940,7 @@ public class Town extends SQLObject {
 				newTown.addResident(resident);
 			} catch (AlreadyRegisteredException e) {
 				e.printStackTrace();
-				throw new CivException("Internal error, resident already registerd to this town but creating it?");
+				throw new CivException("Internal error, resident already registered to this town but creating it?");
 			}
 			resident.saveNow();
 			
