@@ -30,6 +30,7 @@ import com.avrgaming.civcraft.object.Buff;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.util.BlockCoord;
 
+
 public abstract class ProjectileTower extends Structure {
 
 	
