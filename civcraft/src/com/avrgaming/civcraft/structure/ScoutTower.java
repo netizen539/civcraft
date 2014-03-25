@@ -52,6 +52,7 @@ public class ScoutTower extends Structure {
 	protected ScoutTower(Location center, String id, Town town)
 			throws CivException {
 		super(center, id, town);
+		this.hitpoints = this.getMaxHitPoints();
 	}
 	
 	@Override
@@ -85,6 +86,15 @@ public class ScoutTower extends Structure {
 			}
 			CivMessage.send(player, Colors.Yellow+"[ScoutDebug] "+str);
 		}
+	}
+	
+	@Override
+	public int getMaxHitPoints() {
+		double rate = 1;
+		if (this.getTown().getBuffManager().hasBuff("buff_chichen_itza_tower_hp")) {
+			rate += this.getTown().getBuffManager().getEffectiveDouble("buff_chichen_itza_tower_hp");
+		}
+		return (int) (info.max_hitpoints * rate);
 	}
 	
 	/*
