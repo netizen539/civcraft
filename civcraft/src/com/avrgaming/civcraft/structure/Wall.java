@@ -40,6 +40,7 @@ import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.main.Colors;
+import com.avrgaming.civcraft.object.Buff;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.object.StructureBlock;
 import com.avrgaming.civcraft.object.Town;
@@ -525,6 +526,7 @@ public class Wall extends Structure {
 		double rate = 1;
 		if (this.getTown().getBuffManager().hasBuff("buff_chichen_itza_tower_hp")) {
 			rate += this.getTown().getBuffManager().getEffectiveDouble("buff_chichen_itza_tower_hp");
+			rate += this.getTown().getBuffManager().getEffectiveDouble(Buff.BARRICADE);
 		}
 		return (int) (info.max_hitpoints * rate);
 	}
