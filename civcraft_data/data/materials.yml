@@ -3356,7 +3356,7 @@ materials:
           vanilla: true
           shaped: true
           ingredients:
-              - type_id: 55 #redstone
+              - type_id: 331 #redstone
                 data: 0
                 letter: 'r'
               - type_id: 0
