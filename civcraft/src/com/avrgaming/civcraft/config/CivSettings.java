@@ -531,7 +531,7 @@ public class CivSettings {
 		
 		for (int i = 0; i < happinessStates.size(); i++) {
 			ConfigHappinessState state = happinessStates.get(i);
-			
+			amount = (double) Math.round(amount * 100) / 100;
 			if (amount >= state.amount) {
 				closestState = state;
 			}

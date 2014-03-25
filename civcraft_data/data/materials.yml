@@ -3142,7 +3142,213 @@ materials:
               - " s "
               - " s "
               
-       - id: 'mat_vanilla_dispenser'
+        - id: 'mat_vanilla_iron_shovel'
+          item_id: 256
+          item_data: 0
+          name: 'Iron Shovel'
+          craftable: true
+          shaped: true
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '200.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 265
+                data: 0
+                letter: 'm' 
+          shape:
+              - " m "
+              - " s "
+              - " s "
+        
+        - id: 'mat_vanilla_gold_shovel'
+          item_id: 284
+          item_data: 0
+          name: 'Gold Shovel'
+          craftable: true
+          shaped: true
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '100.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 266
+                data: 0
+                letter: 'm' 
+          shape:
+              - " m "
+              - " s "
+              - " s "
+
+        - id: 'mat_vanilla_diamond_shovel'
+          item_id: 277
+          item_data: 0
+          name: 'Diamond Shovel'
+          craftable: true
+          shaped: true
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '500.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 264
+                data: 0
+                letter: 'm' 
+          shape:
+              - " m "
+              - " s "
+              - " s "
+        - id: 'mat_vanilla_iron_axe'
+          item_id: 258
+          item_data: 0
+          name: 'Iron Axe'
+          craftable: true
+          shaped: true
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '400.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 265
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mm "
+              - "ms "
+              - " s "
+        
+        - id: 'mat_vanilla_gold_axe'
+          item_id: 286
+          item_data: 0
+          name: 'Gold Axe'
+          craftable: true
+          shaped: true
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '200.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 266
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mm "
+              - "ms "
+              - " s "
+
+        - id: 'mat_vanilla_diamond_axe'
+          item_id: 279
+          item_data: 0
+          name: 'Diamond Axe'
+          craftable: true
+          shaped: true
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '1000.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 264
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mm "
+              - "ms "
+              - " s "
+
+        - id: 'mat_vanilla_iron_hoe'
+          item_id: 292
+          item_data: 0
+          name: 'Iron Hoe'
+          craftable: true
+          shaped: true
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '400.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 265
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mm "
+              - " s "
+              - " s "
+        
+        - id: 'mat_vanilla_gold_hoe'
+          item_id: 294
+          item_data: 0
+          name: 'Gold Hoe'
+          craftable: true
+          shaped: true
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '200.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 266
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mm "
+              - " s "
+              - " s "
+
+        - id: 'mat_vanilla_diamond_hoe'
+          item_id: 293
+          item_data: 0
+          name: 'Diamond Hoe'
+          craftable: true
+          shaped: true
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '500.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 264
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mm "
+              - " s "
+              - " s "
+              
+        - id: 'mat_vanilla_dispenser'
           item_id: 23
           item_data: 0
           name: 'Dispenser'
@@ -3273,8 +3479,31 @@ removed_recipes:
       data: 0
     - type_id: 285
       data: 0
+    
+    # Shovels
+    - type_id: 256
+      data: 0
+    - type_id: 284
+      data: 0
+    - type_id: 277
+      data: 0
 
-
+    # Axes
+    - type_id: 258
+      data: 0
+    - type_id: 286
+      data: 0
+    - type_id: 279
+      data: 0
+      
+    # Hoe
+    - type_id: 292
+      data: 0
+    - type_id: 294
+      data: 0
+    - type_id: 293
+      data: 0
+      
 # Amount of tungston to drop
 tungsten_min_drop: 0
 tungsten_max_drop: 1
