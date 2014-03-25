@@ -33,6 +33,7 @@ import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.main.Colors;
+import com.avrgaming.civcraft.object.Buff;
 import com.avrgaming.civcraft.object.Relation;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
@@ -93,6 +94,7 @@ public class ScoutTower extends Structure {
 		double rate = 1;
 		if (this.getTown().getBuffManager().hasBuff("buff_chichen_itza_tower_hp")) {
 			rate += this.getTown().getBuffManager().getEffectiveDouble("buff_chichen_itza_tower_hp");
+			rate += this.getTown().getBuffManager().getEffectiveDouble(Buff.BARRICADE);
 		}
 		return (int) (info.max_hitpoints * rate);
 	}
