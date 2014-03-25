@@ -36,6 +36,7 @@ public class ArrowTower extends Structure {
 	protected ArrowTower(Location center, String id, Town town)
 			throws CivException {
 		super(center, id, town);
+		this.hitpoints = this.getMaxHitPoints();
 	}
 	
 	protected ArrowTower(ResultSet rs) throws SQLException, CivException {
@@ -56,6 +57,15 @@ public class ArrowTower extends Structure {
 		double rate = 1;
 		rate += this.getTown().getBuffManager().getEffectiveDouble(Buff.FIRE_BOMB);
 		return (int)(arrowComponent.getDamage()*rate);
+	}
+	
+	@Override
+	public int getMaxHitPoints() {
+		double rate = 1;
+		if (this.getTown().getBuffManager().hasBuff("buff_chichen_itza_tower_hp")) {
+			rate += this.getTown().getBuffManager().getEffectiveDouble("buff_chichen_itza_tower_hp");
+		}
+		return (int) (info.max_hitpoints * rate);
 	}
 
 	/**
