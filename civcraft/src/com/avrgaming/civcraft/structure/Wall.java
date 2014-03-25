@@ -87,6 +87,7 @@ public class Wall extends Structure {
 
 	public Wall(ResultSet rs) throws SQLException, CivException {
 		super(rs);
+		this.hitpoints = this.getMaxHitPoints();
 	}
 
 	@Override
@@ -505,7 +506,7 @@ public class Wall extends Structure {
 			throw new CivException("Your town cannot not afford the "+cost+" coins to build a "+getDisplayName());
 		}
 		
-		setHitpoints(getMaxHitPoints());
+		setHitpoints(this.getMaxHitPoints());
 		bindStructureBlocks();
 		
 		for (WallBlock wb : this.wallBlocks.values()) {
@@ -518,6 +519,14 @@ public class Wall extends Structure {
 		getTown().getTreasury().withdraw(cost);
 		CivMessage.sendTown(getTown(), Colors.Yellow+"The town has repaired a "+getDisplayName()+" at "+getCorner());
 	}
-
+	
+	@Override
+	public int getMaxHitPoints() {
+		double rate = 1;
+		if (this.getTown().getBuffManager().hasBuff("buff_chichen_itza_tower_hp")) {
+			rate += this.getTown().getBuffManager().getEffectiveDouble("buff_chichen_itza_tower_hp");
+		}
+		return (int) (info.max_hitpoints * rate);
+	}
 	
 }
