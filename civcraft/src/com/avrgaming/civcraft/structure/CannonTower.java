@@ -55,7 +55,7 @@ public class CannonTower extends Structure {
 	public int getDamage() {
 		double rate = 1;
 		rate += this.getTown().getBuffManager().getEffectiveDouble(Buff.FIRE_BOMB);
-		return (int)((cannonComponent.getDamage()+10)*rate);
+		return (int)(cannonComponent.getDamage()*rate);
 	}
 	
 	@Override
