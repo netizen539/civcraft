@@ -38,6 +38,7 @@ public class CannonTower extends Structure {
 	protected CannonTower(Location center, String id, Town town)
 			throws CivException {
 		super(center, id, town);
+		this.hitpoints = this.getMaxHitPoints();
 	}
 	
 	protected CannonTower(ResultSet rs) throws SQLException, CivException {
@@ -56,7 +57,17 @@ public class CannonTower extends Structure {
 		rate += this.getTown().getBuffManager().getEffectiveDouble(Buff.FIRE_BOMB);
 		return (int)(cannonComponent.getDamage()*rate);
 	}
-
+	
+	@Override
+	public int getMaxHitPoints() {
+		double rate = 1;
+		if (this.getTown().getBuffManager().hasBuff("buff_chichen_itza_tower_hp")) {
+			rate += this.getTown().getBuffManager().getEffectiveDouble("buff_chichen_itza_tower_hp");
+			rate += this.getTown().getBuffManager().getEffectiveDouble(Buff.BARRICADE);
+		}
+		return (int) (info.max_hitpoints * rate);
+	}
+	
 	public void setDamage(int damage) {
 		cannonComponent.setDamage(damage);
 	}
