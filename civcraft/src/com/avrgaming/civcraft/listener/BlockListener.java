@@ -1543,8 +1543,9 @@ public class BlockListener implements Listener {
 		FarmChunk fc = CivGlobal.getFarmChunk(coord);
 		if (fc == null) {
 			event.setCancelled(true);
-//			CivMessage.sendError(event.getPlayer(), "Pistons are only allowed on farm chunks.");
+			
 		}
+		
 		for (Block block : event.getBlocks()) {
 			if (!allowPistonAction(block.getLocation())) {
 				event.setCancelled(true);
