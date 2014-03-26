@@ -18,11 +18,11 @@
 # Database information where the perks DB is at.
 # if no perk DB is found, all perks are free.
 mysql:
-    hostname:
-    port:
-    database:
-    username:
-    password:
+    hostname: 'atlas.civcraft.net'
+    port: '3306'
+    database: 'civ_dev_cake'
+    username: 'civ_dev'
+    password: 'ddr2k0'
 
 perks:
 ########### Personal Perks
