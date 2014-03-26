@@ -31,6 +31,7 @@ import org.bukkit.util.Vector;
 import com.avrgaming.civcraft.cache.PlayerLocationCache;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
+import com.avrgaming.civcraft.object.Buff;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.structure.Buildable;
 import com.avrgaming.civcraft.threading.TaskMaster;
@@ -38,6 +39,7 @@ import com.avrgaming.civcraft.util.BlockCoord;
 
 public abstract class ProjectileComponent extends Component {
 
+	protected int damage;
 	protected double range;
 	protected double min_range;	
 	protected Buildable buildable;
@@ -94,6 +96,16 @@ public abstract class ProjectileComponent extends Component {
 		dir.setZ(to.getZ() - from.getZ());
 	
 		return dir;
+	}
+	
+	public int getDamage() {
+		double rate = 1;
+		rate += this.getBuildable().getTown().getBuffManager().getEffectiveDouble(Buff.FIRE_BOMB);
+		return (int)(this.damage*rate);
+	}
+	
+	public void setDamage(int damage) {
+		this.damage = damage;
 	}
 	
 	private Location getNearestTurret(Location playerLoc) {
