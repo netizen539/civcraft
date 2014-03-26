@@ -507,4 +507,9 @@ public class TownHall extends Structure implements RespawnLocationHolder {
 	public String getRespawnName() {
 		return "Town Hall\n"+this.getTown().getName();
 	}	
+	
+	public HashMap<BlockCoord, ControlPoint> getControlPoints()
+	{
+		return this.controlPoints;
+	}
 }
