@@ -16,55 +16,99 @@
  * is strictly forbidden unless prior written permission is obtained
  * from AVRGAMING LLC.
  */
-package com.avrgaming.civcraft.structure.wonders;
+package com.avrgaming.civcraft.object;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import com.avrgaming.civcraft.structure.Buildable;
+import com.avrgaming.civcraft.util.BlockCoord;
 
-import org.bukkit.Location;
+public class ControlPoint {
 
-import com.avrgaming.civcraft.exception.CivException;
-import com.avrgaming.civcraft.object.Town;
+	/* Location of the control block. */
+	private BlockCoord coord;
+	
+	/* Hitpoints for this control block. */
+	private int hitpoints;
+	
+	/* Max hitpoints for this control block. */
+	private int maxHitpoints;
+	
+	/* TownHall this control point belongs to. */
+	private Buildable buildable;
 
-public class ChichenItza extends Wonder {
-
-	public ChichenItza(Location center, String id, Town town)
-			throws CivException {
-		super(center, id, town);
-	}
-
-	public ChichenItza(ResultSet rs) throws SQLException, CivException {
-		super(rs);
-	}
-
-	@Override
-	protected void removeBuffs() {
-		removeBuffFromCiv(this.getCiv(), "buff_chichen_itza_tower_hp");
-		removeBuffFromCiv(this.getCiv(), "buff_chichen_itza_regen_rate");
-	}
-
-	@Override
-	protected void addBuffs() {
-		addBuffToCiv(this.getCiv(), "buff_chichen_itza_tower_hp");
-		addBuffToCiv(this.getCiv(), "buff_chichen_itza_regen_rate");
+	public ControlPoint (BlockCoord coord, Buildable buildable, int hitpoints) {
+		this.coord = coord;
+		this.setBuildable(buildable);
+		this.maxHitpoints = hitpoints;
+		this.hitpoints = this.maxHitpoints;
 	}
 	
-	@Override
-	public void onLoad() {
-		if (this.isActive()) {
-			addBuffs();
+	/**
+	 * @return the coord
+	 */
+	public BlockCoord getCoord() {
+		return coord;
+	}
+
+	/**
+	 * @param coord the coord to set
+	 */
+	public void setCoord(BlockCoord coord) {
+		this.coord = coord;
+	}
+
+	/**
+	 * @return the hitpoints
+	 */
+	public int getHitpoints() {
+		return hitpoints;
+	}
+
+	/**
+	 * @param hitpoints the hitpoints to set
+	 */
+	public void setHitpoints(int hitpoints) {
+		this.hitpoints = hitpoints;
+	}
+
+	/**
+	 * @return the maxHitpoints
+	 */
+	public int getMaxHitpoints() {
+		return maxHitpoints;
+	}
+
+	/**
+	 * @param maxHitpoints the maxHitpoints to set
+	 */
+	public void setMaxHitpoints(int maxHitpoints) {
+		this.maxHitpoints = maxHitpoints;
+	}
+
+	public void damage(int amount) {
+		if (this.hitpoints <= 0) {
+			return;
 		}
+		
+		this.hitpoints -= amount;
+		
+		if (this.hitpoints <= 0) {
+			this.hitpoints = 0;
+		}
+		
 	}
 	
-	@Override
-	public void onComplete() {
-		addBuffs();
-	}
-	
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		removeBuffs();
+	public boolean isDestroyed() {
+		if (this.hitpoints <= 0) {
+			return true;
+		}
+		return false;
 	}
 
+	public Buildable getBuildable() {
+		return buildable;
+	}
+
+	public void setBuildable(Buildable buildable) {
+		this.buildable = buildable;
+	}
 }
