@@ -25,7 +25,8 @@ import org.bukkit.Location;
 
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.object.Town;
-import com.avrgaming.civcraft.object.ControlPoint;;
+import com.avrgaming.civcraft.object.ControlPoint;
+
 
 public class ChichenItza extends Wonder {
 
@@ -46,7 +47,7 @@ public class ChichenItza extends Wonder {
 		//This is where the Itza's buff to CP is removed
 		for (ControlPoint cp : this.getTown().getTownHall().getControlPoints().values())
 		{
-			cp.setMaxHitpoints((cp.getMaxHitpoints() - 10));
+			cp.setMaxHitpoints((cp.getMaxHitpoints() - (int)this.getTown().getBuffManager().getEffectiveDouble("buff_chichen_itza_cp_bonus_hp")));
 		}
 	}
 
@@ -58,7 +59,7 @@ public class ChichenItza extends Wonder {
 		//This is where the Itza's buff to CP applies
 		for (ControlPoint cp : this.getTown().getTownHall().getControlPoints().values())
 		{
-			cp.setMaxHitpoints((cp.getMaxHitpoints() + 10));
+			cp.setMaxHitpoints((cp.getMaxHitpoints() + (int)this.getTown().getBuffManager().getEffectiveDouble("buff_chichen_itza_cp_bonus_hp")));
 		}		
 	}
 	
