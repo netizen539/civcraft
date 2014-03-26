@@ -16,99 +16,68 @@
  * is strictly forbidden unless prior written permission is obtained
  * from AVRGAMING LLC.
  */
-package com.avrgaming.civcraft.object;
+package com.avrgaming.civcraft.structure.wonders;
 
-import com.avrgaming.civcraft.structure.Buildable;
-import com.avrgaming.civcraft.util.BlockCoord;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class ControlPoint {
+import org.bukkit.Location;
 
-	/* Location of the control block. */
-	private BlockCoord coord;
-	
-	/* Hitpoints for this control block. */
-	private int hitpoints;
-	
-	/* Max hitpoints for this control block. */
-	private int maxHitpoints;
-	
-	/* TownHall this control point belongs to. */
-	private Buildable buildable;
+import com.avrgaming.civcraft.exception.CivException;
+import com.avrgaming.civcraft.object.Town;
+import com.avrgaming.civcraft.object.ControlPoint;;
 
-	public ControlPoint (BlockCoord coord, Buildable buildable, int hitpoints) {
-		this.coord = coord;
-		this.setBuildable(buildable);
-		this.maxHitpoints = hitpoints;
-		this.hitpoints = this.maxHitpoints;
-	}
-	
-	/**
-	 * @return the coord
-	 */
-	public BlockCoord getCoord() {
-		return coord;
+public class ChichenItza extends Wonder {
+
+	public ChichenItza(Location center, String id, Town town)
+			throws CivException {
+		super(center, id, town);
 	}
 
-	/**
-	 * @param coord the coord to set
-	 */
-	public void setCoord(BlockCoord coord) {
-		this.coord = coord;
+	public ChichenItza(ResultSet rs) throws SQLException, CivException {
+		super(rs);
 	}
 
-	/**
-	 * @return the hitpoints
-	 */
-	public int getHitpoints() {
-		return hitpoints;
-	}
-
-	/**
-	 * @param hitpoints the hitpoints to set
-	 */
-	public void setHitpoints(int hitpoints) {
-		this.hitpoints = hitpoints;
-	}
-
-	/**
-	 * @return the maxHitpoints
-	 */
-	public int getMaxHitpoints() {
-		return maxHitpoints;
-	}
-
-	/**
-	 * @param maxHitpoints the maxHitpoints to set
-	 */
-	public void setMaxHitpoints(int maxHitpoints) {
-		this.maxHitpoints = maxHitpoints;
-	}
-
-	public void damage(int amount) {
-		if (this.hitpoints <= 0) {
-			return;
+	@Override
+	protected void removeBuffs() {
+		removeBuffFromCiv(this.getCiv(), "buff_chichen_itza_tower_hp");
+		removeBuffFromCiv(this.getCiv(), "buff_chichen_itza_regen_rate");
+		removeBuffFromTown(this.getTown(), "buff_chichen_itza_cp_bonus_hp");
+		//This is where the Itza's buff to CP is removed
+		for (ControlPoint cp : this.getTown().getTownHall().getControlPoints().values())
+		{
+			cp.setMaxHitpoints((cp.getMaxHitpoints() - 10));
 		}
-		
-		this.hitpoints -= amount;
-		
-		if (this.hitpoints <= 0) {
-			this.hitpoints = 0;
-		}
-		
+	}
+
+	@Override
+	protected void addBuffs() {
+		addBuffToCiv(this.getCiv(), "buff_chichen_itza_tower_hp");
+		addBuffToCiv(this.getCiv(), "buff_chichen_itza_regen_rate");
+		addBuffToTown(this.getTown(), "buff_chichen_itza_cp_bonus_hp");
+		//This is where the Itza's buff to CP applies
+		for (ControlPoint cp : this.getTown().getTownHall().getControlPoints().values())
+		{
+			cp.setMaxHitpoints((cp.getMaxHitpoints() + 10));
+		}		
 	}
 	
-	public boolean isDestroyed() {
-		if (this.hitpoints <= 0) {
-			return true;
+	@Override
+	public void onLoad() {
+		if (this.isActive()) {
+			addBuffs();
 		}
-		return false;
+	}
+	
+	@Override
+	public void onComplete() {
+		addBuffs();
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		removeBuffs();
 	}
 
-	public Buildable getBuildable() {
-		return buildable;
-	}
-
-	public void setBuildable(Buildable buildable) {
-		this.buildable = buildable;
-	}
 }
