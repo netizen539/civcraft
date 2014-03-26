@@ -172,7 +172,7 @@ wonder_buffs:
 
    - id: w_notre_dame
      buffs:
-         - buff_notre_dame_no_anachy
+         - buff_notre_dame_no_anarchy
          - buff_notre_dame_coins_from_peace
          - buff_notre_dame_extra_war_penalty
    

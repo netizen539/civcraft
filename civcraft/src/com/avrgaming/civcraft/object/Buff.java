@@ -35,7 +35,7 @@ public class Buff {
 	public static final String EXTRA_CULTURE = "buff_doesnotexist";
 	public static final String COTTAGE_RATE = "buff_doesnotexist";
 	public static final String ADVANCED_TOOLING = "buff_advanced_tooling";
-	public static final String BARRAICADE = "buff_barricade";
+	public static final String BARRICADE = "buff_barricade";
 	public static final String BARTER = "buff_barter";
 	public static final String EXTRACTION = "buff_extraction";
 	public static final String FIRE_BOMB = "buff_fire_bomb";

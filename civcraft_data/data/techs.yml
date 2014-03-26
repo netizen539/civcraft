@@ -7,9 +7,6 @@
 # ---- Tech restricted items
 # This is a list of items and which techs they are craftable at
 items:
-   - id: 46
-     name: 'TNT'
-     require_tech: 'tech_gun_powder'   
    - id: 417
      name: 'Iron Horse Armor'
      require_tech: 'tech_horseback_riding'
