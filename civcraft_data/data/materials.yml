@@ -3523,6 +3523,10 @@ removed_recipes:
       data: 0
     - type_id: 293
       data: 0
+        
+    # TNT
+    - type_id: 46
+      data: 0
       
 # Amount of tungston to drop
 tungsten_min_drop: 0
