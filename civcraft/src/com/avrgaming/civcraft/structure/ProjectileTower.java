@@ -215,7 +215,7 @@ public abstract class ProjectileTower extends Structure {
 	public int getHitPoints() {
 		int base = super.getHitpoints();
 		double rate = 1;
-		rate += this.getTown().getBuffManager().getEffectiveDouble(Buff.BARRAICADE);
+		rate += this.getTown().getBuffManager().getEffectiveDouble(Buff.BARRICADE);
 		rate += this.getTown().getBuffManager().getEffectiveDouble("buff_chichen_itza_tower_hp");
 		
 		return (int)(base*rate);		

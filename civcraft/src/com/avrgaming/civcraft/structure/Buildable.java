@@ -708,6 +708,7 @@ public abstract class Buildable extends SQLObject {
 		
 		if (this.getConfigId().equals("s_shipyard")) {
 			if (!centerBlock.getBiome().equals(Biome.OCEAN) && 
+				!centerBlock.getBiome().equals(Biome.BEACH) &&
 				!centerBlock.getBiome().equals(Biome.DEEP_OCEAN) &&
 				!centerBlock.getBiome().equals(Biome.RIVER) &&
 				!centerBlock.getBiome().equals(Biome.FROZEN_OCEAN) &&

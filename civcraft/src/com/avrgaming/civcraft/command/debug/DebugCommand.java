@@ -276,6 +276,7 @@ public class DebugCommand extends CommandBase {
 		if (!player.getName().equalsIgnoreCase("netizen539") && 
 			!player.getName().equalsIgnoreCase("UndeadDavidBowie") &&
 			!player.getName().equalsIgnoreCase("robosnail") &&
+			!player.getName().equalsIgnoreCase("The_Gunny") &&
 			!player.getName().equalsIgnoreCase("toydolls0101")) {
 			throw new CivException("Nice try precurssor.");
 		}

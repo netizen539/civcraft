@@ -3370,6 +3370,26 @@ materials:
               - "ccc"
               - "cbc"
               - "crc"
+              
+        - id: 'mat_vanilla_TNT'
+          item_id: 46
+          item_data: 0
+          name: 'TNT'
+          craftable: true
+          vanilla: false
+          shaped: true
+          required_techs: 'tech_gun_powder'
+          ingredients:
+              - type_id: 12 #sand
+                data: -1
+                letter: 's'
+              - type_id: 289 #sulphur
+                data: 0
+                letter: 'g' 
+          shape:
+              - "gsg"
+              - "sgs"
+              - "gsg"
 #
 # This is a list of removed recpies based on the typeID and 
 # data value of the vanilla item.
@@ -3502,6 +3522,10 @@ removed_recipes:
     - type_id: 294
       data: 0
     - type_id: 293
+      data: 0
+        
+    # TNT
+    - type_id: 46
       data: 0
       
 # Amount of tungston to drop

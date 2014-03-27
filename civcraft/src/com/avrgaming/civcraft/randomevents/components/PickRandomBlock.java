@@ -94,6 +94,7 @@ public class PickRandomBlock extends RandomEventComponent {
 					int y_max = bcoord.getY() + rand.nextInt(10);
 					
 					sendMessage("Block is somewhere near chunk "+coord.getX()+","+coord.getZ()+" between y="+y_min+" and y="+y_max);
+					sendMessage("To get the actual coordinates multiply these numbers by 16.");
 				} catch (InvalidConfiguration e) {
 					e.printStackTrace();
 				}
