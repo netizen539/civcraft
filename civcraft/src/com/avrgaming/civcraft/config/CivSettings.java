@@ -59,7 +59,7 @@ public class CivSettings {
 	/* Number of days that you can remain in debt before an action occurs. */
 
 	//TODO make this configurable.
-	public static final int GRACE_DAYS = 8; 
+	public static final int GRACE_DAYS = 3; 
 	
 	public static final int CIV_DEBT_GRACE_DAYS = 7;
 	public static final int CIV_DEBT_SELL_DAYS = 14;
