@@ -97,6 +97,7 @@ public class MobListener implements Listener {
 		case BLOCK_EXPLOSION:
 		case ENTITY_EXPLOSION:
 		case LIGHTNING:
+		case MAGIC:
 			event.setCancelled(true);
 			break;
 		default:
