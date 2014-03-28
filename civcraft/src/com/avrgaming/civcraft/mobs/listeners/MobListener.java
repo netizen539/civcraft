@@ -32,9 +32,12 @@ public class MobListener implements Listener {
 			}
 			
 			switch (living.getType()) {
+			case CHICKEN:
+				if (!living.isEmpty()) {
+					break;			
+				}
 			case SLIME:
 			case COW:
-			case CHICKEN:
 			case PIG:
 			case SHEEP:
 			case HORSE:
