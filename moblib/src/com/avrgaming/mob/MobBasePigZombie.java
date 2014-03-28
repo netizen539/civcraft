@@ -4,20 +4,20 @@ package com.avrgaming.mob;
 import java.util.ArrayList;
 
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_7_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_7_R1.TrigMath;
-import org.bukkit.craftbukkit.v1_7_R1.event.CraftEventFactory;
+import org.bukkit.craftbukkit.v1_7_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R2.TrigMath;
+import org.bukkit.craftbukkit.v1_7_R2.event.CraftEventFactory;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 import com.avrgaming.nms.NMSUtil;
 
-import net.minecraft.server.v1_7_R1.DamageSource;
-import net.minecraft.server.v1_7_R1.Entity;
-import net.minecraft.server.v1_7_R1.EntityHuman;
-import net.minecraft.server.v1_7_R1.EntityPigZombie;
-import net.minecraft.server.v1_7_R1.ItemStack;
-import net.minecraft.server.v1_7_R1.NBTTagCompound;
-import net.minecraft.server.v1_7_R1.World;
+import net.minecraft.server.v1_7_R2.DamageSource;
+import net.minecraft.server.v1_7_R2.Entity;
+import net.minecraft.server.v1_7_R2.EntityHuman;
+import net.minecraft.server.v1_7_R2.EntityPigZombie;
+import net.minecraft.server.v1_7_R2.ItemStack;
+import net.minecraft.server.v1_7_R2.NBTTagCompound;
+import net.minecraft.server.v1_7_R2.World;
 
 public class MobBasePigZombie extends EntityPigZombie implements ISpawnable {
 	public ICustomMob customMob = null;
@@ -67,7 +67,7 @@ public class MobBasePigZombie extends EntityPigZombie implements ISpawnable {
 	
 	
 	@Override
-	protected boolean bk() {
+	public boolean bj() {
 		return true;
 	}
 	
@@ -76,7 +76,7 @@ public class MobBasePigZombie extends EntityPigZombie implements ISpawnable {
 		C();
 		  if (!this.world.isStatic)
 		    {
-		      int i = aZ();
+		      int i = aY();
 		      if (i > 0)
 		      {
 		        if (this.aw <= 0) {
@@ -164,7 +164,7 @@ public class MobBasePigZombie extends EntityPigZombie implements ISpawnable {
 	@Override
 	protected Entity findTarget() {
 		EntityHuman entityhuman = this.world.findNearbyVulnerablePlayer(this, 3.0D);
-		return (entityhuman != null) && (o(entityhuman)) ? entityhuman : null;
+		return (entityhuman != null) && (p(entityhuman)) ? entityhuman : null;
 	}
 	
 	@Override

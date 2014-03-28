@@ -1,9 +1,9 @@
 package com.avrgaming.mob;
 
-import net.minecraft.server.v1_7_R1.EntityLiving;
-import net.minecraft.server.v1_7_R1.EntityWitherSkull;
-import net.minecraft.server.v1_7_R1.MovingObjectPosition;
-import net.minecraft.server.v1_7_R1.World;
+import net.minecraft.server.v1_7_R2.EntityLiving;
+import net.minecraft.server.v1_7_R2.EntityWitherSkull;
+import net.minecraft.server.v1_7_R2.MovingObjectPosition;
+import net.minecraft.server.v1_7_R2.World;
 
 public class MobBaseWitherSkull extends EntityWitherSkull {
 

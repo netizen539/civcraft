@@ -3,18 +3,18 @@ package com.avrgaming.mob;
 import java.util.ArrayList;
 
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_7_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_7_R1.event.CraftEventFactory;
+import org.bukkit.craftbukkit.v1_7_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R2.event.CraftEventFactory;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 import com.avrgaming.nms.NMSUtil;
 
-import net.minecraft.server.v1_7_R1.DamageSource;
-import net.minecraft.server.v1_7_R1.Entity;
-import net.minecraft.server.v1_7_R1.EntityIronGolem;
-import net.minecraft.server.v1_7_R1.ItemStack;
-import net.minecraft.server.v1_7_R1.NBTTagCompound;
-import net.minecraft.server.v1_7_R1.World;
+import net.minecraft.server.v1_7_R2.DamageSource;
+import net.minecraft.server.v1_7_R2.Entity;
+import net.minecraft.server.v1_7_R2.EntityIronGolem;
+import net.minecraft.server.v1_7_R2.ItemStack;
+import net.minecraft.server.v1_7_R2.NBTTagCompound;
+import net.minecraft.server.v1_7_R2.World;
 
 public class MobBaseIronGolem extends EntityIronGolem implements ISpawnable {
 	public ICustomMob customMob = null;
@@ -32,7 +32,7 @@ public class MobBaseIronGolem extends EntityIronGolem implements ISpawnable {
 	}
 
 	@Override
-	protected void n(Entity entity) {
+	public void o(Entity entity) {
 		//Do nothing, don't target monsters.
 	}
 	

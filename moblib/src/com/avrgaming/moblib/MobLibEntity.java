@@ -2,7 +2,7 @@ package com.avrgaming.moblib;
 
 import java.util.UUID;
 
-import net.minecraft.server.v1_7_R1.Entity;
+import net.minecraft.server.v1_7_R2.Entity;
 
 public class MobLibEntity {
 
