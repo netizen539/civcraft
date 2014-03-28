@@ -61,6 +61,8 @@ public class Settler extends UnitMaterial implements CallbackInterface {
 		AttributeUtil attrs = new AttributeUtil(is);
 		attrs.addLore(Colors.Rose+"Only Usable In Civ: "+Colors.LightBlue+town.getCiv().getName());
 		attrs.addLore(Colors.Gold+"Right Click To Found Town");
+		attrs.addEnhancement("LoreEnhancementSoulBound", null, null);
+		attrs.addLore(Colors.Gold+"Soulbound");
 		
 		attrs.setCivCraftProperty("owner_civ_id", ""+town.getCiv().getId());
 		is = attrs.getStack();
