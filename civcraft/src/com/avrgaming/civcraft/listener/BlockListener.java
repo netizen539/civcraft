@@ -23,7 +23,7 @@ import gpl.HorseModifier;
 import java.util.HashSet;
 import java.util.Random;
 
-import net.minecraft.server.v1_7_R1.NBTTagCompound;
+import net.minecraft.server.v1_7_R2.NBTTagCompound;
 
 import org.bukkit.Chunk;
 import org.bukkit.Color;
@@ -33,7 +33,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.craftbukkit.v1_7_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_7_R2.entity.CraftEntity;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
@@ -319,7 +319,7 @@ public class BlockListener implements Listener {
 			if (event.getDamager() instanceof Player) {
 				attacker = (Player)event.getDamager();
 			} else if (event.getDamager() instanceof Projectile) {
-				LivingEntity shooter = ((Projectile)event.getDamager()).getShooter();
+				LivingEntity shooter = (LivingEntity) ((Projectile)event.getDamager()).getShooter();
 				if (shooter instanceof Player) {
 					attacker = (Player) shooter;
 				}

@@ -11,27 +11,27 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.block.Biome;
-import org.bukkit.craftbukkit.v1_7_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_7_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_7_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R2.entity.CraftEntity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.util.Vector;
 
-import net.minecraft.server.v1_7_R1.AxisAlignedBB;
-import net.minecraft.server.v1_7_R1.DamageSource;
-import net.minecraft.server.v1_7_R1.Entity;
-import net.minecraft.server.v1_7_R1.EntityCreature;
-import net.minecraft.server.v1_7_R1.EntityHuman;
-import net.minecraft.server.v1_7_R1.EntityInsentient;
-import net.minecraft.server.v1_7_R1.EntityPlayer;
-import net.minecraft.server.v1_7_R1.IRangedEntity;
-import net.minecraft.server.v1_7_R1.PathfinderGoalArrowAttack;
-import net.minecraft.server.v1_7_R1.PathfinderGoalFloat;
-import net.minecraft.server.v1_7_R1.PathfinderGoalHurtByTarget;
-import net.minecraft.server.v1_7_R1.PathfinderGoalLookAtPlayer;
-import net.minecraft.server.v1_7_R1.PathfinderGoalNearestAttackableTarget;
-import net.minecraft.server.v1_7_R1.PathfinderGoalRandomLookaround;
-import net.minecraft.server.v1_7_R1.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_7_R2.AxisAlignedBB;
+import net.minecraft.server.v1_7_R2.DamageSource;
+import net.minecraft.server.v1_7_R2.Entity;
+import net.minecraft.server.v1_7_R2.EntityCreature;
+import net.minecraft.server.v1_7_R2.EntityHuman;
+import net.minecraft.server.v1_7_R2.EntityInsentient;
+import net.minecraft.server.v1_7_R2.EntityPlayer;
+import net.minecraft.server.v1_7_R2.IRangedEntity;
+import net.minecraft.server.v1_7_R2.PathfinderGoalArrowAttack;
+import net.minecraft.server.v1_7_R2.PathfinderGoalFloat;
+import net.minecraft.server.v1_7_R2.PathfinderGoalHurtByTarget;
+import net.minecraft.server.v1_7_R2.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_7_R2.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_7_R2.PathfinderGoalRandomLookaround;
+import net.minecraft.server.v1_7_R2.PathfinderGoalRandomStroll;
 
 
 

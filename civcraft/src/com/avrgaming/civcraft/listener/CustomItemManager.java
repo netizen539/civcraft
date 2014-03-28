@@ -265,7 +265,7 @@ public class CustomItemManager implements Listener {
 		} 
 		
 		if (event.getDamager() instanceof Arrow) {
-			LivingEntity shooter = ((Arrow)event.getDamager()).getShooter();
+			LivingEntity shooter = (LivingEntity) ((Arrow)event.getDamager()).getShooter();
 			
 			if (shooter instanceof Player) {
 				ItemStack inHand = ((Player)shooter).getItemInHand();

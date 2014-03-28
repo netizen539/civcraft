@@ -2,13 +2,13 @@ package com.avrgaming.civcraft.mobs;
 
 import org.bukkit.block.Biome;
 
-import net.minecraft.server.v1_7_R1.EntityCreature;
-import net.minecraft.server.v1_7_R1.EntityHuman;
-import net.minecraft.server.v1_7_R1.EntityInsentient;
-import net.minecraft.server.v1_7_R1.PathfinderGoalLookAtPlayer;
-import net.minecraft.server.v1_7_R1.PathfinderGoalMeleeAttack;
-import net.minecraft.server.v1_7_R1.PathfinderGoalNearestAttackableTarget;
-import net.minecraft.server.v1_7_R1.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_7_R2.EntityCreature;
+import net.minecraft.server.v1_7_R2.EntityHuman;
+import net.minecraft.server.v1_7_R2.EntityInsentient;
+import net.minecraft.server.v1_7_R2.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_7_R2.PathfinderGoalMeleeAttack;
+import net.minecraft.server.v1_7_R2.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_7_R2.PathfinderGoalRandomStroll;
 
 import com.avrgaming.civcraft.mobs.MobSpawner.CustomMobLevel;
 import com.avrgaming.civcraft.mobs.MobSpawner.CustomMobType;

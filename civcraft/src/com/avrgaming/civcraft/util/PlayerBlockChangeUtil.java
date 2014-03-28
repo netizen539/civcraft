@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.TreeMap;
 
-import net.minecraft.server.v1_7_R1.PacketPlayOutMultiBlockChange;
+import net.minecraft.server.v1_7_R2.PacketPlayOutMultiBlockChange;
 
 import org.bukkit.entity.Player;
 
@@ -155,7 +155,7 @@ public class PlayerBlockChangeUtil {
 //			//CraftWorld craftWorld;
 //			//CraftBukkit bukkit;
 //			//player.getw
-//			net.minecraft.server.v1_7_R1.World w = ((CraftWorld) player.getWorld()).getHandle();
+//			net.minecraft.server.v1_7_R2.World w = ((CraftWorld) player.getWorld()).getHandle();
 //			BlockCoord playerCoord = new BlockCoord(player.getLocation());
 //			
 //			Double viewDistanceSquared = (double)Math.pow(Bukkit.getServer().getViewDistance()*16, 2);
