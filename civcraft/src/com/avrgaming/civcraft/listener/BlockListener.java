@@ -942,6 +942,16 @@ public class BlockListener implements Listener {
 			}
 			return;
 		}
+		
+		coord.setFromLocation(event.getPlayer().getLocation());
+		Camp camp = CivGlobal.getCampFromChunk(coord);
+		if (camp != null) {
+			if (!camp.hasMember(event.getPlayer().getName())) {
+				CivMessage.sendError(event.getPlayer(), "You cannot interact with a camp you do not belong to.");
+				event.setCancelled(true);
+				return;
+			}
+		}
 
 		if (event.hasItem()) {
 
@@ -1061,9 +1071,9 @@ public class BlockListener implements Listener {
 		}
 
 		bcoord.setFromLocation(event.getClickedBlock().getLocation());
-		CampBlock cb = CivGlobal.getCampBlock(bcoord);
-		if (cb != null && !resident.isPermOverride()) {
-			if (!cb.getCamp().hasMember(resident.getName())) {
+		Camp cc = CivGlobal.getCampFromChunk(coord);
+		if (cc != null && !resident.isPermOverride()) {
+			if (!cc.hasMember(resident.getName())) {
 				CivMessage.sendError(event.getPlayer(), "You cannot interact with a camp you do not belong to.");
 				event.setCancelled(true);
 				return;
@@ -1417,7 +1427,8 @@ public class BlockListener implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onCreatureSpawnEvent(CreatureSpawnEvent event) {
 		if (event.getEntity().getType().equals(EntityType.CHICKEN)) {
-			if (event.getSpawnReason().equals(SpawnReason.EGG)) {
+			if (event.getSpawnReason().equals(SpawnReason.EGG) ||
+				event.getSpawnReason().equals(SpawnReason.JOCKEY)) {
 				event.setCancelled(true);
 				return;
 			}
