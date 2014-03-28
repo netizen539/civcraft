@@ -373,8 +373,6 @@ public abstract class Buildable extends SQLObject {
 						continue;
 					}
 						
-					//CivGlobal.addStructureBlock(coord, this);
-					CivLog.debug("Adding structure block at:"+coord);
 					if (y == 0) {
 						this.addStructureBlock(coord, false);	
 					} else {

@@ -1,12 +1,12 @@
 package com.avrgaming.mob;
 
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_7_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R2.CraftWorld;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
-import net.minecraft.server.v1_7_R1.Entity;
-import net.minecraft.server.v1_7_R1.EntityVillager;
-import net.minecraft.server.v1_7_R1.World;
+import net.minecraft.server.v1_7_R2.Entity;
+import net.minecraft.server.v1_7_R2.EntityVillager;
+import net.minecraft.server.v1_7_R2.World;
 
 public class MobBaseVillager extends EntityVillager {
 
