@@ -25,9 +25,19 @@ global_database:
     min_conns: '5'
     max_conns: '10'
     parts: '3'
+    
+ perk_database:
+    database: 
+    hostname:
+    port: '3306'
+    username:
+    password:
+    min_conns: '5'
+    max_conns: '10'
+    parts: '3'
 
 server_name: 'civcraft'
 server_timezone: 'PST'
-server_phase: 'beta7'
+server_phase: 'beta8'
 
  
