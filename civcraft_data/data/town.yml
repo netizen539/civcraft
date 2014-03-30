@@ -524,6 +524,15 @@ upgrades:
       require_structure: 's_library'
       category: 'Library'
 
+    - id: 'research_feather_falling_1'
+      name: 'Research Feather Falling I'
+      action: 'enable_library_enchantment, Feather_Falling, 1, 1000'
+      cost: 2500.0
+      require_upgrade: 'upgrade_library_level_4'
+      require_tech:
+      require_structure: 's_library'
+      category: 'Library'
+
 # Grocer upgrades
     - id: 'upgrade_grocer_level_2'
       name: 'Upgrade Grocer Level 2'

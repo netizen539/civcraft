@@ -53,10 +53,10 @@ blacksmith:
 cottage_levels:
    - level: 1
      consumes:
-         - 297,2
+         - 297,1
          - 391,1
      count: 24
-     coins: 100.0
+     coins: 75.0
 
    - level: 2
      consumes:
@@ -64,40 +64,40 @@ cottage_levels:
          - 391,2
          - 392,1
      count: 48
-     coins: 200.0
+     coins: 150.0
 
    - level: 3
      consumes:
-         - 297,3
-         - 391,2
+         - 297,2
+         - 391,3
          - 392,2
      count: 96
-     coins: 300.0
+     coins: 225.0
 
    - level: 4
      consumes:
-         - 297,5
+         - 297,3
          - 391,4
          - 392,3
      count: 120
-     coins: 400.0
+     coins: 300.0
    
    - level: 5
      consumes:
-         - 297,7
-         - 391,7
-         - 392,6
+         - 297,4
+         - 391,5
+         - 392,4
      count: 144
-     coins: 500.0
+     coins: 375.0
 
    - level: 6
      consumes:
-         - 297,7
-         - 391,7
+         - 297,5
+         - 391,6
          - 392,6
          - 319,1
      count: 288
-     coins: 700.0
+     coins: 450.0
 ################### Temple Settings #######################
 temple:
     # rate which temple modifies total culture output

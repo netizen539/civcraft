@@ -45,6 +45,8 @@ public class FoundCivilization extends ItemComponent implements CallbackInterfac
 	public void onPrepareCreate(AttributeUtil attrUtil) {
 		attrUtil.addLore(ChatColor.RESET+Colors.Gold+"Founds a Civilization");
 		attrUtil.addLore(ChatColor.RESET+Colors.Rose+"<Right Click To Use>");
+		attrUtil.addEnhancement("LoreEnhancementSoulBound", null, null);
+		attrUtil.addLore(Colors.Gold+"Soulbound");
 	}
 	
 	public void foundCiv(Player player) throws CivException {

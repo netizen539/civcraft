@@ -942,6 +942,16 @@ public class BlockListener implements Listener {
 			}
 			return;
 		}
+		
+		coord.setFromLocation(event.getPlayer().getLocation());
+		Camp camp = CivGlobal.getCampFromChunk(coord);
+		if (camp != null) {
+			if (!camp.hasMember(event.getPlayer().getName())) {
+				CivMessage.sendError(event.getPlayer(), "You cannot interact with a camp you do not belong to.");
+				event.setCancelled(true);
+				return;
+			}
+		}
 
 		if (event.hasItem()) {
 
@@ -1061,9 +1071,9 @@ public class BlockListener implements Listener {
 		}
 
 		bcoord.setFromLocation(event.getClickedBlock().getLocation());
-		CampBlock cb = CivGlobal.getCampBlock(bcoord);
-		if (cb != null && !resident.isPermOverride()) {
-			if (!cb.getCamp().hasMember(resident.getName())) {
+		Camp cc = CivGlobal.getCampFromChunk(coord);
+		if (cc != null && !resident.isPermOverride()) {
+			if (!cc.hasMember(resident.getName())) {
 				CivMessage.sendError(event.getPlayer(), "You cannot interact with a camp you do not belong to.");
 				event.setCancelled(true);
 				return;
@@ -1416,8 +1426,16 @@ public class BlockListener implements Listener {
 
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onCreatureSpawnEvent(CreatureSpawnEvent event) {
+		if (War.isWarTime()) {
+			if (!event.getSpawnReason().equals(SpawnReason.BREEDING)){
+				event.setCancelled(true);
+				return;
+			}
+		}
+		
 		if (event.getEntity().getType().equals(EntityType.CHICKEN)) {
-			if (event.getSpawnReason().equals(SpawnReason.EGG)) {
+			if (event.getSpawnReason().equals(SpawnReason.EGG) ||
+				event.getSpawnReason().equals(SpawnReason.JOCKEY)) {
 				event.setCancelled(true);
 				return;
 			}
@@ -1531,6 +1549,11 @@ public class BlockListener implements Listener {
 
 			currentBlock = currentBlock.getRelative(event.getDirection());
 		}
+		
+		if (War.isWarTime()) {
+			event.setCancelled(true);
+			return;
+		}
 
 //		if (event.getBlocks().size() == 0) {
 //			Block extendInto = event.getBlock().getRelative(event.getDirection());
@@ -1633,6 +1656,11 @@ public class BlockListener implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL) 
 	public void onBlockRedstoneEvent(BlockRedstoneEvent event) {
 
+		if (War.isWarTime()) {
+			event.setNewCurrent(0);
+			return;
+		}
+		
 		bcoord.setFromLocation(event.getBlock().getLocation());
 
 		CampBlock cb = CivGlobal.getCampBlock(bcoord);
@@ -1640,6 +1668,7 @@ public class BlockListener implements Listener {
 			if (ItemManager.getId(event.getBlock()) == CivData.WOOD_DOOR ||
 					ItemManager.getId(event.getBlock()) == CivData.IRON_DOOR) {
 				event.setNewCurrent(0);
+				return;
 			}
 		}
 

@@ -114,16 +114,16 @@ arrow_tower:
 
 cannon_tower:
     # Damage done by cannon blast
-    damage: 5
+    damage: 8
     
     # Cannon tower range
-    range: 100.0
+    range: 130.0
 
     # Distance cannon towers must be built apart
     build_distance: 130.0
 
     # Min-range of cannon tower
-    min_range: 15.0
+    min_range: 30.0
 
     # Speed of the 'cannon' projectile.
     speed: 6

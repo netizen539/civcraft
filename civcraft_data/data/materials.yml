@@ -297,6 +297,23 @@ materials:
                 data: -1
                 count: 9
 
+        # Checked 10/8/13
+        - id: 'mat_refined_wood2'
+          item_id: 126
+          item_data: 0
+          name: 'Refined Wood'
+          craftable: true
+          shaped: true
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 162
+                data: -1
+                letter: 'l'
+          shape:
+              - "lll"
+              - "lll"
+              - "lll"
+
 # Replaced by diamond block
 #        - id: 'mat_refined_diamonds'
 #          item_id: 351
@@ -3382,6 +3399,26 @@ materials:
               - "ccc"
               - "cbc"
               - "crc"
+              
+        - id: 'mat_vanilla_TNT'
+          item_id: 46
+          item_data: 0
+          name: 'TNT'
+          craftable: true
+          vanilla: false
+          shaped: true
+          required_techs: 'tech_gun_powder'
+          ingredients:
+              - type_id: 12 #sand
+                data: -1
+                letter: 's'
+              - type_id: 289 #sulphur
+                data: 0
+                letter: 'g' 
+          shape:
+              - "gsg"
+              - "sgs"
+              - "gsg"
 #
 # This is a list of removed recpies based on the typeID and 
 # data value of the vanilla item.
@@ -3515,6 +3552,11 @@ removed_recipes:
       data: 0
     - type_id: 293
       data: 0
+        
+    # TNT
+    - type_id: 46
+      data: 0
+
       
 # Amount of tungston to drop
 tungsten_min_drop: 0

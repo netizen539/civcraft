@@ -98,7 +98,7 @@ buffs:
       parent:
 
     - id: 'buff_medicine'
-      name: 'Fishing'
+      name: 'Medicine'
       description: 'Decreases friendly respawn time during war by <lightgreen>50<r> seconds.'
       value: '50'
       stackable: false

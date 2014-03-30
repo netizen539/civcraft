@@ -32,9 +32,12 @@ public class MobListener implements Listener {
 			}
 			
 			switch (living.getType()) {
+			case CHICKEN:
+				if (!living.isEmpty()) {
+					break;			
+				}
 			case SLIME:
 			case COW:
-			case CHICKEN:
 			case PIG:
 			case SHEEP:
 			case HORSE:
@@ -97,6 +100,7 @@ public class MobListener implements Listener {
 		case BLOCK_EXPLOSION:
 		case ENTITY_EXPLOSION:
 		case LIGHTNING:
+		case MAGIC:
 			event.setCancelled(true);
 			break;
 		default:
