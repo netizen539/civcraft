@@ -33,7 +33,6 @@ import com.avrgaming.civcraft.util.BlockCoord;
 
 public class ProjectileCannonComponent extends ProjectileComponent {
 	
-	private int damage;
 	private int speed;
 	private int splash;
 	private int fireRate;
@@ -139,14 +138,6 @@ public class ProjectileCannonComponent extends ProjectileComponent {
 		} catch (InvalidConfiguration e) {
 			e.printStackTrace();
 		}
-	}
-
-	public int getDamage() {
-		return damage;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
 	}
 
 	public int getHalfSecondCount() {

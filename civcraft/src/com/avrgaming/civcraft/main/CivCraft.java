@@ -32,6 +32,7 @@ import com.avrgaming.civcraft.command.BuildCommand;
 import com.avrgaming.civcraft.command.DenyCommand;
 import com.avrgaming.civcraft.command.EconCommand;
 import com.avrgaming.civcraft.command.HereCommand;
+import com.avrgaming.civcraft.command.KillCommand;
 import com.avrgaming.civcraft.command.PayCommand;
 import com.avrgaming.civcraft.command.ReportCommand;
 import com.avrgaming.civcraft.command.SelectCommand;
@@ -288,7 +289,8 @@ public final class CivCraft extends JavaPlugin {
 		getCommand("report").setExecutor(new ReportCommand());
 		getCommand("vote").setExecutor(new VoteCommand());
 		getCommand("trade").setExecutor(new TradeCommand());
-
+		getCommand("kill").setExecutor(new KillCommand());
+		
 		registerEvents();
 		registerNPCHooks();
 		MobLib.registerAllEntities();

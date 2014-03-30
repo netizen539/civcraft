@@ -1076,6 +1076,7 @@ public class Resident extends SQLObject {
 			@Override
 			public void run() {
 				try {
+                    resident.perks.clear();
 					Player player = CivGlobal.getPlayer(resident);				
 					try {
 						LinkedList<String> perkIDs = PerkManager.loadPerksForResident(resident);

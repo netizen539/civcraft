@@ -1458,6 +1458,7 @@ materials:
                 color: 'AB8618'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
+              - name: 'NoCauldronWash'
                 value: '0.1'
           ingredients:
               - type_id: 0
@@ -1485,6 +1486,7 @@ materials:
                 color: 'AB8618'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
+              - name: 'NoCauldronWash'
                 value: '0.1'
           ingredients:
               - type_id: 0
@@ -1512,6 +1514,7 @@ materials:
                 color: 'AB8618'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
+              - name: 'NoCauldronWash'
                 value: '0.1'
           ingredients:
               - type_id: 0
@@ -1539,6 +1542,7 @@ materials:
                 color: 'AB8618'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
+              - name: 'NoCauldronWash'
                 value: '0.1'
           ingredients:
               - type_id: 0
@@ -1568,6 +1572,7 @@ materials:
                 color: '339933'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
+              - name: 'NoCauldronWash'
                 value: '0.1'
           ingredients:
               - type_id: 0
@@ -1595,6 +1600,7 @@ materials:
                 color: '339933'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
+              - name: 'NoCauldronWash'
                 value: '0.1'
           ingredients:
               - type_id: 0
@@ -1622,6 +1628,7 @@ materials:
                 color: '339933'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
+              - name: 'NoCauldronWash'
                 value: '0.1'
           ingredients:
               - type_id: 0
@@ -1649,6 +1656,7 @@ materials:
                 color: '339933'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
+              - name: 'NoCauldronWash'
                 value: '0.1'
           ingredients:
               - type_id: 0
@@ -1678,6 +1686,7 @@ materials:
                 color: 'FF0000'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
+              - name: 'NoCauldronWash'
                 value: '0.1'
           ingredients:
               - type_id: 0
@@ -1705,6 +1714,7 @@ materials:
                 color: 'FF0000'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
+              - name: 'NoCauldronWash'
                 value: '0.1'
           ingredients:
               - type_id: 0
@@ -1732,6 +1742,7 @@ materials:
                 color: 'FF0000'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
+              - name: 'NoCauldronWash'
                 value: '0.1'
           ingredients:
               - type_id: 0
@@ -1759,6 +1770,7 @@ materials:
                 color: 'FF0000'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
+              - name: 'NoCauldronWash'
                 value: '0.1'
           ingredients:
               - type_id: 0

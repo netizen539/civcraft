@@ -10,16 +10,38 @@ Prereqs:
 Install Instructions:
 ======================
 1) Compile CivCraft.jar from source.
+    a) You must compile CivCraft.jar with the provided manifest file.
+Otherwise you'll get errors saying "BoneCP' class cannot be found.
+    b) You will need to grab all of the library dependancies. I've included my
+classpath so you'll be able to see the jar names.
 
 2) Put CivCraft.jar in your plugins directory.
-2a) CivCraft requires TagAPI and Herochat. Install those plugins alongside it as well.
+   a) CivCraft requires TagAPI and Herochat. Install those plugins alongside it as well.
+   b) WorldBorder is also required.
 
 3) Run the server once, CivCraft will fail to load but thats OK. Stop server and continue.
 
 4) In the "<mc_server>/plugins/CivCraft" directory modify config.yml to point to two SQL databases.
-   One database is used for game data ther other is used to store global information like bans and perk info.
-   Both databases are required.
+   a) You first need a 'game' database to store local server information.
+   b) Next you need a 'global' database to store global server information.
+
    The databases should be empty and upon start up, civcraft will populate and create the desired tables.
+   
+   c) Last you need to configure ther perks database for perk information. You
+can use the following development perk DB information for now:
+    hostname: 'atlas.civcraft.net'
+    port: '3306'
+    database: 'civ_cake_db'
+    username: 'cake'
+    password: 'ddr2k0'
+
+   c) Last you need to configure ther perks database for perk information. You
+can use the following development perk DB information for now:
+    hostname: 'atlas.civcraft.net'
+    port: '3306'
+    database: 'civ_cake_db'
+    username: 'cake'
+    password: 'ddr2k0'
 
 5) Copy civcraft_data/lib to <mc_server>/plugins/CivCraft
 
@@ -33,7 +55,7 @@ Install Instructions:
 
 9) Modify your java launch options to give civcraft at least 2GB of memory.
 
-10) Launch server, hopefully it will start without any errors. 
+10) Launch server, hopefully it will start without any errors.
 
 
 Installing CivCraft dynmap:
@@ -41,6 +63,7 @@ Installing CivCraft dynmap:
 1) Compile civcraft_dymap from source.
 
 2) Install dynmap plugin.
- 
+
 3) Drop civcraft_dymap.jar into plugins directroy.
+
 
