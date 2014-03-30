@@ -26,7 +26,7 @@ global_database:
     max_conns: '10'
     parts: '3'
     
- perk_database:
+perk_database:
     database: 
     hostname:
     port: '3306'
