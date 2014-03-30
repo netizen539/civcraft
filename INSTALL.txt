@@ -26,6 +26,14 @@ classpath so you'll be able to see the jar names.
    b) Next you need a 'global' database to store global server information.
 
    The databases should be empty and upon start up, civcraft will populate and create the desired tables.
+   
+   c) Last you need to configure ther perks database for perk information. You
+can use the following development perk DB information for now:
+    hostname: 'atlas.civcraft.net'
+    port: '3306'
+    database: 'civ_cake_db'
+    username: 'cake'
+    password: 'ddr2k0'
 
    c) Last you need to configure ther perks database for perk information. You
 can use the following development perk DB information for now:
