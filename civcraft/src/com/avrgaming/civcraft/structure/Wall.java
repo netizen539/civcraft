@@ -52,6 +52,7 @@ import com.avrgaming.civcraft.util.BlockCoord;
 import com.avrgaming.civcraft.util.ChunkCoord;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.util.SimpleBlock;
+import com.avrgaming.civcraft.war.War;
 
 public class Wall extends Structure {
 
@@ -202,6 +203,14 @@ public class Wall extends Structure {
 	public void buildPlayerPreview(Player player, Location centerLoc) throws CivException, IOException {
 		// Set the player into "place mode" which allows them to place down
 		// markers.
+		if (!this.getTown().hasTechnology(this.getRequiredTechnology())) {
+			throw new CivException("We don't have the technology yet.");
+		}
+		
+		if (War.isWarTime()) {
+			throw new CivException("Cannot build walls during WarTime.");
+		}
+		
 		MarkerPlacementManager.addToPlacementMode(player, this, "Wall Marker");		
 	}
 	

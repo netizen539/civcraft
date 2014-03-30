@@ -711,7 +711,7 @@ public abstract class Buildable extends SQLObject {
 				!centerBlock.getBiome().equals(Biome.RIVER) &&
 				!centerBlock.getBiome().equals(Biome.FROZEN_OCEAN) &&
 				!centerBlock.getBiome().equals(Biome.FROZEN_RIVER)) {
-				throw new CivException("Cannot build shipyard here, you need to be in an ocean biome.");
+				throw new CivException("Cannot build shipyard here, you need to be in an ocean, river, or beach biome.");
 			}
 		}
 		
