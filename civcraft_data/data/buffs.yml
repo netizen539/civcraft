@@ -275,3 +275,10 @@ buffs:
       value: '2'
       stackable: false
       parent:
+      
+    - id: 'buff_chichen_itza_cp_bonus_hp'
+      name: 'Chichen Itza Control Point Bonus HP'
+      description: 'Increase the hitpoints of all Control Points of a town by 10 HP.'
+      value: '10'
+      stackable: false
+      parent:

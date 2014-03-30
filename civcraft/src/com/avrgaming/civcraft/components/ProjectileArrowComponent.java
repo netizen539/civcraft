@@ -38,7 +38,6 @@ public class ProjectileArrowComponent extends ProjectileComponent {
 		super(buildable, turretCenter);
 	}
 
-	private int damage;
 	private double power;
 	
 	@Override
@@ -77,14 +76,6 @@ public class ProjectileArrowComponent extends ProjectileComponent {
 		}
 		
 		CivCache.arrowsFired.put(arrow.getUniqueId(), new ArrowFiredCache(this, targetEntity, arrow));
-	}
-
-	public int getDamage() {
-		return damage;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
 	}
 
 	public double getPower() {

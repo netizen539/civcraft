@@ -25,6 +25,8 @@ import org.bukkit.Location;
 
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.object.Town;
+import com.avrgaming.civcraft.object.ControlPoint;
+
 
 public class ChichenItza extends Wonder {
 
@@ -41,12 +43,24 @@ public class ChichenItza extends Wonder {
 	protected void removeBuffs() {
 		removeBuffFromCiv(this.getCiv(), "buff_chichen_itza_tower_hp");
 		removeBuffFromCiv(this.getCiv(), "buff_chichen_itza_regen_rate");
+		removeBuffFromTown(this.getTown(), "buff_chichen_itza_cp_bonus_hp");
+		//This is where the Itza's buff to CP is removed
+		for (ControlPoint cp : this.getTown().getTownHall().getControlPoints().values())
+		{
+			cp.setMaxHitpoints((cp.getMaxHitpoints() - (int)this.getTown().getBuffManager().getEffectiveDouble("buff_chichen_itza_cp_bonus_hp")));
+		}
 	}
 
 	@Override
 	protected void addBuffs() {
 		addBuffToCiv(this.getCiv(), "buff_chichen_itza_tower_hp");
 		addBuffToCiv(this.getCiv(), "buff_chichen_itza_regen_rate");
+		addBuffToTown(this.getTown(), "buff_chichen_itza_cp_bonus_hp");
+		//This is where the Itza's buff to CP applies
+		for (ControlPoint cp : this.getTown().getTownHall().getControlPoints().values())
+		{
+			cp.setMaxHitpoints((cp.getMaxHitpoints() + (int)this.getTown().getBuffManager().getEffectiveDouble("buff_chichen_itza_cp_bonus_hp")));
+		}		
 	}
 	
 	@Override
