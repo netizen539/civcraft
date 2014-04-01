@@ -167,7 +167,7 @@ end_conditions:
     - id: 'end_science'
       class: 'EndConditionScience'
       name: 'Scientific'
-      tech: 'tech_the_enlightenment'
+      tech: 'tech_enlightenment'
       days_held: '21'
     
     - id: 'end_diplomacy'

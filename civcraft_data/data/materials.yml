@@ -1448,7 +1448,7 @@ materials:
           item_data: 0
           name: 'Refined Leather Cap'
           craftable: true
-          required_techs: 'tech_archery'
+          required_techs: 'tech_leather_refinement'
           shaped: true
           category: '<lightblue>Gear Tier 2'
           components:
@@ -1476,7 +1476,7 @@ materials:
           item_data: 0
           name: 'Refined Leather Chestplate'
           craftable: true
-          required_techs: 'tech_archery'
+          required_techs: 'tech_leather_refinement'
           shaped: true
           category: '<lightblue>Gear Tier 2'
           components:
@@ -1504,7 +1504,7 @@ materials:
           item_data: 0
           name: 'Refined Leather Leggings'
           craftable: true
-          required_techs: 'tech_archery'
+          required_techs: 'tech_leather_refinement'
           shaped: true
           category: '<lightblue>Gear Tier 2'
           components:
@@ -1532,7 +1532,7 @@ materials:
           item_data: 0
           name: 'Refined Leather Moccasins'
           craftable: true
-          required_techs: 'tech_archery'
+          required_techs: 'tech_leather_refinement'
           shaped: true
           category: '<lightblue>Gear Tier 2'
           components:
@@ -1562,7 +1562,7 @@ materials:
           item_data: 0
           name: 'Hardened Leather Cap'
           craftable: true
-          required_techs: 'tech_archery, tech_feudalism'
+          required_techs: 'tech_tanning'
           shaped: true
           category: '<lightpurple>Gear Tier 3'
           components:
@@ -1590,7 +1590,7 @@ materials:
           item_data: 0
           name: 'Hardened Leather Jacket'
           craftable: true
-          required_techs: 'tech_archery, tech_feudalism'
+          required_techs: 'tech_tanning'
           shaped: true
           category: '<lightpurple>Gear Tier 3'
           components:
@@ -1618,7 +1618,7 @@ materials:
           item_data: 0
           name: 'Hardened Leather Pants'
           craftable: true
-          required_techs: 'tech_archery, tech_feudalism'
+          required_techs: 'tech_tanning'
           shaped: true
           category: '<lightpurple>Gear Tier 3'
           components:
@@ -1646,7 +1646,7 @@ materials:
           item_data: 0
           name: 'Hardened Leather Moccasins'
           craftable: true
-          required_techs: 'tech_archery, tech_feudalism'
+          required_techs: 'tech_tanning'
           shaped: true
           category: '<lightpurple>Gear Tier 3'
           components:
@@ -1790,7 +1790,7 @@ materials:
           item_data: 0
           name: 'Hunting Bow'
           craftable: true
-          required_techs: 'tech_hunting'
+          required_techs: 'tech_archery'
           shaped: true
           category: '<lightgreen>Gear Tier 1'
           components:
@@ -1817,7 +1817,7 @@ materials:
           item_data: 0
           name: 'Recurve Bow'
           craftable: true
-          required_techs: 'tech_archery'
+          required_techs: 'tech_fletching'
           shaped: true
           category: '<lightblue>Gear Tier 2'
           components:
@@ -1846,7 +1846,7 @@ materials:
           item_data: 0
           name: 'Longbow'
           craftable: true
-          required_techs: 'tech_archery, tech_feudalism'
+          required_techs: 'tech_tillering'
           shaped: true
           category: '<lightpurple>Gear Tier 3'
           components:
@@ -1875,7 +1875,7 @@ materials:
           item_data: 0
           name: 'Marksmen Bow'
           craftable: true
-          required_techs: 'tech_composites'
+          required_techs: 'tech_laminates'
           shaped: true
           category: '<gold>Gear Tier 4'
           components:
@@ -1934,7 +1934,7 @@ materials:
           item_data: 0
           name: 'Iron Shortsword'
           craftable: true
-          required_techs: 'tech_smelting'
+          required_techs: 'tech_metal_casting'
           shaped: true
           category: '<lightgreen>Gear Tier 1'
           components:
@@ -1961,7 +1961,7 @@ materials:
           item_data: 0
           name: 'Iron Helmet'
           craftable: true
-          required_techs: 'tech_smelting'
+          required_techs: 'tech_blacksmithing'
           shaped: true
           category: '<lightgreen>Gear Tier 1'
           components:
@@ -1985,7 +1985,7 @@ materials:
           item_data: 0
           name: 'Iron Chestplate'
           craftable: true
-          required_techs: 'tech_smelting'
+          required_techs: 'tech_blacksmithing'
           shaped: true
           category: '<lightgreen>Gear Tier 1'
           components:
@@ -2009,7 +2009,7 @@ materials:
           item_data: 0
           name: 'Iron Leggings'
           craftable: true
-          required_techs: 'tech_smelting'
+          required_techs: 'tech_blacksmithing'
           shaped: true
           category: '<lightgreen>Gear Tier 1'
           components:
@@ -2034,7 +2034,7 @@ materials:
           item_data: 0
           name: 'Iron Boots'
           craftable: true
-          required_techs: 'tech_smelting'
+          required_techs: 'tech_blacksmithing'
           shaped: true
           category: '<lightgreen>Gear Tier 1'
           components:
@@ -2061,7 +2061,7 @@ materials:
           item_data: 0
           name: 'Steel Helmet'
           craftable: true
-          required_techs: 'tech_steel_working'
+          required_techs: 'tech_alloys'
           shaped: true
           category: '<lightblue>Gear Tier 2'
           components:
@@ -2086,7 +2086,7 @@ materials:
           item_data: 0
           name: 'Steel Assault Boots'
           craftable: true
-          required_techs: 'tech_steel_working'
+          required_techs: 'tech_alloys'
           shaped: true
           category: '<lightblue>Gear Tier 2'
           components:
@@ -2111,7 +2111,7 @@ materials:
           item_data: 0
           name: 'Steel Chestplate'
           craftable: true
-          required_techs: 'tech_steel_working'
+          required_techs: 'tech_alloys'
           shaped: true
           category: '<lightblue>Gear Tier 2'
           components:
@@ -2136,7 +2136,7 @@ materials:
           item_data: 0
           name: 'Steel Leggings'
           craftable: true
-          required_techs: 'tech_steel_working'
+          required_techs: 'tech_alloys'
           shaped: true
           category: '<lightblue>Gear Tier 2'
           components:
@@ -2161,7 +2161,7 @@ materials:
           item_data: 0
           name: 'Steel Longsword'
           craftable: true
-          required_techs: 'tech_steel_working'
+          required_techs: 'tech_sword_smithing'
           shaped: true
           category: '<lightblue>Gear Tier 2'
           components:
@@ -2193,7 +2193,7 @@ materials:
           item_data: 0
           name: 'Carbide Steel sword'
           craftable: true
-          required_techs: 'tech_metal_casting'
+          required_techs: 'tech_folded_steel'
           shaped: true
           category: '<lightpurple>Gear Tier 3'
           components:
@@ -2223,7 +2223,7 @@ materials:
           item_data: 0
           name: 'Carbide Steel Helmet'
           craftable: true
-          required_techs: 'tech_metal_casting'
+          required_techs: 'tech_chemical_bonding'
           shaped: true
           category: '<lightpurple>Gear Tier 3'
           components:
@@ -2248,7 +2248,7 @@ materials:
           item_data: 0
           name: 'Carbide Steel Chestplate'
           craftable: true
-          required_techs: 'tech_metal_casting'
+          required_techs: 'tech_chemical_bonding'
           shaped: true
           category: '<lightpurple>Gear Tier 3'
           components:
@@ -2273,7 +2273,7 @@ materials:
           item_data: 0
           name: 'Carbide Steel leggings'
           craftable: true
-          required_techs: 'tech_metal_casting'
+          required_techs: 'tech_chemical_bonding'
           shaped: true
           category: '<lightpurple>Gear Tier 3'
           components:
@@ -2298,7 +2298,7 @@ materials:
           item_data: 0
           name: 'Carbide Steel Boots'
           craftable: true
-          required_techs: 'tech_metal_casting'
+          required_techs: 'tech_chemical_bonding'
           shaped: true
           category: '<lightpurple>Gear Tier 3'
           components:
@@ -2326,7 +2326,7 @@ materials:
           item_data: 0
           name: 'Tungsten Broadsword'
           craftable: true
-          required_techs: 'tech_alloys'
+          required_techs: 'tech_tempering'
           shaped: true
           category: '<gold>Gear Tier 4'
           components:
@@ -2355,7 +2355,7 @@ materials:
           item_data: 0
           name: 'Tungsten Boots'
           craftable: true
-          required_techs: 'tech_alloys'
+          required_techs: 'tech_forging'
           shaped: true
           category: '<gold>Gear Tier 4'
           components:
@@ -2380,7 +2380,7 @@ materials:
           item_data: 0
           name: 'Tungsten Chestplate'
           craftable: true
-          required_techs: 'tech_alloys'
+          required_techs: 'tech_forging'
           shaped: true
           category: '<gold>Gear Tier 4'
           components:
@@ -2405,7 +2405,7 @@ materials:
           item_data: 0
           name: 'Tungsten Leggings'
           craftable: true
-          required_techs: 'tech_alloys'
+          required_techs: 'tech_forging'
           shaped: true
           category: '<gold>Gear Tier 4'
           components:
@@ -2430,7 +2430,7 @@ materials:
           item_data: 0
           name: 'Tungsten Helmet'
           craftable: true
-          required_techs: 'tech_alloys'
+          required_techs: 'tech_forging'
           shaped: true
           category: '<gold>Gear Tier 4'
           components:
@@ -3407,7 +3407,7 @@ materials:
           craftable: true
           vanilla: false
           shaped: true
-          required_techs: 'tech_gun_powder'
+          required_techs: 'tech_advanced_artillery'
           ingredients:
               - type_id: 12 #sand
                 data: -1

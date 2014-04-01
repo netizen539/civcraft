@@ -425,7 +425,8 @@ public class PlayerListener implements Listener {
 			event.getContents().contains(Material.GOLDEN_CARROT) ||
 			event.getContents().contains(Material.GHAST_TEAR) ||
 			event.getContents().contains(Material.FERMENTED_SPIDER_EYE) ||
-			event.getContents().contains(Material.BLAZE_POWDER)) {
+			event.getContents().contains(Material.BLAZE_POWDER) ||
+			event.getContents().contains(Material.SULPHUR)) {
 			event.setCancelled(true);
 		}
 		
@@ -475,6 +476,9 @@ public class PlayerListener implements Listener {
 					CivMessage.sendError(event.getPlayer(), "You cannot use "+pot.name+" potions. You do not have the technology yet.");
 					event.setCancelled(true);
 					return;
+				}
+				if (pot.hasTechnology(event.getPlayer())) {
+					event.setCancelled(false);
 				}
 			} else {
 				CivMessage.sendError(event.getPlayer(), "You cannot use this type of potion.");

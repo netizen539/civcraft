@@ -149,7 +149,7 @@ upgrades:
       cost: 20000.0
       action: 'set_town_level,3'
       require_upgrade: 'upgrade_town_level_2'
-      require_tech: 'tech_monarchy'
+      require_tech: 'tech_priesthood'
       category: 'Town'
 
     - id: 'upgrade_town_level_4'
@@ -157,7 +157,7 @@ upgrades:
       cost: 30000.0
       action: 'set_town_level,4'
       require_upgrade: 'upgrade_town_level_3'
-      require_tech: 'tech_currency'
+      require_tech: 'tech_monarchy'
       category: 'Town'
 
     - id: 'upgrade_town_level_5'
@@ -165,7 +165,7 @@ upgrades:
       cost: 50000.0
       action: 'set_town_level,5'
       require_upgrade: 'upgrade_town_level_4'
-      require_tech: 'tech_feudalism'
+      require_tech: 'tech_currency'
       category: 'Town'
 
     - id: 'upgrade_town_level_6'
@@ -173,7 +173,7 @@ upgrades:
       cost: 125000.0
       action: 'set_town_level,6'
       require_upgrade: 'upgrade_town_level_5'
-      require_tech: 'tech_construction'
+      require_tech: 'tech_alchemy'
       category: 'Town'
 
     - id: 'upgrade_town_level_7'
@@ -181,7 +181,7 @@ upgrades:
       cost: 250000.0
       action: 'set_town_level,7'
       require_upgrade: 'upgrade_town_level_6'
-      require_tech: 'tech_engineering'
+      require_tech: 'tech_construction'
       category: 'Town'
 
     - id: 'upgrade_town_level_8'
@@ -189,7 +189,7 @@ upgrades:
       cost: 500000.0
       action: 'set_town_level,8'
       require_upgrade: 'upgrade_town_level_7'
-      require_tech: 'tech_education'
+      require_tech: 'tech_innovation'
       category: 'Town'
 
     - id: 'upgrade_town_level_9'
@@ -207,7 +207,7 @@ upgrades:
       cost: 4000.0
       action: 'set_bank_level,2'
       require_upgrade:
-      require_tech: 'tech_monarchy'
+      require_tech: 'tech_code_of_laws'
       require_structure: 's_bank'
       category: 'Bank'
     
@@ -225,7 +225,7 @@ upgrades:
       cost: 12000.0
       action: 'set_bank_level,4'
       require_upgrade: 'upgrade_bank_level_3'
-      require_tech: 'tech_currency'
+      require_tech: 'tech_monarchy'
       require_structure: 's_bank'
       category: 'Bank'
     
@@ -243,7 +243,7 @@ upgrades:
       cost: 16000.0
       action: 'set_bank_level,6'
       require_upgrade: 'upgrade_bank_level_5'
-      require_tech: 'tech_philosphy'
+      require_tech: 'tech_economics'
       require_structure: 's_bank'
       category: 'Bank'
     
@@ -261,7 +261,7 @@ upgrades:
       cost: 20000.0
       action: 'set_bank_level,8'
       require_upgrade: 'upgrade_bank_level_7'
-      require_tech: 'tech_education'
+      require_tech: 'tech_construction'
       require_structure: 's_bank'
       category: 'Bank'
     
@@ -270,7 +270,7 @@ upgrades:
       cost: 22000.0
       action: 'set_bank_level,9'
       require_upgrade: 'upgrade_bank_level_8'
-      require_tech: 'tech_scientific_method'
+      require_tech: 'tech_innovation'
       require_structure: 's_bank'
       category: 'Bank'
     
@@ -288,7 +288,7 @@ upgrades:
       cost: 2000.0
       action: 'set_bank_interest,0.0075'
       require_upgrade: 'upgrade_bank_level_2'
-      require_tech:
+      require_tech: 'tech_writing'
       require_structure: 's_bank'
       category: 'Bank'
     
@@ -306,7 +306,7 @@ upgrades:
       cost: 8000.0
       action: 'set_bank_interest,0.0150'
       require_upgrade: 'upgrade_bank_interest_level_2'
-      require_tech: 'tech_mathematics'
+      require_tech: 'tech_nationalism'
       require_structure: 's_bank'
       category: 'Bank'
     
@@ -315,7 +315,7 @@ upgrades:
       cost: 16000.0
       action: 'set_bank_interest,0.0250'
       require_upgrade: 'upgrade_bank_interest_level_3'
-      require_tech: 'tech_education'
+      require_tech: 'tech_innovation'
       require_structure: 's_bank'
       category: 'Bank'
 
@@ -412,7 +412,7 @@ upgrades:
       action: 'set_library_level, 2'
       cost: 5000.0
       require_upgrade:
-      require_tech: 'tech_civil_service'
+      require_tech: 'tech_artillery'
       require_structure: 's_library'
       category: 'Library'
   
@@ -421,7 +421,7 @@ upgrades:
       action: 'set_library_level, 3'
       cost: 10000.0
       require_upgrade: 'upgrade_library_level_2'
-      require_tech: 'tech_mathematics'
+      require_tech: 'tech_effenciency'
       require_structure: 's_library'
       category: 'Library'
   
@@ -430,7 +430,7 @@ upgrades:
       action: 'set_library_level, 4'
       cost: 15000.0
       require_upgrade: 'upgrade_library_level_3'
-      require_tech: 'tech_education'
+      require_tech: 'tech_advanced_effenciency'
       require_structure: 's_library'
       category: 'Library'
   
@@ -539,7 +539,7 @@ upgrades:
       action: 'set_grocer_level, 2'
       cost: 2500.0
       require_upgrade:
-      require_tech: 'tech_sailing'
+      require_tech: 'tech_trade'
       require_structure: 's_grocer'
       category: 'Grocer'
 
@@ -548,7 +548,7 @@ upgrades:
       action: 'set_grocer_level, 3'
       cost: 3000.0
       require_upgrade: 'upgrade_grocer_level_2'
-      require_tech: 'tech_civil_service'
+      require_tech: 'tech_commerce'
       require_structure: 's_grocer'
       category: 'Grocer'
 
@@ -557,7 +557,7 @@ upgrades:
       action: 'set_grocer_level, 4'
       cost: 5000.0
       require_upgrade: 'upgrade_grocer_level_3'
-      require_tech: 'tech_construction'
+      require_tech: 'tech_global_trade'
       require_structure: 's_grocer'
       category: 'Grocer'
 
