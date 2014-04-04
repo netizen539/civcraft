@@ -29,6 +29,7 @@ import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.config.ConfigMission;
 import com.avrgaming.civcraft.config.ConfigUnit;
 import com.avrgaming.civcraft.exception.CivException;
+import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.lorestorage.LoreMaterial;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.util.ItemManager;
@@ -157,6 +158,105 @@ public abstract class Unit {
 		return true;
 	}
 	
+	public static boolean isWearingFullComposite(Player player) {
+		
+		for (ItemStack stack : player.getInventory().getArmorContents()) {
+			
+			LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterial(stack);
+			if ((!craftMat.getConfigId().equals("mat_composite_leather_helmet"))) {
+				return false;
+			}
+			
+			if ((!craftMat.getConfigId().equals("mat_composite_leather_chestplate"))) {
+				return false;
+			}
+			
+			if ((!craftMat.getConfigId().equals("mat_composite_leather_leggings"))) {
+				return false;
+			}
+			
+			if ((!craftMat.getConfigId().equals("mat_composite_leather_boots"))) {
+				return false;
+			}
+			
+		}
+		return true;	
+	}
+	
+	public static boolean isWearingFullHardened(Player player) {
+		
+		for (ItemStack stack : player.getInventory().getArmorContents()) {
+			
+			LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterial(stack);
+			if ((!craftMat.getConfigId().equals("mat_hardened_leather_helmet"))) {
+				return false;
+			}
+			
+			if ((!craftMat.getConfigId().equals("mat_hardened_leather_chestplate"))) {
+				return false;
+			}
+			
+			if ((!craftMat.getConfigId().equals("mat_hardened_leather_leggings"))) {
+				return false;
+			}
+			
+			if ((!craftMat.getConfigId().equals("mat_hardened_leather_boots"))) {
+				return false;
+			}
+			
+		}
+		return true;	
+	}
+	
+	public static boolean isWearingFullRefined(Player player) {
+		
+		for (ItemStack stack : player.getInventory().getArmorContents()) {
+			
+			LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterial(stack);
+			if ((!craftMat.getConfigId().equals("mat_refined_leather_helmet"))) {
+				return false;
+			}
+			
+			if ((!craftMat.getConfigId().equals("mat_refined_leather_chestplate"))) {
+				return false;
+			}
+			
+			if ((!craftMat.getConfigId().equals("mat_refined_leather_leggings"))) {
+				return false;
+			}
+			
+			if ((!craftMat.getConfigId().equals("mat_refined_leather_boots"))) {
+				return false;
+			}
+			
+		}
+		return true;	
+	}
+	
+	public static boolean isWearingFullBasicLeather(Player player) {
+		
+		for (ItemStack stack : player.getInventory().getArmorContents()) {
+			
+			LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterial(stack);
+			if ((!craftMat.getConfigId().equals("mat_leather_helmet"))) {
+				return false;
+			}
+			
+			if ((!craftMat.getConfigId().equals("mat_leather_chestplate"))) {
+				return false;
+			}
+			
+			if ((!craftMat.getConfigId().equals("mat_leather_leggings"))) {
+				return false;
+			}
+			
+			if ((!craftMat.getConfigId().equals("mat_leather_boots"))) {
+				return false;
+			}
+			
+		}
+		return true;	
+	}
 	
 	public static boolean isWearingAnyMetal(Player player) {
 		return isWearingAnyChain(player) || isWearingAnyGold(player) || isWearingAnyIron(player) || isWearingAnyDiamond(player);

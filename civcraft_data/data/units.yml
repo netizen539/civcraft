@@ -6,13 +6,29 @@
 # without any units attached.
 #
 base:
-    # Leather speed bonus, greater than 1 is an increase
-    leather_speed: 1.1
+    # T1 Leather speed bonus, greater than 1 is an increase
+    T1_leather_speed: 1.05
 
-    # 'Metal' speed bonus(iron and diamond)
-    metal_speed: 0.9
+    # T2 Leather speed bonus, greater than 1 is an increase
+    T2_leather_speed: 1.1
 
+    # T3 Leather speed bonus, greater than 1 is an increase
+    T3_leather_speed: 1.15
 
+    # T4 Leather speed bonus, greater than 1 is an increase
+    T4_leather_speed: 1.2
+
+    # T1 'Metal' speed bonus
+    T1_metal_speed: 0.95
+
+    # T2 'Metal' speed bonus
+    T2_metal_speed: 0.9
+
+    # T3 'Metal' speed bonus
+    T3_metal_speed: 0.85
+
+    # T4 'Metal' speed bonus
+    T4_metal_speed: 0.8
 
 # Special information per unit
 unit_info:
