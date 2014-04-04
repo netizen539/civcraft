@@ -31,6 +31,7 @@ import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.util.BlockCoord;
 
+@SuppressWarnings("deprecation")
 public class PlayerLocationCache {
 
 	private BlockCoord coord;
