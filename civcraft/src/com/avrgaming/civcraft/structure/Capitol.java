@@ -49,6 +49,7 @@ import com.avrgaming.civcraft.util.BlockCoord;
 import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.util.SimpleBlock;
+import com.avrgaming.civcraft.war.War;
 
 public class Capitol extends TownHall {
 	
@@ -97,6 +98,10 @@ public class Capitol extends TownHall {
 		Resident resident = CivGlobal.getResident(player);
 		
 		if (resident == null) {
+			return;
+		}
+		
+		if (!War.isWarTime()) {
 			return;
 		}
 		

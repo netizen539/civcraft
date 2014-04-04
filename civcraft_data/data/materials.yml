@@ -1125,7 +1125,7 @@ materials:
 
         # Checked 10/8/13
         - id: 'mat_tungsten_plate'
-          item_id: 381
+          item_id: 405
           item_data: 0
           name: 'Tungsten Plate'
           craftable: true
