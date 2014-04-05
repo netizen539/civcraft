@@ -13,7 +13,7 @@ wonders:
     template: the_great_pyramid
     template_y_shift: 0
     displayName: The Great Pyramid
-    require_tech: 'tech_masonry'
+    require_tech: 'tech_great_pyramid'
     require_upgrade:
     check_event:
     effect_event:
@@ -32,7 +32,7 @@ wonders:
     template: the_great_library
     template_y_shift: 0
     displayName: The Great Library
-    require_tech: 'tech_writing'
+    require_tech: 'tech_great_library'
     require_upgrade:
     check_event:
     effect_event:
@@ -51,7 +51,7 @@ wonders:
     template: the_hanging_gardens
     template_y_shift: 0
     displayName: The Hanging Gardens
-    require_tech: 'tech_mathematics'
+    require_tech: 'tech_hanging_gardens'
     require_upgrade:
     check_event:
     effect_event:
@@ -70,7 +70,7 @@ wonders:
     template: the_colossus
     template_y_shift: 0
     displayName: The Colossus
-    require_tech: 'tech_currency'
+    require_tech: 'tech_colossus'
     require_upgrade:
     check_event:
     effect_event:
@@ -88,7 +88,7 @@ wonders:
     template: notre_dame
     template_y_shift: 0
     displayName: Notre Dame
-    require_tech: 'tech_theology'
+    require_tech: 'tech_notre_dame'
     require_upgrade:
     check_event:
     effect_event:
@@ -106,7 +106,7 @@ wonders:
     template: chichen_itza
     template_y_shift: 0
     displayName: Chichen Itza
-    require_tech: 'tech_engineering'
+    require_tech: 'tech_chichen_itza'
     require_upgrade:
     check_event:
     effect_event:
@@ -124,7 +124,7 @@ wonders:
     template: council_of_eight
     template_y_shift: 0
     displayName: Council Of Eight
-    require_tech: 'tech_globalization'
+    require_tech: 'tech_council_of_eight'
     require_upgrade:
     check_event:
     effect_event:

@@ -41,6 +41,12 @@ public class DisableXPListener implements Listener {
 		
 		if (block.getType().equals(Material.ENCHANTMENT_TABLE)) {
 			CivMessage.sendError(event.getPlayer(), "Cannot use enchantment tables. XP and Levels disabled in CivCraft.");
+			event.setCancelled(true);
+		}
+		
+		if (block.getType().equals(Material.ANVIL)) {
+			CivMessage.sendError(event.getPlayer(), "Cannot use anvils. XP and Levels disabled in CivCraft.");
+			event.setCancelled(true);
 		}
 	}
 

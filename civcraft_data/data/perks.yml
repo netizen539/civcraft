@@ -15,15 +15,6 @@
 # so that the same perk isnt bound twice, and so we can lookup the perks when we build.
 #
 
-# Database information where the perks DB is at.
-# if no perk DB is found, all perks are free.
-mysql:
-    hostname:
-    port:
-    database:
-    username:
-    password:
-
 perks:
 ########### Personal Perks
     - id: 'perk_rename_civ_town'

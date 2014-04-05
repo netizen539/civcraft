@@ -134,11 +134,11 @@ public class SQL {
 		
 		
 		CivLog.heading("Initializing Perk/Web Database");	
-		PerkManager.hostname = CivSettings.getString(CivSettings.perkConfig, "mysql.hostname");
-		PerkManager.port = CivSettings.getString(CivSettings.perkConfig, "mysql.port");
-		PerkManager.db_name = CivSettings.getString(CivSettings.perkConfig, "mysql.database");
-		PerkManager.username = CivSettings.getString(CivSettings.perkConfig,"mysql.username");
-		PerkManager.password = CivSettings.getString(CivSettings.perkConfig,"mysql.password");
+		PerkManager.hostname = CivSettings.getStringBase("perk_database.hostname");
+		PerkManager.port = CivSettings.getStringBase("perk_database.port");
+		PerkManager.db_name = CivSettings.getStringBase("perk_database.database");
+		PerkManager.username = CivSettings.getStringBase("perk_database.username");
+		PerkManager.password = CivSettings.getStringBase("perk_database.password");
 		PerkManager.dsn = "jdbc:mysql://" + PerkManager.hostname + ":" + PerkManager.port + "/" + PerkManager.db_name;
 		CivLog.info("\t Using "+PerkManager.dsn+" as PERK database.");
 		perkDatabase = new ConnectionPool(PerkManager.dsn, PerkManager.username, PerkManager.password, SQL.global_min_conns, SQL.global_max_conns, SQL.global_parts);

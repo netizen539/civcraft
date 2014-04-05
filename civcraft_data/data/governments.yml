@@ -50,7 +50,7 @@ governments:
           #focus: Stong Mining, Poor everything else.
         - id: gov_despotism
           displayName: Despotism
-          require_tech: 'tech_smelting' 
+          require_tech: 'tech_productivity' 
           trade_rate: 0.8
           upkeep_rate: 1.25
           cottage_rate: 0.8
@@ -79,7 +79,7 @@ governments:
           # focus: Strong  Trade, Negative science, Weak Mining / Cottages
         - id: gov_theocracy
           displayName: Theocracy
-          require_tech: 'tech_theology'
+          require_tech: 'tech_global_trade'
           trade_rate: 2.0
           upkeep_rate: 1.15
           cottage_rate: 0.8
@@ -93,7 +93,7 @@ governments:
           # focus: Strong  production, medium everything else
         - id: gov_communism
           displayName: Communism
-          require_tech: 'tech_nationalism'
+          require_tech: 'tech_construction'
           good_rate: 1.00
           trade_rate: 1.00
           upkeep_rate: 0.75

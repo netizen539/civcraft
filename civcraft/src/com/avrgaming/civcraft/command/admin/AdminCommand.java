@@ -280,7 +280,6 @@ public class AdminCommand extends CommandBase {
 		
 	}
 	
-	@SuppressWarnings("deprecation")
 	public void unban_cmd() throws CivException {
 		if (args.length < 2) {
 			throw new CivException("Enter a player name to ban");

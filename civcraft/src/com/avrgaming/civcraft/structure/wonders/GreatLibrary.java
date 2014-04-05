@@ -136,6 +136,13 @@ public class GreatLibrary extends Wonder {
 				return;
 			}
 			
+			configEnchant = CivSettings.enchants.get("ench_fire_aspect");
+			if (!resident.getTreasury().hasEnough(configEnchant.cost)) {
+				CivMessage.send(player, Colors.Rose+"You do not have enough money, you need "+configEnchant.cost+" coins.");
+				return;
+			}
+			
+			resident.getTreasury().withdraw(configEnchant.cost);
 			hand.addEnchantment(Enchantment.FIRE_ASPECT, 2);			
 			break;
 		case "1": /* fire protection */
@@ -144,6 +151,13 @@ public class GreatLibrary extends Wonder {
 				return;	
 			}
 			
+			configEnchant = CivSettings.enchants.get("ench_fire_protection");
+			if (!resident.getTreasury().hasEnough(configEnchant.cost)) {
+				CivMessage.send(player, Colors.Rose+"You do not have enough money, you need "+configEnchant.cost+" coins.");
+				return;
+			}
+			
+			resident.getTreasury().withdraw(configEnchant.cost);
 			hand.addEnchantment(Enchantment.PROTECTION_FIRE, 3);			
 			break;
 		case "2": /* flame */
@@ -152,6 +166,13 @@ public class GreatLibrary extends Wonder {
 				return;	
 			}
 			
+			configEnchant = CivSettings.enchants.get("ench_flame");
+			if (!resident.getTreasury().hasEnough(configEnchant.cost)) {
+				CivMessage.send(player, Colors.Rose+"You do not have enough money, you need "+configEnchant.cost+" coins.");
+				return;
+			}
+			
+			resident.getTreasury().withdraw(configEnchant.cost);
 			hand.addEnchantment(Enchantment.ARROW_FIRE, 1);	
 			break;
 		case "3":
@@ -173,6 +194,12 @@ public class GreatLibrary extends Wonder {
 					return;
 				}
 				
+				if (!resident.getTreasury().hasEnough(configEnchant.cost)) {
+					CivMessage.send(player, Colors.Rose+"You do not have enough money, you need "+configEnchant.cost+" coins.");
+					return;
+				}
+				
+				resident.getTreasury().withdraw(configEnchant.cost);
 				ItemStack newItem = LoreMaterial.addEnhancement(hand, LoreEnhancement.enhancements.get(configEnchant.enchant_id));				
 				player.setItemInHand(newItem);
 				break;

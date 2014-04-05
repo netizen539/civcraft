@@ -205,10 +205,36 @@ public class PlayerListener implements Listener {
 		double speed = CivSettings.normal_speed;
 		
 		/* Set speed from armor. */
-		if (Unit.isWearingFullLeather(player)) {
-			speed *= CivSettings.leather_speed;
-		} else if (Unit.isWearingAnyIron(player) || Unit.isWearingAnyDiamond(player)) {
-			speed *= CivSettings.metal_speed;
+		if (Unit.isWearingFullComposite(player)) {
+			speed *= CivSettings.T4_leather_speed;
+		}
+		
+		if (Unit.isWearingFullHardened(player)) {
+			speed *= CivSettings.T3_leather_speed;
+		}
+		
+		if (Unit.isWearingFullRefined(player)) {
+			speed *= CivSettings.T2_leather_speed;
+		}
+		
+		if (Unit.isWearingFullBasicLeather(player)) {
+			speed *= CivSettings.T1_leather_speed;
+		}
+		
+		if (Unit.isWearingAnyIron(player)) {
+			speed *= CivSettings.T1_metal_speed;
+		}
+		
+		if (Unit.isWearingAnyChain(player)) {
+			speed *= CivSettings.T2_metal_speed;
+		}
+		
+		if (Unit.isWearingAnyGold(player)) {
+			speed *= CivSettings.T3_metal_speed;
+		}
+		
+		if (Unit.isWearingAnyDiamond(player)) {
+			speed *= CivSettings.T4_metal_speed;
 		}
 		
 		Resident resident = CivGlobal.getResident(player);
@@ -218,7 +244,7 @@ public class PlayerListener implements Listener {
 				double yComp = vec.getY();
 				
 				vec.multiply(Road.ROAD_HORSE_SPEED);
-				vec.setY(yComp); /* Do not multiply y veloctiy. */
+				vec.setY(yComp); /* Do not multiply y velocity. */
 				
 				player.getVehicle().setVelocity(vec);
 			} else {
@@ -425,7 +451,8 @@ public class PlayerListener implements Listener {
 			event.getContents().contains(Material.GOLDEN_CARROT) ||
 			event.getContents().contains(Material.GHAST_TEAR) ||
 			event.getContents().contains(Material.FERMENTED_SPIDER_EYE) ||
-			event.getContents().contains(Material.BLAZE_POWDER)) {
+			event.getContents().contains(Material.BLAZE_POWDER) ||
+			event.getContents().contains(Material.SULPHUR)) {
 			event.setCancelled(true);
 		}
 		
@@ -475,6 +502,9 @@ public class PlayerListener implements Listener {
 					CivMessage.sendError(event.getPlayer(), "You cannot use "+pot.name+" potions. You do not have the technology yet.");
 					event.setCancelled(true);
 					return;
+				}
+				if (pot.hasTechnology(event.getPlayer())) {
+					event.setCancelled(false);
 				}
 			} else {
 				CivMessage.sendError(event.getPlayer(), "You cannot use this type of potion.");

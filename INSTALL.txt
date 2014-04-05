@@ -35,6 +35,14 @@ can use the following development perk DB information for now:
     username: 'cake'
     password: 'ddr2k0'
 
+   c) Last you need to configure ther perks database for perk information. You
+can use the following development perk DB information for now:
+    hostname: 'atlas.civcraft.net'
+    port: '3306'
+    database: 'civ_cake_db'
+    username: 'cake'
+    password: 'ddr2k0'
+
 5) Copy civcraft_data/lib to <mc_server>/plugins/CivCraft
 
 6) Copy civcraft_data/data to <mc_server>/plugins/CivCraft/data
@@ -55,6 +63,7 @@ Installing CivCraft dynmap:
 1) Compile civcraft_dymap from source.
 
 2) Install dynmap plugin.
- 
+
 3) Drop civcraft_dymap.jar into plugins directroy.
+
 
