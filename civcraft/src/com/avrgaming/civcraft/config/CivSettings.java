@@ -69,8 +69,16 @@ public class CivSettings {
 
 	
 	/* cached for faster access. */
-	public static float leather_speed;
-	public static float metal_speed;
+	//public static float leather_speed;
+	//public static float metal_speed;
+	public static float T1_leather_speed;
+	public static float T2_leather_speed;
+	public static float T3_leather_speed;
+	public static float T4_leather_speed;
+	public static float T1_metal_speed;
+	public static float T2_metal_speed;
+	public static float T3_metal_speed;
+	public static float T4_metal_speed;
 	public static float normal_speed;
 	public static double highjump;
 	
@@ -201,8 +209,16 @@ public class CivSettings {
 		Perk.init();
 		Unit.init();
 		
-		CivSettings.leather_speed = (float)CivSettings.getDouble(CivSettings.unitConfig, "base.leather_speed");
-		CivSettings.metal_speed = (float)CivSettings.getDouble(CivSettings.unitConfig, "base.metal_speed");
+		//CivSettings.leather_speed = (float)CivSettings.getDouble(CivSettings.unitConfig, "base.leather_speed");
+		//CivSettings.metal_speed = (float)CivSettings.getDouble(CivSettings.unitConfig, "base.metal_speed");
+		CivSettings.T1_leather_speed = (float)CivSettings.getDouble(CivSettings.unitConfig, "base.T1_leather_speed");
+		CivSettings.T2_leather_speed = (float)CivSettings.getDouble(CivSettings.unitConfig, "base.T2_leather_speed");
+		CivSettings.T3_leather_speed = (float)CivSettings.getDouble(CivSettings.unitConfig, "base.T3_leather_speed");
+		CivSettings.T4_leather_speed = (float)CivSettings.getDouble(CivSettings.unitConfig, "base.T4_leather_speed");
+		CivSettings.T1_metal_speed = (float)CivSettings.getDouble(CivSettings.unitConfig, "base.T1_metal_speed");
+		CivSettings.T2_metal_speed = (float)CivSettings.getDouble(CivSettings.unitConfig, "base.T2_metal_speed");
+		CivSettings.T3_metal_speed = (float)CivSettings.getDouble(CivSettings.unitConfig, "base.T3_metal_speed");
+		CivSettings.T4_metal_speed = (float)CivSettings.getDouble(CivSettings.unitConfig, "base.T4_metal_speed");
 		CivSettings.normal_speed = 0.2f;	
 		
 		for (Object obj : civConfig.getList("global.start_kit")) {

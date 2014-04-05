@@ -31,6 +31,7 @@ import com.avrgaming.civcraft.mobs.components.MobComponent;
 import com.avrgaming.civcraft.object.TownChunk;
 import com.avrgaming.civcraft.util.ChunkCoord;
 import com.avrgaming.civcraft.util.ItemManager;
+import com.avrgaming.civcraft.war.War;
 import com.avrgaming.mob.ICustomMob;
 import com.avrgaming.mob.ISpawnable;
 
@@ -211,6 +212,12 @@ public abstract class CommonCustomMob implements ICustomMob {
 			entity.getBukkitEntity().remove();
 		}
 	}
+	
+	private void checkForisWarTime() {
+		if (War.isWarTime()) {
+			entity.getBukkitEntity().remove();
+		}
+	}
 
 	private int tickCount = 0;
 	@Override
@@ -223,6 +230,7 @@ public abstract class CommonCustomMob implements ICustomMob {
 		if (tickCount > 90) {
 			checkForStuck();
 			checkForTownBorders();
+			checkForisWarTime();
 			tickCount = 0;
 		}
 	}

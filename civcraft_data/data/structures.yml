@@ -356,7 +356,7 @@ structures:
     template_y_shift: 0
     displayName: Bank
     require_upgrade:
-    require_tech: 'tech_code_of_laws' 
+    require_tech: 'tech_religion' 
     effect_event:
     check_event:
     update_event:
@@ -391,7 +391,7 @@ structures:
     template_y_shift: 0
     displayName: Store
     require_upgrade:
-    require_tech: 'tech_monarchy'
+    require_tech: 'tech_commerce'
     effect_event:
     check_event:
     update_event:
@@ -408,7 +408,7 @@ structures:
     template_y_shift: 0
     displayName: Library
     require_upgrade:
-    require_tech: 'tech_writing'
+    require_tech: 'tech_productivity'
     effect_event:
     check_event:
     update_event:
@@ -434,7 +434,7 @@ structures:
     template_y_shift: 0
     displayName: Grocer
     require_upgrade:
-    require_tech: 'tech_agriculture'
+    require_tech: 'tech_hunting'
     effect_event:
     check_event:
     update_event:
@@ -451,7 +451,7 @@ structures:
     template_y_shift: -2
     displayName: Blacksmith
     require_upgrade:
-    require_tech: 'tech_steel_working'
+    require_tech: 'tech_blacksmithing'
     effect_event:
     check_event:
     update_event:
@@ -503,7 +503,7 @@ structures:
     template_y_shift: 0
     displayName: Cottage
     require_upgrade:
-    require_tech: 'tech_pottery'
+    require_tech: 'tech_advanced_masonry'
     effect_event: generate_coins
     check_event: 
     update_event:
@@ -527,7 +527,7 @@ structures:
     template_y_shift: -2
     displayName: Monument
     require_upgrade:
-    require_tech: 'tech_mysticism'
+    require_tech: 'tech_religion'
     effect_event: generate_culture:400
     check_event: 
     update_event: 
@@ -606,7 +606,7 @@ structures:
     template_y_shift: -6
     displayName: Mine
     require_upgrade:
-    require_tech: 'tech_mining'
+    require_tech: 'tech_productivity'
     effect_event: process_mine
     check_event:
     update_event:
@@ -630,7 +630,7 @@ structures:
     template_y_shift: 0
     displayName: Trade Outpost
     require_upgrade:
-    require_tech: 'tech_currency'
+    require_tech: 'tech_trade'
     effect_event:
     check_event:
     update_event:
@@ -649,7 +649,7 @@ structures:
     template_y_shift: -3
     displayName: Fishing Boat
     require_upgrade:
-    require_tech: 'tech_sailing'
+    require_tech: 'tech_trade'
     require_structure: 's_shipyard'
     effect_event:
     check_event:
@@ -695,7 +695,7 @@ structures:
     template_y_shift: -2
     displayName: Pasture
     require_upgrade:
-    require_tech: 'tech_animal_husbandry'
+    require_tech: 'tech_hunting'
     effect_event:
     check_event:
     update_event:
@@ -713,13 +713,13 @@ structures:
     template_y_shift: 0
     displayName: Wall
     require_upgrade:
-    require_tech: 'tech_masonry' 
+    require_tech: 'tech_advanced_masonry' 
     effect_event:
     check_event:
     update_event:
     onBuild_event:
     limit: 0
-    cost: 1000.0
+    cost: 50.0
     upkeep: 400.0
     hammer_cost: 300.0
     points: 50
@@ -738,7 +738,7 @@ structures:
     update_event:
     onBuild_event:
     limit: 0
-    cost: 1000.0
+    cost: 300.0
     upkeep: 50.0
     hammer_cost: 500.0
     points: 200
@@ -751,7 +751,7 @@ structures:
     template_y_shift: 0
     displayName: Arrow Tower
     require_upgrade:
-    require_tech: 'tech_masonry:tech_archery'
+    require_tech: 'tech_artillery'
     effect_event:
     check_event:
     update_event:
@@ -770,7 +770,7 @@ structures:
     template_y_shift: 0
     displayName: Cannon Tower
     require_upgrade:
-    require_tech: 'tech_masonry:tech_metal_casting:tech_gun_powder'
+    require_tech: 'tech_advanced_artillery'
     effect_event:
     check_event:
     update_event:
@@ -808,7 +808,7 @@ structures:
     template_y_shift: 0
     displayName: Barracks
     require_upgrade:
-    require_tech: 'tech_smelting'
+    require_tech: 'tech_armory'
     effect_event:
     check_event:
     update_event:
@@ -829,7 +829,7 @@ structures:
     template_y_shift: 0
     displayName: Windmill
     require_upgrade:
-    require_tech: 'tech_pottery'
+    require_tech: 'tech_automation'
     effect_event:
     check_event:
     update_event:
@@ -847,7 +847,7 @@ structures:
     template_y_shift: 0
     displayName: Market
     require_upgrade:
-    require_tech: 'tech_currency'
+    require_tech: 'tech_commerce'
     effect_event:
     check_event:
     update_event:
@@ -873,7 +873,7 @@ structures:
     template_y_shift: -2
     displayName: Stable
     require_upgrade:
-    require_tech: 'tech_horseback_riding' 
+    require_tech: 'tech_global_trade' 
     effect_event:
     check_event:
     update_event:
