@@ -67,12 +67,6 @@ public class AdminCommand extends CommandBase {
 		commands.put("sbperm", "Allows breaking of structure blocks");
 		commands.put("cbinstantbreak", "Allows instant breaking of control blocks.");
 
-		commands.put("maxplayers", "[value] - sets max players to this amount.");
-		commands.put("online", "makes the server online");
-		commands.put("offline", "makes the server offline");
-		commands.put("joinon", "makes the game joinable");
-		commands.put("joinoff", "makes the game not joinable");
-
 		commands.put("recover", "Manage recovery commands");
 		commands.put("server", "shows the name of this server");
 		commands.put("spawnunit", "[unit-id] [town] spawn the unit with this id for this town.");
@@ -272,42 +266,6 @@ public class AdminCommand extends CommandBase {
 		cmd.onCommand(sender, null, "civ", this.stripArgs(args, 1));
 	}
 
-	public void online_cmd() {
-		if (CivGlobal.info != null) {
-			synchronized(CivGlobal.info) {
-				CivGlobal.info.online = true;
-			}
-			CivMessage.sendSuccess(sender, "Server now appears online");
-		}
-	}
-	
-	public void offline_cmd() {
-		if (CivGlobal.info != null) {
-			synchronized(CivGlobal.info) {
-				CivGlobal.info.online = false;
-			}
-			CivMessage.sendSuccess(sender, "Server now appears offline");
-		}
-	}
-	
-	public void joinon_cmd() {
-		if (CivGlobal.info != null) {
-			synchronized(CivGlobal.info) {
-				CivGlobal.info.joinable = true;
-			}
-			CivMessage.sendSuccess(sender, "Players can now join from shotbow");
-		}
-	}
-	
-	public void joinoff_cmd() {
-		if (CivGlobal.info != null) {
-			synchronized(CivGlobal.info) {
-				CivGlobal.info.joinable = false;
-			}
-			CivMessage.sendSuccess(sender, "Players can no longer join from shotbow");
-		}
-	}
-	
 	public void setfullmessage_cmd() {
 		if (args.length < 2) {
 			CivMessage.send(sender, "Current:"+CivGlobal.fullMessage);
@@ -319,31 +277,6 @@ public class AdminCommand extends CommandBase {
 		}
 		
 		CivMessage.sendSuccess(sender, "Set to:"+args[1]);
-		
-	}
-	
-	public void maxplayers_cmd() throws CivException {
-		if (args.length < 2) {
-			CivMessage.send(sender, "Max players is: "+CivGlobal.maxPlayers);
-			return;
-		}
-		
-		try {
-			Integer size = Integer.valueOf(args[1]);
-			synchronized (CivGlobal.maxPlayers) {
-				CivGlobal.maxPlayers = size;
-			}
-			
-			if (CivGlobal.info != null) {
-				synchronized (CivGlobal.info) {
-					CivGlobal.info.maxPlayers = size;
-				}
-				
-				CivMessage.sendSuccess(sender, "Set Max players to "+size);
-			}
-		} catch (NumberFormatException e) {
-			throw new CivException ("enter a number");
-		}
 		
 	}
 	
