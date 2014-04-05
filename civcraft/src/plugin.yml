@@ -50,3 +50,9 @@ commands:
         aliases: [v]
     trade:
         aliases:
+    kill:
+        aliases:
+    team:
+        aliases:
+    sb:
+        aliases:

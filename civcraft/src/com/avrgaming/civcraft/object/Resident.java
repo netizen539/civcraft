@@ -18,6 +18,8 @@
  */
 package com.avrgaming.civcraft.object;
 
+import gpl.InventorySerializer;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -37,6 +39,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -46,6 +49,8 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import com.avrgaming.civcraft.arena.Arena;
+import com.avrgaming.civcraft.arena.ArenaTeam;
 import com.avrgaming.civcraft.camp.Camp;
 import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.config.ConfigBuildableInfo;
@@ -156,6 +161,8 @@ public class Resident extends SQLObject {
 	private boolean showMap = false;
 	private boolean showInfo = false;
 	private String itemMode = "all";
+	private String savedInventory = null;
+	private boolean insideArena = false;
 	
 	public HashMap<BlockCoord, SimpleBlock> previewUndo = null;
 	public HashMap<String, Perk> perks = new HashMap<String, Perk>();
@@ -198,6 +205,8 @@ public class Resident extends SQLObject {
 					"`timezone` mediumtext,"+
 					"`banned` bool NOT NULL DEFAULT '0'," +
 					"`bannedMessage` mediumtext DEFAULT NULL,"+
+					"`savedInventory` mediumtext DEFULT NULL,"+
+					"`insideArena` bool NOT NULL DEFAULT '0',"+
 					"`flags` mediumtext DEFAULT NULL,"+
 					"`last_ip` mediumtext DEFAULT NULL,"+
 					"`debug_town` mediumtext DEFAULT NULL,"+
@@ -246,7 +255,8 @@ public class Resident extends SQLObject {
 			}
 			
 			SQL.makeCol("flags", "mediumtext", TABLE_NAME);
-			
+			SQL.makeCol("savedInventory", "mediumtext", TABLE_NAME);
+			SQL.makeCol("insideArena", "bool NOT NULL DEFAULT '0'", TABLE_NAME);
 		}		
 	}
 
@@ -263,6 +273,9 @@ public class Resident extends SQLObject {
 		this.setGivenKit(rs.getBoolean("givenKit"));
 		this.setTimezone(rs.getString("timezone"));
 		this.loadFlagSaveString(rs.getString("flags"));
+		this.savedInventory = rs.getString("savedInventory");
+		this.insideArena = rs.getBoolean("insideArena");
+		
 		if (this.getTimezone() == null) {
 			this.setTimezoneToServerDefault();
 		}
@@ -425,6 +438,8 @@ public class Resident extends SQLObject {
 		hashmap.put("timezone", this.getTimezone());
 		hashmap.put("flags", this.getFlagSaveString());
 		hashmap.put("last_ip", this.getLastIP());
+		hashmap.put("savedInventory", this.savedInventory);
+		hashmap.put("insideArena", this.insideArena);
 		
 		if (this.getTown() != null) {
 			hashmap.put("debug_town", this.getTown().getName());
@@ -1442,10 +1457,13 @@ public class Resident extends SQLObject {
 		Player player;
 		try {
 			player = CivGlobal.getPlayer(this);
+			teleportHome(player);
 		} catch (CivException e) {
 			return;
 		}
-		
+	}
+	
+	public void teleportHome(Player player) {		
 		if (this.hasTown()) {
 			TownHall townhall = this.getTown().getTownHall();
 			if (townhall != null) {
@@ -1453,7 +1471,8 @@ public class Resident extends SQLObject {
 				player.teleport(coord.getLocation());
 			}
 		} else {
-			player.teleport(player.getWorld().getSpawnLocation());
+			World world = Bukkit.getWorld("world");
+			player.teleport(world.getSpawnLocation());
 		}
 	}
 	
@@ -1474,5 +1493,94 @@ public class Resident extends SQLObject {
 
 	public void setUsesAntiCheat(boolean usesAntiCheat) {
 		this.usesAntiCheat = usesAntiCheat;
+	}
+	
+	public boolean hasTeam() {
+		ArenaTeam team = ArenaTeam.getTeamForResident(this);
+		if (team == null) {
+			return false;
+		}
+		return true;
+	}
+	
+	public ArenaTeam getTeam() {
+		ArenaTeam team = ArenaTeam.getTeamForResident(this);
+		if (team == null) {
+			return null;
+		}
+		return team;
+	}
+
+	public boolean isTeamLeader() {
+		ArenaTeam team = ArenaTeam.getTeamForResident(this);
+		if (team == null) {
+			return false;
+		}
+		
+		if (team.getLeader() == this) {
+			return true;
+		}
+		
+		return false;		
+	}
+	
+	public void saveInventory() {
+		try {
+			Player player = CivGlobal.getPlayer(this);			
+			String serial =  InventorySerializer.InventoryToString(player.getInventory());
+			this.setSavedInventory(serial);
+			this.save();
+		} catch (CivException e) {
+		}
+	}
+	
+	public void clearInventory() {
+		try {
+			Player player = CivGlobal.getPlayer(this);
+			player.getInventory().clear();
+			player.getInventory().setArmorContents(new ItemStack[4]);
+		} catch (CivException e) {
+		}
+	}
+
+	public void restoreInventory() {
+		if (this.savedInventory == null) {
+			return;
+		}
+		
+		try {
+			Player player = CivGlobal.getPlayer(this);
+			clearInventory();
+			InventorySerializer.StringToInventory(player.getInventory(), this.savedInventory);
+			this.setSavedInventory(null);
+			this.save();
+		} catch (CivException e) {
+			this.setSavedInventory(null);
+			this.save();
+		}
+	}
+	
+	public String getSavedInventory() {
+		return savedInventory;
+	}
+
+	public void setSavedInventory(String savedInventory) {
+		this.savedInventory = savedInventory;
+	}
+
+	public Arena getCurrentArena() {
+		if (this.getTeam() == null) {
+			return null;
+		}
+		
+		return this.getTeam().getCurrentArena();
+	}
+	
+	public boolean isInsideArena() {
+		return this.insideArena;
+	}
+	
+	public void setInsideArena(boolean inside) {
+		this.insideArena = inside;
 	}
 }

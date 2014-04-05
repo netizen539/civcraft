@@ -27,6 +27,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.avrgaming.anticheat.ACManager;
 import com.avrgaming.civcraft.arena.ArenaListener;
+import com.avrgaming.civcraft.arena.ArenaManager;
 import com.avrgaming.civcraft.command.AcceptCommand;
 import com.avrgaming.civcraft.command.BuildCommand;
 import com.avrgaming.civcraft.command.DenyCommand;
@@ -36,6 +37,7 @@ import com.avrgaming.civcraft.command.KillCommand;
 import com.avrgaming.civcraft.command.PayCommand;
 import com.avrgaming.civcraft.command.ReportCommand;
 import com.avrgaming.civcraft.command.SelectCommand;
+import com.avrgaming.civcraft.command.ShotbowCommand;
 import com.avrgaming.civcraft.command.TradeCommand;
 import com.avrgaming.civcraft.command.VoteCommand;
 import com.avrgaming.civcraft.command.admin.AdminCommand;
@@ -47,6 +49,7 @@ import com.avrgaming.civcraft.command.market.MarketCommand;
 import com.avrgaming.civcraft.command.mod.ModeratorCommand;
 import com.avrgaming.civcraft.command.plot.PlotCommand;
 import com.avrgaming.civcraft.command.resident.ResidentCommand;
+import com.avrgaming.civcraft.command.team.TeamCommand;
 import com.avrgaming.civcraft.command.town.TownChatCommand;
 import com.avrgaming.civcraft.command.town.TownCommand;
 import com.avrgaming.civcraft.config.CivSettings;
@@ -215,6 +218,8 @@ public final class CivCraft extends JavaPlugin {
 		
 		//TaskMaster.syncTimer("Apoc", new Apocalypse(), TimeTools.toTicks(1200));
 		TaskMaster.syncTimer("MobSpawner", new MobSpawnerTimer(), TimeTools.toTicks(2));
+		TaskMaster.syncTimer("ArenaTimer", new ArenaManager(), TimeTools.toTicks(30));
+
 	}
 	
 	private void registerEvents() {
@@ -290,7 +295,9 @@ public final class CivCraft extends JavaPlugin {
 		getCommand("vote").setExecutor(new VoteCommand());
 		getCommand("trade").setExecutor(new TradeCommand());
 		getCommand("kill").setExecutor(new KillCommand());
-		
+		getCommand("team").setExecutor(new TeamCommand());
+		getCommand("sb").setExecutor(new ShotbowCommand());
+	
 		registerEvents();
 		registerNPCHooks();
 		MobLib.registerAllEntities();

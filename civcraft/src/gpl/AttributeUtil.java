@@ -669,6 +669,32 @@ public class AttributeUtil {
     	nmsStack.tag.set("display", displayCompound); 
 	}
 	
+	public int getColor() {
+    	NBTTagCompound displayCompound = nmsStack.tag.getCompound("display");
+    	if (displayCompound == null) {
+    		return 0;
+    	}
+    	
+    	return displayCompound.getInt("color");
+	}
+	
+	public boolean hasColor() {
+		if (nmsStack == null) {
+			return false;
+		}
+		
+		if (nmsStack.tag == null) {
+			return false;
+		}
+		
+    	NBTTagCompound displayCompound = nmsStack.tag.getCompound("display");
+    	if (displayCompound == null) {
+    		return false;
+    	}
+    	
+    	return displayCompound.hasKey("color");
+	}
+	
 	public void setLore(LinkedList<String> lore) {
 		String[] strs = new String[lore.size()];
 		
