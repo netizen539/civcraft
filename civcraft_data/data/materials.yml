@@ -3419,6 +3419,32 @@ materials:
               - "gsg"
               - "sgs"
               - "gsg"
+
+        - id: 'mat_vanilla_ender_chest'
+          item_id: 130
+          item_data: 0
+          name: 'Ender Chest'
+          craftable: true
+          shaped: true
+          vanilla: false         
+          components:
+              - name: 'AllowBlockPlace'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_tungsten_plate'
+                data: 0
+                letter: 'p'
+              - type_id: 0
+                custom_id: 'mat_artisan_leather'
+                data: 0
+                letter: 'l'
+              - type_id: 54 #chest
+                data: 0
+                letter: 'c'
+          shape:
+              - "lpl"
+              - "pcp"
+              - "lpl"
 #
 # This is a list of removed recpies based on the typeID and 
 # data value of the vanilla item.
@@ -3555,6 +3581,10 @@ removed_recipes:
         
     # TNT
     - type_id: 46
+      data: 0
+
+    # Ender Chest
+    - type_id: 130
       data: 0
 
       
