@@ -102,7 +102,7 @@ public abstract class Buildable extends SQLObject {
 	
 	private Town town;
 	protected BlockCoord corner;
-	public ConfigBuildableInfo info;
+	public ConfigBuildableInfo info = new ConfigBuildableInfo(); //Blank buildable info for buildables which do not have configs.
 	protected int hitpoints;
 
 	public int builtBlockCount = 0;
@@ -1099,12 +1099,16 @@ public abstract class Buildable extends SQLObject {
 		StructureBlock hit = CivGlobal.getStructureBlock(coord);
 		
 		if(hit.getOwner().isDestroyed()) {
-			CivMessage.sendError(player, hit.getOwner().getDisplayName()+" is already destroyed.");
+			if (player != null) {
+				CivMessage.sendError(player, hit.getOwner().getDisplayName()+" is already destroyed.");
+			}
 			return;
 		}
 		
 		if (!hit.getOwner().isComplete() && !(hit.getOwner() instanceof Wonder)) {
-			CivMessage.sendError(player, hit.getOwner().getDisplayName()+" is still being built, cannot be destroyed.");
+			if (player != null) {
+				CivMessage.sendError(player, hit.getOwner().getDisplayName()+" is still being built, cannot be destroyed.");
+			}
 			return;		
 		}
 		
@@ -1112,19 +1116,24 @@ public abstract class Buildable extends SQLObject {
 			wasTenPercent = true;
 		}
 			
+		CivLog.debug("Damange amount:"+amount);
 		this.damage(amount);
 		
 		world.playSound(hit.getCoord().getLocation(), Sound.ANVIL_USE, 0.2f, 1);
 		world.playEffect(hit.getCoord().getLocation(), Effect.MOBSPAWNER_FLAMES, 0);
 		
 		if ((hit.getOwner().getDamagePercentage() % 10) == 0 && !wasTenPercent) {
-			onDamageNotification(player, hit);
+			if (player != null) {
+				onDamageNotification(player, hit);
+			}
 		}
 		
+		if (player != null) {
 		Resident resident = CivGlobal.getResident(player);
-		if (resident.isCombatInfo()) {
-			CivMessage.send(player, Colors.LightGray+hit.getOwner().getDisplayName()+" has been damaged ("+
-					hit.getOwner().hitpoints+"/"+hit.getOwner().getMaxHitPoints()+")");
+			if (resident.isCombatInfo()) {
+				CivMessage.send(player, Colors.LightGray+hit.getOwner().getDisplayName()+" has been damaged ("+
+						hit.getOwner().hitpoints+"/"+hit.getOwner().getMaxHitPoints()+")");
+			}
 		}
 		
 	}

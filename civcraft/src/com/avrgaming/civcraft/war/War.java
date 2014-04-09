@@ -41,6 +41,7 @@ import com.avrgaming.civcraft.object.Relation.Status;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.sessiondb.SessionEntry;
+import com.avrgaming.civcraft.siege.Cannon;
 import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.global.perks.PlatinumManager;
 
@@ -359,6 +360,8 @@ public class War {
 		}
 		
 		WarRegen.restoreBlocksFor(WarCamp.RESTORE_NAME);
+		WarRegen.restoreBlocksFor(Cannon.RESTORE_NAME);
+		Cannon.cleanupAll();
 	}
 
 	/**

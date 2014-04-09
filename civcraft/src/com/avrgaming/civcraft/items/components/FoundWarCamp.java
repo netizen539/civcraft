@@ -37,7 +37,7 @@ public class FoundWarCamp extends ItemComponent implements CallbackInterface {
 	
 	@Override
 	public void onPrepareCreate(AttributeUtil attrUtil) {
-		attrUtil.addLore(ChatColor.RESET+Colors.Gold+"Starts a Camp");
+		attrUtil.addLore(ChatColor.RESET+Colors.Gold+"Deploys War Camp");
 		attrUtil.addLore(ChatColor.RESET+Colors.Rose+"<Right Click To Use>");		
 	}
 	

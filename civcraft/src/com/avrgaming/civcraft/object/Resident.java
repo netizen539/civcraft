@@ -205,7 +205,7 @@ public class Resident extends SQLObject {
 					"`timezone` mediumtext,"+
 					"`banned` bool NOT NULL DEFAULT '0'," +
 					"`bannedMessage` mediumtext DEFAULT NULL,"+
-					"`savedInventory` mediumtext DEFULT NULL,"+
+					"`savedInventory` mediumtext DEFAULT NULL,"+
 					"`insideArena` bool NOT NULL DEFAULT '0',"+
 					"`flags` mediumtext DEFAULT NULL,"+
 					"`last_ip` mediumtext DEFAULT NULL,"+
@@ -1555,6 +1555,8 @@ public class Resident extends SQLObject {
 			this.setSavedInventory(null);
 			this.save();
 		} catch (CivException e) {
+			// Player offline??
+			e.printStackTrace();
 			this.setSavedInventory(null);
 			this.save();
 		}

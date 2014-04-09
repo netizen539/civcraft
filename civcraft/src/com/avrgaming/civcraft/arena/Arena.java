@@ -105,54 +105,20 @@ public class Arena {
 			player = CivGlobal.getPlayer(resident);
 			Inventory inv = Bukkit.createInventory(player, 9*6, resident.getName()+"'s Gear");
 
-			addCivCraftItemToInventory("mat_tungsten_sword", inv);
-			addCivCraftItemToInventory("mat_tungsten_boots", inv);
-			addCivCraftItemToInventory("mat_tungsten_chestplate", inv);
-			addCivCraftItemToInventory("mat_tungsten_leggings", inv);
-			addCivCraftItemToInventory("mat_tungsten_helmet", inv);
-
-			addCivCraftItemToInventory("mat_carbide_steel_sword", inv);
-			addCivCraftItemToInventory("mat_carbide_steel_boots", inv);
-			addCivCraftItemToInventory("mat_carbide_steel_chestplate", inv);
-			addCivCraftItemToInventory("mat_carbide_steel_leggings", inv);
-			addCivCraftItemToInventory("mat_carbide_steel_helmet", inv);	
-			
-			addCivCraftItemToInventory("mat_steel_sword", inv);
-			addCivCraftItemToInventory("mat_steel_boots", inv);
-			addCivCraftItemToInventory("mat_steel_chestplate", inv);
-			addCivCraftItemToInventory("mat_steel_leggings", inv);
-			addCivCraftItemToInventory("mat_steel_helmet", inv);
-			
-			addCivCraftItemToInventory("mat_iron_sword", inv);
-			addCivCraftItemToInventory("mat_iron_boots", inv);
-			addCivCraftItemToInventory("mat_iron_chestplate", inv);
-			addCivCraftItemToInventory("mat_iron_leggings", inv);
-			addCivCraftItemToInventory("mat_iron_helmet", inv);
-			
-			addCivCraftItemToInventory("mat_marksmen_bow", inv);
-			addCivCraftItemToInventory("mat_composite_leather_boots", inv);
-			addCivCraftItemToInventory("mat_composite_leather_chestplate", inv);
-			addCivCraftItemToInventory("mat_composite_leather_leggings", inv);
-			addCivCraftItemToInventory("mat_composite_leather_helmet", inv);
-			
-			addCivCraftItemToInventory("mat_longbow", inv);
-			addCivCraftItemToInventory("mat_hardened_leather_boots", inv);
-			addCivCraftItemToInventory("mat_hardened_leather_chestplate", inv);
-			addCivCraftItemToInventory("mat_hardened_leather_leggings", inv);
-			addCivCraftItemToInventory("mat_hardened_leather_helmet", inv);
-			
-			addCivCraftItemToInventory("mat_recurve_bow", inv);
-			addCivCraftItemToInventory("mat_refined_leather_boots", inv);
-			addCivCraftItemToInventory("mat_refined_leather_chestplate", inv);
-			addCivCraftItemToInventory("mat_refined_leather_leggings", inv);
-			addCivCraftItemToInventory("mat_refined_leather_helmet", inv);
-			
-			addCivCraftItemToInventory("mat_hunting_bow", inv);
-			addCivCraftItemToInventory("mat_leather_Boots", inv);
-			addCivCraftItemToInventory("mat_leather_chestplate", inv);
-			addCivCraftItemToInventory("mat_leather_leggings", inv);
-			addCivCraftItemToInventory("mat_leather_helmet", inv);
-			
+			for (int i = 0; i < 3; i++) {
+				addCivCraftItemToInventory("mat_tungsten_sword", inv);
+				addCivCraftItemToInventory("mat_tungsten_boots", inv);
+				addCivCraftItemToInventory("mat_tungsten_chestplate", inv);
+				addCivCraftItemToInventory("mat_tungsten_leggings", inv);
+				addCivCraftItemToInventory("mat_tungsten_helmet", inv);
+		
+				addCivCraftItemToInventory("mat_marksmen_bow", inv);
+				addCivCraftItemToInventory("mat_composite_leather_boots", inv);
+				addCivCraftItemToInventory("mat_composite_leather_chestplate", inv);
+				addCivCraftItemToInventory("mat_composite_leather_leggings", inv);
+				addCivCraftItemToInventory("mat_composite_leather_helmet", inv);
+			}
+						
 			addCivCraftItemToInventory("mat_vanilla_diamond_pickaxe", inv);
 
 			addItemToInventory(Material.ARROW, inv, 64);
@@ -208,15 +174,21 @@ public class Arena {
 		for (ArenaTeam team : teams.values()) {
 			for (Resident r : team.teamMembers) {
 				try {
-					/* Only set inside arena to false if the player is online. */
-					CivGlobal.getPlayer(r);
-					r.setInsideArena(false);
-					r.restoreInventory();
+					try {
+						/* Only set inside arena to false if the player is online. */
+						CivGlobal.getPlayer(r);
+						r.setInsideArena(false);
+						r.restoreInventory();
+						r.teleportHome();
+						r.save();
+						CivMessage.send(r, CivColor.LightGray+"We've been teleported back to our home since the arena has ended.");
+					} catch (CivException e) {
+						/* player not online, inside arena is set true */
+					}
+				} catch (Exception e) {
+					// Continue if there was an error restoring one player.
 					r.teleportHome();
-					r.save();
-					CivMessage.send(r, CivColor.LightGray+"We've been teleported back to our home since the arena has ended.");
-				} catch (CivException e) {
-					/* player not online, inside arena is set true */
+					e.printStackTrace();
 				}
 			}
 		}
