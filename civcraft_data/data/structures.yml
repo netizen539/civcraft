@@ -318,7 +318,7 @@ structures:
     upkeep: 0.0
     hammer_cost: 600.0
     points: 1000
-    max_hitpoints: 10000
+    max_hitpoints: 1000
     allow_demolish: false
     strategic: true
     components:
@@ -342,7 +342,7 @@ structures:
     upkeep: 0.0
     hammer_cost: 600.0
     points: 6000
-    max_hitpoints: 10000
+    max_hitpoints: 2000
     allow_demolish: false
     strategic: true
     components:
