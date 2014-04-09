@@ -77,6 +77,7 @@ import com.avrgaming.civcraft.populators.TradeGoodPopulator;
 import com.avrgaming.civcraft.pvplogger.PvPLogger;
 import com.avrgaming.civcraft.randomevents.RandomEventSweeper;
 import com.avrgaming.civcraft.sessiondb.SessionDBAsyncTimer;
+import com.avrgaming.civcraft.siege.CannonListener;
 import com.avrgaming.civcraft.structure.Farm;
 import com.avrgaming.civcraft.structure.farm.FarmGrowthSyncTask;
 import com.avrgaming.civcraft.structure.farm.FarmPreCachePopulateTimer;
@@ -238,6 +239,7 @@ public final class CivCraft extends JavaPlugin {
 		pluginManager.registerEvents(civTagAPIListener, this);
 		pluginManager.registerEvents(new MobListener(), this);
 		pluginManager.registerEvents(new ArenaListener(), this);
+		pluginManager.registerEvents(new CannonListener(), this);
 	}
 	
 	private void registerNPCHooks() {

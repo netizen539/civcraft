@@ -170,6 +170,7 @@ public class CivData {
 	public static final int CLOWNFISH = 2;
 	public static final int PUFFERFISH = 3;
 	public static final int GOLDEN_APPLE = 322;
+	public static final int TNT = 46;
 	
 	public static String getDisplayName(int id) {
 		

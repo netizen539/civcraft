@@ -98,6 +98,7 @@ import com.avrgaming.civcraft.object.TownChunk;
 import com.avrgaming.civcraft.permission.PermissionGroup;
 import com.avrgaming.civcraft.populators.TradeGoodPopulator;
 import com.avrgaming.civcraft.road.Road;
+import com.avrgaming.civcraft.siege.Cannon;
 import com.avrgaming.civcraft.structure.ArrowTower;
 import com.avrgaming.civcraft.structure.Buildable;
 import com.avrgaming.civcraft.structure.Capitol;
@@ -215,8 +216,30 @@ public class DebugCommand extends CommandBase {
 		commands.put("packet", "sends custom auth packet.");	
 		commands.put("disablemap", "disables zan's minimap");
 		commands.put("world", "Show world debug options");
+		commands.put("cannon", "builds a war cannon.");
+		commands.put("saveinv", "save an inventory");
+		commands.put("restoreinv", "restore your inventory.");
 	}
+	
+	public void saveinv_cmd() throws CivException {
+		Resident resident = getResident();
+		resident.saveInventory();
+		CivMessage.sendSuccess(resident, "saved inventory.");
+	}
+	
+	public void restoreinv_cmd() throws CivException {
+		Resident resident = getResident();
+		resident.restoreInventory();
+		CivMessage.sendSuccess(resident, "restore inventory.");
+	}
+	
+	public void cannon_cmd() throws CivException {
+		Resident resident = getResident();
+		Cannon.newCannon(resident);
 		
+		CivMessage.sendSuccess(resident, "built cannon.");
+	}
+	
 	public void world_cmd() {
 		DebugWorldCommand cmd = new DebugWorldCommand();	
 		cmd.onCommand(sender, null, "world", this.stripArgs(args, 1));

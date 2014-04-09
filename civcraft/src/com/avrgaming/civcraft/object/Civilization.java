@@ -1748,6 +1748,14 @@ public class Civilization extends SQLObject {
 		for (WarCamp camp : this.warCamps) {
 			camp.onWarEnd();
 		}
+		
+		for (Town town : towns.values()) {
+			TownHall th = town.getTownHall();
+			if (th != null) {
+				th.setHitpoints(th.getMaxHitPoints());
+				th.save();
+			}
+		}
 	}
 
 	public Date getCreated() {
