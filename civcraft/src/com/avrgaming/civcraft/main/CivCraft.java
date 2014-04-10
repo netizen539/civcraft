@@ -37,7 +37,6 @@ import com.avrgaming.civcraft.command.KillCommand;
 import com.avrgaming.civcraft.command.PayCommand;
 import com.avrgaming.civcraft.command.ReportCommand;
 import com.avrgaming.civcraft.command.SelectCommand;
-import com.avrgaming.civcraft.command.ShotbowCommand;
 import com.avrgaming.civcraft.command.TradeCommand;
 import com.avrgaming.civcraft.command.VoteCommand;
 import com.avrgaming.civcraft.command.admin.AdminCommand;
@@ -78,6 +77,7 @@ import com.avrgaming.civcraft.populators.TradeGoodPopulator;
 import com.avrgaming.civcraft.pvplogger.PvPLogger;
 import com.avrgaming.civcraft.randomevents.RandomEventSweeper;
 import com.avrgaming.civcraft.sessiondb.SessionDBAsyncTimer;
+import com.avrgaming.civcraft.siege.CannonListener;
 import com.avrgaming.civcraft.structure.Farm;
 import com.avrgaming.civcraft.structure.farm.FarmGrowthSyncTask;
 import com.avrgaming.civcraft.structure.farm.FarmPreCachePopulateTimer;
@@ -239,6 +239,7 @@ public final class CivCraft extends JavaPlugin {
 		pluginManager.registerEvents(civTagAPIListener, this);
 		pluginManager.registerEvents(new MobListener(), this);
 		pluginManager.registerEvents(new ArenaListener(), this);
+		pluginManager.registerEvents(new CannonListener(), this);
 	}
 	
 	private void registerNPCHooks() {
@@ -296,7 +297,6 @@ public final class CivCraft extends JavaPlugin {
 		getCommand("trade").setExecutor(new TradeCommand());
 		getCommand("kill").setExecutor(new KillCommand());
 		getCommand("team").setExecutor(new TeamCommand());
-		getCommand("sb").setExecutor(new ShotbowCommand());
 	
 		registerEvents();
 		registerNPCHooks();

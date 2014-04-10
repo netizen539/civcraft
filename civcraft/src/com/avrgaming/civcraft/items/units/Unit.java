@@ -163,6 +163,10 @@ public abstract class Unit {
 		for (ItemStack stack : player.getInventory().getArmorContents()) {
 			
 			LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterial(stack);
+			if (craftMat == null) {
+				return false;
+			}
+			
 			if ((!craftMat.getConfigId().equals("mat_composite_leather_helmet"))) {
 				return false;
 			}
@@ -188,6 +192,10 @@ public abstract class Unit {
 		for (ItemStack stack : player.getInventory().getArmorContents()) {
 			
 			LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterial(stack);
+			if (craftMat == null) {
+				return false;
+			}
+			
 			if ((!craftMat.getConfigId().equals("mat_hardened_leather_helmet"))) {
 				return false;
 			}
@@ -213,6 +221,10 @@ public abstract class Unit {
 		for (ItemStack stack : player.getInventory().getArmorContents()) {
 			
 			LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterial(stack);
+			if (craftMat == null) {
+				return false;
+			}
+			
 			if ((!craftMat.getConfigId().equals("mat_refined_leather_helmet"))) {
 				return false;
 			}
@@ -238,6 +250,10 @@ public abstract class Unit {
 		for (ItemStack stack : player.getInventory().getArmorContents()) {
 			
 			LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterial(stack);
+			if (craftMat == null) {
+				return false;
+			}
+			
 			if ((!craftMat.getConfigId().equals("mat_leather_helmet"))) {
 				return false;
 			}

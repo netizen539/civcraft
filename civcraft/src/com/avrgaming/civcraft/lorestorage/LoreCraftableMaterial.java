@@ -661,7 +661,10 @@ public class LoreCraftableMaterial extends LoreMaterial {
 		for (String enhString : enhancementsStrs) {
 			String[] split = enhString.split("@");
 			String className = split[0];
-			String data = split[1];
+			String data = "";
+			if (split.length > 1) {
+				data = split[1];
+			}
 
 			try {
 				Class<?> cls = Class.forName(className);

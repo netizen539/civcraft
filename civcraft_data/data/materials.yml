@@ -1233,7 +1233,36 @@ materials:
                 data: 0
                 count: 3
 
+        # Checked 10/8/13 RJ
+        - id: 'mat_cannon_wheel'
+          item_id: 163
+          item_data: 0
+          name: 'Cannon Wheel'
+          craftable: true
+          shaped: false
+          category: '<gold>Tier 4 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_milled_lumber'
+                data: 0
+                count: 9
 
+        - id: 'mat_cannon_barrel_part'
+          item_id: 171
+          item_data: 15
+          name: 'Cannon Barrel Part'
+          craftable: true
+          shaped: true
+          category: '<gold>Tier 4 Materials'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_carbide_steel_plate'
+                letter: 'p'
+          shape:
+              - "ppp"
+              - "ppp"
+              - " p "
 
 # Special Recipes  ===========================================            
         # Checked 10/8/13
@@ -1319,6 +1348,30 @@ materials:
               - "lll"
               - "cmc"
               - "ccc"
+        
+        - id: 'mat_build_cannon'
+          item_id: 154
+          item_data: 0
+          name: 'War Cannon'
+          craftable: true
+          shaped: true
+          category: 'Special'
+          components:
+              - name: 'BuildCannon'
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_cannon_barrel_part'
+                letter: 'p'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_cannon_wheel'
+                letter: 'w'
+          shape:
+              - "ppp"
+              - "ppp"
+              - "wpw"
 
 # Wood Gear & Leather Gear =========================================
 
@@ -1458,8 +1511,8 @@ materials:
                 color: 'AB8618'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1486,8 +1539,8 @@ materials:
                 color: 'AB8618'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1514,8 +1567,8 @@ materials:
                 color: 'AB8618'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1542,8 +1595,8 @@ materials:
                 color: 'AB8618'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1572,8 +1625,8 @@ materials:
                 color: '339933'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1600,8 +1653,8 @@ materials:
                 color: '339933'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1628,8 +1681,8 @@ materials:
                 color: '339933'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1656,8 +1709,8 @@ materials:
                 color: '339933'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1686,8 +1739,8 @@ materials:
                 color: 'FF0000'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1714,8 +1767,8 @@ materials:
                 color: 'FF0000'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1742,8 +1795,8 @@ materials:
                 color: 'FF0000'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1770,8 +1823,8 @@ materials:
                 color: 'FF0000'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
