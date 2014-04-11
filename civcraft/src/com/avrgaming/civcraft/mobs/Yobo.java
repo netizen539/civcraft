@@ -71,7 +71,7 @@ public class Yobo extends CommonCustomMob implements ICustomMob {
 
 		    this.addDrop("mat_clay_steel_cast", 0.05);
 		    this.addDrop("mat_leather_straps", 0.05);
-		    this.addDrop("mat_steel_ingot", 0.1);
+		    this.addDrop("mat_steel_ingot", 0.05);
 
 		    this.addDrop("mat_varnish", 0.01);
 		    this.addDrop("mat_sticky_resin", 0.01);
@@ -88,7 +88,7 @@ public class Yobo extends CommonCustomMob implements ICustomMob {
 
 		    this.addDrop("mat_clay_steel_cast", 0.05);
 		    this.addDrop("mat_reinforced_braid", 0.05);
-		    this.addDrop("mat_carbide_steel_ingot", 0.1);
+		    this.addDrop("mat_carbide_steel_ingot", 0.05);
 
 		    this.addDrop("mat_sticky_resin", 0.1);
 		    this.addDrop("mat_smithy_resin", 0.01);
@@ -105,7 +105,7 @@ public class Yobo extends CommonCustomMob implements ICustomMob {
 
 		    this.addDrop("mat_clay_tungsten_casting", 0.05);
 		    this.addDrop("mat_artisan_leather", 0.05);
-		    this.addDrop("mat_tungsten_ingot", 0.01);
+		    this.addDrop("mat_tungsten_ingot", 0.05);
 
 		    this.addDrop("mat_sticky_resin", 0.1);
 		    this.addDrop("mat_smithy_resin", 0.01);
