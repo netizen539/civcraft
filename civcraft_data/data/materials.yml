@@ -2781,9 +2781,8 @@ materials:
                 data: 0
                 custom_id: 'mat_metallic_crystal_1'
                 letter: 'c'
-              - type_id: 0
+              - type_id: 57
                 data: 0
-                custom_id: 'mat_industrial_diamond'
                 letter: 'd'
               - type_id: 0
                 data: 0
@@ -2791,7 +2790,7 @@ materials:
                 letter: 'm'
           shape:
               - "ccc"
-              - "ddd"
+              - "d d"
               - "mmm"
         
         - id: 'mat_common_defense_catalyst'
@@ -2813,9 +2812,8 @@ materials:
                 data: 0
                 custom_id: 'mat_ionic_crystal_1'
                 letter: 'c'
-              - type_id: 0
+              - type_id: 57
                 data: 0
-                custom_id: 'mat_industrial_diamond'
                 letter: 'd'
               - type_id: 0
                 data: 0
@@ -2823,7 +2821,7 @@ materials:
                 letter: 'm'
           shape:
               - "ccc"
-              - "ddd"
+              - "d d"
               - "mmm"
 
 #  Uncommon Defense and Attack catalysts
@@ -2857,7 +2855,7 @@ materials:
                 letter: 'm'
           shape:
               - "ccc"
-              - "ddd"
+              - " d "
               - "mmm"
 
         - id: 'mat_uncommon_defense_catalyst'
@@ -2889,7 +2887,7 @@ materials:
                 letter: 'm'
           shape:
               - "ccc"
-              - "ddd"
+              - " d "
               - "mmm"
 
 # Rare Defense and Attack catalysts
@@ -2924,7 +2922,7 @@ materials:
                 letter: 'm'
           shape:
               - "ccc"
-              - "ddd"
+              - "d d"
               - "mmm"
 
         - id: 'mat_rare_defense_catalyst'
@@ -2956,7 +2954,7 @@ materials:
                 letter: 'm'
           shape:
               - "ccc"
-              - "ddd"
+              - "d d"
               - "mmm"
 
 # Legendary Defense and Attack Catalysts
