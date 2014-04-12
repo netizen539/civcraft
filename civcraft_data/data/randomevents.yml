@@ -107,12 +107,12 @@ random_events:
 #        - "Two local residents are having a dispute over their property boundaries. The two have managed to"
 #        - "divide the town into two seperate factions, both accusing the other of side of being land thieves."
 #        - "The only way to end the in-fighting is to lay down the heavy hand of the law. Which invariably steps"
-#        - "on peoples toes. Causing unhappiness for the next 3 days."
+#       - "on peoples toes. Causing unhappiness for the next 3 days."
 #      length: 72
 #      actions:
 #        - name: 'Unhappiness'
 #          value: '5'
-#          duration: '24'
+#          duration: '72'
 #      requirements:
 #      success:
 #      failure:
@@ -149,7 +149,7 @@ random_events:
 #      actions:
 #         - name: 'HammerRate'
 #           value: '0.70'
-#           duration: '24'
+#           duration: '72'
 #      requirements:
 #      success:
 #      failure:

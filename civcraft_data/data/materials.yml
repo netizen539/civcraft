@@ -217,6 +217,18 @@ materials:
                 data: 0
                 count: 9
 
+        - id: 'mat_compacted_sand'
+          item_id: 24
+          item_data: 1
+          name: 'Compacted Sand'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 12
+                data: -1
+                count: 9
+
         # Checked 10/8/13
         - id: 'mat_forged_clay'
           item_id: 336
@@ -1233,7 +1245,36 @@ materials:
                 data: 0
                 count: 3
 
+        # Checked 10/8/13 RJ
+        - id: 'mat_cannon_wheel'
+          item_id: 163
+          item_data: 0
+          name: 'Cannon Wheel'
+          craftable: true
+          shaped: false
+          category: '<gold>Tier 4 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_milled_lumber'
+                data: 0
+                count: 9
 
+        - id: 'mat_cannon_barrel_part'
+          item_id: 171
+          item_data: 15
+          name: 'Cannon Barrel Part'
+          craftable: true
+          shaped: true
+          category: '<gold>Tier 4 Materials'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_carbide_steel_plate'
+                letter: 'p'
+          shape:
+              - "ppp"
+              - "ppp"
+              - " p "
 
 # Special Recipes  ===========================================            
         # Checked 10/8/13
@@ -1319,6 +1360,30 @@ materials:
               - "lll"
               - "cmc"
               - "ccc"
+        
+        - id: 'mat_build_cannon'
+          item_id: 154
+          item_data: 0
+          name: 'War Cannon'
+          craftable: true
+          shaped: true
+          category: 'Special'
+          components:
+              - name: 'BuildCannon'
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_cannon_barrel_part'
+                letter: 'p'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_cannon_wheel'
+                letter: 'w'
+          shape:
+              - "ppp"
+              - "ppp"
+              - "wpw"
 
 # Wood Gear & Leather Gear =========================================
 
@@ -1458,8 +1523,8 @@ materials:
                 color: 'AB8618'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1486,8 +1551,8 @@ materials:
                 color: 'AB8618'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1514,8 +1579,8 @@ materials:
                 color: 'AB8618'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1542,8 +1607,8 @@ materials:
                 color: 'AB8618'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1572,8 +1637,8 @@ materials:
                 color: '339933'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1600,8 +1665,8 @@ materials:
                 color: '339933'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1628,8 +1693,8 @@ materials:
                 color: '339933'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1656,8 +1721,8 @@ materials:
                 color: '339933'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1686,8 +1751,8 @@ materials:
                 color: 'FF0000'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1714,8 +1779,8 @@ materials:
                 color: 'FF0000'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1742,8 +1807,8 @@ materials:
                 color: 'FF0000'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -1770,8 +1835,8 @@ materials:
                 color: 'FF0000'
               - name: 'NoVanillaDurability'
               - name: 'DurabilityOnDeath'
-              - name: 'NoCauldronWash'
                 value: '0.1'
+              - name: 'NoCauldronWash'
           ingredients:
               - type_id: 0
                 data: 0
@@ -2728,9 +2793,8 @@ materials:
                 data: 0
                 custom_id: 'mat_metallic_crystal_1'
                 letter: 'c'
-              - type_id: 0
+              - type_id: 57
                 data: 0
-                custom_id: 'mat_industrial_diamond'
                 letter: 'd'
               - type_id: 0
                 data: 0
@@ -2738,7 +2802,7 @@ materials:
                 letter: 'm'
           shape:
               - "ccc"
-              - "ddd"
+              - "d d"
               - "mmm"
         
         - id: 'mat_common_defense_catalyst'
@@ -2760,9 +2824,8 @@ materials:
                 data: 0
                 custom_id: 'mat_ionic_crystal_1'
                 letter: 'c'
-              - type_id: 0
+              - type_id: 57
                 data: 0
-                custom_id: 'mat_industrial_diamond'
                 letter: 'd'
               - type_id: 0
                 data: 0
@@ -2770,7 +2833,7 @@ materials:
                 letter: 'm'
           shape:
               - "ccc"
-              - "ddd"
+              - "d d"
               - "mmm"
 
 #  Uncommon Defense and Attack catalysts
@@ -2804,7 +2867,7 @@ materials:
                 letter: 'm'
           shape:
               - "ccc"
-              - "ddd"
+              - " d "
               - "mmm"
 
         - id: 'mat_uncommon_defense_catalyst'
@@ -2836,7 +2899,7 @@ materials:
                 letter: 'm'
           shape:
               - "ccc"
-              - "ddd"
+              - " d "
               - "mmm"
 
 # Rare Defense and Attack catalysts
@@ -2871,7 +2934,7 @@ materials:
                 letter: 'm'
           shape:
               - "ccc"
-              - "ddd"
+              - "d d"
               - "mmm"
 
         - id: 'mat_rare_defense_catalyst'
@@ -2903,7 +2966,7 @@ materials:
                 letter: 'm'
           shape:
               - "ccc"
-              - "ddd"
+              - "d d"
               - "mmm"
 
 # Legendary Defense and Attack Catalysts
@@ -3406,19 +3469,18 @@ materials:
           name: 'TNT'
           craftable: true
           vanilla: false
-          shaped: true
+          shaped: false
           required_techs: 'tech_advanced_artillery'
           ingredients:
-              - type_id: 12 #sand
-                data: -1
-                letter: 's'
-              - type_id: 289 #sulphur
+              - type_id: 0
+                custom_id: 'mat_refined_sulphur'
                 data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_compacted_sand'
+                data: 0
+                count: 1
                 letter: 'g' 
-          shape:
-              - "gsg"
-              - "sgs"
-              - "gsg"
 
         - id: 'mat_vanilla_ender_chest'
           item_id: 130

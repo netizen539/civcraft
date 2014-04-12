@@ -176,6 +176,9 @@ public class CivSettings {
 	public static FileConfiguration arenaConfig; /* arenas.yml */
 	public static HashMap<String, ConfigArena> arenas = new HashMap<String, ConfigArena>();
 	
+	public static FileConfiguration fishingConfig; /* fishing.yml */
+	public static ArrayList<ConfigFishing> fishingDrops = new ArrayList<ConfigFishing>();
+	
 	public static double iron_rate;
 	public static double gold_rate;
 	public static double diamond_rate;
@@ -313,6 +316,7 @@ public class CivSettings {
 		randomEventsConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/randomevents.yml");
 		nocheatConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/nocheat.yml");
 		arenaConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/arena.yml");
+		fishingConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/fishing.yml");
 	}
 
 	private static void loadConfigObjects() throws InvalidConfiguration {
@@ -351,6 +355,7 @@ public class CivSettings {
 		ConfigPlatinumReward.loadConfig(civConfig, platinumRewards);
 		ConfigValidMod.loadConfig(nocheatConfig, validMods);
 		ConfigArena.loadConfig(arenaConfig, arenas);
+		ConfigFishing.loadConfig(fishingConfig, fishingDrops);
 	
 		ConfigRemovedRecipes.removeRecipes(materialsConfig, removedRecipies );
 		CivGlobal.preGenerator.preGenerate();

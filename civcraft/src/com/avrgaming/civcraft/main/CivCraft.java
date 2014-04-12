@@ -58,6 +58,7 @@ import com.avrgaming.civcraft.endgame.EndConditionNotificationTask;
 import com.avrgaming.civcraft.event.EventTimerTask;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.exception.InvalidConfiguration;
+import com.avrgaming.civcraft.fishing.FishingListener;
 import com.avrgaming.civcraft.listener.BlockListener;
 import com.avrgaming.civcraft.listener.BonusGoodieManager;
 import com.avrgaming.civcraft.listener.ChatListener;
@@ -242,7 +243,7 @@ public final class CivCraft extends JavaPlugin {
 		pluginManager.registerEvents(new ArenaListener(), this);
 		pluginManager.registerEvents(new CannonListener(), this);
 		pluginManager.registerEvents(new WarListener(), this);
-	}
+		pluginManager.registerEvents(new FishingListener(), this);	}
 	
 	private void registerNPCHooks() {
 		NCPHookManager.addHook(CheckType.MOVING_SURVIVALFLY, new NoCheatPlusSurvialFlyHandler());
