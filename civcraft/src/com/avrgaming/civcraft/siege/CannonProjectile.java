@@ -37,15 +37,18 @@ import com.avrgaming.civcraft.war.WarRegen;
 public class CannonProjectile {
 	public Cannon cannon;
 	public Location loc;
+	private Location startLoc;
 	public Resident whoFired;
 	public double speed = 1.0f;
 	
 	public static double yield;
 	public static double playerDamage;
+	public static double maxRange;
 	static {
 		try {
 			yield = CivSettings.getDouble(CivSettings.warConfig, "cannon.yield");
 			playerDamage = CivSettings.getDouble(CivSettings.warConfig, "cannon.player_damage");
+			maxRange = CivSettings.getDouble(CivSettings.warConfig, "cannon.max_range");
 		} catch (InvalidConfiguration e) {
 			e.printStackTrace();
 		}
@@ -54,6 +57,7 @@ public class CannonProjectile {
 	public CannonProjectile(Cannon cannon, Location loc, Resident whoFired) {
 		this.cannon = cannon;
 		this.loc = loc;
+		this.startLoc = loc.clone();
 		this.whoFired = whoFired;
 	}
 	
@@ -180,6 +184,10 @@ public class CannonProjectile {
 		loc.getWorld().createExplosion(loc, 0.0f, false);
 		
 		if (ItemManager.getId(loc.getBlock()) != CivData.AIR) {
+			return true;
+		}
+		
+		if (loc.distance(startLoc) > maxRange) {
 			return true;
 		}
 		

@@ -107,6 +107,7 @@ import com.avrgaming.civcraft.trade.TradeInventoryListener;
 import com.avrgaming.civcraft.util.BukkitObjects;
 import com.avrgaming.civcraft.util.ChunkCoord;
 import com.avrgaming.civcraft.util.TimeTools;
+import com.avrgaming.civcraft.war.WarListener;
 import com.avrgaming.global.perks.PlatinumManager;
 import com.avrgaming.global.scores.CalculateScoreTimer;
 import com.avrgaming.global.serverstatus.ServerStatusUpdateTimer;
@@ -240,6 +241,7 @@ public final class CivCraft extends JavaPlugin {
 		pluginManager.registerEvents(new MobListener(), this);
 		pluginManager.registerEvents(new ArenaListener(), this);
 		pluginManager.registerEvents(new CannonListener(), this);
+		pluginManager.registerEvents(new WarListener(), this);
 	}
 	
 	private void registerNPCHooks() {
