@@ -217,6 +217,18 @@ materials:
                 data: 0
                 count: 9
 
+        - id: 'mat_compacted_sand'
+          item_id: 24
+          item_data: 1
+          name: 'Compacted Sand'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 12
+                data: -1
+                count: 9
+
         # Checked 10/8/13
         - id: 'mat_forged_clay'
           item_id: 336
@@ -3457,19 +3469,18 @@ materials:
           name: 'TNT'
           craftable: true
           vanilla: false
-          shaped: true
+          shaped: false
           required_techs: 'tech_advanced_artillery'
           ingredients:
-              - type_id: 12 #sand
-                data: -1
-                letter: 's'
-              - type_id: 289 #sulphur
+              - type_id: 0
+                custom_id: 'mat_refined_sulphur'
                 data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_compacted_sand'
+                data: 0
+                count: 1
                 letter: 'g' 
-          shape:
-              - "gsg"
-              - "sgs"
-              - "gsg"
 
         - id: 'mat_vanilla_ender_chest'
           item_id: 130

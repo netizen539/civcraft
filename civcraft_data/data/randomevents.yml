@@ -100,24 +100,24 @@ random_events:
          - name: 'MessageTown'
            message: "The happiness we've been getting from our truffles has expired. It's yesterday's jam."
     
-    - id: 'event_dispute'
-      name: 'Land Dispute'
-      chance: 50
-      message:
-        - "Two local residents are having a dispute over their property boundaries. The two have managed to"
-        - "divide the town into two seperate factions, both accusing the other of side of being land thieves."
-        - "The only way to end the in-fighting is to lay down the heavy hand of the law. Which invariably steps"
-        - "on peoples toes. Causing unhappiness for the next 3 days."
-      length: 72
-      actions:
-        - name: 'Unhappiness'
-          value: '5'
-          duration: '72'
-      requirements:
-      success:
-      failure:
-         - name: 'MessageTown'
-           message: "The locals have finally gotten over the silly land dispute and are now going back to their lives as normal"
+#    - id: 'event_dispute'
+#      name: 'Land Dispute'
+#      chance: 50
+#      message:
+#        - "Two local residents are having a dispute over their property boundaries. The two have managed to"
+#        - "divide the town into two seperate factions, both accusing the other of side of being land thieves."
+#        - "The only way to end the in-fighting is to lay down the heavy hand of the law. Which invariably steps"
+#       - "on peoples toes. Causing unhappiness for the next 3 days."
+#      length: 72
+#      actions:
+#        - name: 'Unhappiness'
+#          value: '5'
+#          duration: '72'
+#      requirements:
+#      success:
+#      failure:
+#         - name: 'MessageTown'
+#           message: "The locals have finally gotten over the silly land dispute and are now going back to their lives as normal"
       
     # Hammer Events
     - id: 'event_productivity'
@@ -138,23 +138,23 @@ random_events:
          - name: 'MessageTown'
            message: "The locals are burnt out and we're no longer getting our hammer bonus."
       
-    - id: 'event_lazy'
-      name: 'Lazyiness'
-      chance: 50
-      message:
-        - "An air of laziness has struck the town. People just aren't working as hard as they used to."
-        - "They'd rather relax and drink iced tea in the afternoons. We'll have to crack the whip to get them back to work!"
-        - "Our town is going to experience decreasted hammer rates for the next 3 days."
-      length: 72
-      actions:
-         - name: 'HammerRate'
-           value: '0.70'
-           duration: '72'
-      requirements:
-      success:
-      failure:
-         - name: 'MessageTown'
-           message: "The locals are finally back to work. Our hammer rates have returned to normal."
+#    - id: 'event_lazy'
+#      name: 'Lazyiness'
+#      chance: 50
+#      message:
+#        - "An air of laziness has struck the town. People just aren't working as hard as they used to."
+#        - "They'd rather relax and drink iced tea in the afternoons. We'll have to crack the whip to get them back to work!"
+#        - "Our town is going to experience decreasted hammer rates for the next 3 days."
+#      length: 72
+#      actions:
+#         - name: 'HammerRate'
+#           value: '0.70'
+#           duration: '72'
+#      requirements:
+#      success:
+#      failure:
+#         - name: 'MessageTown'
+#           message: "The locals are finally back to work. Our hammer rates have returned to normal."
 
 # ========== Opportunities ============
 
