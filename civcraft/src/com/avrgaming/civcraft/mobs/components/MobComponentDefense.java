@@ -20,7 +20,6 @@ public class MobComponentDefense extends MobComponent {
 		double damage = event.getDamage();
 		
 		damage -= this.defense;
-		
 		if (damage < 0.5) {
 			damage = 0.0;
 			
@@ -38,7 +37,6 @@ public class MobComponentDefense extends MobComponent {
 				CivMessage.send(player, CivColor.LightGray+"Our attack was ineffective");
 			}
 		}
-		
 		event.setDamage(damage);
 	}
 

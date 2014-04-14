@@ -20,7 +20,6 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
-import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.StructureBlock;
@@ -69,7 +68,6 @@ public class CannonProjectile {
 	
 	public static BlockCoord bcoord = new BlockCoord();
 	public void onHit() {
-		CivLog.debug("HIT:"+loc);
 		//launchExplodeFirework(loc);
 		
 		int radius = (int)yield;
@@ -100,11 +98,9 @@ public class CannonProjectile {
 								continue;
 							}
 							
-							CivLog.debug("block is not damageable....");
 							if (sb.getOwner() instanceof TownHall) {
 								TownHall th = (TownHall)sb.getOwner();
 								if (th.getControlPoints().containsKey(bcoord)) {
-									CivLog.debug("Hit control block?!");
 									continue;
 								}
 							}
@@ -178,7 +174,6 @@ public class CannonProjectile {
 		Vector dir = loc.getDirection();
 		dir.add(new Vector(0.0f, -0.008, 0.0f)); //Apply 'gravity'		
 		loc.setDirection(dir);
-		CivLog.debug("adv2:"+loc.getDirection());
 
 		loc.add(dir.multiply(speed));
 		loc.getWorld().createExplosion(loc, 0.0f, false);

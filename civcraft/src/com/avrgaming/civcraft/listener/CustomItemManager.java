@@ -262,8 +262,6 @@ public class CustomItemManager implements Listener {
 		Player defendingPlayer = null;
 		if (event.getEntity() instanceof Player) {
 			defendingPlayer = (Player)event.getEntity();
-		} else {
-			return;
 		}
 		
 		if (event.getDamager() instanceof Arrow) {
@@ -310,16 +308,15 @@ public class CustomItemManager implements Listener {
 			if (event.getEntity() instanceof LivingEntity) {
 				if (MobLib.isMobLibEntity((LivingEntity) event.getEntity())) {
 					MobComponent.onDefense(event.getEntity(), event);
-				}
+				}	
 			}
-			
 			return;
-		}
-		
-		/* Search equipt items for defense event. */
-		for (ItemStack stack : defendingPlayer.getEquipment().getArmorContents()) {
-			if (LoreMaterial.isCustom(stack)) {
-				LoreMaterial.getMaterial(stack).onDefense(event, stack);
+		} else {
+			/* Search equipt items for defense event. */
+			for (ItemStack stack : defendingPlayer.getEquipment().getArmorContents()) {
+				if (LoreMaterial.isCustom(stack)) {
+					LoreMaterial.getMaterial(stack).onDefense(event, stack);
+				}
 			}
 		}
 	}
@@ -403,7 +400,6 @@ public class CustomItemManager implements Listener {
 	
 	@EventHandler(priority = EventPriority.LOW) 
 	public void onPlayerDeathEvent(PlayerDeathEvent event) {
-		CivLog.debug("Player death event....");
 		HashMap<Integer, ItemStack> noDrop = new HashMap<Integer, ItemStack>();
 		ItemStack[] armorNoDrop = new ItemStack[4];
 		
@@ -413,7 +409,6 @@ public class CustomItemManager implements Listener {
 			if (stack == null) {
 				continue;
 			}
-			CivLog.debug("stack:"+stack);
 						
 			if(!processDurabilityChanges(event, stack, i)) {
 				/* Don't process anymore more enhancements on items after its been destroyed. */
@@ -440,7 +435,6 @@ public class CustomItemManager implements Listener {
 			if (stack == null) {
 				continue;
 			}
-			CivLog.debug("armor stack:"+stack);
 
 			if(!processDurabilityChanges(event, stack, i)) {
 				/* Don't process anymore more enhancements on items after its been destroyed. */
@@ -477,7 +471,6 @@ public class CustomItemManager implements Listener {
 			@Override
 			public void run() {
 				try {
-					CivLog.debug("restoring items...");
 					Player player = CivGlobal.getPlayer(playerName);					
 					PlayerInventory inv = player.getInventory();
 					for (Integer slot : restore.keySet()) {

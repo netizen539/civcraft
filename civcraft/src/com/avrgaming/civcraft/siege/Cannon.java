@@ -332,7 +332,6 @@ public class Cannon extends Buildable {
 				coord = new BlockCoord(absCoord);
 				this.cannonLocation = coord.getLocation();
 				
-				CivLog.debug("sb data:"+sb.getData());
 				switch (sb.getData()) {
 				case WALLSIGN_EAST:
 					cannonLocation.add(1,0,0);

@@ -1382,6 +1382,10 @@ public class Resident extends SQLObject {
 	}
 	
 	public boolean hasTechForItem(ItemStack stack) {
+		if (this.isInsideArena()) {
+			return true;
+		}
+		
 		LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterial(stack);
 		if (craftMat == null) {
 			return true;

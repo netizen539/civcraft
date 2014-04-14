@@ -26,6 +26,7 @@ import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.util.BlockCoord;
 import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.DateUtil;
+import com.avrgaming.civcraft.util.TimeTools;
 
 public class ArenaListener implements Listener {
 
@@ -34,10 +35,29 @@ public class ArenaListener implements Listener {
 		Resident resident = CivGlobal.getResident(event.getPlayer());
 		
 		if (resident.isInsideArena()) {
-			
 			if (resident.getCurrentArena() != null) {
-	
 				CivMessage.sendArena(resident.getCurrentArena(), event.getPlayer().getName()+" has rejoined the arena.");
+				
+				class SyncTask implements Runnable {
+					String name;
+					
+					public SyncTask(String name) {
+						this.name = name;
+					}
+					
+					@Override
+					public void run() {
+						Player player;
+						try {
+							Resident resident = CivGlobal.getResident(name);
+							player = CivGlobal.getPlayer(resident);
+							player.setScoreboard(resident.getCurrentArena().getScoreboard());
+						} catch (CivException e) {
+						}						
+					}
+				}
+				
+				TaskMaster.syncTask(new SyncTask(event.getPlayer().getName()));
 				return;
 			} else {
 				
@@ -57,6 +77,9 @@ public class ArenaListener implements Listener {
 						resident.restoreInventory();
 						resident.setInsideArena(false);
 						resident.save();
+						
+						
+
 						CivMessage.send(resident, CivColor.LightGray+"You've been teleported home since the arena you were in no longer exists.");
 					}
 				}
@@ -191,7 +214,6 @@ public class ArenaListener implements Listener {
 					
 				}
 				
-				CivMessage.send(resident, "opening chests later..");
 				TaskMaster.syncTask(new SyncTask(arena, resident), 0);
 				event.setCancelled(true);
 				return;
@@ -201,20 +223,45 @@ public class ArenaListener implements Listener {
 		
 		/* Did we click on a respawn sign. */
 		if (ArenaManager.respawnSigns.containsKey(bcoord)) {
-			if (!DateUtil.isAfterSeconds(resident.getLastKilledTime(), 30)) {
-				CivMessage.sendError(resident, "You must wait 30 seconds before you can revive in the arena.");
-				return;
+			class SyncTask implements Runnable {
+				Resident resident;
+				Arena arena;
+				
+				public SyncTask(Resident resident, Arena arena) {
+					this.resident = resident;
+					this.arena = arena;
+				}
+				
+				@Override
+				public void run() {					
+					if (!DateUtil.isAfterSeconds(resident.getLastKilledTime(), 30)) {
+						Date now = new Date();
+						long secondsLeft = (now.getTime() - resident.getLastKilledTime().getTime()) / 1000;
+						secondsLeft = 30 - secondsLeft;
+						
+						CivMessage.sendError(resident, "Respawning back into arena in "+secondsLeft+" seconds.");
+						TaskMaster.syncTask(this, TimeTools.toTicks(1));
+					} else {
+						BlockCoord revive = arena.getRandomReviveLocation(resident);
+						if (revive != null) {
+							Location loc = revive.getCenteredLocation();
+							World world = Bukkit.getWorld(arena.getInstanceName());
+							loc.setWorld(world);
+							CivMessage.send(resident, CivColor.LightGray+"Revived in arena.");
+							
+							Player player;
+							try {
+								player = CivGlobal.getPlayer(resident);
+								player.teleport(loc);
+							} catch (CivException e) {
+								return;
+							}
+						}	
+					}
+				}
 			}
 			
-			BlockCoord revive = arena.getRandomReviveLocation(resident);
-			if (revive != null) {
-				Location loc = revive.getCenteredLocation();
-				World world = Bukkit.getWorld(arena.getInstanceName());
-				loc.setWorld(world);
-				CivMessage.send(resident, CivColor.LightGray+"Revived in arena.");
-				
-				event.getPlayer().teleport(loc);
-			}
+			TaskMaster.syncTask(new SyncTask(resident, arena));
 		}
 	}
 	
