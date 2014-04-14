@@ -35,7 +35,7 @@ public class FishingListener implements Listener {
 	}
 	
 	@SuppressWarnings("deprecation")
-	@ EventHandler(priority = EventPriority.MONITOR)
+	@EventHandler(priority = EventPriority.MONITOR)
 	 public void onPlayerFish (PlayerFishEvent event) {
 		 if (event.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
 			 event.setCancelled(true);

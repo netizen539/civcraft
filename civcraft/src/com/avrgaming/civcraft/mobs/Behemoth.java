@@ -71,7 +71,7 @@ public class Behemoth extends CommonCustomMob implements ICustomMob {
 		    this.addDrop("mat_clay_molding", 0.05);
 
 		    this.addDrop("mat_sticky_resin", 0.1);
-		    this.addDrop("mat_smithy_resin", 0.51);
+		    this.addDrop("mat_smithy_resin", 0.05);
 		    this.coinDrop(20, 80);
 			break;
 		case BRUTAL:

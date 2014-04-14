@@ -708,6 +708,31 @@ public abstract class Buildable extends SQLObject {
 			ignoreBorders = true;
 		}
 		
+		if (isTownHall()) {
+			double minDistance;
+			try {
+				minDistance = CivSettings.getDouble(CivSettings.townConfig, "town.min_town_distance");
+			} catch (InvalidConfiguration e) {
+				CivMessage.sendError(player, "Internal configuration error.");
+				e.printStackTrace();
+				return;
+			}
+			
+			for (Town town : CivGlobal.getTowns()) {
+				TownHall townhall = town.getTownHall();
+				if (townhall == null) {
+					continue;
+				}
+				
+				double dist = townhall.getCenterLocation().distance(new BlockCoord(centerBlock));
+				if (dist < minDistance) {
+					DecimalFormat df = new DecimalFormat();
+					CivMessage.sendError(player, "Cannot build town here. Too close to the town of "+town.getName()+". Distance is "+df.format(dist)+" and needs to be "+minDistance);
+					return;
+				}
+			}
+		}
+		
 		if (this.getConfigId().equals("s_shipyard")) {
 			if (!centerBlock.getBiome().equals(Biome.OCEAN) && 
 				!centerBlock.getBiome().equals(Biome.BEACH) &&
