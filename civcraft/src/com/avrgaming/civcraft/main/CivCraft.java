@@ -243,7 +243,8 @@ public final class CivCraft extends JavaPlugin {
 		pluginManager.registerEvents(new ArenaListener(), this);
 		pluginManager.registerEvents(new CannonListener(), this);
 		pluginManager.registerEvents(new WarListener(), this);
-		pluginManager.registerEvents(new FishingListener(), this);	}
+		pluginManager.registerEvents(new FishingListener(), this);	
+	}
 	
 	private void registerNPCHooks() {
 		NCPHookManager.addHook(CheckType.MOVING_SURVIVALFLY, new NoCheatPlusSurvialFlyHandler());

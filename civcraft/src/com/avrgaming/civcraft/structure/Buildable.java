@@ -545,8 +545,10 @@ public abstract class Buildable extends SQLObject {
 				center.getX(), center.getY(), center.getZ(), 
 				center.getYaw(), center.getPitch());
 		
+		loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
+		
 		// Reposition tile improvements
-		if (info.tile_improvement) {
+/*		if (info.tile_improvement) {
 			// just put the center at 0,0 of this chunk?
 			loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
 		} else {
@@ -568,7 +570,7 @@ public abstract class Buildable extends SQLObject {
 				loc.setZ(loc.getZ() + SHIFT_OUT);
 	
 			}
-		}
+		}   */
 		if (info.templateYShift != 0) {
 			// Y-Shift based on the config, this allows templates to be built underground.
 			loc.setY(loc.getY() + info.templateYShift);
@@ -586,8 +588,10 @@ public abstract class Buildable extends SQLObject {
 				center.getX(), center.getY(), center.getZ(), 
 				center.getYaw(), center.getPitch());
 		
+		loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
+		
 		// Reposition tile improvements
-		if (this.isTileImprovement()) {
+/*		if (this.isTileImprovement()) {
 			// just put the center at 0,0 of this chunk?
 			loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
 		} else {
@@ -609,7 +613,7 @@ public abstract class Buildable extends SQLObject {
 				loc.setZ(loc.getZ() + SHIFT_OUT);
 	
 			}
-		}
+		}  */
 		if (this.getTemplateYShift() != 0) {
 			// Y-Shift based on the config, this allows templates to be built underground.
 			loc.setY(loc.getY() + this.getTemplateYShift());
@@ -704,6 +708,31 @@ public abstract class Buildable extends SQLObject {
 			ignoreBorders = true;
 		}
 		
+		if (isTownHall()) {
+			double minDistance;
+			try {
+				minDistance = CivSettings.getDouble(CivSettings.townConfig, "town.min_town_distance");
+			} catch (InvalidConfiguration e) {
+				CivMessage.sendError(player, "Internal configuration error.");
+				e.printStackTrace();
+				return;
+			}
+			
+			for (Town town : CivGlobal.getTowns()) {
+				TownHall townhall = town.getTownHall();
+				if (townhall == null) {
+					continue;
+				}
+				
+				double dist = townhall.getCenterLocation().distance(new BlockCoord(centerBlock));
+				if (dist < minDistance) {
+					DecimalFormat df = new DecimalFormat();
+					CivMessage.sendError(player, "Cannot build town here. Too close to the town of "+town.getName()+". Distance is "+df.format(dist)+" and needs to be "+minDistance);
+					return;
+				}
+			}
+		}
+		
 		if (this.getConfigId().equals("s_shipyard")) {
 			if (!centerBlock.getBiome().equals(Biome.OCEAN) && 
 				!centerBlock.getBiome().equals(Biome.BEACH) &&
@@ -711,7 +740,7 @@ public abstract class Buildable extends SQLObject {
 				!centerBlock.getBiome().equals(Biome.RIVER) &&
 				!centerBlock.getBiome().equals(Biome.FROZEN_OCEAN) &&
 				!centerBlock.getBiome().equals(Biome.FROZEN_RIVER)) {
-				throw new CivException("Cannot build shipyard here, you need to be in an ocean, river, or beach biome.");
+				throw new CivException("Cannot build shipyard here, you need to be in a majority of ocean, river, or beach biome. Try repositioning it if you are.");
 			}
 		}
 		
@@ -834,6 +863,10 @@ public abstract class Buildable extends SQLObject {
 					
 					if (CivGlobal.getCampBlock(coord) != null) {
 						throw new CivException("Cannot build here, structure blocks in the way.");
+					}
+					
+					if (CivGlobal.getBuildablesAt(coord) != null) {
+						throw new CivException("Cannot build here, there is already a structure here.");
 					}
 					
 					RoadBlock rb = CivGlobal.getRoadBlock(coord);
