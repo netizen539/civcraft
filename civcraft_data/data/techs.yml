@@ -437,4 +437,4 @@ techs:
      beaker_cost: 175000.0
      cost: 175000.0
      points: 43750
-     require_techs: 'tech_construction:tech_global_trade:tech_productivity' 
+     require_techs: 'tech_alchemy:tech_global_trade:tech_scientific_method:tech_advanced_effenciency' 

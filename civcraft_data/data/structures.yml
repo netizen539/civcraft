@@ -189,7 +189,7 @@ barracks:
     damage_damp: 1.0
 
     # tier dampen
-    tier_damp: 0.29
+    tier_damp: 0.175
     
 
 #################### Stable Settings ########################

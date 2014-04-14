@@ -31,7 +31,7 @@ public class InteractiveRepairItem implements InteractiveResponse {
 		}
 		
 		CivMessage.sendHeading(player, "Repair!");
-		CivMessage.send(player, CivColor.LightGreen+CivColor.BOLD+"Morning! Would you like the Barracks would like to repair your "+craftMat.getName()+"?");
+		CivMessage.send(player, CivColor.LightGreen+CivColor.BOLD+"Hello there! Would you like to repair your "+craftMat.getName()+"?");
 		CivMessage.send(player, CivColor.LightGreen+CivColor.BOLD+"Looks like we can get you fixed up for "+CivColor.Yellow+CivColor.BOLD+cost+" coins.");
 		CivMessage.send(player, CivColor.LightGreen+CivColor.BOLD+"If that's ok, please type 'yes'. Type anything else to cancel.");
 		
