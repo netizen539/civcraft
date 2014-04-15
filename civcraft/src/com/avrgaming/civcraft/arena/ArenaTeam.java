@@ -6,6 +6,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.scoreboard.Team;
+
 import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.database.SQL;
 import com.avrgaming.civcraft.database.SQLUpdate;
@@ -25,6 +29,8 @@ public class ArenaTeam extends SQLObject implements Comparable<ArenaTeam> {
 	private Resident leader;
 	private int ladderPoints;
 	private Arena currentArena;
+	private Team team;
+	private String teamColor;
 	
 	public static HashMap<String, ArenaTeam> arenaTeams = new HashMap<String, ArenaTeam>();
 	public static LinkedList<ArenaTeam> teamRankings = new LinkedList<ArenaTeam>();
@@ -254,5 +260,24 @@ public class ArenaTeam extends SQLObject implements Comparable<ArenaTeam> {
 	public Arena getCurrentArena() {
 		return currentArena;
 	}
+
+	public Team getScoarboardTeam() {
+		return team;
+	}
+
+	public void setScoarboardTeam(Team team) {
+		this.team = team;
+	}
 	
+	public OfflinePlayer getTeamScoreboardName() {
+		return Bukkit.getOfflinePlayer(getTeamColor()+this.getName());
+	}
+
+	public String getTeamColor() {
+		return teamColor;
+	}
+
+	public void setTeamColor(String teamColor) {
+		this.teamColor = teamColor;
+	}
 }

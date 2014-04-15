@@ -11,6 +11,10 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
 
 import com.avrgaming.civcraft.config.ConfigArena;
 import com.avrgaming.civcraft.config.ConfigArenaTeam;
@@ -32,6 +36,8 @@ public class Arena {
 	private HashMap<Integer, Integer> teamIDmap = new HashMap<Integer, Integer>();
 	private HashMap<Integer, Integer> teamHP = new HashMap<Integer, Integer>();
 	private HashMap<String, Inventory> playerInvs = new HashMap<String, Inventory>();
+	private Scoreboard scoreboard = null;
+	public Objective objective = null;
 	
 	int teamCount = 0;
 	
@@ -58,6 +64,7 @@ public class Arena {
 		}
 		
 		this.instanceID = id;
+		setScoreboard(ArenaManager.scoreboardManager.getNewScoreboard());		
 	}
 
 	public static String getInstanceName(int id, ConfigArena config) {
@@ -73,15 +80,28 @@ public class Arena {
 		teams.put(teamCount, team);
 		teamIDmap.put(team.getId(), teamCount);
 		teamHP.put(teamCount, config.teams.get(teamCount).controlPoints.size());
+		team.setScoarboardTeam(scoreboard.registerNewTeam(team.getName()));
+		team.getScoarboardTeam().setAllowFriendlyFire(false);
+		if (teamCount == 0) {
+			team.setTeamColor(CivColor.Blue);
+		} else {
+			team.setTeamColor(CivColor.Gold);
+		}
+		
+		team.getScoarboardTeam().setPrefix(team.getTeamColor());
 		
 		for (Resident resident : team.teamMembers) {
 			try {
 				teleportToRandomRevivePoint(resident, teamCount);
 				createInventory(resident);
+				team.getScoarboardTeam().addPlayer(Bukkit.getOfflinePlayer(resident.getName()));
+				
+				
 			} catch (CivException e) {
 				e.printStackTrace();
 			}
 		}
+		
 		
 		teamCount++;
 	}
@@ -253,6 +273,18 @@ public class Arena {
 
 	public Inventory getInventory(Resident resident) {
 		return playerInvs.get(resident.getName());
+	}
+
+	public Scoreboard getScoreboard() {
+		return scoreboard;
+	}
+
+	public void setScoreboard(Scoreboard scoreboard) {
+		this.scoreboard = scoreboard;
+	}
+
+	public Score getScoreForTeamId(int teamID) {
+		return this.scoreboard.getObjective(DisplaySlot.SIDEBAR).getScore(this.getTeamFromID(teamID).getTeamScoreboardName());
 	}
 	
 }

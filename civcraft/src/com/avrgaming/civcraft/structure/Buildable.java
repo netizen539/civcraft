@@ -1149,7 +1149,6 @@ public abstract class Buildable extends SQLObject {
 			wasTenPercent = true;
 		}
 			
-		CivLog.debug("Damange amount:"+amount);
 		this.damage(amount);
 		
 		world.playSound(hit.getCoord().getLocation(), Sound.ANVIL_USE, 0.2f, 1);

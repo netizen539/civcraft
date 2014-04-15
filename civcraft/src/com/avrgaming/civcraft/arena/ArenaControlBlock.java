@@ -5,6 +5,7 @@ import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Sound;
 import org.bukkit.FireworkEffect.Type;
+import org.bukkit.scoreboard.Score;
 import org.bukkit.World;
 
 import com.avrgaming.civcraft.main.CivData;
@@ -41,10 +42,15 @@ public class ArenaControlBlock {
 		}
 		
 		curHP--;
+		
+		Score score = arena.getScoreForTeamId(teamID);
+		score.setScore(score.getScore()-1);	
+		
 		if (curHP <= 0) {
 			/* Destroy control block. */
 			explode();
 			arena.onControlBlockDestroy(teamID, resident.getTeam());
+
 		} else {
 			CivMessage.sendTeam(resident.getTeam(), Colors.LightGreen+resident.getName()+" hit an enemy control block! ("+curHP+" / "+maxHP+")");
 			CivMessage.sendTeam(arena.getTeamFromID(teamID), Colors.Rose+"Our control block was hit by "+resident.getName()+" ("+curHP+" / "+maxHP+")");

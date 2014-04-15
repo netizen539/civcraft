@@ -19,12 +19,18 @@ import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 import org.bukkit.World.Environment;
 import org.bukkit.block.Sign;
+import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.ScoreboardManager;
 
 import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.config.ConfigArena;
 import com.avrgaming.civcraft.config.ConfigArenaTeam;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.exception.InvalidConfiguration;
+import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.Resident;
@@ -44,7 +50,7 @@ public class ArenaManager implements Runnable {
 		
 	public static Queue<ArenaTeam> teamQueue = new LinkedList<ArenaTeam>();
 	public static final int MAX_INSTANCES = 1;
-	
+	public static ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
 	
 	@Override
 	public void run() {
@@ -145,12 +151,29 @@ public class ArenaManager implements Runnable {
 	
 	public static void startArenaMatch(Arena activeArena, ArenaTeam team1, ArenaTeam team2) {
 
+		/* Set up objectives.. */
+		Objective objective = activeArena.getScoreboard().registerNewObjective("teampoints", "dummy");
+		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+		objective.setDisplayName("Team Hitpoints");
+		
+		Score score = objective.getScore(team1.getTeamScoreboardName());
+		Score score2 = objective.getScore(team2.getTeamScoreboardName());
+		score.setScore(activeArena.config.teams.get(0).controlPoints.size()*activeArena.config.control_block_hp);
+		score2.setScore(activeArena.config.teams.get(1).controlPoints.size()*activeArena.config.control_block_hp);
+		
 		/* Save and clear inventories */
 		for (Resident resident : team1.teamMembers) {
 			resident.saveInventory();
 			resident.clearInventory();
 			resident.setInsideArena(true);
 			resident.save();
+			
+			try {
+				Player player = CivGlobal.getPlayer(resident);
+				player.setScoreboard(activeArena.getScoreboard());
+			} catch (CivException e) {
+				//Player offline.
+			}
 		}
 		
 		for (Resident resident : team2.teamMembers) {
@@ -158,6 +181,13 @@ public class ArenaManager implements Runnable {
 			resident.clearInventory();
 			resident.setInsideArena(true);
 			resident.save();
+			
+			try {
+				Player player = CivGlobal.getPlayer(resident);
+				player.setScoreboard(activeArena.getScoreboard());
+			} catch (CivException e) {
+				//Player offline.
+			}
 		}
 		
 		CivMessage.sendArena(activeArena, "Arena Match Started!");
