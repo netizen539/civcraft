@@ -77,7 +77,7 @@ materials:
         - id: 'mat_carved_leather'
           item_id: 334
           item_data: 0
-          name: 'Carved Leather'
+          name: 'T1 Carved Leather'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -90,7 +90,7 @@ materials:
         - id: 'mat_refined_stone'
           item_id: 1
           item_data: 0
-          name: 'Refined Stone'
+          name: 'T1 Refined Stone'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -116,7 +116,7 @@ materials:
         - id: 'mat_refined_feathers'
           item_id: 406
           item_data: 0
-          name: 'Packed Feathers'
+          name: 'T1 Packed Feathers'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -129,7 +129,7 @@ materials:
         - id: 'mat_crafted_string'
           item_id: 287
           item_data: 0
-          name: 'Crafted String'
+          name: 'T1 Crafted String'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -142,7 +142,7 @@ materials:
         - id: 'mat_refined_slime'
           item_id: 341
           item_data: 0
-          name: 'Refined Slime'
+          name: 'T1 Refined Slime'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -169,7 +169,7 @@ materials:
         - id: 'mat_crafted_reeds'
           item_id: 338
           item_data: 0
-          name: 'Crafted Reeds'
+          name: 'T1 Crafted Reeds'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -195,7 +195,7 @@ materials:
         - id: 'mat_crafted_sticks'
           item_id: 280
           item_data: 0
-          name: 'Crafted Sticks'
+          name: 'T1 Crafted Sticks'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -208,7 +208,7 @@ materials:
         - id: 'mat_refined_sulphur'
           item_id: 289
           item_data: 0
-          name: 'Refined Sulphur'
+          name: 'T1 Refined Sulphur'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -220,7 +220,7 @@ materials:
         - id: 'mat_compacted_sand'
           item_id: 24
           item_data: 1
-          name: 'Compacted Sand'
+          name: 'T1 Compacted Sand'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -233,7 +233,7 @@ materials:
         - id: 'mat_forged_clay'
           item_id: 336
           item_data: 0
-          name: 'Forged Clay'
+          name: 'T1 Forged Clay'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -246,7 +246,7 @@ materials:
         - id: 'mat_refined_sugar'
           item_id: 353
           item_data: 0
-          name: 'Refined Sugar'
+          name: 'T1 Refined Sugar'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -259,7 +259,7 @@ materials:
         - id: 'mat_refined_wart'
           item_id: 372
           item_data: 0
-          name: 'Refined Wart'
+          name: 'T1 Refined Wart'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -272,7 +272,7 @@ materials:
         - id: 'mat_forged_chromium'
           item_id: 265
           item_data: 0
-          name: 'Forged Chromium'
+          name: 'T1 Forged Chromium'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -286,7 +286,7 @@ materials:
         - id: 'mat_forged_tungsten'
           item_id: 133
           item_data: 0
-          name: 'Forged Tungsten'
+          name: 'T1 Forged Tungsten'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -300,7 +300,7 @@ materials:
         - id: 'mat_refined_wood'
           item_id: 126
           item_data: 0
-          name: 'Refined Wood'
+          name: 'T1 Refined Wood'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -309,22 +309,22 @@ materials:
                 data: -1
                 count: 9
 
-        # Checked 10/8/13
-        - id: 'mat_refined_wood2'
-          item_id: 126
-          item_data: 0
-          name: 'Refined Wood'
-          craftable: true
-          shaped: true
-          category: '<lightgreen>Tier 1 Materials'
-          ingredients:
-              - type_id: 162
-                data: -1
-                letter: 'l'
-          shape:
-              - "lll"
-              - "lll"
-              - "lll"
+#        # Checked 10/8/13
+#        - id: 'mat_refined_wood2'
+#          item_id: 126
+#          item_data: 0
+#          name: 'Refined Wood'
+#          craftable: true
+#          shaped: true
+#          category: '<lightgreen>Tier 1 Materials'
+#          ingredients:
+#              - type_id: 162
+#                data: -1
+#                letter: 'l'
+#          shape:
+#              - "lll"
+#              - "lll"
+#              - "lll"
 
 # Replaced by diamond block
 #        - id: 'mat_refined_diamonds'
@@ -370,7 +370,7 @@ materials:
         - id: 'mat_crafted_leather'
           item_id: 31
           item_data: 0
-          name: 'Crafted Leather'
+          name: 'T2 Crafted Leather'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -388,7 +388,7 @@ materials:
         - id: 'mat_decorative_jewels'
           item_id: 372
           item_data: 0
-          name: 'Decorative Jewels'
+          name: 'T2 Decorative Jewels'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -401,7 +401,7 @@ materials:
         - id: 'mat_crushed_stone'
           item_id: 44
           item_data: 0
-          name: 'Crushed Stone'
+          name: 'T2 Crushed Stone'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -416,7 +416,7 @@ materials:
         - id: 'mat_jewelry_grade_gold'
           item_id: 322
           item_data: 0
-          name: 'Jewelry Grade Gold'
+          name: 'T2 Jewelry Grade Gold'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -429,7 +429,7 @@ materials:
         - id: 'mat_milled_lumber'
           item_id: 53
           item_data: 0
-          name: 'Milled Lumber'
+          name: 'T2 Milled Lumber'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -443,7 +443,7 @@ materials:
         - id: 'mat_woven_mesh_patch'
           item_id: 358
           item_data: 0
-          name: 'Woven Mesh Patch'
+          name: 'T2 Woven Mesh Patch'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -465,7 +465,7 @@ materials:
         - id: 'mat_steel_ingot'
           item_id: 265
           item_data: 0
-          name: 'Steel Ingot'
+          name: 'T2 Steel Ingot'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -485,7 +485,7 @@ materials:
         - id: 'mat_varnish'
           item_id: 384
           item_data: 0
-          name: 'Varnish'
+          name: 'T2 Varnish'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -509,7 +509,7 @@ materials:
         - id: 'mat_sticky_resin'
           item_id: 282
           item_data: 0
-          name: 'Sticky Resin'
+          name: 'T2 Sticky Resin'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -532,7 +532,7 @@ materials:
         - id: 'mat_clay_molding'
           item_id: 45
           item_data: 0
-          name: 'Clay Molding'
+          name: 'T2 Clay Molding'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -555,7 +555,7 @@ materials:
         - id: 'mat_chromium_ingot'
           item_id: 399
           item_data: 0
-          name: 'Chromium Ingot'
+          name: 'T2 Chromium Ingot'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -580,7 +580,7 @@ materials:
         - id: 'mat_aged_wood_stave'
           item_id: 280
           item_data: 0
-          name: 'Aged Wood Stave'
+          name: 'T2 Aged Wood Stave'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -602,7 +602,7 @@ materials:
         - id: 'mat_woven_threading'
           item_id: 420
           item_data: 0
-          name: 'Woven Threading'
+          name: 'T2 Woven Threading'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -622,7 +622,7 @@ materials:
         - id: 'mat_steel_sword_blade'
           item_id: 265
           item_data: 0
-          name: 'Steel Sword Blade'
+          name: 'T2 Steel Sword Blade'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -640,7 +640,7 @@ materials:
         - id: 'mat_steel_sword_hilt'
           item_id: 280
           item_data: 0
-          name: 'Steel Sword Hilt'
+          name: 'T2 Steel Sword Hilt'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -666,7 +666,7 @@ materials:
         - id: 'mat_steel_plate'
           item_id: 148
           item_data: 0
-          name: 'Steel Plate'
+          name: 'T2 Steel Plate'
           craftable: true
           shaped: false
           category: '<lightblue>Tier 2 Materials'
@@ -693,7 +693,7 @@ materials:
         - id: 'mat_leather_straps'
           item_id: 32
           item_data: 0
-          name: 'Leather Straps'
+          name: 'T3 Leather Straps'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -711,7 +711,7 @@ materials:
         - id: 'mat_clay_steel_cast'
           item_id: 343
           item_data: 0
-          name: 'Clay Steel Casting'
+          name: 'T3 Clay Steel Casting'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -739,7 +739,7 @@ materials:
         - id: 'mat_reinforced_braid'
           item_id: 287
           item_data: 0
-          name: 'Reinforced Braid'
+          name: 'T3 Reinforced Braid'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -761,7 +761,7 @@ materials:
         - id: 'mat_carbide_steel_ingot'
           item_id: 318
           item_data: 0
-          name: 'Carbide Steel Ingot'
+          name: 'T3 Carbide Steel Ingot'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -783,7 +783,7 @@ materials:
         - id: 'mat_longbow_stave'
           item_id: 280
           item_data: 0
-          name: 'Longbow Stave'
+          name: 'T3 Longbow Stave'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -801,7 +801,7 @@ materials:
         - id: 'mat_feathered_lining'
           item_id: 288
           item_data: 0
-          name: 'Feathered Lining'
+          name: 'T3 Feathered Lining'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -823,7 +823,7 @@ materials:
         - id: 'mat_carbide_molding'
           item_id: 380
           item_data: 0
-          name: 'Carbide Molding'
+          name: 'T3 Carbide Molding'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -847,7 +847,7 @@ materials:
         - id: 'mat_smithy_resin'
           item_id: 378
           item_data: 0
-          name: 'Smithy Resin'
+          name: 'T3 Smithy Resin'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -868,7 +868,7 @@ materials:
         - id: 'mat_tungsten_ingot'
           item_id: 368
           item_data: 0
-          name: 'Tungsten Ingot'
+          name: 'T3 Tungsten Ingot'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -891,7 +891,7 @@ materials:
         - id: 'mat_clay_tungsten_casting'
           item_id: 368
           item_data: 0
-          name: 'Clay Tungsten Casting'
+          name: 'T3 Clay Tungsten Casting'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -916,7 +916,7 @@ materials:
         - id: 'mat_masonry_mortar'
           item_id: 45
           item_data: 0
-          name: 'Masonry Mortar'
+          name: 'T3 Masonry Mortar'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -1018,7 +1018,7 @@ materials:
         - id: 'mat_compacted_stone'
           item_id: 98
           item_data: 0
-          name: 'Compacted Stone'
+          name: 'T3 Compacted Stone'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -1032,7 +1032,7 @@ materials:
         - id: 'mat_carbide_steel_sword_hilt'
           item_id: 280
           item_data: 0
-          name: 'Carbide Steel Sword Hilt'
+          name: 'T3 Carbide Steel Sword Hilt'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -1059,7 +1059,7 @@ materials:
         - id: 'mat_carbide_steel_sword_blade'
           item_id: 265
           item_data: 0
-          name: 'Carbide Steel Sword Blade'
+          name: 'T3 Carbide Steel Sword Blade'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -1081,7 +1081,7 @@ materials:
         - id: 'mat_carbide_steel_plate'
           item_id: 265
           item_data: 0
-          name: 'Carbide Steel Plate'
+          name: 'T3 Carbide Steel Plate'
           craftable: true
           shaped: false
           category: '<lightpurple>Tier 3 Materials'
@@ -1106,7 +1106,7 @@ materials:
         - id: 'mat_artisan_leather'
           item_id: 31
           item_data: 0
-          name: 'Artisan Leather'
+          name: 'T4 Artisan Leather'
           craftable: true
           shaped: false
           category: '<gold>Tier 4 Materials'
@@ -1124,7 +1124,7 @@ materials:
         - id: 'mat_tungsten_plate'
           item_id: 405
           item_data: 0
-          name: 'Tungsten Plate'
+          name: 'T4 Tungsten Plate'
           craftable: true
           shaped: false
           category: '<gold>Tier 4 Materials'
@@ -1146,7 +1146,7 @@ materials:
         - id: 'mat_tungsten_sword_blade'
           item_id: 57
           item_data: 0
-          name: 'Tungsten Sword Blade'
+          name: 'T4 Tungsten Sword Blade'
           craftable: true
           shaped: false
           category: '<gold>Tier 4 Materials'
@@ -1168,7 +1168,7 @@ materials:
         - id: 'mat_tungsten_sword_hilt'
           item_id: 280
           item_data: 0
-          name: 'Tungsten Sword Hilt'
+          name: 'T4 Tungsten Sword Hilt'
           craftable: true
           shaped: false
           category: '<gold>Tier 4 Materials'
@@ -1194,7 +1194,7 @@ materials:
         - id: 'mat_composite_bow_stave'
           item_id: 280
           item_data: 0
-          name: 'Composite Bow Stave'
+          name: 'T4 Composite Bow Stave'
           craftable: true
           shaped: false
           category: '<gold>Tier 4 Materials'
@@ -1216,7 +1216,7 @@ materials:
         - id: 'mat_composite_bow_string'
           item_id: 287
           item_data: 0
-          name: 'Composite Bow String'
+          name: 'T4 Composite Bow String'
           craftable: true
           shaped: false
           category: '<gold>Tier 4 Materials'
@@ -1234,7 +1234,7 @@ materials:
         - id: 'mat_cannon_wheel'
           item_id: 163
           item_data: 0
-          name: 'Cannon Wheel'
+          name: 'T4 Cannon Wheel'
           craftable: true
           shaped: false
           category: '<gold>Tier 4 Materials'
@@ -1247,7 +1247,7 @@ materials:
         - id: 'mat_cannon_barrel_part'
           item_id: 171
           item_data: 15
-          name: 'Cannon Barrel Part'
+          name: 'T4 Cannon Barrel Part'
           craftable: true
           shaped: true
           category: '<gold>Tier 4 Materials'
@@ -2511,7 +2511,7 @@ materials:
         - id: 'mat_metallic_crystal_1'
           item_id: 399
           item_data: 0
-          name: 'Common Metallic Crystal'
+          name: 'T1 Common Metallic Crystal'
           shaped: false
           craftable: true
           category: '<lightgreen>Tier 1 Materials'
@@ -2536,7 +2536,7 @@ materials:
         - id: 'mat_ionic_crystal_1'
           item_id: 378
           item_data: 0
-          name: 'Common Ionic Crystal'
+          name: 'T1 Common Ionic Crystal'
           shaped: false
           craftable: true
           category: '<lightgreen>Tier 1 Materials'
@@ -2559,7 +2559,7 @@ materials:
         - id: 'mat_metallic_crystal_2'
           item_id: 399
           item_data: 0
-          name: 'Uncommon Metallic Crystal'
+          name: 'T2 Uncommon Metallic Crystal'
           shaped: false
           craftable: true
           category: '<lightgreen>Tier 2 Materials'
@@ -2584,7 +2584,7 @@ materials:
         - id: 'mat_ionic_crystal_2'
           item_id: 378
           item_data: 0
-          name: 'Uncommon Ionic Crystal'
+          name: 'T2 Uncommon Ionic Crystal'
           shaped: false
           craftable: true
           category: '<lightgreen>Tier 2 Materials'
@@ -2607,7 +2607,7 @@ materials:
         - id: 'mat_metallic_crystal_3'
           item_id: 399
           item_data: 0
-          name: 'Rare Metallic Crystal'
+          name: 'T3 Rare Metallic Crystal'
           shaped: false
           craftable: true
           category: '<lightgreen>Tier 3 Materials'
@@ -2632,7 +2632,7 @@ materials:
         - id: 'mat_ionic_crystal_3'
           item_id: 378
           item_data: 0
-          name: 'Rare Ionic Crystal'
+          name: 'T3 Rare Ionic Crystal'
           shaped: false
           craftable: true
           category: '<lightgreen>Tier 3 Materials'
@@ -2655,7 +2655,7 @@ materials:
         - id: 'mat_metallic_crystal_4'
           item_id: 399
           item_data: 0
-          name: 'Legendary Metallic Crystal'
+          name: 'T4 Legendary Metallic Crystal'
           shaped: false
           craftable: true
           category: '<lightgreen>Tier 4 Materials'
@@ -2680,7 +2680,7 @@ materials:
         - id: 'mat_ionic_crystal_4'
           item_id: 378
           item_data: 0
-          name: 'Legendary Ionic Crystal'
+          name: 'T4 Legendary Ionic Crystal'
           shaped: false
           craftable: true
           category: '<lightgreen>Tier 4 Materials'
@@ -2693,29 +2693,29 @@ materials:
                 count: 9
 
          # hardcoded pufferfish to give more mercury and clowfish to give bath.
-        - id: 'mat_vanilla_clownfish'
-          item_id: 349
-          item_data: 2
-          name: 'Clownfish'
-          shaped: false
-          craftable: false
-          category: '<lightgreen>Tier 1 Materials'
-          components:
-              - name: 'RightClickForItem'
-                custom_id: 'mat_mercury_bath'
-                amount: '1'
+#        - id: 'mat_vanilla_clownfish'
+#         item_id: 349
+#          item_data: 2
+#          name: 'Clownfish'
+#          shaped: false
+#          craftable: false
+#          category: '<lightgreen>Tier 1 Materials'
+#          components:
+#              - name: 'RightClickForItem'
+#                custom_id: 'mat_mercury_bath'
+#                amount: '1'
         
-        - id: 'mat_vanilla_pufferfish'
-          item_id: 349
-          item_data: 3
-          name: 'Pufferfish'
-          shaped: false
-          craftable: false
-          category: '<lightgreen>Tier 1 Materials'
-          components:
-              - name: 'RightClickForItem'
-                custom_id: 'mat_mercury'
-                amount: '4'
+#        - id: 'mat_vanilla_pufferfish'
+#          item_id: 349
+#          item_data: 3
+#          name: 'Pufferfish'
+#          shaped: false
+#          craftable: false
+#          category: '<lightgreen>Tier 1 Materials'
+#          components:
+#              - name: 'RightClickForItem'
+#                custom_id: 'mat_mercury'
+#                amount: '4'
         
         - id: 'mat_mercury'
           item_id: 362
@@ -2726,13 +2726,13 @@ materials:
           category: '<lightgreen>Tier 1 Materials'
           ingredients:
               - type_id: 349
-                data: 1 #salmon
+                data: 3 #pufferfish
                 count: 1
 
         - id: 'mat_mercury_bath'
           item_id: 368
           item_data: 0
-          name: 'Mercury Bath'
+          name: 'T2 Mercury Bath'
           shaped: false
           craftable: true
           category: '<lightblue>Tier 2 Materials'
@@ -2747,7 +2747,7 @@ materials:
         - id: 'mat_industrial_diamond'
           item_id: 264
           item_data: 0
-          name: 'Industrial Diamond'
+          name: 'T2 Industrial Diamond'
           shaped: false
           craftable: true
           category: '<lightblue>Tier 2 Materials'
@@ -3057,7 +3057,7 @@ materials:
         - id: 'mat_vanilla_slime'
           item_id: 341
           item_data: 0
-          name: 'SlimeBall'
+          name: 'T1 SlimeBall'
           craftable: true
           shaped: false
           category: '<lightgreen>Tier 1 Materials'
@@ -3133,6 +3133,7 @@ materials:
           name: 'Stone Pickaxe'
           craftable: true
           shaped: true
+          category: '<blue>Tools'
           components:
               - name: 'Attack'
                 value: '0.5'
@@ -3156,6 +3157,7 @@ materials:
           name: 'Iron Pickaxe'
           craftable: true
           shaped: true
+          category: '<blue>Tools'
           components:
               - name: 'Attack'
                 value: '0.5'
@@ -3179,6 +3181,7 @@ materials:
           name: 'Gold Pickaxe'
           craftable: true
           shaped: true
+          category: '<blue>Tools'
           components:
               - name: 'Attack'
                 value: '0.5'
@@ -3202,6 +3205,7 @@ materials:
           name: 'Diamond Pickaxe'
           craftable: true
           shaped: true
+          category: '<blue>Tools'
           components:
               - name: 'Attack'
                 value: '0.5'
@@ -3225,6 +3229,7 @@ materials:
           name: 'Iron Shovel'
           craftable: true
           shaped: true
+          category: '<blue>Tools'
           components:
               - name: 'Attack'
                 value: '0.5'
@@ -3248,6 +3253,7 @@ materials:
           name: 'Gold Shovel'
           craftable: true
           shaped: true
+          category: '<blue>Tools'
           components:
               - name: 'Attack'
                 value: '0.5'
@@ -3271,6 +3277,7 @@ materials:
           name: 'Diamond Shovel'
           craftable: true
           shaped: true
+          category: '<blue>Tools'
           components:
               - name: 'Attack'
                 value: '0.5'
@@ -3293,6 +3300,7 @@ materials:
           name: 'Iron Axe'
           craftable: true
           shaped: true
+          category: '<blue>Tools'
           components:
               - name: 'Attack'
                 value: '0.5'
@@ -3316,6 +3324,7 @@ materials:
           name: 'Gold Axe'
           craftable: true
           shaped: true
+          category: '<blue>Tools'
           components:
               - name: 'Attack'
                 value: '0.5'
@@ -3339,6 +3348,7 @@ materials:
           name: 'Diamond Axe'
           craftable: true
           shaped: true
+          category: '<blue>Tools'
           components:
               - name: 'Attack'
                 value: '0.5'
@@ -3362,6 +3372,7 @@ materials:
           name: 'Iron Hoe'
           craftable: true
           shaped: true
+          category: '<blue>Tools'
           components:
               - name: 'Attack'
                 value: '0.5'
@@ -3385,6 +3396,7 @@ materials:
           name: 'Gold Hoe'
           craftable: true
           shaped: true
+          category: '<blue>Tools'
           components:
               - name: 'Attack'
                 value: '0.5'
@@ -3408,6 +3420,7 @@ materials:
           name: 'Diamond Hoe'
           craftable: true
           shaped: true
+          category: '<blue>Tools'
           components:
               - name: 'Attack'
                 value: '0.5'
@@ -3453,9 +3466,10 @@ materials:
           item_data: 0
           name: 'TNT'
           craftable: true
-          vanilla: false
+          vanilla: true
           shaped: false
-          required_techs: 'tech_advanced_artillery'
+          components:
+              - name: 'AllowBlockPlace'
           ingredients:
               - type_id: 0
                 custom_id: 'mat_refined_sulphur'
