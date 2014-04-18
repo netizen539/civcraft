@@ -551,7 +551,7 @@ public abstract class Buildable extends SQLObject {
 /*		if (info.tile_improvement) {
 			// just put the center at 0,0 of this chunk?
 			loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
-		} else {
+		} else { */
 			if (dir.equalsIgnoreCase("east")) {
 				loc.setZ(loc.getZ() - (z_size / 2));
 				loc.setX(loc.getX() + SHIFT_OUT);
@@ -570,7 +570,7 @@ public abstract class Buildable extends SQLObject {
 				loc.setZ(loc.getZ() + SHIFT_OUT);
 	
 			}
-		}   */
+//		}   
 		if (info.templateYShift != 0) {
 			// Y-Shift based on the config, this allows templates to be built underground.
 			loc.setY(loc.getY() + info.templateYShift);
@@ -594,7 +594,7 @@ public abstract class Buildable extends SQLObject {
 /*		if (this.isTileImprovement()) {
 			// just put the center at 0,0 of this chunk?
 			loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
-		} else {
+		} else {  */
 			if (dir.equalsIgnoreCase("east")) {
 				loc.setZ(loc.getZ() - (z_size / 2));
 				loc.setX(loc.getX() + SHIFT_OUT);
@@ -613,7 +613,7 @@ public abstract class Buildable extends SQLObject {
 				loc.setZ(loc.getZ() + SHIFT_OUT);
 	
 			}
-		}  */
+//		}  
 		if (this.getTemplateYShift() != 0) {
 			// Y-Shift based on the config, this allows templates to be built underground.
 			loc.setY(loc.getY() + this.getTemplateYShift());
