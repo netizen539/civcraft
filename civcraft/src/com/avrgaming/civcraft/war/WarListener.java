@@ -88,6 +88,11 @@ public class WarListener implements Listener {
 			event.getBlock().getType().equals(Material.REDSTONE_TORCH_ON) ||
 			event.getBlock().getType().equals(Material.REDSTONE) ||
 			event.getBlock().getType().equals(Material.TNT)) {
+			
+			event.getBlock().getLocation().getWorld().spawnFallingBlock(event.getBlock().getLocation(), 
+					ItemManager.getId(event.getBlock()), ItemManager.getData(event.getBlock()));
+			
+			event.setCancelled(true);
 			return;
 		}
 		

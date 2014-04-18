@@ -759,7 +759,7 @@ public class BlockListener implements Listener {
 		if (cb != null && !cb.canBreak(event.getPlayer().getName())) {
 			ControlPoint cBlock = cb.getCamp().controlBlocks.get(bcoord);
 			if (cBlock != null) {
-				cb.getCamp().onDamage(1, event.getBlock().getWorld(), event.getPlayer(), bcoord);
+				cb.getCamp().onDamage(1, event.getBlock().getWorld(), event.getPlayer(), bcoord, null);
 				event.setCancelled(true);
 				return;
 			} else {	
@@ -790,8 +790,12 @@ public class BlockListener implements Listener {
 			for (Wall wall : walls) {
 				if (wall.isProtectedLocation(event.getBlock().getLocation())) {
 					if (resident == null || !resident.hasTown() || resident.getTown().getCiv() != wall.getTown().getCiv() && !resident.isSBPermOverride()) {
+						
+						StructureBlock tmpStructureBlock = new StructureBlock(bcoord, wall);
+						tmpStructureBlock.setAlwaysDamage(true);
+						TaskMaster.syncTask(new StructureBlockHitEvent(event.getPlayer().getName(), bcoord, tmpStructureBlock, event.getBlock().getWorld()), 0);
+						//CivMessage.sendError(event.getPlayer(), "Cannot destroy this block, protected by a wall, destroy it first.");
 						event.setCancelled(true);
-						CivMessage.sendError(event.getPlayer(), "Cannot destroy this block, protected by a wall, destroy it first.");
 						return;
 					} else {
 						CivMessage.send(event.getPlayer(), Colors.LightGray+"We destroyed a block protected by a wall. This was allowed because we're a member of "+

@@ -51,6 +51,7 @@ import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Buff;
+import com.avrgaming.civcraft.object.BuildableDamageBlock;
 import com.avrgaming.civcraft.object.ControlPoint;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.StructureBlock;
@@ -403,10 +404,9 @@ public class TownHall extends Structure implements RespawnLocationHolder {
 	}
 	
 	@Override
-	public void onDamage(int amount, World world, Player player, BlockCoord coord) {
+	public void onDamage(int amount, World world, Player player, BlockCoord coord, BuildableDamageBlock hit) {
 	
 		ControlPoint cp = this.controlPoints.get(coord);
-		StructureBlock hit = CivGlobal.getStructureBlock(coord);
 		Resident resident = CivGlobal.getResident(player);
 		
 		if (!resident.canDamageControlBlock()) {
@@ -424,9 +424,9 @@ public class TownHall extends Structure implements RespawnLocationHolder {
 				}
 				 
 				if (cp.isDestroyed()) {
-					onControlBlockDestroy(cp, world, player, hit);
+					onControlBlockDestroy(cp, world, player, (StructureBlock)hit);
 				} else {
-					onControlBlockHit(cp, world, player, hit);
+					onControlBlockHit(cp, world, player, (StructureBlock)hit);
 				}
 			} else {
 				CivMessage.send(player, Colors.Rose+"Control Block already destroyed.");

@@ -315,7 +315,8 @@ public class ArenaManager implements Runnable {
 			Location loc = coord.getCenteredLocation();
 			loc.setWorld(world);
 			
-			if (loc.getBlock().getType().equals(Material.SIGN_POST)) {
+			if (loc.getBlock().getType().equals(Material.SIGN_POST) ||
+			    loc.getBlock().getType().equals(Material.WALL_SIGN)) {
 				Sign sign = (Sign)loc.getBlock().getState();
 				sign.setLine(0, "");
 				sign.setLine(1, "Respawn");

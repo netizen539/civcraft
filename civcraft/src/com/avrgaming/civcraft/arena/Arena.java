@@ -76,7 +76,6 @@ public class Arena {
 		return getInstanceName(this.instanceID, config);
 	}
 	
-	@SuppressWarnings("deprecation")
 	public void addTeam(ArenaTeam team) throws CivException {
 		teams.put(teamCount, team);
 		teamIDmap.put(team.getId(), teamCount);

@@ -66,6 +66,7 @@ import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.main.Colors;
+import com.avrgaming.civcraft.object.BuildableDamageBlock;
 import com.avrgaming.civcraft.object.ControlPoint;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.object.Resident;
@@ -1269,7 +1270,7 @@ public class Camp extends Buildable {
 	}
 	
 	@Override
-	public void onDamage(int amount, World world, Player player, BlockCoord hit) {
+	public void onDamage(int amount, World world, Player player, BlockCoord hit, BuildableDamageBlock hit2) {
 	
 		ControlPoint cp = this.controlBlocks.get(hit);
 		if (cp != null) {
