@@ -52,12 +52,6 @@ items:
       data: 0
       value: 1
     
-    - id: 6
-      name: 'Sulfur'
-      type_id: 289
-      data: 0
-      value: 1
-    
     - id: 7
       name: 'Feather'
       type_id: 288
@@ -65,7 +59,7 @@ items:
       value: 1
     
     - id: 8
-      name: 'Nether War'
+      name: 'Nether Wart'
       type_id: 372
       data: 0
       value: 1

@@ -72,6 +72,7 @@ public class PlayerLoginAsyncTask implements Runnable {
 			CivLog.info("Added resident:"+resident.getName());
 			resident.setRegistered(System.currentTimeMillis());
 			CivTutorial.showTutorialInventory(player);
+			resident.setisProtected(true);
 		} 
 		
 		if (!resident.isGivenKit()) {

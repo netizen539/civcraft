@@ -63,7 +63,20 @@ public class ResidentCommand extends CommandBase {
 		commands.put("perks", "Displays your perks.");
 		commands.put("refresh", "Refreshes your perks.");
 		commands.put("timezone", "(timezone) Display your current timezone or change it to (timezone)");
+		commands.put("pvptimer", "Remove your PvP Timer. This is a permenant change and can not be undone.");
 		//commands.put("switchtown", "[town] - Allows you to instantly change your town to this town, if this town belongs to your civ.");
+	}
+	
+	public void pvptimer_cmd() throws CivException {
+		Resident resident = getResident();
+		Player player = getPlayer();
+		
+		if (!Resident.isProtected(player)) {
+			CivMessage.sendError(sender, "You are not protected at this time.");
+		}
+		
+		resident.setisProtected(false);
+		CivMessage.sendSuccess(sender, "You are no longer protected.");
 	}
 	
 	public void timezone_cmd() throws CivException {
