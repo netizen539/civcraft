@@ -11,10 +11,13 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.util.Vector;
 
+import com.avrgaming.civcraft.config.CivSettings;
+import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.CultureChunk;
+import com.avrgaming.civcraft.siege.Cannon;
 import com.avrgaming.civcraft.util.ChunkCoord;
 import com.avrgaming.civcraft.util.ItemManager;
 
@@ -46,6 +49,10 @@ public class WarListener implements Listener {
 			event.getBlock().getType().equals(Material.GRASS) ||
 			event.getBlock().getType().equals(Material.SAND) ||
 			event.getBlock().getType().equals(Material.GRAVEL) ||
+			event.getBlock().getType().equals(Material.TORCH) ||
+			event.getBlock().getType().equals(Material.REDSTONE_TORCH_OFF) ||
+			event.getBlock().getType().equals(Material.REDSTONE_TORCH_ON) ||
+			event.getBlock().getType().equals(Material.REDSTONE) ||
 			event.getBlock().getType().equals(Material.TNT) ||
 			!event.getBlock().getType().isSolid()) {
 			return;
@@ -74,6 +81,12 @@ public class WarListener implements Listener {
 				
 		if (event.getBlock().getType().equals(Material.DIRT) || 
 			event.getBlock().getType().equals(Material.GRASS) ||
+			event.getBlock().getType().equals(Material.SAND) ||
+			event.getBlock().getType().equals(Material.GRAVEL) ||
+			event.getBlock().getType().equals(Material.TORCH) ||
+			event.getBlock().getType().equals(Material.REDSTONE_TORCH_OFF) ||
+			event.getBlock().getType().equals(Material.REDSTONE_TORCH_ON) ||
+			event.getBlock().getType().equals(Material.REDSTONE) ||
 			event.getBlock().getType().equals(Material.TNT)) {
 			return;
 		}
@@ -99,11 +112,25 @@ public class WarListener implements Listener {
 		
 		event.setCancelled(true);
 			
-		for (int y = -1; y <= 1; y++) {
-			for (int x = -1; x <= 1; x++) {
-				for (int z = -1; z <= 1; z++) {
+		int yield;
+		try {
+			yield = CivSettings.getInteger(CivSettings.warConfig, "cannon.yield");
+		} catch (InvalidConfiguration e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		yield = yield / 2;
+		
+		for (int y = -yield; y <= yield; y++) {
+			for (int x = -yield; x <= yield; x++) {
+				for (int z = -yield; z <= yield; z++) {
 					Location loc = event.getLocation().clone().add(new Vector(x,y,z));
-					ItemManager.setTypeIdAndData(loc.getBlock(), CivData.AIR, 0, false);
+					
+					if (loc.distance(event.getLocation()) < yield) {
+						WarRegen.saveBlock(loc.getBlock(), Cannon.RESTORE_NAME, false);
+						ItemManager.setTypeIdAndData(loc.getBlock(), CivData.AIR, 0, false);
+					}
 				}
 			}
 		}

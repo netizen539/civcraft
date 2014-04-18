@@ -145,7 +145,10 @@ public class CannonProjectile {
 											" ("+sb.getOwner().getHitpoints()+"/"+sb.getOwner().getMaxHitPoints()+")");
 								}
 							} else {
-								explodeBlock(b);
+								
+								if (!Cannon.cannonBlocks.containsKey(bcoord)) {
+									explodeBlock(b);
+								}
 							}
 							continue;
 						}

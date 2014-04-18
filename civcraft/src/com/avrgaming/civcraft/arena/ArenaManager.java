@@ -78,10 +78,13 @@ public class ArenaManager implements Runnable {
 			
 			int i = 0;
 			ConfigArena arena = null;
+			
 			for (ConfigArena a : CivSettings.arenas.values()) {
 				if (i == index) {
 					arena = a;
+					break;
 				}
+				i++;
 			}
 			
 			if (arena == null) {
@@ -196,6 +199,12 @@ public class ArenaManager implements Runnable {
 	public static void addTeamToQueue(ArenaTeam team) throws CivException {
 		if (teamQueue.contains(team)) {
 			throw new CivException("Your team is already in the queue.");
+		}
+		
+		for (Resident resident : team.teamMembers) {
+			if (!resident.isUsesAntiCheat()) {
+				throw new CivException("Cannot join arena: "+resident.getName()+" is not validated by CivCraft's anti-cheat.");
+			}
 		}
 		
 		CivMessage.sendTeam(team, "Added our team to the queue...");

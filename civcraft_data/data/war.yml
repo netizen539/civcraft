@@ -163,7 +163,7 @@ cannon:
     template: cannon
 
     # amount of blocks to destroy per shot
-    yield: 4.0
+    yield: 7.0
 
     # TNT cost, number of TNT blocks it costs per shot.
     tnt_cost: 10
@@ -178,4 +178,4 @@ cannon:
     player_damage: 200
 
     # Amount of damage d one to STRUCTURES when hit by a blast
-    structure_damage: 30
+    structure_damage: 100
