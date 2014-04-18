@@ -426,21 +426,6 @@ materials:
                 count: 9
 
         # Checked 10/8/13
-        - id: 'mat_decorative_feathers'
-          item_id: 288
-          item_data: 0
-          name: 'Decorative Feathers'
-          craftable: true
-          shaped: false
-          category: '<lightblue>Tier 2 Materials'
-          ingredients:
-              - type_id: 0
-                custom_id: 'mat_refined_feathers'
-                data: 0
-                count: 2
-
-             
-        # Checked 10/8/13
         - id: 'mat_milled_lumber'
           item_id: 53
           item_data: 0
@@ -1021,9 +1006,9 @@ materials:
               - name: 'NoDurability'
           ingredients:
               - type_id: 0
-                custom_id: 'mat_decorative_feathers'
+                custom_id: 'mat_refined_feathers'
                 data: 0
-                count: 4
+                count: 2
               - type_id: 0
                 custom_id: 'mat_carved_leather'
                 data: 0
@@ -1330,7 +1315,7 @@ materials:
                 custom_id: 'mat_chieftains_headdress'
                 letter: 'h'
           shape:
-              - "lhl"
+              - " h "
               - "lll"
               - "ccc"
         
