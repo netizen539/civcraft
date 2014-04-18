@@ -116,7 +116,7 @@ public abstract class CommonCustomMob implements ICustomMob {
 		/* common drops. */
 		this.addVanillaDrop(ItemManager.getId(Material.BONE), (short)0, 0.1);
 		this.addVanillaDrop(ItemManager.getId(Material.SUGAR), (short)0, 0.1);
-		this.addVanillaDrop(ItemManager.getId(Material.SULPHUR), (short)0, 0.1);
+		this.addVanillaDrop(ItemManager.getId(Material.SULPHUR), (short)0, 0.25);
 		this.addVanillaDrop(ItemManager.getId(Material.POTATO_ITEM), (short)0, 0.1);
 		this.addVanillaDrop(ItemManager.getId(Material.CARROT_ITEM), (short)0, 0.1);
 		this.addVanillaDrop(ItemManager.getId(Material.COAL), (short)0, 0.1);

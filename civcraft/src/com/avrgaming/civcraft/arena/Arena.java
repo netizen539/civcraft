@@ -76,25 +76,26 @@ public class Arena {
 		return getInstanceName(this.instanceID, config);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void addTeam(ArenaTeam team) throws CivException {
 		teams.put(teamCount, team);
 		teamIDmap.put(team.getId(), teamCount);
 		teamHP.put(teamCount, config.teams.get(teamCount).controlPoints.size());
-		team.setScoarboardTeam(scoreboard.registerNewTeam(team.getName()));
-		team.getScoarboardTeam().setAllowFriendlyFire(false);
+		team.setScoreboardTeam(scoreboard.registerNewTeam(team.getName()));
+		team.getScoreboardTeam().setAllowFriendlyFire(false);
 		if (teamCount == 0) {
 			team.setTeamColor(CivColor.Blue);
 		} else {
 			team.setTeamColor(CivColor.Gold);
 		}
 		
-		team.getScoarboardTeam().setPrefix(team.getTeamColor());
+		team.getScoreboardTeam().setPrefix(team.getTeamColor());
 		
 		for (Resident resident : team.teamMembers) {
 			try {
 				teleportToRandomRevivePoint(resident, teamCount);
 				createInventory(resident);
-				team.getScoarboardTeam().addPlayer(Bukkit.getOfflinePlayer(resident.getName()));
+				team.getScoreboardTeam().addPlayer(Bukkit.getOfflinePlayer(resident.getName()));
 				
 				
 			} catch (CivException e) {

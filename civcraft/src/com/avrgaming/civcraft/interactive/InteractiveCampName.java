@@ -46,7 +46,7 @@ public class InteractiveCampName implements InteractiveResponse {
 			return;
 		}
 
-		if (!StringUtils.isAlphaSpace(message)) {
+		if (!StringUtils.isAlpha(message)) {
 			CivMessage.send(player, Colors.Rose+ChatColor.BOLD+"Camp names must only contain letters(A-Z). Enter another name.");
 			return;
 		}

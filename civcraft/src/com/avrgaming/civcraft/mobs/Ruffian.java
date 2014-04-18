@@ -79,7 +79,7 @@ public class Ruffian extends CommonCustomMob implements ICustomMob {
 		    this.addDrop("mat_crafted_reeds", 0.1);
 		    this.addDrop("mat_crafted_sticks", 0.1);
 		    this.addVanillaDrop(ItemManager.getId(Material.LEATHER), (short)0, 0.4);
-			this.addDrop("mat_refined_sulphur", 0.02);
+			this.addDrop("mat_refined_sulphur", 0.15);
 		    this.coinDrop(1, 25);
 
 			break;
@@ -97,7 +97,7 @@ public class Ruffian extends CommonCustomMob implements ICustomMob {
 
 		    this.addDrop("mat_varnish", 0.01);
 		    this.addDrop("mat_sticky_resin", 0.01);
-			this.addDrop("mat_refined_sulphur", 0.05);
+			this.addDrop("mat_refined_sulphur", 0.25);
 		    this.coinDrop(10, 50);
 
 		    break;
@@ -115,7 +115,7 @@ public class Ruffian extends CommonCustomMob implements ICustomMob {
 
 		    this.addDrop("mat_varnish", 0.01);
 		    this.addDrop("mat_sticky_resin", 0.01);
-			this.addDrop("mat_refined_sulphur", 0.1);
+			this.addDrop("mat_refined_sulphur", 0.35);
 		    this.coinDrop(20, 80);
 
 			break;
@@ -133,7 +133,7 @@ public class Ruffian extends CommonCustomMob implements ICustomMob {
 
 		    this.addDrop("mat_varnish", 0.01);
 		    this.addDrop("mat_sticky_resin", 0.01);
-			this.addDrop("mat_refined_sulphur", 0.15);
+			this.addDrop("mat_refined_sulphur", 0.50);
 		    this.coinDrop(20, 150);
 
 			break;

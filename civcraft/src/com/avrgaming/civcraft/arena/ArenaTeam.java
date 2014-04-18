@@ -261,14 +261,15 @@ public class ArenaTeam extends SQLObject implements Comparable<ArenaTeam> {
 		return currentArena;
 	}
 
-	public Team getScoarboardTeam() {
+	public Team getScoreboardTeam() {
 		return team;
 	}
 
-	public void setScoarboardTeam(Team team) {
+	public void setScoreboardTeam(Team team) {
 		this.team = team;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public OfflinePlayer getTeamScoreboardName() {
 		return Bukkit.getOfflinePlayer(getTeamColor()+this.getName());
 	}
