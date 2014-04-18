@@ -163,6 +163,7 @@ public class Resident extends SQLObject {
 	private String itemMode = "all";
 	private String savedInventory = null;
 	private boolean insideArena = false;
+	private static boolean isProtected = false;
 	
 	public HashMap<BlockCoord, SimpleBlock> previewUndo = null;
 	public HashMap<String, Perk> perks = new HashMap<String, Perk>();
@@ -207,6 +208,7 @@ public class Resident extends SQLObject {
 					"`bannedMessage` mediumtext DEFAULT NULL,"+
 					"`savedInventory` mediumtext DEFAULT NULL,"+
 					"`insideArena` bool NOT NULL DEFAULT '0',"+
+					"'isProtected' bool NOT NULL DEFAULT '0',"+
 					"`flags` mediumtext DEFAULT NULL,"+
 					"`last_ip` mediumtext DEFAULT NULL,"+
 					"`debug_town` mediumtext DEFAULT NULL,"+
@@ -257,6 +259,7 @@ public class Resident extends SQLObject {
 			SQL.makeCol("flags", "mediumtext", TABLE_NAME);
 			SQL.makeCol("savedInventory", "mediumtext", TABLE_NAME);
 			SQL.makeCol("insideArena", "bool NOT NULL DEFAULT '0'", TABLE_NAME);
+			SQL.makeCol("isProtected", "bool NOT NULL DEFAULT '0'", TABLE_NAME);
 		}		
 	}
 
@@ -275,6 +278,7 @@ public class Resident extends SQLObject {
 		this.loadFlagSaveString(rs.getString("flags"));
 		this.savedInventory = rs.getString("savedInventory");
 		this.insideArena = rs.getBoolean("insideArena");
+		Resident.isProtected = rs.getBoolean("isProtected");
 		
 		if (this.getTimezone() == null) {
 			this.setTimezoneToServerDefault();
@@ -440,6 +444,7 @@ public class Resident extends SQLObject {
 		hashmap.put("last_ip", this.getLastIP());
 		hashmap.put("savedInventory", this.savedInventory);
 		hashmap.put("insideArena", this.insideArena);
+		hashmap.put("isProtected", Resident.isProtected);
 		
 		if (this.getTown() != null) {
 			hashmap.put("debug_town", this.getTown().getName());
@@ -1588,5 +1593,13 @@ public class Resident extends SQLObject {
 	
 	public void setInsideArena(boolean inside) {
 		this.insideArena = inside;
+	}
+	
+	public static boolean isProtected(Player damager) {
+		return isProtected;
+	}
+	
+	public void setisProtected(boolean prot) {
+		Resident.isProtected = prot;
 	}
 }

@@ -19,6 +19,8 @@ global:
         - '345:1'
         - 'mat_tutorial_book:1'
 
+   pvp_timer: 30   
+
    # Regen spawn at midnight every day.
    regen_spawn_hour: 0
 
