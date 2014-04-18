@@ -179,3 +179,7 @@ cannon:
 
     # Amount of damage d one to STRUCTURES when hit by a blast
     structure_damage: 100
+
+    # Maximum range a cannon shot will travel.
+    max_range: 300.0
+
