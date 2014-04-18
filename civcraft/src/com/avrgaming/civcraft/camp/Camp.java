@@ -1275,6 +1275,11 @@ public class Camp extends Buildable {
 		if (cp != null) {
 			Date now = new Date();
 			
+			if (Resident.isProtected(player)) {
+				CivMessage.sendError(player, "You are unable to damage camps while protected.");
+				return;
+			}
+			
 			if (now.after(getNextRaidDate())) {
 				if (!cp.isDestroyed()) {
 					cp.damage(amount);
