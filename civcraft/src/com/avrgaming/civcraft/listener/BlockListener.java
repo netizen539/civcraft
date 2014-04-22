@@ -70,6 +70,7 @@ import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
@@ -655,7 +656,7 @@ public class BlockListener implements Listener {
 			event.setCancelled(true);
 			CivMessage.sendError(event.getPlayer(), "This block is part of camp "+cb.getCamp().getName()+" owned by "+cb.getCamp().getOwner().getName()+" and cannot be destroyed.");
 			return;
-		}
+		}  		
 
 		coord.setFromLocation(event.getBlock().getLocation());
 		TownChunk tc = CivGlobal.getTownChunk(coord);
@@ -930,6 +931,13 @@ public class BlockListener implements Listener {
 
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void OnPlayerInteractEvent(PlayerInteractEvent event) {
+		Resident resident = CivGlobal.getResident(event.getPlayer());
+
+		if (resident == null) {
+			event.setCancelled(true);
+			return;
+		}
+		
 
 		if (event.isCancelled()) {
 			// Fix for bucket bug.
@@ -941,17 +949,19 @@ public class BlockListener implements Listener {
 				}
 			}
 			return;
-		}
+		}		
 		
 		coord.setFromLocation(event.getPlayer().getLocation());
-		Camp camp = CivGlobal.getCampFromChunk(coord);
-		if (camp != null) {
-			if (!camp.hasMember(event.getPlayer().getName())) {
-				CivMessage.sendError(event.getPlayer(), "You cannot interact with a camp you do not belong to.");
+		Camp cc = CivGlobal.getCampFromChunk(coord);
+		CampBlock cb = CivGlobal.getCampBlock(bcoord);
+		if (cb != null && !resident.isPermOverride()) {
+			if (!cc.hasMember(resident.getName())) {
+				CivMessage.sendError(event.getPlayer(), "You cannot interact with blocks in a camp you do not belong to.");
 				event.setCancelled(true);
 				return;
 			}
 		}
+
 
 		if (event.hasItem()) {
 
@@ -1055,6 +1065,26 @@ public class BlockListener implements Listener {
 			}
 		}
 
+	}
+	
+	public void OnPlayerBedEnterEvent(PlayerBedEnterEvent event) {
+		
+		Resident resident = CivGlobal.getResident(event.getPlayer().getName());
+
+		if (resident == null) {
+			event.setCancelled(true);
+			return;
+		}
+				
+		coord.setFromLocation(event.getPlayer().getLocation());
+		Camp camp = CivGlobal.getCampFromChunk(coord);
+		if (camp != null && !resident.isPermOverride()) {
+			if (resident.getCamp() != camp.getMembers()) {
+				CivMessage.sendError(event.getPlayer(), "You cannot sleep in a camp you do not belong to.");
+				event.setCancelled(true);
+				return;
+			}
+		}
 	}
 
 	public static void OnPlayerSwitchEvent(PlayerInteractEvent event) {
