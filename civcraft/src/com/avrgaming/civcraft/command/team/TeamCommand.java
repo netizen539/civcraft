@@ -142,7 +142,7 @@ public class TeamCommand  extends CommandBase {
 		String teamName = getNamedString(1, "Enter a name for your team.");
 		Resident resident = getResident();
 		
-		if (Resident.isProtected(getPlayer())) {
+		if (resident.isProtected()) {
 			throw new CivException("You can not form a team while protected.");
 		}
 		
@@ -181,7 +181,8 @@ public class TeamCommand  extends CommandBase {
 		
 		String teamName = resident.getTeam().getName();
 		ArenaTeam.deleteTeam(teamName);
-		CivMessage.sendSuccess(sender, "Deleted team:"+teamName);
+		ArenaTeam.arenaTeams.remove(teamName);
+		CivMessage.sendSuccess(sender, "Disbanded team: "+teamName);
 	}
 	
 	public void add_cmd() throws CivException {
@@ -199,8 +200,8 @@ public class TeamCommand  extends CommandBase {
 		try {
 			Player player = CivGlobal.getPlayer(member);
 			
-			if (Resident.isProtected(player)) {
-				throw new CivException(player.getName()+"is protected and unable to join a team");
+			if (member.isProtected()) {
+				throw new CivException(player.getName()+" is protected and unable to join a team");
 			}
 			
 			ArenaTeam team = resident.getTeam();

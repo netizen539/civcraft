@@ -19,7 +19,8 @@ global:
         - '345:1'
         - 'mat_tutorial_book:1'
 
-   pvp_timer: 30   
+   # Amount of mins PvP timer remains active after first login.
+   pvp_timer: 120
 
    # Regen spawn at midnight every day.
    regen_spawn_hour: 0

@@ -25,6 +25,9 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import pvptimer.PvPListener;
+import pvptimer.PvPTimer;
+
 import com.avrgaming.anticheat.ACManager;
 import com.avrgaming.civcraft.arena.ArenaListener;
 import com.avrgaming.civcraft.arena.ArenaManager;
@@ -68,6 +71,7 @@ import com.avrgaming.civcraft.listener.DisableXPListener;
 import com.avrgaming.civcraft.listener.MarkerPlacementManager;
 import com.avrgaming.civcraft.listener.PlayerListener;
 import com.avrgaming.civcraft.listener.TagAPIListener;
+import com.avrgaming.civcraft.loreenhancements.LoreEnhancementArenaItem;
 import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterialListener;
 import com.avrgaming.civcraft.lorestorage.LoreGuiItemListener;
 import com.avrgaming.civcraft.mobs.MobSpawner;
@@ -217,6 +221,7 @@ public final class CivCraft extends JavaPlugin {
 		TaskMaster.asyncTask(new StructureValidationChecker(), TimeTools.toTicks(120));
 		TaskMaster.asyncTimer("StructureValidationPunisher", new StructureValidationPunisher(), TimeTools.toTicks(3600));
 		TaskMaster.asyncTimer("SessionDBAsyncTimer", new SessionDBAsyncTimer(), 10);
+		TaskMaster.asyncTimer("pvptimer", new PvPTimer(), TimeTools.toTicks(30));
 		
 		//TaskMaster.syncTimer("Apoc", new Apocalypse(), TimeTools.toTicks(1200));
 		TaskMaster.syncTimer("MobSpawner", new MobSpawnerTimer(), TimeTools.toTicks(2));
@@ -244,6 +249,8 @@ public final class CivCraft extends JavaPlugin {
 		pluginManager.registerEvents(new CannonListener(), this);
 		pluginManager.registerEvents(new WarListener(), this);
 		pluginManager.registerEvents(new FishingListener(), this);	
+		pluginManager.registerEvents(new PvPListener(), this);
+		pluginManager.registerEvents(new LoreEnhancementArenaItem(), this);
 	}
 	
 	private void registerNPCHooks() {

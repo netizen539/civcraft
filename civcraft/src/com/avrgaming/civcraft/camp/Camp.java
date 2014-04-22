@@ -1275,8 +1275,9 @@ public class Camp extends Buildable {
 		ControlPoint cp = this.controlBlocks.get(hit);
 		if (cp != null) {
 			Date now = new Date();
+			Resident resident = CivGlobal.getResident(player);
 			
-			if (Resident.isProtected(player)) {
+			if (resident.isProtected()) {
 				CivMessage.sendError(player, "You are unable to damage camps while protected.");
 				return;
 			}

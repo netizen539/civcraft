@@ -33,6 +33,9 @@ public class ArenaListener implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPlayerLogin(PlayerLoginEvent event) {
 		Resident resident = CivGlobal.getResident(event.getPlayer());
+		if (resident == null) {
+			return;
+		}
 		
 		if (resident.isInsideArena()) {
 			if (resident.getCurrentArena() != null) {

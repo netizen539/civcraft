@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
+import net.minecraft.util.org.apache.commons.io.FileUtils;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -294,6 +296,12 @@ public class ArenaManager implements Runnable {
 
 		activeArenas.remove(instanceName);
 		Bukkit.getServer().unloadWorld(instanceName, false);
+		
+		try {
+			FileUtils.deleteDirectory(new File(instanceName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private static void createArenaControlPoints(ConfigArena arena, World world, Arena activeArena) throws CivException {

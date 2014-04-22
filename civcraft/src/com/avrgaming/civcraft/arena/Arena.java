@@ -91,6 +91,10 @@ public class Arena {
 		team.getScoreboardTeam().setPrefix(team.getTeamColor());
 		
 		for (Resident resident : team.teamMembers) {
+			if (!resident.isUsesAntiCheat()) {
+				throw new CivException(resident.getName()+" must be using anti-cheat in order to join the arena.");
+			}
+			
 			try {
 				teleportToRandomRevivePoint(resident, teamCount);
 				createInventory(resident);
@@ -110,6 +114,7 @@ public class Arena {
 		LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterialFromId(id);
 		ItemStack stack = LoreCraftableMaterial.spawn(craftMat);
 		stack = LoreCraftableMaterial.addEnhancement(stack, LoreEnhancement.enhancements.get("LoreEnhancementSoulBound"));
+		stack = LoreCraftableMaterial.addEnhancement(stack, LoreEnhancement.enhancements.get("LoreEnhancementArenaItem"));
 		inv.addItem(stack);
 	}
 	
@@ -196,7 +201,9 @@ public class Arena {
 				try {
 					try {
 						/* Only set inside arena to false if the player is online. */
-						CivGlobal.getPlayer(r);
+						Player player = CivGlobal.getPlayer(r);
+						player.setScoreboard(ArenaManager.scoreboardManager.getNewScoreboard());
+						
 						r.setInsideArena(false);
 						r.restoreInventory();
 						r.teleportHome();
