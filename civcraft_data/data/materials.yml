@@ -3133,6 +3133,7 @@ materials:
           name: 'Stone Pickaxe'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3157,6 +3158,7 @@ materials:
           name: 'Iron Pickaxe'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3181,6 +3183,7 @@ materials:
           name: 'Gold Pickaxe'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3205,6 +3208,7 @@ materials:
           name: 'Diamond Pickaxe'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3229,6 +3233,7 @@ materials:
           name: 'Iron Shovel'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3253,6 +3258,7 @@ materials:
           name: 'Gold Shovel'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3277,6 +3283,7 @@ materials:
           name: 'Diamond Shovel'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3300,6 +3307,7 @@ materials:
           name: 'Iron Axe'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3324,6 +3332,7 @@ materials:
           name: 'Gold Axe'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3348,6 +3357,7 @@ materials:
           name: 'Diamond Axe'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3372,6 +3382,7 @@ materials:
           name: 'Iron Hoe'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3396,6 +3407,7 @@ materials:
           name: 'Gold Hoe'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3420,6 +3432,7 @@ materials:
           name: 'Diamond Hoe'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'

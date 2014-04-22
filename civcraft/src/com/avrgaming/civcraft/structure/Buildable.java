@@ -117,7 +117,7 @@ public abstract class Buildable extends SQLObject {
 	private int templateZ;
 	
 	// Number of blocks to shift the structure away from us when built.
-	public static final double SHIFT_OUT = 2;
+	public static final double SHIFT_OUT = 0;
 	public static final int MIN_DISTANCE = 7;
 	
 	private Map<BlockCoord, StructureSign> structureSigns = new ConcurrentHashMap<BlockCoord, StructureSign>();
@@ -544,32 +544,33 @@ public abstract class Buildable extends SQLObject {
 				center.getX(), center.getY(), center.getZ(), 
 				center.getYaw(), center.getPitch());
 		
-		loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
 		
 		// Reposition tile improvements
-/*		if (info.tile_improvement) {
+		if (info.tile_improvement) {
 			// just put the center at 0,0 of this chunk?
 			loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
-		} else { */
-			if (dir.equalsIgnoreCase("east")) {
+		} else { 
+			if (dir.equalsIgnoreCase("east")) {				
 				loc.setZ(loc.getZ() - (z_size / 2));
-				loc.setX(loc.getX() + SHIFT_OUT);
+				loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
+				loc.setX(loc.getX() + SHIFT_OUT);				
 			}
 			else if (dir.equalsIgnoreCase("west")) {
 				loc.setZ(loc.getZ() - (z_size / 2));
+				loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
 				loc.setX(loc.getX() - (SHIFT_OUT+x_size));
-	
 			}
 			else if (dir.equalsIgnoreCase("north")) {
 				loc.setX(loc.getX() - (x_size / 2));
+				loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
 				loc.setZ(loc.getZ() - (SHIFT_OUT+z_size));
 			}
 			else if (dir.equalsIgnoreCase("south")) {
 				loc.setX(loc.getX() - (x_size / 2));
+				loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
 				loc.setZ(loc.getZ() + SHIFT_OUT);
-	
 			}
-//		}   
+		}   
 		if (info.templateYShift != 0) {
 			// Y-Shift based on the config, this allows templates to be built underground.
 			loc.setY(loc.getY() + info.templateYShift);
@@ -587,32 +588,33 @@ public abstract class Buildable extends SQLObject {
 				center.getX(), center.getY(), center.getZ(), 
 				center.getYaw(), center.getPitch());
 		
-		loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
 		
 		// Reposition tile improvements
-/*		if (this.isTileImprovement()) {
+		if (this.isTileImprovement()) {
 			// just put the center at 0,0 of this chunk?
 			loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
-		} else {  */
+		} else {  
 			if (dir.equalsIgnoreCase("east")) {
 				loc.setZ(loc.getZ() - (z_size / 2));
+				loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
 				loc.setX(loc.getX() + SHIFT_OUT);
 			}
 			else if (dir.equalsIgnoreCase("west")) {
 				loc.setZ(loc.getZ() - (z_size / 2));
+				loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
 				loc.setX(loc.getX() - (SHIFT_OUT+x_size));
-	
 			}
 			else if (dir.equalsIgnoreCase("north")) {
 				loc.setX(loc.getX() - (x_size / 2));
+				loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
 				loc.setZ(loc.getZ() - (SHIFT_OUT+z_size));
 			}
 			else if (dir.equalsIgnoreCase("south")) {
 				loc.setX(loc.getX() - (x_size / 2));
+				loc = center.getChunk().getBlock(0, center.getBlockY(), 0).getLocation();
 				loc.setZ(loc.getZ() + SHIFT_OUT);
-	
 			}
-//		}  
+		}  
 		if (this.getTemplateYShift() != 0) {
 			// Y-Shift based on the config, this allows templates to be built underground.
 			loc.setY(loc.getY() + this.getTemplateYShift());
