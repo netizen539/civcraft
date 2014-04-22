@@ -182,3 +182,4 @@ cannon:
 
     # Maximum range a cannon shot will travel.
     max_range: 300.0
+

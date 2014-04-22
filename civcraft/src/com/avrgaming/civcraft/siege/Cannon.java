@@ -221,6 +221,10 @@ public class Cannon extends Buildable {
 						throw new CivException("Cannot build here, a camp is in the way.");
 					}
 					
+					if (Cannon.cannonBlocks.containsKey(coord)) {
+						throw new CivException("Cannot build here, another cannon in the way.");
+					}
+					
 					yTotal += b.getWorld().getHighestBlockYAt(centerBlock.getX()+x, centerBlock.getZ()+z);
 					yCount++;
 					
@@ -460,6 +464,32 @@ public class Cannon extends Buildable {
 				}
 			}
 		}
+	}
+	
+	@Override
+	protected Location repositionCenter(Location center, String dir, double x_size, double z_size) throws CivException {
+		Location loc = center.clone();
+		
+		if (dir.equalsIgnoreCase("east")) {
+			loc.setZ(loc.getZ() - (z_size / 2));
+			loc.setX(loc.getX() + SHIFT_OUT);
+		}
+		else if (dir.equalsIgnoreCase("west")) {
+			loc.setZ(loc.getZ() - (z_size / 2));
+			loc.setX(loc.getX() - (SHIFT_OUT+x_size));
+
+		}
+		else if (dir.equalsIgnoreCase("north")) {
+			loc.setX(loc.getX() - (x_size / 2));
+			loc.setZ(loc.getZ() - (SHIFT_OUT+z_size));
+		}
+		else if (dir.equalsIgnoreCase("south")) {
+			loc.setX(loc.getX() - (x_size / 2));
+			loc.setZ(loc.getZ() + SHIFT_OUT);
+
+		}
+		
+		return loc;
 	}
 
 	public BlockCoord getFireSignLocation() {
