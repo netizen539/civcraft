@@ -24,6 +24,9 @@ slightly_favored_modifier: 0.5
 favored_points: 1000
 favored_modifier: 0.2
 
+# Number of seconds until a winner is declared.
+timeout: 18
+
 arenas:
     - id: 'arena_desert'
       name: 'Desert Sands'
@@ -78,53 +81,101 @@ arenas:
              - '987,30,967'
              - '987,30,962'
           respawnsign: '969,29,966'
-
- 
-#   - id: 'arena_test'
-#     name: 'Test Arena'
-#     world_folder: 'arena_test'
-#     control_block_hp: 10
-#     teams:
-#         - number: 0
-#           name: 'Team 1'
-#           controlblocks:
-#              - '-612,18,-765'
-#              - '-599,18,-765'
-#              - '-597,18,-744'
-#              - '-614,18,-744'
-#           revivepoints:
-#              - '-593,16,-760'
-#              - '-601,16,-773'
-#              - '-611,16,-772'
-#              - '-617,16,-759'
-#              - '-621,16,-748'
-#              - '-607,16,-740'
-#              - '-591,16,-745'
-#              - '-593,16,-760'
-#           respawnpoints:
-#              - '-605,75,-761'
-#           chests:
-#              - '-603,74,-759'
-#              - '-613,16,-775'
-#           respawnsign: '-608,75,-764'
-#         - number: 1
-#           name: 'Team 2'
-#           controlblocks:
-#              - '-612,18,-961'
-#              - '-599,18,-961'
-#              - '-597,18,-982'
-#              - '-614,18,-982'
-#           revivepoints:
-#              - '-611,16,-955'
-#              - '-600,16,-955'
-#              - '-596,16,-968'
-#              - '-604,16,-986'
-#              - '-621,16,-979'
-#              - '-620,16,-965'
-#           respawnpoints:
-#              - '-606,75,-964'
-#           chests:
-#              - '-608,75,-967'
-#              - '-598,16,-951'
-#           respawnsign: '-603,75,-962'
-
+    - id: 'arena_aztec'
+      name: 'Aztec Arena'
+      world_folder: 'aztec_arena'
+      control_block_hp: 10
+      teams:
+        - number: 0
+          name: 'Team 1'
+          controlblocks:
+             - '776,14,560'
+             - '779,14,557'
+             - '782,39,554'
+             - '773,39,563'
+          revivepoints:
+             - '794,4,548'
+             - '770,4,572'
+             - '761,13,541'
+             - '795,13,576'
+          respawnpoints:
+             - '778,4,536'
+          chests:
+             - '761,5,542'
+             - '794,5,542'
+             - '794,5,575'
+             - '761,5,575'
+             - '777,4,532' 
+             - '778,4,532' 
+          respawnsign: '781,5,537'
+        - number: 1
+          name: 'Team 2'
+          controlblocks:
+             - '567,14,558'
+             - '564,14,561'
+             - '561,39,564'
+             - '570,39,555'
+          revivepoints:
+             - '575,4,576'
+             - '549,4,547'
+             - '582,13,557'
+             - '548,13,542'
+          respawnpoints:
+             - '566,4,537'
+          chests:
+             - '549,5,543'
+             - '549,5,576'
+             - '582,5,576'
+             - '582,5,543'
+             - '565,4,533' 
+             - '566,4,533' 
+          respawnsign: '569,5,538'
+    - id: 'arena_roman'
+      name: 'Roman Arena'
+      world_folder: 'roman_arena'
+      control_block_hp: 10
+      teams:
+        - number: 0
+          name: 'Team 1'
+          controlblocks:
+             - '547,29,570'
+             - '547,29,551'
+             - '599,29,556'
+             - '599,29,565'
+          revivepoints:
+             - '574,27,570'
+             - '573,27,550'
+             - '594,5,546'
+             - '594,5,574'
+          respawnpoints:
+             - '547,27,562'
+          chests:
+             - '599,29,578'
+             - '599,29,543'
+             - '547,29,544'
+             - '547,29,578'
+             - '545,27,558'
+             - '549,27,558'
+          respawnsign: '547,28,558'
+        - number: 1
+          name: 'Team 2'
+          controlblocks:
+             - '766,29,565'
+             - '766,29,556'
+             - '818,29,551'
+             - '818,29,570'
+          revivepoints:
+             - '793,27,551'
+             - '793,27,570'
+             - '771,5,575'
+             - '771,5,546'
+          respawnpoints:
+             - '818,27,558'
+          chests:
+             - '818,29,578'
+             - '818,29,544'
+             - '766,29,543'
+             - '766,29,578'
+             - '820,27,558'
+             - '816,27,558'  
+          respawnsign: '818,28,558'
