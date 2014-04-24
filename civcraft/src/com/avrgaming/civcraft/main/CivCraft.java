@@ -31,6 +31,7 @@ import pvptimer.PvPTimer;
 import com.avrgaming.anticheat.ACManager;
 import com.avrgaming.civcraft.arena.ArenaListener;
 import com.avrgaming.civcraft.arena.ArenaManager;
+import com.avrgaming.civcraft.arena.ArenaTimer;
 import com.avrgaming.civcraft.command.AcceptCommand;
 import com.avrgaming.civcraft.command.BuildCommand;
 import com.avrgaming.civcraft.command.DenyCommand;
@@ -226,6 +227,7 @@ public final class CivCraft extends JavaPlugin {
 		//TaskMaster.syncTimer("Apoc", new Apocalypse(), TimeTools.toTicks(1200));
 		TaskMaster.syncTimer("MobSpawner", new MobSpawnerTimer(), TimeTools.toTicks(2));
 		TaskMaster.syncTimer("ArenaTimer", new ArenaManager(), TimeTools.toTicks(30));
+		TaskMaster.syncTimer("ArenaTimeoutTimer", new ArenaTimer(), TimeTools.toTicks(1));
 
 	}
 	

@@ -11,14 +11,15 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
+import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.config.ConfigArena;
 import com.avrgaming.civcraft.config.ConfigArenaTeam;
 import com.avrgaming.civcraft.exception.CivException;
+import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.loreenhancements.LoreEnhancement;
 import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.main.CivGlobal;
@@ -36,9 +37,11 @@ public class Arena {
 	private HashMap<Integer, Integer> teamIDmap = new HashMap<Integer, Integer>();
 	private HashMap<Integer, Integer> teamHP = new HashMap<Integer, Integer>();
 	private HashMap<String, Inventory> playerInvs = new HashMap<String, Inventory>();
-	private Scoreboard scoreboard = null;
-	public Objective objective = null;
-	
+	public  HashMap<String, Scoreboard> scoreboards = new HashMap<String, Scoreboard>();
+	public  HashMap<String, Objective> objectives = new HashMap<String, Objective>();
+	public int timeleft;
+	public boolean ended = false;
+		
 	int teamCount = 0;
 	
 	public static int nextInstanceID = 0;
@@ -63,8 +66,13 @@ public class Arena {
 			throw new CivException("Couldn't find a free instance ID!");
 		}
 		
+		try {
+			this.timeleft = CivSettings.getInteger(CivSettings.arenaConfig, "timeout");
+		} catch (InvalidConfiguration e) {
+			e.printStackTrace();
+		}
 		this.instanceID = id;
-		setScoreboard(ArenaManager.scoreboardManager.getNewScoreboard());		
+				
 	}
 
 	public static String getInstanceName(int id, ConfigArena config) {
@@ -77,10 +85,12 @@ public class Arena {
 	}
 	
 	public void addTeam(ArenaTeam team) throws CivException {
+		this.scoreboards.put(team.getName(), ArenaManager.scoreboardManager.getNewScoreboard());
+		
 		teams.put(teamCount, team);
 		teamIDmap.put(team.getId(), teamCount);
 		teamHP.put(teamCount, config.teams.get(teamCount).controlPoints.size());
-		team.setScoreboardTeam(scoreboard.registerNewTeam(team.getName()));
+		team.setScoreboardTeam(getScoreboard(team.getName()).registerNewTeam(team.getName()));
 		team.getScoreboardTeam().setAllowFriendlyFire(false);
 		if (teamCount == 0) {
 			team.setTeamColor(CivColor.Blue);
@@ -88,9 +98,15 @@ public class Arena {
 			team.setTeamColor(CivColor.Gold);
 		}
 		
-		team.getScoreboardTeam().setPrefix(team.getTeamColor());
+		//team.getScoreboardTeam().setPrefix(team.getTeamColor()+"["+team.getName()+"]");
 		
 		for (Resident resident : team.teamMembers) {
+			try {
+			CivGlobal.getPlayer(resident);
+			} catch (CivException e) {
+				continue;
+			}
+			
 			if (!resident.isUsesAntiCheat()) {
 				throw new CivException(resident.getName()+" must be using anti-cheat in order to join the arena.");
 			}
@@ -281,17 +297,42 @@ public class Arena {
 	public Inventory getInventory(Resident resident) {
 		return playerInvs.get(resident.getName());
 	}
-
-	public Scoreboard getScoreboard() {
-		return scoreboard;
+	
+	public Scoreboard getScoreboard(String name) {
+		return this.scoreboards.get(name);
 	}
 
-	public void setScoreboard(Scoreboard scoreboard) {
-		this.scoreboard = scoreboard;
+	public void decrementScoreForTeamID(int teamID) {
+		ArenaTeam team = getTeamFromID(teamID);
+		
+		for (ArenaTeam t : this.teams.values()) {
+			Objective obj = this.objectives.get(t.getName()+";score");
+			
+			for (ArenaTeam t2 : this.teams.values()) {
+				Score score = obj.getScore(t2.getTeamScoreboardName());
+				if (t2.getName().equals(team.getName())) {
+					score.setScore(score.getScore() - 1);
+				}
+			}
+		}
 	}
 
-	public Score getScoreForTeamId(int teamID) {
-		return this.scoreboard.getObjective(DisplaySlot.SIDEBAR).getScore(this.getTeamFromID(teamID).getTeamScoreboardName());
+	public void decrementTimer() {
+		if (timeleft <= 0) {
+			if (!ended) {
+				CivMessage.sendArena(this, "Time is up! Nobody Wins!");
+				ArenaManager.declareDraw(this);
+				ended = true;
+			}
+		} else {
+			this.timeleft--;
+
+			for (ArenaTeam team : this.teams.values()) {	
+				Objective obj = objectives.get(team.getName()+";score");
+				Score score = obj.getScore(Bukkit.getOfflinePlayer("Time Left"));
+				score.setScore(timeleft);
+			}
+		}
 	}
 	
 }

@@ -53,13 +53,15 @@ public class ArenaManager implements Runnable {
 	public static Queue<ArenaTeam> teamQueue = new LinkedList<ArenaTeam>();
 	public static final int MAX_INSTANCES = 1;
 	public static ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
+	public static boolean enabled = true;
 	
 	@Override
 	public void run() {
+		
 		/*
 		 * Set up an arena if there is room to do so.
 		 */
-		if (activeArenas.size() < MAX_INSTANCES) {
+		if (activeArenas.size() < MAX_INSTANCES && enabled) {
 			ArenaTeam team1 = teamQueue.poll();
 			if (team1 == null) {
 				/* No teams waiting in queue. Do nothing. */
@@ -144,10 +146,14 @@ public class ArenaManager implements Runnable {
 		 */
 		int i = 0;
 		for (ArenaTeam team : teamQueue) {
-			if (i < 2) {
-				CivMessage.sendTeam(team, "Waiting to join arena. We are next! All arena instances are busy.");			
+			if (!enabled) {
+				CivMessage.sendTeam(team, "Arenas are disabled via and admin. Please wait for them to be re-enabled.");			
 			} else {
-				CivMessage.sendTeam(team, "Waiting to join arena. There are "+i+" teams ahead of us in line.");
+				if (i < 2) {
+					CivMessage.sendTeam(team, "Waiting to join arena. We are next! All arena instances are busy.");			
+				} else {
+					CivMessage.sendTeam(team, "Waiting to join arena. There are "+i+" teams ahead of us in line.");
+				}
 			}
 			i++;
 		}
@@ -157,14 +163,53 @@ public class ArenaManager implements Runnable {
 	public static void startArenaMatch(Arena activeArena, ArenaTeam team1, ArenaTeam team2) {
 
 		/* Set up objectives.. */
-		Objective objective = activeArena.getScoreboard().registerNewObjective("teampoints", "dummy");
-		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-		objective.setDisplayName("Team Hitpoints");
+		Objective points1 = activeArena.getScoreboard(team1.getName()).registerNewObjective("teampoints1", "dummy");
+		Objective points2 = activeArena.getScoreboard(team2.getName()).registerNewObjective("teampoints2", "dummy");
+
+	//	Objective names1 = activeArena.getScoreboard(team1.getName()).registerNewObjective("team1", "dummy");
+	//	Objective names2 = activeArena.getScoreboard(team2.getName()).registerNewObjective("team2", "dummy");
+
+		points1.setDisplaySlot(DisplaySlot.SIDEBAR);
+		points1.setDisplayName("Team Hitpoints");
+		points2.setDisplaySlot(DisplaySlot.SIDEBAR);
+		points2.setDisplayName("Team Hitpoints");
 		
-		Score score = objective.getScore(team1.getTeamScoreboardName());
-		Score score2 = objective.getScore(team2.getTeamScoreboardName());
-		score.setScore(activeArena.config.teams.get(0).controlPoints.size()*activeArena.config.control_block_hp);
-		score2.setScore(activeArena.config.teams.get(1).controlPoints.size()*activeArena.config.control_block_hp);
+		Score score1Team1 = points1.getScore(team1.getTeamScoreboardName());
+		Score score1Team2 = points1.getScore(team2.getTeamScoreboardName());
+		Score timeout1 = points1.getScore(Bukkit.getOfflinePlayer("Time Left"));
+		try {
+			timeout1.setScore(CivSettings.getInteger(CivSettings.arenaConfig, "timeout"));
+		} catch (IllegalStateException e1) {
+			e1.printStackTrace();
+		} catch (InvalidConfiguration e1) {
+			e1.printStackTrace();
+		}
+		
+		score1Team1.setScore(activeArena.config.teams.get(0).controlPoints.size()*activeArena.config.control_block_hp);
+		score1Team2.setScore(activeArena.config.teams.get(1).controlPoints.size()*activeArena.config.control_block_hp);
+		
+		Score score2Team1 = points2.getScore(team1.getTeamScoreboardName());
+		Score score2Team2 = points2.getScore(team2.getTeamScoreboardName());
+		Score timeout2 = points1.getScore(Bukkit.getOfflinePlayer("Time Left"));
+		try {
+			timeout2.setScore(CivSettings.getInteger(CivSettings.arenaConfig, "timeout"));
+		} catch (IllegalStateException e1) {
+			e1.printStackTrace();
+		} catch (InvalidConfiguration e1) {
+			e1.printStackTrace();
+		}
+		
+		score2Team1.setScore(activeArena.config.teams.get(0).controlPoints.size()*activeArena.config.control_block_hp);
+		score2Team2.setScore(activeArena.config.teams.get(1).controlPoints.size()*activeArena.config.control_block_hp);
+		
+	//	names1.setDisplaySlot(DisplaySlot.BELOW_NAME);
+	//	names1.setDisplayName(team1.getTeamColor()+team1.getName());
+		
+	//	names2.setDisplaySlot(DisplaySlot.BELOW_NAME);
+	//	names2.setDisplayName(team2.getTeamColor()+team2.getName());
+		
+		activeArena.objectives.put(team1.getName()+";score", points1);
+		activeArena.objectives.put(team2.getName()+";score", points2);
 		
 		/* Save and clear inventories */
 		for (Resident resident : team1.teamMembers) {
@@ -175,7 +220,7 @@ public class ArenaManager implements Runnable {
 			
 			try {
 				Player player = CivGlobal.getPlayer(resident);
-				player.setScoreboard(activeArena.getScoreboard());
+				player.setScoreboard(activeArena.getScoreboard(resident.getTeam().getName()));
 			} catch (CivException e) {
 				//Player offline.
 			}
@@ -189,7 +234,7 @@ public class ArenaManager implements Runnable {
 			
 			try {
 				Player player = CivGlobal.getPlayer(resident);
-				player.setScoreboard(activeArena.getScoreboard());
+				player.setScoreboard(activeArena.getScoreboard(resident.getTeam().getName()));
 			} catch (CivException e) {
 				//Player offline.
 			}
@@ -204,6 +249,13 @@ public class ArenaManager implements Runnable {
 		}
 		
 		for (Resident resident : team.teamMembers) {
+			try {
+				CivGlobal.getPlayer(resident);
+			} catch (CivException e) {
+				continue;
+			}
+
+			
 			if (!resident.isUsesAntiCheat()) {
 				throw new CivException("Cannot join arena: "+resident.getName()+" is not validated by CivCraft's anti-cheat.");
 			}
@@ -239,8 +291,15 @@ public class ArenaManager implements Runnable {
 				
 		Arena activeArena = new Arena(arena);
 		String instanceWorldName = activeArena.getInstanceName();
+				
+		File destFolder = new File(instanceWorldName);
 		
-		File destFolder = new File(instanceWorldName);		
+		try {
+			FileUtils.deleteDirectory(destFolder);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		try {
 			copyFolder(srcFolder, destFolder);
 		} catch (IOException e) {
@@ -360,6 +419,7 @@ public class ArenaManager implements Runnable {
 			world = Bukkit.getServer().createWorld(wc);
 			world.setAutoSave(false);
 			world.setSpawnFlags(false, false);
+			world.setKeepSpawnInMemory(false);
 			ChunkCoord.addWorld(world);
 		}
 		
@@ -504,6 +564,30 @@ public class ArenaManager implements Runnable {
 									CivColor.Rose+CivColor.BOLD+loser.getName());
 		CivMessage.sendArena(arena, "Leaving arena in 10 seconds...");
 		TaskMaster.syncTask(new SyncTask(arena, loser, winner), TimeTools.toTicks(10));
+	}
+	
+	public static void declareDraw(Arena arena) {
+		
+		
+		class SyncTask implements Runnable {
+			Arena arena;
+			
+			public SyncTask (Arena arena) {
+				this.arena = arena;
+			}
+
+			@Override
+			public void run() {
+				try {
+					ArenaManager.destroyArena(arena.getInstanceName());
+				} catch (CivException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		CivMessage.sendArena(arena, "Leaving arena in 10 seconds...");
+		TaskMaster.syncTask(new SyncTask(arena), TimeTools.toTicks(10));
 	}
 
 

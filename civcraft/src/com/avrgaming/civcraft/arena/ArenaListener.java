@@ -54,7 +54,7 @@ public class ArenaListener implements Listener {
 						try {
 							Resident resident = CivGlobal.getResident(name);
 							player = CivGlobal.getPlayer(resident);
-							player.setScoreboard(resident.getCurrentArena().getScoreboard());
+							player.setScoreboard(resident.getCurrentArena().getScoreboard(resident.getTeam().getName()));
 						} catch (CivException e) {
 						}						
 					}
