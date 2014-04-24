@@ -25,7 +25,7 @@ favored_points: 1000
 favored_modifier: 0.2
 
 # Number of seconds until a winner is declared.
-timeout: 18
+timeout: 1800
 
 arenas:
     - id: 'arena_desert'
