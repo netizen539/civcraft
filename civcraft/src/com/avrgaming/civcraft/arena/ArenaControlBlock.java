@@ -5,7 +5,6 @@ import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Sound;
 import org.bukkit.FireworkEffect.Type;
-import org.bukkit.scoreboard.Score;
 import org.bukkit.World;
 
 import com.avrgaming.civcraft.main.CivData;
@@ -43,8 +42,7 @@ public class ArenaControlBlock {
 		
 		curHP--;
 		
-		Score score = arena.getScoreForTeamId(teamID);
-		score.setScore(score.getScore()-1);	
+		arena.decrementScoreForTeamID(teamID);	
 		
 		if (curHP <= 0) {
 			/* Destroy control block. */

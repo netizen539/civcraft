@@ -69,7 +69,6 @@ import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.SQLObject;
-import com.avrgaming.civcraft.object.StructureBlock;
 import com.avrgaming.civcraft.object.StructureChest;
 import com.avrgaming.civcraft.object.StructureSign;
 import com.avrgaming.civcraft.object.Town;
@@ -1129,9 +1128,8 @@ public abstract class Buildable extends SQLObject {
 		this.save();
 	}
 	
-	public void onDamage(int amount, World world, Player player, BlockCoord coord) {
+	public void onDamage(int amount, World world, Player player, BlockCoord coord, BuildableDamageBlock hit) {
 		boolean wasTenPercent = false;
-		StructureBlock hit = CivGlobal.getStructureBlock(coord);
 		
 		if(hit.getOwner().isDestroyed()) {
 			if (player != null) {

@@ -132,7 +132,7 @@ public class CannonProjectile {
 											}
 										}
 										
-										sb.getOwner().onDamage(cannon.getDamage(), b.getWorld(), player, sb.getCoord());
+										sb.getOwner().onDamage(cannon.getDamage(), b.getWorld(), player, sb.getCoord(), sb);
 										CivMessage.sendCiv(sb.getCiv(), CivColor.Yellow+"Our "+sb.getOwner().getDisplayName()+" at ("+
 												sb.getOwner().getCenterLocation().getX()+","+
 												sb.getOwner().getCenterLocation().getY()+","+

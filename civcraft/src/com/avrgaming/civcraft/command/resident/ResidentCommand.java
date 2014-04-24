@@ -69,9 +69,8 @@ public class ResidentCommand extends CommandBase {
 	
 	public void pvptimer_cmd() throws CivException {
 		Resident resident = getResident();
-		Player player = getPlayer();
 		
-		if (!Resident.isProtected(player)) {
+		if (!resident.isProtected()) {
 			CivMessage.sendError(sender, "You are not protected at this time.");
 		}
 		

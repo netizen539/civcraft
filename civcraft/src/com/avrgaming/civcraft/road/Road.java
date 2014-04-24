@@ -27,6 +27,7 @@ import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.main.Colors;
+import com.avrgaming.civcraft.object.BuildableDamageBlock;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.object.StructureBlock;
 import com.avrgaming.civcraft.object.Town;
@@ -622,9 +623,8 @@ public class Road extends Structure {
 	}
 	
 	@Override
-	public void onDamage(int amount, World world, Player player, BlockCoord coord) {
+	public void onDamage(int amount, World world, Player player, BlockCoord coord, BuildableDamageBlock hit) {
 		boolean wasTenPercent = false;
-		RoadBlock hit = CivGlobal.getRoadBlock(coord);
 		
 		if(hit.getOwner().isDestroyed()) {
 			CivMessage.sendError(player, hit.getOwner().getDisplayName()+" is already destroyed.");

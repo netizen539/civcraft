@@ -88,7 +88,10 @@ public class AdminCommand extends CommandBase {
 		commands.put("road", "Road management commands");
 		commands.put("clearendgame", "[key] [civ] - clears this end game condition for this civ.");
 		commands.put("endworld", "Starts the Apocalypse.");
+		commands.put("arena", "Arena management commands.");
 	}
+	
+	
 	
 	public void endworld_cmd() {
 		CivGlobal.endWorld = !CivGlobal.endWorld;
@@ -156,6 +159,11 @@ public class AdminCommand extends CommandBase {
 		}
 		
 		player.openInventory(spawnInventory);
+	}
+	
+	public void arena_cmd() {
+		AdminArenaCommand cmd = new AdminArenaCommand();	
+		cmd.onCommand(sender, null, "arena", this.stripArgs(args, 1));
 	}
 	
 	public void road_cmd() {

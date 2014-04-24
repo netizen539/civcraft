@@ -78,11 +78,10 @@ public class StructureBlockHitEvent implements Runnable {
 				CivMessage.send(player, Colors.LightGray+"Punchout does "+(damage-1)+" extra damage!");
 			}
 				
-			dmgBlock.getOwner().onDamage(damage, world, player, dmgBlock.getCoord());
+			dmgBlock.getOwner().onDamage(damage, world, player, dmgBlock.getCoord(), dmgBlock);
 		} else {
 			CivMessage.sendErrorNoRepeat(player, 
 					"This block belongs to a "+dmgBlock.getOwner().getDisplayName()+" and cannot be destroyed right now.");
 		}
 	}
-
 }
