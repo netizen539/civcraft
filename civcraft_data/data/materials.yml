@@ -3372,7 +3372,6 @@ materials:
           name: 'Iron Hoe'
           craftable: true
           shaped: true
-          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3397,7 +3396,6 @@ materials:
           name: 'Gold Hoe'
           craftable: true
           shaped: true
-          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3422,7 +3420,6 @@ materials:
           name: 'Diamond Hoe'
           craftable: true
           shaped: true
-          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
