@@ -92,9 +92,9 @@ buffs:
     
     - id: 'buff_greed'
       name: 'Greed'
-      description: 'Increases interest rates by <lightgreen>3%<r> <gold>Stackable<r>'
+      description: 'Increases interest rates by <lightgreen>3%<r>'
       value: '0.03'
-      stackable: true
+      stackable: false
       parent:
 
     - id: 'buff_medicine'
