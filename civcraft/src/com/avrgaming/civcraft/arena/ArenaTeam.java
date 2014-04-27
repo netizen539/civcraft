@@ -140,12 +140,14 @@ public class ArenaTeam extends SQLObject implements Comparable<ArenaTeam> {
 
 	public void addPoints(int points) {
 		this.ladderPoints += points;
-		Collections.sort(teamRankings);			
+		Collections.sort(teamRankings);
+		Collections.reverse(teamRankings); //Lazy method.
 	}
 	
 	public void removePoints(int points) {
 		this.ladderPoints -= points;
 		Collections.sort(teamRankings);
+		Collections.reverse(teamRankings); //Lazy method.	
 	}
 	
 	public static void createTeam(String name, Resident leader) throws CivException {

@@ -1588,10 +1588,29 @@ public class Resident extends SQLObject {
 	}
 	
 	public boolean isInsideArena() {
+		
+		if (this.hasTeam()) {
+			this.insideArena = false;
+			return false;
+		}
+		
+		try {
+			Player player = CivGlobal.getPlayer(this);
+			
+			if (player.getWorld().getName().equals("world")) {
+				this.insideArena = false;
+				return false;
+			}
+			
+		} catch (CivException e) {
+			return false;
+		}
+		
 		return this.insideArena;
 	}
 	
 	public void setInsideArena(boolean inside) {
+		CivLog.debug(this.getName()+": Setting InsideArena:"+inside);	
 		this.insideArena = inside;
 	}
 	

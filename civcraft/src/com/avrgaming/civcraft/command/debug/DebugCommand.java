@@ -219,6 +219,19 @@ public class DebugCommand extends CommandBase {
 		commands.put("cannon", "builds a war cannon.");
 		commands.put("saveinv", "save an inventory");
 		commands.put("restoreinv", "restore your inventory.");
+		commands.put("arenainfo", "Shows arena info for this player.");
+	}
+	
+	public void arenainfo_cmd() throws CivException {
+		Resident resident = getResident();
+		String arenaName = "";
+		
+		if (resident.getTeam() != null && resident.getTeam().getCurrentArena() != null) {
+			arenaName = resident.getTeam().getCurrentArena().getInstanceName();
+		}
+		
+		
+		CivMessage.send(sender, "InsideArena:"+resident.isInsideArena()+" Team Active arena:"+arenaName);
 	}
 	
 	public void saveinv_cmd() throws CivException {

@@ -27,6 +27,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -154,6 +155,7 @@ public class CivGlobal {
 	private static Map<ChunkCoord, Camp> campChunks = new ConcurrentHashMap<ChunkCoord, Camp>();
 	public static HashSet<BlockCoord> vanillaGrowthLocations = new HashSet<BlockCoord>();
 	private static Map<BlockCoord, Market> markets = new ConcurrentHashMap<BlockCoord, Market>();
+	public static HashSet<String> researchedTechs = new HashSet<String>();
 	
 	
 	public static Map<Integer, Boolean> colorsInUse = new ConcurrentHashMap<Integer, Boolean>();
@@ -325,6 +327,9 @@ public class CivGlobal {
 				}
 			}
 	
+			Collections.sort(ArenaTeam.teamRankings);
+			Collections.reverse(ArenaTeam.teamRankings); //Lazy method.
+			
 			CivLog.info("Loaded "+ArenaTeam.arenaTeams.size()+" Arena Teams");
 		} finally {
 			SQL.close(rs, ps, context);

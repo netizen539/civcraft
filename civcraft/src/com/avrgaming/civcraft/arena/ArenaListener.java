@@ -11,6 +11,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
@@ -30,6 +31,13 @@ import com.avrgaming.civcraft.util.TimeTools;
 
 public class ArenaListener implements Listener {
 
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onBlockIgniteEvent(BlockIgniteEvent event) {
+		if (ArenaManager.activeArenas.containsKey(event.getBlock().getWorld().getName())) {
+			event.setCancelled(true);
+		}
+	}
+	
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPlayerLogin(PlayerLoginEvent event) {
 		Resident resident = CivGlobal.getResident(event.getPlayer());
