@@ -29,6 +29,7 @@ public class TeamCommand  extends CommandBase {
 		commands.put("remove", "[resident] removes a resident from your team.");
 		commands.put("changeleader", "[resident] - Gives team leadership to another team member.");
 		commands.put("arena", "Join the queue to fight the arena! Will take us out of the queue if we're already in it.");
+		commands.put("top5", "Shows top 5 teams in the game!");
 		commands.put("top10", "Shows top 10 teams in the game!");
 		commands.put("list", "List all teams in the game.");
 		commands.put("surrender", "Give up on the current match.");
@@ -81,6 +82,10 @@ public class TeamCommand  extends CommandBase {
 		}
 		
 		ArenaTeam team = resident.getTeam();
+		
+		if (team.getCurrentArena() != null) {
+			throw new CivException("Cannot join the arena queue while inside the arena.");
+		}
 
 		for (ArenaTeam t : ArenaManager.teamQueue) {
 			if (t == team) {
@@ -107,8 +112,18 @@ public class TeamCommand  extends CommandBase {
 	}
 	
 	
+	public void top5_cmd() {
+		CivMessage.sendHeading(sender, "Top 5 Teams");
+		
+		for (int i = 0; ((i < 5) && (i < ArenaTeam.teamRankings.size())); i++) {
+			ArenaTeam team = ArenaTeam.teamRankings.get(i);
+			CivMessage.send(sender, CivColor.Green+team.getName()+": "+CivColor.LightGreen+team.getLadderPoints());
+		}
+	}
+	
 	public void top10_cmd() {
 		CivMessage.sendHeading(sender, "Top 10 Teams");
+		
 		for (int i = 0; ((i < 10) && (i < ArenaTeam.teamRankings.size())); i++) {
 			ArenaTeam team = ArenaTeam.teamRankings.get(i);
 			CivMessage.send(sender, CivColor.Green+team.getName()+": "+CivColor.LightGreen+team.getLadderPoints());
@@ -167,6 +182,11 @@ public class TeamCommand  extends CommandBase {
 		}
 		
 		ArenaTeam team = resident.getTeam();
+		
+		if (team.getCurrentArena() != null) {
+			throw new CivException("Cannot leave your team while it is inside the arena.");
+		}
+		
 		ArenaTeam.removeMember(team.getName(), resident);
 		CivMessage.sendSuccess(sender, "Left Team "+team.getName());
 		CivMessage.sendTeam(team, resident.getName()+" has left the team.");
@@ -177,6 +197,10 @@ public class TeamCommand  extends CommandBase {
 		
 		if (!resident.isTeamLeader()) {
 			throw new CivException("You must have a team and be it's leader to disband your team.");
+		}
+		
+		if (resident.getTeam().getCurrentArena() != null) {
+			throw new CivException("Cannot disband your team while it is inside the arena.");
 		}
 		
 		String teamName = resident.getTeam().getName();
@@ -195,6 +219,10 @@ public class TeamCommand  extends CommandBase {
 		
 		if (member.hasTeam()) {
 			throw new CivException(member.getName()+" is already on a team.");
+		}
+		
+		if (resident.getTeam().getCurrentArena() != null) {
+			throw new CivException("Cannot add players to team while inside the arena.");
 		}
 		
 		try {
@@ -229,6 +257,10 @@ public class TeamCommand  extends CommandBase {
 			throw new CivException("You must have a team and be it's leader to remove members to your team.");
 		}
 		
+		if (resident.getTeam().getCurrentArena() != null) {
+			throw new CivException("Cannot remove players from the team while inside the arena.");
+		}
+		
 		ArenaTeam.removeMember(resident.getTeam().getName(), member);
 		CivMessage.sendSuccess(sender, "Removed Team Member "+member.getName());
 		CivMessage.sendTeam(resident.getTeam(), member.getName()+" has left the team.");
@@ -244,6 +276,11 @@ public class TeamCommand  extends CommandBase {
 		}
 		
 		ArenaTeam team = resident.getTeam();
+		
+		if (team.getCurrentArena() != null) {
+			throw new CivException("Cannot change team leaders while inside the arena.");
+		}
+		
 		if (!team.hasMember(member)) {
 			throw new CivException(member.getName()+" must already be added to your team in order to become it's leader.");
 		}

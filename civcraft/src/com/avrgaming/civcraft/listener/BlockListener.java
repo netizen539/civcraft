@@ -956,10 +956,9 @@ public class BlockListener implements Listener {
 		}		
 		
 		coord.setFromLocation(event.getPlayer().getLocation());
-		Camp cc = CivGlobal.getCampFromChunk(coord);
 		CampBlock cb = CivGlobal.getCampBlock(bcoord);
 		if (cb != null && !resident.isPermOverride()) {
-			if (!cc.hasMember(resident.getName())) {
+			if (!cb.getCamp().hasMember(resident.getName())) {
 				CivMessage.sendError(event.getPlayer(), "You cannot interact with blocks in a camp you do not belong to.");
 				event.setCancelled(true);
 				return;

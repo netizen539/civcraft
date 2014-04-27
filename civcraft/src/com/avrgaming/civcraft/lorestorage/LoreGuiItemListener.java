@@ -85,6 +85,10 @@ public class LoreGuiItemListener implements Listener {
 		
 	}
 	
+	public static boolean isGUIInventory(Inventory inv) {
+		return guiInventories.containsKey(inv.getName());
+	}
+	
 	@EventHandler(priority = EventPriority.LOW) 
 	public void OnInventoryDragEvent(InventoryDragEvent event) {
 		if (event.isCancelled()) {

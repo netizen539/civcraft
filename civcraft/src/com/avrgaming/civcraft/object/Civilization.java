@@ -350,6 +350,7 @@ public class Civilization extends SQLObject {
 	}
 	
 	public void addTech(ConfigTech t) {
+		CivGlobal.researchedTechs.add(t.id.toLowerCase());
 		techs.put(t.id, t);
 		
 		for (Town town : this.getTowns()) {
