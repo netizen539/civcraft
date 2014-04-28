@@ -115,7 +115,7 @@ public class TeamCommand  extends CommandBase {
 	public void top5_cmd() {
 		CivMessage.sendHeading(sender, "Top 5 Teams");
 		
-		for (int i = 0; ((i < 5) && (i < ArenaTeam.teamRankings.size())); i++) {
+		for (int i = 0; ((i < 5) && (i > ArenaTeam.teamRankings.size())); i++) {
 			ArenaTeam team = ArenaTeam.teamRankings.get(i);
 			CivMessage.send(sender, CivColor.Green+team.getName()+": "+CivColor.LightGreen+team.getLadderPoints());
 		}
@@ -124,7 +124,7 @@ public class TeamCommand  extends CommandBase {
 	public void top10_cmd() {
 		CivMessage.sendHeading(sender, "Top 10 Teams");
 		
-		for (int i = 0; ((i < 10) && (i < ArenaTeam.teamRankings.size())); i++) {
+		for (int i = 0; ((i < 10) && (i > ArenaTeam.teamRankings.size())); i++) {
 			ArenaTeam team = ArenaTeam.teamRankings.get(i);
 			CivMessage.send(sender, CivColor.Green+team.getName()+": "+CivColor.LightGreen+team.getLadderPoints());
 		}
