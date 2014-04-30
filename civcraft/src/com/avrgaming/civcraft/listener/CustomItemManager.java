@@ -941,9 +941,9 @@ public class CustomItemManager implements Listener {
 	
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void OnInventoryClickEvent(InventoryClickEvent event) {
-		if (event.getWhoClicked() instanceof Player) {
-			removeUnwantedVanillaItems((Player)event.getWhoClicked(), event.getView().getBottomInventory());			
-		}
+		//if (event.getWhoClicked() instanceof Player) {
+		//	removeUnwantedVanillaItems((Player)event.getWhoClicked(), event.getView().getBottomInventory());			
+		//}
 	}
 		
 	public LoreCraftableMaterial getCompatibleCatalyst(LoreCraftableMaterial craftMat) {

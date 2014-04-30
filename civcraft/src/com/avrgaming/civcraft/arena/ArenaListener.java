@@ -47,6 +47,7 @@ public class ArenaListener implements Listener {
 		
 		if (resident.isInsideArena()) {
 			if (resident.getCurrentArena() != null) {
+				
 				CivMessage.sendArena(resident.getCurrentArena(), event.getPlayer().getName()+" has rejoined the arena.");
 				
 				class SyncTask implements Runnable {
@@ -178,7 +179,8 @@ public class ArenaListener implements Listener {
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		Resident resident = CivGlobal.getResident(event.getPlayer());
 		
-		if (!resident.isInsideArena()) {
+		if (!resident.isInsideArena()) 
+		{
 			return;
 		}
 		
@@ -190,7 +192,6 @@ public class ArenaListener implements Listener {
 		if (!event.hasBlock()) {
 			return;
 		}
-		
 		
 		BlockCoord bcoord = new BlockCoord(event.getClickedBlock().getLocation());
 		if (ArenaManager.chests.containsKey(bcoord)) {

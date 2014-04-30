@@ -124,7 +124,7 @@ public class PlayerListener implements Listener {
 		MobSpawnerTimer.playerQueue.add((event.getPlayer().getName()));
 				
 		TaskMaster.asyncTask(new BanCheckOnJoinTask(event.getPlayer().getName()), 0);
-		CustomItemManager.removeUnwantedVanillaItems(event.getPlayer(), event.getPlayer().getInventory());
+		//CustomItemManager.removeUnwantedVanillaItems(event.getPlayer(), event.getPlayer().getInventory());
 		
 		// Secret codes to disable Zan's minimap radar/cave modes.
 

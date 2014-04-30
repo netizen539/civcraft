@@ -649,7 +649,6 @@ public class LoreCraftableMaterial extends LoreMaterial {
 		for (LoreEnhancement enh : LoreCraftableMaterial.getEnhancements(stack)) {
 			out += enh.getClass().getName()+"@"+enh.serialize(stack)+",";
 		}
-		CivLog.debug("Serialized:"+out);
 
 		String outEncoded = new String(Base64Coder.encode(out.getBytes())); 
 		return outEncoded;
