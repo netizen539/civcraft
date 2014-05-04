@@ -285,6 +285,7 @@ public class Civilization extends SQLObject {
 		for (String tech : techs) {
 			ConfigTech t = CivSettings.techs.get(tech);
 			if (t != null) {
+				CivGlobal.researchedTechs.add(t.id.toLowerCase());
 				this.techs.put(tech, t);
 			}
 		}

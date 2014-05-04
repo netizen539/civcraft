@@ -1589,7 +1589,7 @@ public class Resident extends SQLObject {
 	
 	public boolean isInsideArena() {
 		
-		if (this.hasTeam()) {
+		if (!hasTeam()) {
 			this.insideArena = false;
 			return false;
 		}
@@ -1610,7 +1610,6 @@ public class Resident extends SQLObject {
 	}
 	
 	public void setInsideArena(boolean inside) {
-		CivLog.debug(this.getName()+": Setting InsideArena:"+inside);	
 		this.insideArena = inside;
 	}
 	

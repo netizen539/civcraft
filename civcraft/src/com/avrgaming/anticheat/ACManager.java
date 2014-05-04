@@ -33,6 +33,7 @@ import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.threading.TaskMaster;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.TimeTools;
 import com.avrgaming.civcraft.war.War;
 import com.avrgaming.civcraft.war.WarAntiCheat;
@@ -98,7 +99,9 @@ public class ACManager implements PluginMessageListener {
 				}
 			}
 		}
+		
 		TaskMaster.syncTask(new SyncTask(player.getName()), TimeTools.toTicks(3));
+		
 		if (War.isWarTime() && !player.isOp()) {
 			
 			class WarCheckTask implements Runnable {
@@ -124,7 +127,43 @@ public class ACManager implements PluginMessageListener {
 				}
 			}
 			
-			TaskMaster.syncTask(new WarCheckTask(player.getName()), TimeTools.toTicks(10));
+			TaskMaster.syncTask(new WarCheckTask(player.getName()), TimeTools.toTicks(30));
+		}
+		
+		Resident resident = CivGlobal.getResident(player);
+		if (resident != null && resident.isInsideArena()) {
+			class ArenaCheckTask implements Runnable {
+				String name;
+				
+				public ArenaCheckTask(String name) {
+					this.name = name;
+				}
+				
+				@Override
+				public void run() {
+					try {
+						Player player = CivGlobal.getPlayer(name);
+						Resident resident = CivGlobal.getResident(player);
+						
+						if (!resident.isUsesAntiCheat()) {
+							
+							/* Player is rejoining but doesnt have anti-cheat installed. */
+							resident.teleportHome();
+							resident.restoreInventory();
+							resident.setInsideArena(false);
+							resident.save();
+							
+							CivMessage.send(resident, CivColor.LightGray+"You've been teleported home since you cannot be inside an arena without anti-cheat.");
+						}
+						
+					} catch (CivException e) {
+					}
+					
+				}
+				
+			}
+			
+			TaskMaster.syncTask(new ArenaCheckTask(player.getName()), TimeTools.toTicks(30));
 		}
 	}
 
@@ -179,6 +218,7 @@ public class ACManager implements PluginMessageListener {
 			if (resident != null) {
 				resident.setUsesAntiCheat(true);
 			}
+			
 		} catch (CivException e) {
 			CivMessage.sendError(player, "[CivCraft Anti-Cheat] Couldn't Verify your client");
 			CivMessage.sendError(player, e.getMessage());
@@ -186,6 +226,8 @@ public class ACManager implements PluginMessageListener {
 			//e.printStackTrace();
 			return;
 		}
+		
+		
 		CivMessage.sendSuccess(player, "You've been validated by CivCraft Anti-Cheat");
 	}
 	

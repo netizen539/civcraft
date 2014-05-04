@@ -13,7 +13,6 @@ import org.bukkit.inventory.ItemStack;
 import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.lorestorage.LoreGuiItemListener;
 import com.avrgaming.civcraft.main.CivGlobal;
-import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
@@ -63,9 +62,9 @@ public class LoreEnhancementArenaItem  extends LoreEnhancement implements Listen
 			return;
 		}
 		
-		String removedReason = "";
+		String removedReason = null;
 		for (ItemStack stack : event.getInventory().getContents()) {
-
+			
 			if (stack == null) {
 				continue;
 			}
@@ -81,6 +80,9 @@ public class LoreEnhancementArenaItem  extends LoreEnhancement implements Listen
 					event.getInventory().remove(stack);
 					removedReason = CivColor.LightGray+"Some items were removed since they were arena items";
 				}
+				
+				/* Arena items are OK after this point. */
+				continue;
 			}
 			
 			if (isIllegalStack(stack)) {
@@ -127,6 +129,9 @@ public class LoreEnhancementArenaItem  extends LoreEnhancement implements Listen
 					event.getPlayer().getInventory().remove(stack);
 					removedReason = CivColor.LightGray+"Some items were removed since they were arena items";
 				}
+				
+				/* Arena items are OK after this point. */
+				continue;
 			}
 			
 			if (isIllegalStack(stack)) {
@@ -137,7 +142,6 @@ public class LoreEnhancementArenaItem  extends LoreEnhancement implements Listen
 					if (!resident.isInsideArena()) {
 						event.getPlayer().getInventory().remove(stack);
 						removedReason = CivColor.LightGray+"Some items were detected as illegal/impossible and have been removed.";
-						CivLog.debug("Removed:"+stack);
 					}
 				}
 			}
@@ -160,22 +164,23 @@ public class LoreEnhancementArenaItem  extends LoreEnhancement implements Listen
 						continue; /* dont re-add */
 					}
 					removedReason = CivColor.LightGray+"Some items were removed since they were arena items";
-				}
-			}
-			
-			if (isIllegalStack(stack)) {
-				if (event.getPlayer().isOp()) {
-					//CivMessage.send(event.getPlayer(), CivColor.LightGray+"You're allowed to keep an illegal item because you are op.");
-				} else {
-					if (!resident.isInsideArena()) {
-						removedReason = CivColor.LightGray+"Some items were detected as illegal/impossible and have been removed.";
-						continue; /* don't re-add */
+				} else {			
+					if (isIllegalStack(stack)) {
+						if (event.getPlayer().isOp()) {
+							//CivMessage.send(event.getPlayer(), CivColor.LightGray+"You're allowed to keep an illegal item because you are op.");
+						} else {
+							if (!resident.isInsideArena()) {
+								removedReason = CivColor.LightGray+"Some items were detected as illegal/impossible and have been removed.";
+								continue; /* don't re-add */
+							}
+						}
 					}
 				}
 			}
 			
 			contents[i] = stack;
 		}
+		
 		event.getPlayer().getInventory().setArmorContents(contents);
 		
 		if (removedReason != null) {
