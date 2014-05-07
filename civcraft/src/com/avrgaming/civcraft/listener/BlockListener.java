@@ -1692,7 +1692,7 @@ public class BlockListener implements Listener {
 		}
 		
 		if (War.isWarTime()) {
-			event.setNewCurrent(2);
+			event.setNewCurrent(0);
 			return;
 		}
 
