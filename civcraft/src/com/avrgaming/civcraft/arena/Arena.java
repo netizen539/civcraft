@@ -170,6 +170,7 @@ public class Arena {
 			addItemToInventory(Material.ARROW, inv, 64);
 			addItemToInventory(Material.ARROW, inv, 64);
 			addItemToInventory(Material.PUMPKIN_PIE, inv, 64);
+			addItemToInventory(Material.PUMPKIN_PIE, inv, 64);
 
 			
 			playerInvs.put(resident.getName(), inv);
