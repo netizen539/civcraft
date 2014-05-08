@@ -942,7 +942,6 @@ public class BlockListener implements Listener {
 			return;
 		}
 		
-
 		if (event.isCancelled()) {
 			// Fix for bucket bug.
 			if (event.getAction() == Action.RIGHT_CLICK_AIR) {
@@ -955,17 +954,6 @@ public class BlockListener implements Listener {
 			return;
 		}		
 		
-		coord.setFromLocation(event.getPlayer().getLocation());
-		CampBlock cb = CivGlobal.getCampBlock(bcoord);
-		if (cb != null && !resident.isPermOverride()) {
-			if (!cb.getCamp().hasMember(resident.getName())) {
-				CivMessage.sendError(event.getPlayer(), "You cannot interact with blocks in a camp you do not belong to.");
-				event.setCancelled(true);
-				return;
-			}
-		}
-
-
 		if (event.hasItem()) {
 
 			if (event.getItem().getType().equals(Material.POTION)) {
@@ -987,7 +975,6 @@ public class BlockListener implements Listener {
 					return;
 				}
 			}
-
 		}
 
 		Block soilBlock = event.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN);
@@ -1081,13 +1068,13 @@ public class BlockListener implements Listener {
 				
 		coord.setFromLocation(event.getPlayer().getLocation());
 		Camp camp = CivGlobal.getCampFromChunk(coord);
-		if (camp != null && !resident.isPermOverride()) {
-			if (resident.getCamp() != camp.getMembers()) {
+		if (camp != null) {
+			if (!camp.hasMember(event.getPlayer().getName())) {
 				CivMessage.sendError(event.getPlayer(), "You cannot sleep in a camp you do not belong to.");
 				event.setCancelled(true);
 				return;
 			}
-		}
+		}		
 	}
 
 	public static void OnPlayerSwitchEvent(PlayerInteractEvent event) {
@@ -1104,9 +1091,9 @@ public class BlockListener implements Listener {
 		}
 
 		bcoord.setFromLocation(event.getClickedBlock().getLocation());
-		Camp cc = CivGlobal.getCampFromChunk(coord);
-		if (cc != null && !resident.isPermOverride()) {
-			if (!cc.hasMember(resident.getName())) {
+		CampBlock cb = CivGlobal.getCampBlock(bcoord);
+		if (cb != null && !resident.isPermOverride()) {
+			if (!cb.getCamp().hasMember(resident.getName())) {
 				CivMessage.sendError(event.getPlayer(), "You cannot interact with a camp you do not belong to.");
 				event.setCancelled(true);
 				return;
@@ -1467,10 +1454,14 @@ public class BlockListener implements Listener {
 		}
 		
 		if (event.getEntity().getType().equals(EntityType.CHICKEN)) {
-			if (event.getSpawnReason().equals(SpawnReason.EGG) ||
-				event.getSpawnReason().equals(SpawnReason.JOCKEY)) {
+			if (event.getSpawnReason().equals(SpawnReason.EGG)) {
 				event.setCancelled(true);
 				return;
+			}
+			NBTTagCompound compound = new NBTTagCompound();
+			if (compound.getBoolean("IsChickenJockey")) {
+				event.setCancelled(true);
+				return;			
 			}
 		}
 
@@ -1670,15 +1661,15 @@ public class BlockListener implements Listener {
 				case ALLOWED:
 					continue;
 				case NOT_AT_WAR:
-					CivMessage.send(attacker, Colors.Rose+"You cannot use potions agaisnt "+defender.getName()+". You are not at war.");
+					CivMessage.send(attacker, Colors.Rose+"You cannot use potions against "+defender.getName()+". You are not at war.");
 					event.setCancelled(true);
 					return;
 				case NEUTRAL_IN_WARZONE:
-					CivMessage.send(attacker, Colors.Rose+"You cannot use potions agaisnt "+defender.getName()+". You a neutral in a war-zone.");
+					CivMessage.send(attacker, Colors.Rose+"You cannot use potions against "+defender.getName()+". You a neutral in a war-zone.");
 					event.setCancelled(true);
 					return;
 				case NON_PVP_ZONE:
-					CivMessage.send(attacker, Colors.Rose+"You cannot use potions agaisnt "+defender.getName()+". You are in a non-pvp zone.");
+					CivMessage.send(attacker, Colors.Rose+"You cannot use potions against "+defender.getName()+". You are in a non-pvp zone.");
 					event.setCancelled(true);
 					return;
 				}
@@ -1688,11 +1679,6 @@ public class BlockListener implements Listener {
 
 	@EventHandler(priority = EventPriority.NORMAL) 
 	public void onBlockRedstoneEvent(BlockRedstoneEvent event) {
-
-		if (War.isWarTime()) {
-			event.setNewCurrent(0);
-			return;
-		}
 		
 		bcoord.setFromLocation(event.getBlock().getLocation());
 
@@ -1703,6 +1689,11 @@ public class BlockListener implements Listener {
 				event.setNewCurrent(0);
 				return;
 			}
+		}
+		
+		if (War.isWarTime()) {
+			event.setNewCurrent(0);
+			return;
 		}
 
 	}

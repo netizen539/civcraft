@@ -137,6 +137,7 @@ public class Arena {
 	private void addItemToInventory(Material mat, Inventory inv, int amount) {
 		ItemStack stack = ItemManager.createItemStack(ItemManager.getId(mat), amount);
 		stack = LoreCraftableMaterial.addEnhancement(stack, LoreEnhancement.enhancements.get("LoreEnhancementSoulBound"));
+		stack = LoreCraftableMaterial.addEnhancement(stack, LoreEnhancement.enhancements.get("LoreEnhancementArenaItem"));
 		inv.addItem(stack);
 	}
 	
@@ -168,6 +169,7 @@ public class Arena {
 			addItemToInventory(Material.ARROW, inv, 64);
 			addItemToInventory(Material.ARROW, inv, 64);
 			addItemToInventory(Material.ARROW, inv, 64);
+			addItemToInventory(Material.PUMPKIN_PIE, inv, 64);
 			addItemToInventory(Material.PUMPKIN_PIE, inv, 64);
 
 			

@@ -28,7 +28,8 @@ public class PvPListener implements Listener {
 				CivMessage.sendError(damager, "You are unable to damage players while protected.");
 				event.setCancelled(true);					
 			}
-		} else if (event.getDamager() instanceof Arrow) {
+		}
+		if (event.getDamager() instanceof Arrow) {
 			LivingEntity shooter = (LivingEntity) ((Arrow) event.getDamager()).getShooter();
 			
 			if ((shooter instanceof Player) && (event.getEntity() instanceof Player)) {

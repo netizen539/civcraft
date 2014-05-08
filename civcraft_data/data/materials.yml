@@ -3372,6 +3372,7 @@ materials:
           name: 'Iron Hoe'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3396,6 +3397,7 @@ materials:
           name: 'Gold Hoe'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3420,6 +3422,7 @@ materials:
           name: 'Diamond Hoe'
           craftable: true
           shaped: true
+          vanilla: true
           category: '<blue>Tools'
           components:
               - name: 'Attack'
@@ -3633,12 +3636,12 @@ removed_recipes:
       data: 0
       
     # Hoe
-    - type_id: 292
-      data: 0
-    - type_id: 294
-      data: 0
-    - type_id: 293
-      data: 0
+#    - type_id: 292
+#      data: 0
+#    - type_id: 294
+#      data: 0
+#    - type_id: 293
+#      data: 0
         
     # TNT
     - type_id: 46
