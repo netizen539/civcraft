@@ -24,10 +24,10 @@ import com.avrgaming.civcraft.command.CommandBase;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.permission.PermissionGroup;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class CivGroupCommand extends CommandBase {
 
@@ -74,7 +74,7 @@ public class CivGroupCommand extends CommandBase {
 		CivMessage.sendSuccess(sender, "Removed "+oldMember.getName()+" from group "+groupName);	
 		try {
 			Player newPlayer = CivGlobal.getPlayer(oldMember);
-			CivMessage.send(newPlayer, Colors.Rose+"You were removed from the "+groupName+" group in civ "+civ.getName());
+			CivMessage.send(newPlayer, CivColor.Rose+"You were removed from the "+groupName+" group in civ "+civ.getName());
 		} catch (CivException e) {
 			/* player not online. forget the exception*/
 		}
@@ -142,10 +142,10 @@ public class CivGroupCommand extends CommandBase {
 			CivMessage.sendHeading(sender, "Civ Group Information");
 
 			PermissionGroup grp = civ.getLeaderGroup();
-			CivMessage.send(sender, grp.getName()+Colors.LightGray+" ("+grp.getMemberCount()+" members)");
+			CivMessage.send(sender, grp.getName()+CivColor.LightGray+" ("+grp.getMemberCount()+" members)");
 					
 			grp = civ.getAdviserGroup();
-			CivMessage.send(sender, grp.getName()+Colors.LightGray+" ("+grp.getMemberCount()+" members)");
+			CivMessage.send(sender, grp.getName()+CivColor.LightGray+" ("+grp.getMemberCount()+" members)");
 
 		}
 	}

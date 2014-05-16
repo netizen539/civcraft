@@ -35,11 +35,11 @@ import com.avrgaming.civcraft.lorestorage.LoreMaterial;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.LibraryEnchantment;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.StructureSign;
 import com.avrgaming.civcraft.object.Town;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class Library extends Structure {
 
@@ -239,7 +239,7 @@ public class Library extends Structure {
 		int special_id = Integer.valueOf(sign.getAction());
 
 		if (!event.hasItem()) {
-			CivMessage.send(player, Colors.Rose+"You must have the item you wish to enchant in hand.");
+			CivMessage.send(player, CivColor.Rose+"You must have the item you wish to enchant in hand.");
 			return;
 		}
 		ItemStack item = event.getItem();
@@ -264,7 +264,7 @@ public class Library extends Structure {
 				
 		// Determine if resident can pay.
 		if (!resident.getTreasury().hasEnough(ench.price+payToTown)) {
-			CivMessage.send(player, Colors.Rose+"You do not have enough money, you need "+ench.price+payToTown+ " coins.");
+			CivMessage.send(player, CivColor.Rose+"You do not have enough money, you need "+ench.price+payToTown+ " coins.");
 			return;
 		}
 				
@@ -275,13 +275,13 @@ public class Library extends Structure {
 		if (payToTown != 0) {
 			getTown().depositDirect(payToTown);
 			
-			CivMessage.send(player, Colors.Yellow + "Paid "+ payToTown+" coins in non-resident taxes.");
+			CivMessage.send(player, CivColor.Yellow + "Paid "+ payToTown+" coins in non-resident taxes.");
 		}
 				
 		// Successful payment, process enchantment.
 		ItemStack newStack = this.addEnchantment(item, ench);
 		player.setItemInHand(newStack);
-		CivMessage.send(player, Colors.LightGreen+"Enchanted with "+ench.displayName+"!");
+		CivMessage.send(player, CivColor.LightGreen+"Enchanted with "+ench.displayName+"!");
 	}
 
 	@Override
@@ -289,7 +289,7 @@ public class Library extends Structure {
 		try {
 			add_enchantment_to_tool(player, sign, event);
 		} catch (CivException e) {
-			CivMessage.send(player, Colors.Rose+e.getMessage());
+			CivMessage.send(player, CivColor.Rose+e.getMessage());
 		}	
 	}
 	

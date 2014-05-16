@@ -37,10 +37,10 @@ import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.permission.PermissionGroup;
 import com.avrgaming.civcraft.permission.PlotPermissions;
 import com.avrgaming.civcraft.util.ChunkCoord;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class TownChunk extends SQLObject {
 	
@@ -305,7 +305,7 @@ public class TownChunk extends SQLObject {
 		
 		Camp camp = CivGlobal.getCampFromChunk(coord);
 		if (camp != null) {
-			CivMessage.sendCamp(camp, Colors.Yellow+ChatColor.BOLD+"Our camp's land was claimed by the town of "+town.getName()+" and has been disbaned!");
+			CivMessage.sendCamp(camp, CivColor.Yellow+ChatColor.BOLD+"Our camp's land was claimed by the town of "+town.getName()+" and has been disbaned!");
 			camp.disband();
 		}
 		
@@ -321,7 +321,7 @@ public class TownChunk extends SQLObject {
 	public static TownChunk claim(Town town, Player player, boolean outpost) throws CivException {
 		double cost = getNextPlotCost(town);
 		TownChunk tc = claim(town, new ChunkCoord(player.getLocation()), outpost);
-		CivMessage.sendSuccess(player, "Claimed chunk at "+tc.getChunkCoord()+" for "+Colors.Yellow+cost+Colors.LightGreen+" coins.");
+		CivMessage.sendSuccess(player, "Claimed chunk at "+tc.getChunkCoord()+" for "+CivColor.Yellow+cost+CivColor.LightGreen+" coins.");
 		return tc;
 	}
 	
@@ -397,7 +397,7 @@ public class TownChunk extends SQLObject {
 	
 		Camp camp = CivGlobal.getCampFromChunk(coord);
 		if (camp != null) {
-			CivMessage.sendCamp(camp, Colors.Yellow+ChatColor.BOLD+"Our camp's land was claimed by the town of "+town.getName()+" and has been disbaned!");
+			CivMessage.sendCamp(camp, CivColor.Yellow+ChatColor.BOLD+"Our camp's land was claimed by the town of "+town.getName()+" and has been disbaned!");
 			camp.disband();
 		}
 		
@@ -446,15 +446,15 @@ public class TownChunk extends SQLObject {
 		String out = "";
 		
 		if (this.perms.getOwner() != null) {
-			out += Colors.LightGray+"[Owned by: "+Colors.LightGreen+this.perms.getOwner().getName()+Colors.LightGray+"]";
+			out += CivColor.LightGray+"[Owned by: "+CivColor.LightGreen+this.perms.getOwner().getName()+CivColor.LightGray+"]";
 		}
 		
 		if (this.perms.getOwner() == null && fromTc != null && fromTc.perms.getOwner() != null) {
-			out += Colors.LightGray+"[Unowned]";
+			out += CivColor.LightGray+"[Unowned]";
 		}
 		
 		if (this.isForSale()) {
-			out += Colors.Yellow+"[For Sale: "+this.price+" coins]";
+			out += CivColor.Yellow+"[For Sale: "+this.price+" coins]";
 		}
 		
 		return out;

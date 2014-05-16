@@ -62,7 +62,6 @@ import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Buff;
 import com.avrgaming.civcraft.object.BuildableDamageBlock;
 import com.avrgaming.civcraft.object.Civilization;
@@ -396,15 +395,15 @@ public abstract class Buildable extends SQLObject {
 			Inventory inv = Bukkit.getServer().createInventory(player, CivTutorial.MAX_CHEST_SIZE*9);
 			ItemStack infoRec = LoreGuiItem.build("Default "+this.getDisplayName(), 
 					ItemManager.getId(Material.WRITTEN_BOOK), 
-					0, Colors.Gold+"<Click To Build>");
+					0, CivColor.Gold+"<Click To Build>");
 			infoRec = LoreGuiItem.setAction(infoRec, "buildWithDefaultTemplate");
 			inv.addItem(infoRec);
 			
 			for (Perk perk : perkList) {
 				infoRec = LoreGuiItem.build(perk.getDisplayName(), 
 						perk.configPerk.type_id, 
-						perk.configPerk.data, Colors.Gold+"<Click To Build>",
-						Colors.Gray+"Provided by: "+Colors.LightBlue+perk.provider);
+						perk.configPerk.data, CivColor.Gold+"<Click To Build>",
+						CivColor.Gray+"Provided by: "+CivColor.LightBlue+perk.provider);
 				infoRec = LoreGuiItem.setAction(infoRec, "buildWithTemplate:"+perk.getIdent());
 				inv.addItem(infoRec);
 			}
@@ -412,12 +411,12 @@ public abstract class Buildable extends SQLObject {
 			for (Perk perk : personalUnboundPerks) {
 				infoRec = LoreGuiItem.build(perk.getDisplayName(), 
 						CivData.BEDROCK, 
-						perk.configPerk.data, Colors.Gold+"<Click To Bind>",
-						Colors.Gray+"Unbound Temple",
-						Colors.Gray+"You own this template.",
-						Colors.Gray+"The town is missing it.",
-						Colors.Gray+"Click to bind to town first.",
-						Colors.Gray+"Then build again.");
+						perk.configPerk.data, CivColor.Gold+"<Click To Bind>",
+						CivColor.Gray+"Unbound Temple",
+						CivColor.Gray+"You own this template.",
+						CivColor.Gray+"The town is missing it.",
+						CivColor.Gray+"Click to bind to town first.",
+						CivColor.Gray+"Then build again.");
 				infoRec = LoreGuiItem.setAction(infoRec, "activateperk:"+perk.getIdent());
 				inv.addItem(infoRec);
 			}
@@ -446,14 +445,14 @@ public abstract class Buildable extends SQLObject {
 	}
 	
 	public void buildPlayerPreview(Player player, Location centerLoc, Template tpl) throws CivException, IOException {
-		centerLoc = repositionCenter(centerLoc, tpl.dir(), (double)tpl.size_x, (double)tpl.size_z);
+		centerLoc = repositionCenter(centerLoc, tpl.dir(), tpl.size_x, tpl.size_z);
 		tpl.buildPreviewScaffolding(centerLoc, player);
 		this.setCorner(new BlockCoord(centerLoc));
 		
 		CivMessage.sendHeading(player, "Building a Structure");
-		CivMessage.send(player, Colors.Yellow+ChatColor.BOLD+"We've placed a bedrock outline, only visible to you which outlines "+
+		CivMessage.send(player, CivColor.Yellow+ChatColor.BOLD+"We've placed a bedrock outline, only visible to you which outlines "+
 				" the structure's location.");
-		CivMessage.send(player, Colors.LightGreen+ChatColor.BOLD+"If this location looks good, type 'yes'. Otherwise, type anything else to cancel building.");
+		CivMessage.send(player, CivColor.LightGreen+ChatColor.BOLD+"If this location looks good, type 'yes'. Otherwise, type anything else to cancel building.");
 		Resident resident = CivGlobal.getResident(player);
 		
 		/* Run validation on position. */
@@ -483,15 +482,15 @@ public abstract class Buildable extends SQLObject {
 			Inventory inv = Bukkit.getServer().createInventory(player, CivTutorial.MAX_CHEST_SIZE*9);
 			ItemStack infoRec = LoreGuiItem.build("Default "+info.displayName, 
 					ItemManager.getId(Material.WRITTEN_BOOK), 
-					0, Colors.Gold+"<Click To Build>");
+					0, CivColor.Gold+"<Click To Build>");
 			infoRec = LoreGuiItem.setAction(infoRec, "buildWithDefaultPersonalTemplate");
 			inv.addItem(infoRec);
 			
 			for (Perk perk : perkList) {
 				infoRec = LoreGuiItem.build(perk.getDisplayName(), 
 						perk.configPerk.type_id, 
-						perk.configPerk.data, Colors.Gold+"<Click To Build>",
-						Colors.Gray+"Provided by: "+Colors.LightBlue+"Yourself :)");
+						perk.configPerk.data, CivColor.Gold+"<Click To Build>",
+						CivColor.Gray+"Provided by: "+CivColor.LightBlue+"Yourself :)");
 				infoRec = LoreGuiItem.setAction(infoRec, "buildWithPersonalTemplate:"+perk.getIdent());
 				inv.addItem(infoRec);
 				player.openInventory(inv);
@@ -511,7 +510,7 @@ public abstract class Buildable extends SQLObject {
 			return;
 		}
 		
-		centerLoc = repositionCenterStatic(centerLoc, info, tpl.dir(), (double)tpl.size_x, (double)tpl.size_z);	
+		centerLoc = repositionCenterStatic(centerLoc, info, tpl.dir(), tpl.size_x, tpl.size_z);	
 		//validate(player, null, tpl, centerLoc, callback);
 		TaskMaster.asyncTask(new StructureValidator(player, tpl.getFilepath(), centerLoc, callback), 0);
 	}
@@ -522,7 +521,7 @@ public abstract class Buildable extends SQLObject {
 		undo_tpl.buildUndoTemplate(undo_tpl, this.getCorner().getBlock());
 		
 		for (BuildAsyncTask task : this.getTown().build_tasks) {
-			if (task.buildable == (Buildable)this) {
+			if (task.buildable == this) {
 				task.abort();
 			}
 		}
@@ -1163,7 +1162,7 @@ public abstract class Buildable extends SQLObject {
 		if (player != null) {
 		Resident resident = CivGlobal.getResident(player);
 			if (resident.isCombatInfo()) {
-				CivMessage.send(player, Colors.LightGray+hit.getOwner().getDisplayName()+" has been damaged ("+
+				CivMessage.send(player, CivColor.LightGray+hit.getOwner().getDisplayName()+" has been damaged ("+
 						hit.getOwner().hitpoints+"/"+hit.getOwner().getMaxHitPoints()+")");
 			}
 		}
@@ -1171,9 +1170,9 @@ public abstract class Buildable extends SQLObject {
 	}
 	
 	public void onDamageNotification(Player player, BuildableDamageBlock hit) {
-		CivMessage.send(player, Colors.LightGray+hit.getOwner().getDisplayName()+" has been damaged "+
+		CivMessage.send(player, CivColor.LightGray+hit.getOwner().getDisplayName()+" has been damaged "+
 				hit.getOwner().getDamagePercentage()+"%!");
-		CivMessage.sendTown(hit.getTown(), Colors.Yellow+"Our "+hit.getOwner().getDisplayName()+" at ("+hit.getOwner().getCorner()+
+		CivMessage.sendTown(hit.getTown(), CivColor.Yellow+"Our "+hit.getOwner().getDisplayName()+" at ("+hit.getOwner().getCorner()+
 				") is under attack! Damage is "+hit.getOwner().getDamagePercentage()+"%!");	
 	}
 	

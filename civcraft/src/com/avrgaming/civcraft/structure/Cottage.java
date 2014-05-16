@@ -35,12 +35,12 @@ import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Buff;
 import com.avrgaming.civcraft.object.StructureChest;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.sessiondb.SessionEntry;
 import com.avrgaming.civcraft.threading.CivAsyncTask;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.util.MultiInventory;
 
@@ -122,7 +122,7 @@ public class Cottage extends Structure {
 				CivGlobal.getSessionDB().add(key, ""+max_poison_ticks, this.getTown().getCiv().getId(), this.getTown().getId(), this.getId());
 	
 			// Add some rotten flesh to the chest lol
-			CivMessage.sendTown(this.getTown(), Colors.Rose+"Our granaries have been poisoned!!");
+			CivMessage.sendTown(this.getTown(), CivColor.Rose+"Our granaries have been poisoned!!");
 			inv.addItem(ItemManager.createItemStack(CivData.ROTTEN_FLESH, 4));
 			return true;
 		}
@@ -184,17 +184,17 @@ public class Cottage extends Structure {
 		/* Bail early for results that do not generate coins. */
 		switch (result) {
 		case STARVE:
-			CivMessage.sendTown(getTown(), Colors.LightGreen+"A level "+getConsumeComponent().getLevel()+" cottage "+Colors.Rose+"starved"+
-					getConsumeComponent().getCountString()+Colors.LightGreen+" and generated no coins.");
+			CivMessage.sendTown(getTown(), CivColor.LightGreen+"A level "+getConsumeComponent().getLevel()+" cottage "+CivColor.Rose+"starved"+
+					getConsumeComponent().getCountString()+CivColor.LightGreen+" and generated no coins.");
 			return;
 		case LEVELDOWN:
-			CivMessage.sendTown(getTown(), Colors.LightGreen+"A level "+(getConsumeComponent().getLevel()+1)+" cottage "+Colors.Red+"leveled-down"+Colors.LightGreen+" and generated no coins.");
+			CivMessage.sendTown(getTown(), CivColor.LightGreen+"A level "+(getConsumeComponent().getLevel()+1)+" cottage "+CivColor.Red+"leveled-down"+CivColor.LightGreen+" and generated no coins.");
 			return;
 		case STAGNATE:
-			CivMessage.sendTown(getTown(), Colors.LightGreen+"A level "+getConsumeComponent().getLevel()+" cottage "+Colors.Yellow+"stagnated"+getConsumeComponent().getCountString()+Colors.LightGreen+" and generated no coins.");
+			CivMessage.sendTown(getTown(), CivColor.LightGreen+"A level "+getConsumeComponent().getLevel()+" cottage "+CivColor.Yellow+"stagnated"+getConsumeComponent().getCountString()+CivColor.LightGreen+" and generated no coins.");
 			return;
 		case UNKNOWN:
-			CivMessage.sendTown(getTown(), Colors.LightGreen+Colors.LightGreen+"Something "+Colors.DarkPurple+"unknown"+Colors.LightGreen+" happened to a cottage. It generates no coins.");
+			CivMessage.sendTown(getTown(), CivColor.LightGreen+CivColor.LightGreen+"Something "+CivColor.DarkPurple+"unknown"+CivColor.LightGreen+" happened to a cottage. It generates no coins.");
 			return;
 		default:
 			break;
@@ -235,23 +235,23 @@ public class Cottage extends Structure {
 		String stateMessage = "";
 		switch (result) {
 		case GROW:
-			stateMessage = Colors.Green+"grew"+getConsumeComponent().getCountString()+Colors.LightGreen;
+			stateMessage = CivColor.Green+"grew"+getConsumeComponent().getCountString()+CivColor.LightGreen;
 			break;
 		case LEVELUP:
-			stateMessage = Colors.Green+"leveled up"+Colors.LightGreen;
+			stateMessage = CivColor.Green+"leveled up"+CivColor.LightGreen;
 			break;
 		case MAXED:
-			stateMessage = Colors.Green+"is maxed"+getConsumeComponent().getCountString()+Colors.LightGreen;
+			stateMessage = CivColor.Green+"is maxed"+getConsumeComponent().getCountString()+CivColor.LightGreen;
 			break;
 		default:
 			break;
 		}
 		
 		if (taxesPaid > 0) {
-			CivMessage.sendTown(this.getTown(), Colors.LightGreen+"A level "+getConsumeComponent().getLevel()+" cottage "+stateMessage+" and generated "+total_coins+" coins!"+
-					Colors.Yellow+" (Paid "+taxesPaid+" in taxes to "+this.getTown().getDepositCiv().getName()+")");
+			CivMessage.sendTown(this.getTown(), CivColor.LightGreen+"A level "+getConsumeComponent().getLevel()+" cottage "+stateMessage+" and generated "+total_coins+" coins!"+
+					CivColor.Yellow+" (Paid "+taxesPaid+" in taxes to "+this.getTown().getDepositCiv().getName()+")");
 		} else {
-			CivMessage.sendTown(this.getTown(), Colors.LightGreen+"A level "+getConsumeComponent().getLevel()+" cottage "+stateMessage+" and generated "+total_coins+" coins!");
+			CivMessage.sendTown(this.getTown(), CivColor.LightGreen+"A level "+getConsumeComponent().getLevel()+" cottage "+stateMessage+" and generated "+total_coins+" coins!");
 		}
 		
 		this.getTown().getTreasury().deposit(total_coins - taxesPaid);

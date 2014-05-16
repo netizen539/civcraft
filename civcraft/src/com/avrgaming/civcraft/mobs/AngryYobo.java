@@ -1,9 +1,6 @@
 package com.avrgaming.civcraft.mobs;
 
 
-import org.bukkit.event.entity.EntityTargetEvent;
-import org.bukkit.event.entity.EntityTargetEvent.TargetReason;
-
 import net.minecraft.server.v1_7_R2.DamageSource;
 import net.minecraft.server.v1_7_R2.Entity;
 import net.minecraft.server.v1_7_R2.EntityCreature;
@@ -14,6 +11,9 @@ import net.minecraft.server.v1_7_R2.PathfinderGoalLookAtPlayer;
 import net.minecraft.server.v1_7_R2.PathfinderGoalMeleeAttack;
 import net.minecraft.server.v1_7_R2.PathfinderGoalNearestAttackableTarget;
 import net.minecraft.server.v1_7_R2.PathfinderGoalSelector;
+
+import org.bukkit.event.entity.EntityTargetEvent;
+import org.bukkit.event.entity.EntityTargetEvent.TargetReason;
 
 import com.avrgaming.civcraft.mobs.components.MobComponentDefense;
 import com.avrgaming.mob.ICustomMob;

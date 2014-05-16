@@ -31,7 +31,6 @@ import com.avrgaming.civcraft.endgame.EndGameCondition;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Buff;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Resident;
@@ -72,7 +71,7 @@ public class CivInfoCommand extends CommandBase {
 		
 		for (Town t : civ.getTowns()) {
 			for (Buff b : t.getBuffManager().getEffectiveBuffs(Buff.SCIENCE_RATE)) {
-				out.add(Colors.Green+"From "+b.getSource()+": "+Colors.LightGreen+b.getDisplayDouble());
+				out.add(CivColor.Green+"From "+b.getSource()+": "+CivColor.LightGreen+b.getDisplayDouble());
 			}
 		}
 		
@@ -80,7 +79,7 @@ public class CivInfoCommand extends CommandBase {
 			for (BonusGoodie goodie : t.getEffectiveBonusGoodies()) {
 				try {
 					double bonus = Double.valueOf(goodie.getBonusValue("beaker_bonus"));
-					out.add(Colors.Green+"From Goodie "+goodie.getDisplayName()+": "+Colors.LightGreen+(bonus*100)+"%");
+					out.add(CivColor.Green+"From Goodie "+goodie.getDisplayName()+": "+CivColor.LightGreen+(bonus*100)+"%");
 					
 				} catch (NumberFormatException e) {
 					//Ignore this goodie might not have the bonus.
@@ -88,7 +87,7 @@ public class CivInfoCommand extends CommandBase {
 				
 				try {
 					double bonus = Double.valueOf(goodie.getBonusValue("extra_beakers"));
-					out.add(Colors.Green+"From Goodie "+goodie.getDisplayName()+": "+Colors.LightGreen+bonus);
+					out.add(CivColor.Green+"From Goodie "+goodie.getDisplayName()+": "+CivColor.LightGreen+bonus);
 					
 				} catch (NumberFormatException e) {
 					//Ignore this goodie might not have the bonus.
@@ -96,8 +95,8 @@ public class CivInfoCommand extends CommandBase {
 			}
 		}*/
 		
-		out.add(Colors.LightBlue+"------------------------------------");
-		out.add(Colors.Green+"Total: "+Colors.LightGreen+df.format(civ.getBeakers()));	
+		out.add(CivColor.LightBlue+"------------------------------------");
+		out.add(CivColor.Green+"Total: "+CivColor.LightGreen+df.format(civ.getBeakers()));	
 		CivMessage.send(sender, out);
 	}
 	
@@ -106,8 +105,8 @@ public class CivInfoCommand extends CommandBase {
 		
 		CivMessage.sendHeading(sender, "Town Tax Info");
 		for (Town t : civ.getTowns()) {
-			CivMessage.send(sender, Colors.Green+"Town:"+Colors.LightGreen+t.getName()+Colors.Green+
-					" Total: "+Colors.LightGreen+civ.lastTaxesPaidMap.get(t.getName()));
+			CivMessage.send(sender, CivColor.Green+"Town:"+CivColor.LightGreen+t.getName()+CivColor.Green+
+					" Total: "+CivColor.LightGreen+civ.lastTaxesPaidMap.get(t.getName()));
 		}
 		
 	}
@@ -131,13 +130,13 @@ public class CivInfoCommand extends CommandBase {
 			CivMessage.sendHeading(sender, civ.getName()+" Upkeep Info");
 	
 			for (Town town : civ.getTowns()) {
-				CivMessage.send(sender, Colors.Green+"Town:"+Colors.LightGreen+town.getName()+Colors.Green+
-													" Total: "+Colors.LightGreen+getTownTotalLastTick(town, civ));
+				CivMessage.send(sender, CivColor.Green+"Town:"+CivColor.LightGreen+town.getName()+CivColor.Green+
+													" Total: "+CivColor.LightGreen+getTownTotalLastTick(town, civ));
 			}
-			CivMessage.send(sender, Colors.Green+"War: "+Colors.LightGreen+df.format(civ.getWarUpkeep()));
+			CivMessage.send(sender, CivColor.Green+"War: "+CivColor.LightGreen+df.format(civ.getWarUpkeep()));
 			
-			CivMessage.send(sender, Colors.LightGray+"Shows upkeep paid for last tick.");
-			CivMessage.send(sender, Colors.LightGray+"Use /civ info upkeep <town name> to show a breakdown per town.");
+			CivMessage.send(sender, CivColor.LightGray+"Shows upkeep paid for last tick.");
+			CivMessage.send(sender, CivColor.LightGray+"Use /civ info upkeep <town name> to show a breakdown per town.");
 			
 			return;
 		} else {
@@ -148,13 +147,13 @@ public class CivInfoCommand extends CommandBase {
 			}
 			
 			CivMessage.sendHeading(sender, "Town of "+town.getName()+"  Upkeep Details");
-			CivMessage.send(sender, Colors.Green+"Base: "+Colors.LightGreen+civ.getUpkeepPaid(town, "base"));
-			CivMessage.send(sender, Colors.Green+"Distance: "+Colors.LightGreen+civ.getUpkeepPaid(town, "distance"));
-			CivMessage.send(sender, Colors.Green+"DistanceUpkeep: "+Colors.LightGreen+civ.getUpkeepPaid(town, "distanceUpkeep"));
-			CivMessage.send(sender, Colors.Green+"Debt: "+Colors.LightGreen+civ.getUpkeepPaid(town, "debt"));
-			CivMessage.send(sender, Colors.Green+"Total: "+Colors.LightGreen+getTownTotalLastTick(town, civ));
+			CivMessage.send(sender, CivColor.Green+"Base: "+CivColor.LightGreen+civ.getUpkeepPaid(town, "base"));
+			CivMessage.send(sender, CivColor.Green+"Distance: "+CivColor.LightGreen+civ.getUpkeepPaid(town, "distance"));
+			CivMessage.send(sender, CivColor.Green+"DistanceUpkeep: "+CivColor.LightGreen+civ.getUpkeepPaid(town, "distanceUpkeep"));
+			CivMessage.send(sender, CivColor.Green+"Debt: "+CivColor.LightGreen+civ.getUpkeepPaid(town, "debt"));
+			CivMessage.send(sender, CivColor.Green+"Total: "+CivColor.LightGreen+getTownTotalLastTick(town, civ));
 
-			CivMessage.send(sender, Colors.LightGray+"Shows upkeep paid for last tick.");
+			CivMessage.send(sender, CivColor.LightGray+"Shows upkeep paid for last tick.");
 		}
 
 		
@@ -164,7 +163,7 @@ public class CivInfoCommand extends CommandBase {
 	@Override
 	public void doDefaultAction() throws CivException {
 		show_info();
-		CivMessage.send(sender, Colors.LightGray+"Subcommands available: See /civ info help");
+		CivMessage.send(sender, CivColor.LightGray+"Subcommands available: See /civ info help");
 	}
 	
 	public static void show(CommandSender sender, Resident resident, Civilization civ) {
@@ -188,34 +187,34 @@ public class CivInfoCommand extends CommandBase {
 		
 		CivMessage.sendHeading(sender, "Civilization of "+civ.getName());
 		
-		CivMessage.send(sender, Colors.Green+"Score: "+Colors.LightGreen+civ.getScore()+
-				Colors.Green+" Towns: "+Colors.LightGreen+civ.getTownCount());
+		CivMessage.send(sender, CivColor.Green+"Score: "+CivColor.LightGreen+civ.getScore()+
+				CivColor.Green+" Towns: "+CivColor.LightGreen+civ.getTownCount());
 		if (civ.getLeaderGroup() == null) {
-			CivMessage.send(sender, Colors.Green+"Leaders: "+Colors.Rose+"NONE");
+			CivMessage.send(sender, CivColor.Green+"Leaders: "+CivColor.Rose+"NONE");
 		} else {
-			CivMessage.send(sender, Colors.Green+"Leaders: "+Colors.LightGreen+civ.getLeaderGroup().getMembersString());
+			CivMessage.send(sender, CivColor.Green+"Leaders: "+CivColor.LightGreen+civ.getLeaderGroup().getMembersString());
 		}
 		
 		if (civ.getAdviserGroup() == null) {
-			CivMessage.send(sender, Colors.Green+"Advisers: "+Colors.Rose+"NONE");
+			CivMessage.send(sender, CivColor.Green+"Advisers: "+CivColor.Rose+"NONE");
 		} else {
-			CivMessage.send(sender, Colors.Green+"Advisers: "+Colors.LightGreen+civ.getAdviserGroup().getMembersString());
+			CivMessage.send(sender, CivColor.Green+"Advisers: "+CivColor.LightGreen+civ.getAdviserGroup().getMembersString());
 		}
 	    
 	    if (resident == null || civ.hasResident(resident)) {
-	    	CivMessage.send(sender, Colors.Green+"Income Tax Rate: "+Colors.LightGreen+civ.getIncomeTaxRateString()+
-					Colors.Green+" Science Percentage: "+Colors.LightGreen+DecimalHelper.formatPercentage(civ.getSciencePercentage()));
-			CivMessage.send(sender ,Colors.Green+"Beakers: "+Colors.LightGreen+civ.getBeakers()+
-					Colors.Green+" Online: "+Colors.LightGreen+civ.getOnlineResidents().size());
+	    	CivMessage.send(sender, CivColor.Green+"Income Tax Rate: "+CivColor.LightGreen+civ.getIncomeTaxRateString()+
+					CivColor.Green+" Science Percentage: "+CivColor.LightGreen+DecimalHelper.formatPercentage(civ.getSciencePercentage()));
+			CivMessage.send(sender ,CivColor.Green+"Beakers: "+CivColor.LightGreen+civ.getBeakers()+
+					CivColor.Green+" Online: "+CivColor.LightGreen+civ.getOnlineResidents().size());
 	    }
 		
 		if (resident == null || civ.getLeaderGroup().hasMember(resident) || civ.getAdviserGroup().hasMember(resident) || isOP) {
-			CivMessage.send(sender, Colors.Green+"Treasury: "+Colors.LightGreen+civ.getTreasury().getBalance()+Colors.Green+" coins.");
+			CivMessage.send(sender, CivColor.Green+"Treasury: "+CivColor.LightGreen+civ.getTreasury().getBalance()+CivColor.Green+" coins.");
 		}
 		
 		if (civ.getTreasury().inDebt()) {
-			CivMessage.send(sender, Colors.Yellow+"In Debt: "+civ.getTreasury().getDebt()+" coins.");	
-			CivMessage.send(sender, Colors.Yellow+civ.getDaysLeftWarning());
+			CivMessage.send(sender, CivColor.Yellow+"In Debt: "+civ.getTreasury().getDebt()+" coins.");	
+			CivMessage.send(sender, CivColor.Yellow+civ.getDaysLeftWarning());
 		}
 		
 		for (EndGameCondition endCond : EndGameCondition.endConditions) {
@@ -248,14 +247,14 @@ public class CivInfoCommand extends CommandBase {
 					CivColor.LightPurple+CivColor.BOLD+df.format(beakers)+CivColor.White+" beakers on The Enlightenment.");			
 		}
 		
-		String out = Colors.Green+"Towns: ";
+		String out = CivColor.Green+"Towns: ";
 		for (Town town : civ.getTowns()) {
 			if (town.isCapitol()) {
-				out += Colors.Gold+town.getName();
+				out += CivColor.Gold+town.getName();
 			} else if (town.getMotherCiv() != null) {
-				out += Colors.Yellow+town.getName();
+				out += CivColor.Yellow+town.getName();
 			} else {
-				out += Colors.White+town.getName();
+				out += CivColor.White+town.getName();
 			}
 			out += ", ";
 		}

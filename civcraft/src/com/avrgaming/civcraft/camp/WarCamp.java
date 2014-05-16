@@ -1,10 +1,10 @@
 package com.avrgaming.civcraft.camp;
 
 import java.io.IOException;
-import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -31,7 +31,6 @@ import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.BuildableDamageBlock;
 import com.avrgaming.civcraft.object.ControlPoint;
 import com.avrgaming.civcraft.object.Resident;
@@ -468,11 +467,11 @@ public class WarCamp extends Buildable implements RespawnLocationHolder {
 					onControlBlockHit(cp, world, player, (StructureBlock)hit);
 				}
 			} else {
-				CivMessage.send(player, Colors.Rose+"Control Block already destroyed.");
+				CivMessage.send(player, CivColor.Rose+"Control Block already destroyed.");
 			}
 			
 		} else {
-			CivMessage.send(player, Colors.Rose+"Cannot Damage " +this.getDisplayName()+ ", go after the control points!");
+			CivMessage.send(player, CivColor.Rose+"Cannot Damage " +this.getDisplayName()+ ", go after the control points!");
 		}
 	}
 	
@@ -506,8 +505,8 @@ public class WarCamp extends Buildable implements RespawnLocationHolder {
 			this.onWarCampDestroy();	
 		}
 		else {
-			CivMessage.sendCiv(attacker.getTown().getCiv(), Colors.LightGreen+"We've destroyed a control block in "+getCiv().getName()+"'s War Camp!");
-			CivMessage.sendCiv(getCiv(), Colors.Rose+"A control block in our War Camp has been destroyed!");
+			CivMessage.sendCiv(attacker.getTown().getCiv(), CivColor.LightGreen+"We've destroyed a control block in "+getCiv().getName()+"'s War Camp!");
+			CivMessage.sendCiv(getCiv(), CivColor.Rose+"A control block in our War Camp has been destroyed!");
 		}
 		
 	}
@@ -529,8 +528,8 @@ public class WarCamp extends Buildable implements RespawnLocationHolder {
 		world.playSound(hit.getCoord().getLocation(), Sound.ANVIL_USE, 0.2f, 1);
 		world.playEffect(hit.getCoord().getLocation(), Effect.MOBSPAWNER_FLAMES, 0);
 		
-		CivMessage.send(player, Colors.LightGray+"Damaged Control Block ("+cp.getHitpoints()+" / "+cp.getMaxHitpoints()+")");
-		CivMessage.sendCiv(getCiv(), Colors.Yellow+"Our War Camp's Control Points are under attack!");
+		CivMessage.send(player, CivColor.LightGray+"Damaged Control Block ("+cp.getHitpoints()+" / "+cp.getMaxHitpoints()+")");
+		CivMessage.sendCiv(getCiv(), CivColor.Yellow+"Our War Camp's Control Points are under attack!");
 	}
 
 	@Override

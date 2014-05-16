@@ -3,20 +3,6 @@ package com.avrgaming.civcraft.mobs;
 
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.FireworkEffect.Type;
-import org.bukkit.block.Biome;
-import org.bukkit.craftbukkit.v1_7_R2.CraftWorld;
-import org.bukkit.craftbukkit.v1_7_R2.entity.CraftEntity;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
-import org.bukkit.util.Vector;
-
 import net.minecraft.server.v1_7_R2.AxisAlignedBB;
 import net.minecraft.server.v1_7_R2.DamageSource;
 import net.minecraft.server.v1_7_R2.Entity;
@@ -33,7 +19,19 @@ import net.minecraft.server.v1_7_R2.PathfinderGoalNearestAttackableTarget;
 import net.minecraft.server.v1_7_R2.PathfinderGoalRandomLookaround;
 import net.minecraft.server.v1_7_R2.PathfinderGoalRandomStroll;
 
-
+import org.bukkit.Bukkit;
+import org.bukkit.Color;
+import org.bukkit.FireworkEffect;
+import org.bukkit.FireworkEffect.Type;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Biome;
+import org.bukkit.craftbukkit.v1_7_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R2.entity.CraftEntity;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.util.Vector;
 
 import com.avrgaming.civcraft.mobs.MobSpawner.CustomMobLevel;
 import com.avrgaming.civcraft.mobs.MobSpawner.CustomMobType;

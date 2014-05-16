@@ -24,8 +24,8 @@ import java.sql.SQLException;
 import org.bukkit.Location;
 
 import com.avrgaming.civcraft.exception.CivException;
-import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.object.ControlPoint;
+import com.avrgaming.civcraft.object.Town;
 
 
 public class ChichenItza extends Wonder {

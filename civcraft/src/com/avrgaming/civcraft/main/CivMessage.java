@@ -61,11 +61,11 @@ public class CivMessage {
 			lastMessageHashCode.put(player.getName(), line.hashCode());
 		}
 		
-		send(sender, Colors.Rose+line);
+		send(sender, CivColor.Rose+line);
 	}
 	
 	public static void sendError(Object sender, String line) {		
-		send(sender, Colors.Rose+line);
+		send(sender, CivColor.Rose+line);
 	}
 	
 	/*
@@ -110,30 +110,30 @@ public class CivMessage {
 
 	public static String buildTitle(String title) {
 		String line =   "-------------------------------------------------";
-		String titleBracket = "[ " + Colors.Yellow + title + Colors.LightBlue + " ]";
+		String titleBracket = "[ " + CivColor.Yellow + title + CivColor.LightBlue + " ]";
 		
 		if (titleBracket.length() > line.length()) {
-			return Colors.LightBlue+"-"+titleBracket+"-";
+			return CivColor.LightBlue+"-"+titleBracket+"-";
 		}
 		
 		int min = (line.length() / 2) - titleBracket.length() / 2;
 		int max = (line.length() / 2) + titleBracket.length() / 2;
 		
-		String out = Colors.LightBlue + line.substring(0, Math.max(0, min));
+		String out = CivColor.LightBlue + line.substring(0, Math.max(0, min));
 		out += titleBracket + line.substring(max);
 		
 		return out;
 	}
 	
 	public static String buildSmallTitle(String title) {
-		String line =   Colors.LightBlue+"------------------------------";
+		String line =   CivColor.LightBlue+"------------------------------";
 	
 		String titleBracket = "[ "+title+" ]";
 		
 		int min = (line.length() / 2) - titleBracket.length() / 2;
 		int max = (line.length() / 2) + titleBracket.length() / 2;
 		
-		String out = Colors.LightBlue + line.substring(0, Math.max(0, min));
+		String out = CivColor.LightBlue + line.substring(0, Math.max(0, min));
 		out += titleBracket + line.substring(max);
 		
 		return out;
@@ -157,13 +157,13 @@ public class CivMessage {
 	}
 
 	public static void sendSuccess(CommandSender sender, String message) {
-		send(sender, Colors.LightGreen+message);
+		send(sender, CivColor.LightGreen+message);
 	}
 
 	public static void global(String string) {
 		CivLog.info("[Global] "+string);
 		for (Player player : Bukkit.getOnlinePlayers()) {
-			player.sendMessage(Colors.LightBlue+"[Global] "+Colors.White+string);
+			player.sendMessage(CivColor.LightBlue+"[Global] "+CivColor.White+string);
 		}
 	}
 	
@@ -186,7 +186,7 @@ public class CivMessage {
 				try {
 					player = CivGlobal.getPlayer(resident);
 					if (player != null) {
-						CivMessage.send(player, Colors.Purple+"[Scout] "+Colors.White+string);
+						CivMessage.send(player, CivColor.Purple+"[Scout] "+CivColor.White+string);
 					}
 				} catch (CivException e) {
 				}
@@ -207,7 +207,7 @@ public class CivMessage {
 			try {
 				player = CivGlobal.getPlayer(resident);
 				if (player != null) {
-					CivMessage.send(player, Colors.Gold+"[Town] "+Colors.White+string);
+					CivMessage.send(player, CivColor.Gold+"[Town] "+CivColor.White+string);
 				}
 			} catch (CivException e) {
 			}
@@ -226,7 +226,7 @@ public class CivMessage {
 				try {
 					player = CivGlobal.getPlayer(resident);
 					if (player != null) {
-						CivMessage.send(player, Colors.LightPurple+"[Civ] "+Colors.White+string);
+						CivMessage.send(player, CivColor.LightPurple+"[Civ] "+CivColor.White+string);
 					}
 				} catch (CivException e) {
 				}
@@ -247,7 +247,7 @@ public class CivMessage {
 		if (town == null) {
 			try {
 				Player player = CivGlobal.getPlayer(resident);
-				player.sendMessage(Colors.Rose+"You are not part of a town, nobody hears you. Type /tc to chat normally.");
+				player.sendMessage(CivColor.Rose+"You are not part of a town, nobody hears you. Type /tc to chat normally.");
 
 			} catch (CivException e) {
 			}
@@ -259,7 +259,7 @@ public class CivMessage {
 		for (Resident r : town.getResidents()) {
 			try {
 				Player player = CivGlobal.getPlayer(r);
-				String msg = Colors.LightBlue+"[TC]"+Colors.White+String.format(format, resident.getName(), message);
+				String msg = CivColor.LightBlue+"[TC]"+CivColor.White+String.format(format, resident.getName(), message);
 				player.sendMessage(msg);
 			} catch (CivException e) {
 				continue; /* player not online. */
@@ -269,7 +269,7 @@ public class CivMessage {
 		for (String name : getExtraTownChatListeners(town)) {
 			try {
 				Player player = CivGlobal.getPlayer(name);
-				String msg = Colors.LightBlue+"[TC:"+town.getName()+"]"+Colors.White+String.format(format, resident.getName(), message);
+				String msg = CivColor.LightBlue+"[TC:"+town.getName()+"]"+CivColor.White+String.format(format, resident.getName(), message);
 				player.sendMessage(msg);
 			} catch (CivException e) {
 				/* player not online. */
@@ -282,7 +282,7 @@ public class CivMessage {
 		if (civ == null) {
 			try {
 				Player player = CivGlobal.getPlayer(resident);
-				player.sendMessage(Colors.Rose+"You are not part of a civ, nobody hears you. Type /cc to chat normally.");
+				player.sendMessage(CivColor.Rose+"You are not part of a civ, nobody hears you. Type /cc to chat normally.");
 
 			} catch (CivException e) {
 			}
@@ -300,7 +300,7 @@ public class CivMessage {
 					Player player = CivGlobal.getPlayer(r);
 					
 					
-					String msg = Colors.Gold+"[CC "+townName+"]"+Colors.White+String.format(format, resident.getName(), message);
+					String msg = CivColor.Gold+"[CC "+townName+"]"+CivColor.White+String.format(format, resident.getName(), message);
 					player.sendMessage(msg);
 				} catch (CivException e) {
 					continue; /* player not online. */
@@ -311,7 +311,7 @@ public class CivMessage {
 		for (String name : getExtraCivChatListeners(civ)) {
 			try {
 				Player player = CivGlobal.getPlayer(name);
-				String msg = Colors.Gold+"[CC:"+civ.getName()+" "+townName+"]"+Colors.White+String.format(format, resident.getName(), message);
+				String msg = CivColor.Gold+"[CC:"+civ.getName()+" "+townName+"]"+CivColor.White+String.format(format, resident.getName(), message);
 				player.sendMessage(msg);
 			} catch (CivException e) {
 				/* player not online. */
@@ -435,7 +435,7 @@ public class CivMessage {
 		for (Resident resident : camp.getMembers()) {
 			try {
 				Player player = CivGlobal.getPlayer(resident);
-				player.sendMessage(Colors.Yellow+"[Camp] "+Colors.Yellow+message);		
+				player.sendMessage(CivColor.Yellow+"[Camp] "+CivColor.Yellow+message);		
 				CivLog.info("[Camp:"+camp.getName()+"] "+message);
 
 			} catch (CivException e) {

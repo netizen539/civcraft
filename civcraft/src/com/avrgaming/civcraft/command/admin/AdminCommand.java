@@ -46,14 +46,13 @@ import com.avrgaming.civcraft.lorestorage.LoreMaterial;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.sessiondb.SessionEntry;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.util.ChunkCoord;
-//import com.avrgaming.civcraft.main.CivGlobal;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 
 public class AdminCommand extends CommandBase {
@@ -138,8 +137,8 @@ public class AdminCommand extends CommandBase {
 				ItemStack infoRec = LoreGuiItem.build(cat.name, 
 						ItemManager.getId(Material.WRITTEN_BOOK), 
 						0, 
-						Colors.LightBlue+cat.materials.size()+" Items",
-						Colors.Gold+"<Click To Open>");
+						CivColor.LightBlue+cat.materials.size()+" Items",
+						CivColor.Gold+"<Click To Open>");
 						infoRec = LoreGuiItem.setAction(infoRec, "openinv:showGuiInv:"+cat.name+" Spawn");
 						spawnInventory.addItem(infoRec);
 						

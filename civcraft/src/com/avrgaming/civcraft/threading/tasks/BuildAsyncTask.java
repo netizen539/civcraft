@@ -28,13 +28,13 @@ import org.bukkit.block.Block;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.structure.Buildable;
 import com.avrgaming.civcraft.structure.wonders.Wonder;
 import com.avrgaming.civcraft.template.Template;
 import com.avrgaming.civcraft.threading.CivAsyncTask;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.SimpleBlock;
 import com.avrgaming.civcraft.util.SimpleBlock.Type;
 
@@ -163,7 +163,7 @@ public class BuildAsyncTask extends CivAsyncTask {
 						} else {
 														
 							CivMessage.sendTown(buildable.getTown(),
-									Colors.Yellow+"The "+buildable.getDisplayName()+" is now "+(nextPercentComplete)+"% complete.");
+									CivColor.Yellow+"The "+buildable.getDisplayName()+" is now "+(nextPercentComplete)+"% complete.");
 						}
 					}
 				}
@@ -309,13 +309,13 @@ public class BuildAsyncTask extends CivAsyncTask {
 	}
 	
 	private void processWonderAbort() {
-		CivMessage.sendTown(buildable.getTown(), Colors.Rose+"You can no longer build "+buildable.getDisplayName()+" since it was built in a far away land.");
+		CivMessage.sendTown(buildable.getTown(), CivColor.Rose+"You can no longer build "+buildable.getDisplayName()+" since it was built in a far away land.");
 		
 		//Refund the town half the cost of the wonder.
 		double refund = (int)(buildable.getCost() / 2);			
 		buildable.getTown().depositDirect(refund);
 
-		CivMessage.sendTown(buildable.getTown(), Colors.Yellow+"Town was refunded 50% ("+refund+" coins) of the cost to build the wonder.");
+		CivMessage.sendTown(buildable.getTown(), CivColor.Yellow+"Town was refunded 50% ("+refund+" coins) of the cost to build the wonder.");
 		abortWonder();
 	}
 	

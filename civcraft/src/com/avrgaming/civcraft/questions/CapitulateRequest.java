@@ -1,9 +1,9 @@
 package com.avrgaming.civcraft.questions;
 
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class CapitulateRequest implements QuestionResponseInterface {
 
@@ -18,7 +18,7 @@ public class CapitulateRequest implements QuestionResponseInterface {
 			capitulator.capitulate();
 			CivMessage.global(from+" has capitulated to "+to);
 		} else {
-			CivMessage.send(playerName, Colors.LightGray+to+" declined our offer.");
+			CivMessage.send(playerName, CivColor.LightGray+to+" declined our offer.");
 		}
 	}
 

@@ -19,7 +19,6 @@
 package com.avrgaming.civcraft.command.debug;
 
 import gpl.AttributeUtil;
-import gpl.FancyMessage;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -36,12 +35,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
-import net.minecraft.server.v1_7_R2.ChatSerializer;
-import net.minecraft.server.v1_7_R2.IChatBaseComponent;
-import net.minecraft.server.v1_7_R2.PacketPlayOutChat;
-
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Chunk;
 import org.bukkit.Color;
 import org.bukkit.Effect;
@@ -56,7 +50,6 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_7_R2.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
@@ -85,7 +78,6 @@ import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.mobs.MobSpawner;
 import com.avrgaming.civcraft.mobs.MobSpawner.CustomMobLevel;
 import com.avrgaming.civcraft.mobs.MobSpawner.CustomMobType;
@@ -307,15 +299,7 @@ public class DebugCommand extends CommandBase {
 	}
 	
 	public void spawn_cmd() throws CivException {
-		Player player = getPlayer();
-		
-		if (!player.getName().equalsIgnoreCase("netizen539") && 
-			!player.getName().equalsIgnoreCase("UndeadDavidBowie") &&
-			!player.getName().equalsIgnoreCase("robosnail") &&
-			!player.getName().equalsIgnoreCase("toydolls0101")) {
-			throw new CivException("Nice try precurssor.");
-		}
-		
+		Player player = getPlayer();		
 		String mob = getNamedString(1, "name");
 		String lvl = getNamedString(2, "level");
 		
@@ -331,13 +315,6 @@ public class DebugCommand extends CommandBase {
 		}
 		
 		MobSpawner.spawnCustomMob(type, level, player.getLocation());
-		String test = new FancyMessage("Spawned a ").color(ChatColor.YELLOW).then(type.getName()).tooltip(level.getName()).toJSONString();
-		//player.sendRawMessage(test);
-		//RawPacketSender.send(player, test);
-		//IChatBaseComponent comp = ChatSerializer.a("{\"text\":\"Hi\",\"color\":\"white\",\"extra\":[{\"text\":\"<Clik It>\",\"color\":\"yellow\",\"bold\":\"false\",\"italic\":\"true\",\"underlined\":\"false\",\"strikethrough\":\"false\",\"obfuscated\":\"false\",\"clickEvent\":{\"action\":\"suggest_command\",\"value\":\"/achievement give <stat_name> [player]\"}}]}");
-		IChatBaseComponent comp = ChatSerializer.a(test);
-		PacketPlayOutChat packet = new PacketPlayOutChat(comp, true);
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
 	}
 	
 	public void datebypass_cmd() {
@@ -888,9 +865,9 @@ public class DebugCommand extends CommandBase {
 		}
 		
 		if (town.touchesCapitolCulture(new HashSet<Town>())) {
-			CivMessage.send(sender, Colors.LightGreen+"Touches capitol.");
+			CivMessage.send(sender, CivColor.LightGreen+"Touches capitol.");
 		} else {
-			CivMessage.send(sender, Colors.Rose+"Does NOT touch capitol.");
+			CivMessage.send(sender, CivColor.Rose+"Does NOT touch capitol.");
 		}
 		
 		CivMessage.send(sender, out);

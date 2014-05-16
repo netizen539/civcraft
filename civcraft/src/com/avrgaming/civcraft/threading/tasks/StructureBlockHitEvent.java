@@ -19,7 +19,6 @@
 package com.avrgaming.civcraft.threading.tasks;
 
 import gpl.AttributeUtil;
-
 import net.minecraft.server.v1_7_R2.Material;
 
 import org.bukkit.Bukkit;
@@ -29,9 +28,9 @@ import org.bukkit.entity.Player;
 import com.avrgaming.civcraft.loreenhancements.LoreEnhancement;
 import com.avrgaming.civcraft.lorestorage.LoreMaterial;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.BuildableDamageBlock;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class StructureBlockHitEvent implements Runnable {
 
@@ -75,7 +74,7 @@ public class StructureBlockHitEvent implements Runnable {
 			}
 			
 			if (damage > 1) {
-				CivMessage.send(player, Colors.LightGray+"Punchout does "+(damage-1)+" extra damage!");
+				CivMessage.send(player, CivColor.LightGray+"Punchout does "+(damage-1)+" extra damage!");
 			}
 				
 			dmgBlock.getOwner().onDamage(damage, world, player, dmgBlock.getCoord(), dmgBlock);

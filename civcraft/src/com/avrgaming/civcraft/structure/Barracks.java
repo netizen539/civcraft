@@ -45,7 +45,6 @@ import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.StructureChest;
 import com.avrgaming.civcraft.object.StructureSign;
@@ -54,6 +53,7 @@ import com.avrgaming.civcraft.sessiondb.SessionEntry;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.threading.tasks.UnitSaveAsyncTask;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.util.SimpleBlock;
 
@@ -83,14 +83,14 @@ public class Barracks extends Structure {
 		ArrayList<ConfigUnit> unitList = getTown().getAvailableUnits();
 		
 		if (unitList.size() == 0) {
-			return "\n"+Colors.LightGray+"None\n"+Colors.LightGray+"Available";			
+			return "\n"+CivColor.LightGray+"None\n"+CivColor.LightGray+"Available";			
 		}
 		
 		ConfigUnit unit = unitList.get(index);
 		String out = "\n";
-		out += Colors.LightPurple+unit.name+"\n";
-		out += Colors.Yellow+unit.cost+"\n";
-		out += Colors.Yellow+"coins";
+		out += CivColor.LightPurple+unit.name+"\n";
+		out += CivColor.Yellow+unit.cost+"\n";
+		out += CivColor.Yellow+"coins";
 		
 		return out;
 	}
@@ -176,7 +176,7 @@ public class Barracks extends Structure {
 					throw new CivException("Only Mayors and Assistants may train units.");
 				}
 				} catch (CivException e) {
-					CivMessage.send(player, Colors.Rose+e.getMessage());
+					CivMessage.send(player, CivColor.Rose+e.getMessage());
 				}
 			}
 			break;
@@ -437,16 +437,16 @@ public class Barracks extends Structure {
 				IllegalAccessException | IllegalArgumentException | NoSuchMethodException e) {
 			this.trainingUnit = null;
 			this.currentHammers = 0.0;
-			CivMessage.sendTown(getTown(), Colors.Red+"ERROR couldn't find class?:"+e.getMessage());
+			CivMessage.sendTown(getTown(), CivColor.Red+"ERROR couldn't find class?:"+e.getMessage());
 		} catch (InvocationTargetException e) {
-			CivMessage.sendTown(getTown(), Colors.Rose+e.getCause().getMessage());
+			CivMessage.sendTown(getTown(), CivColor.Rose+e.getCause().getMessage());
 			this.currentHammers -= 20.0;
 			if (this.currentHammers < 0.0) {
 				this.currentHammers = 0.0;
 			}
 		//	e.getCause().getMessage()
 			//e.printStackTrace();
-		//	CivMessage.sendTown(getTown(), Colors.Rose+e.getMessage());
+		//	CivMessage.sendTown(getTown(), CivColor.Rose+e.getMessage());
 		}
 		
 	}
@@ -481,7 +481,7 @@ public class Barracks extends Structure {
 			}
 	
 			if (i == (size/2)) {
-				text[1] = Colors.LightGreen+this.trainingUnit.name;
+				text[1] = CivColor.LightGreen+this.trainingUnit.name;
 			}
 			
 			structSign.setText(text);

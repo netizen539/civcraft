@@ -14,7 +14,6 @@ import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.lorestorage.LoreGuiItemListener;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.util.CivColor;
 
@@ -26,7 +25,7 @@ public class LoreEnhancementArenaItem  extends LoreEnhancement implements Listen
 	
 	public AttributeUtil add(AttributeUtil attrs) {
 		attrs.addEnhancement("LoreEnhancementArenaItem", null, null);
-		attrs.addLore(Colors.LightBlue+getDisplayName());
+		attrs.addLore(CivColor.LightBlue+getDisplayName());
 		return attrs;
 	}
 	

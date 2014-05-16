@@ -32,11 +32,11 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Buff;
 import com.avrgaming.civcraft.object.Relation;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class ScoutTower extends Structure {
 
@@ -85,7 +85,7 @@ public class ScoutTower extends Structure {
 			} catch (CivException e) {
 				return;
 			}
-			CivMessage.send(player, Colors.Yellow+"[ScoutDebug] "+str);
+			CivMessage.send(player, CivColor.Yellow+"[ScoutDebug] "+str);
 		}
 	}
 	
@@ -165,7 +165,7 @@ public class ScoutTower extends Structure {
 				relationColor = Relation.getRelationColor(relation);
 			} else {
 				relationName = "OUTLAW";
-				relationColor = Colors.Yellow;
+				relationColor = CivColor.Yellow;
 			}
 			
 			
@@ -177,7 +177,7 @@ public class ScoutTower extends Structure {
 			if (center.distance(player.getLocation()) < range) {
 				/* Notify the town or civ. */
 					CivMessage.sendScout(this.getCiv(), "Scout tower detected "+relationColor+
-							player.getName()+"("+relationName+")"+Colors.White+
+							player.getName()+"("+relationName+")"+CivColor.White+
 							" at ("+player.getLocation().getBlockX()+","+player.getLocation().getBlockY()+","+player.getLocation().getBlockZ()+") in "+
 							this.getTown().getName());
 					alreadyAnnounced.add(this.getCiv().getName()+":"+player.getName());

@@ -39,7 +39,6 @@ import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.ControlPoint;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.StructureBlock;
@@ -142,7 +141,7 @@ public class Capitol extends TownHall {
 				loc = revive.getLocation();
 			}
 			
-			CivMessage.send(player, Colors.LightGreen+"Respawning...");
+			CivMessage.send(player, CivColor.LightGreen+"Respawning...");
 			player.teleport(loc);		
 			break;
 		}

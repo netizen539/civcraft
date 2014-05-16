@@ -28,7 +28,6 @@ import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.AttrSource;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Town;
@@ -110,7 +109,7 @@ public class EffectEventTimer extends CivAsyncTask {
 			// highjack this loop to display town hall warning.
 			TownHall townhall = town.getTownHall();
 			if (townhall == null) {
-				CivMessage.sendTown(town, Colors.Yellow+"Your town does not have a town hall! Structures have no effect!");
+				CivMessage.sendTown(town, CivColor.Yellow+"Your town does not have a town hall! Structures have no effect!");
 				continue;
 			}
 							
@@ -133,7 +132,7 @@ public class EffectEventTimer extends CivAsyncTask {
 					unusedBeakers = Math.round(unusedBeakers);
 					
 					if (cultureFromBeakers > 0) {
-						CivMessage.sendTown(town, Colors.LightGreen+"Converted "+CivColor.LightPurple+
+						CivMessage.sendTown(town, CivColor.LightGreen+"Converted "+CivColor.LightPurple+
 								df.format(unusedBeakers)+CivColor.LightGreen+" beakers into "+CivColor.LightPurple+
 								df.format(cultureFromBeakers)+CivColor.LightGreen+" culture since no tech was being researched.");
 						cultureGenerated += cultureFromBeakers;
@@ -147,7 +146,7 @@ public class EffectEventTimer extends CivAsyncTask {
 			}
 			
 			cultureGenerated = Math.round(cultureGenerated);
-			CivMessage.sendTown(town, Colors.LightGreen+"Generated "+Colors.LightPurple+cultureGenerated+Colors.LightGreen+" culture.");
+			CivMessage.sendTown(town, CivColor.LightGreen+"Generated "+CivColor.LightPurple+cultureGenerated+CivColor.LightGreen+" culture.");
 		}
 		
 		/* Checking for expired vassal states. */

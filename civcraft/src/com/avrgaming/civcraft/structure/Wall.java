@@ -39,7 +39,6 @@ import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Buff;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.object.StructureBlock;
@@ -50,6 +49,7 @@ import com.avrgaming.civcraft.permission.PlotPermissions;
 import com.avrgaming.civcraft.template.Template;
 import com.avrgaming.civcraft.util.BlockCoord;
 import com.avrgaming.civcraft.util.ChunkCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.util.SimpleBlock;
 import com.avrgaming.civcraft.war.War;
@@ -124,7 +124,7 @@ public class Wall extends Structure {
 		refund /= HEIGHT;
 		refund = Math.round(refund);
 		this.getTown().getTreasury().deposit(refund);
-		CivMessage.sendTown(this.getTown(), Colors.Yellow+"Refunded "+refund+" coins from wall construction.");
+		CivMessage.sendTown(this.getTown(), CivColor.Yellow+"Refunded "+refund+" coins from wall construction.");
 		try {
 			this.delete();
 		} catch (SQLException e) {
@@ -258,7 +258,7 @@ public class Wall extends Structure {
 		}
 		
 		if (locs.size() <= 1) {
-			CivMessage.send(player, Colors.LightGray+"First location placed, place another to start building a wall.");
+			CivMessage.send(player, CivColor.LightGray+"First location placed, place another to start building a wall.");
 			return;
 		}
 		
@@ -301,7 +301,7 @@ public class Wall extends Structure {
 		
 		this.getTown().getTreasury().withdraw(cost);
 		
-		CivMessage.sendTown(this.getTown(), Colors.Yellow+"Paid "+cost+" coins for "+verticalSegments+" wall segments.");
+		CivMessage.sendTown(this.getTown(), CivColor.Yellow+"Paid "+cost+" coins for "+verticalSegments+" wall segments.");
 		
 		// build the blocks
 		for (SimpleBlock sb : simpleBlocks.values()) {
@@ -527,7 +527,7 @@ public class Wall extends Structure {
 		
 		save();
 		getTown().getTreasury().withdraw(cost);
-		CivMessage.sendTown(getTown(), Colors.Yellow+"The town has repaired a "+getDisplayName()+" at "+getCorner());
+		CivMessage.sendTown(getTown(), CivColor.Yellow+"The town has repaired a "+getDisplayName()+" at "+getCorner());
 	}
 	
 	@Override

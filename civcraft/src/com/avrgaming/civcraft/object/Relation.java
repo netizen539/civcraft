@@ -29,7 +29,7 @@ import com.avrgaming.civcraft.database.SQLUpdate;
 import com.avrgaming.civcraft.exception.InvalidNameException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
-import com.avrgaming.civcraft.main.Colors;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class Relation extends SQLObject {
 
@@ -185,39 +185,39 @@ public class Relation extends SQLObject {
 
 	@Override
 	public String toString() {
-		String color = Colors.White;
+		String color = CivColor.White;
 		String out = "";
 		
-		out = relation.name()+Colors.White+" with "+this.other_civ.getName();
+		out = relation.name()+CivColor.White+" with "+this.other_civ.getName();
 		switch (relation) {
 		case NEUTRAL:
 			break;
 		case HOSTILE:
-			color = Colors.Yellow;
+			color = CivColor.Yellow;
 			break;
 		case WAR:
-			color = Colors.Rose;
+			color = CivColor.Rose;
 			break;
 		case PEACE:
-			color = Colors.LightBlue;
+			color = CivColor.LightBlue;
 			break;
 		case ALLY:
-			color = Colors.Green;
+			color = CivColor.Green;
 			break;
 //		case MASTER:
-//			color = Colors.Gold;
-//			out = "MASTER"+Colors.White+" of "+this.other_civ.getName();
+//			color = CivColor.Gold;
+//			out = "MASTER"+CivColor.White+" of "+this.other_civ.getName();
 //			break;
 //		case VASSAL:
-//			color = Colors.LightPurple;
-//			out = "VASSAL"+Colors.White+" to "+this.other_civ.getName();
+//			color = CivColor.LightPurple;
+//			out = "VASSAL"+CivColor.White+" to "+this.other_civ.getName();
 //			break;
 		}
 		
 		String expireString = "";
 		if (this.expires != null) {
 			SimpleDateFormat sdf = new SimpleDateFormat("M/d/y k:m:s z");
-			expireString = Colors.LightGray+" (Expires "+sdf.format(expires)+")";
+			expireString = CivColor.LightGray+" (Expires "+sdf.format(expires)+")";
 		}
 		
 		return color+out+expireString;
@@ -228,21 +228,21 @@ public class Relation extends SQLObject {
 	public static String getRelationColor(Status status) {
 		switch (status) {
 		case NEUTRAL:
-			return Colors.White;
+			return CivColor.White;
 		case HOSTILE:
-			return Colors.Yellow;
+			return CivColor.Yellow;
 		case WAR:
-			return Colors.Rose;
+			return CivColor.Rose;
 		case PEACE:
-			return Colors.LightBlue;
+			return CivColor.LightBlue;
 		case ALLY:
-			return Colors.Green;
+			return CivColor.Green;
 //		case MASTER:
-//			return Colors.Gold;
+//			return CivColor.Gold;
 //		case VASSAL:
-//			return Colors.LightPurple;
+//			return CivColor.LightPurple;
 		default:
-			return Colors.White;
+			return CivColor.White;
 		}
 	}
 

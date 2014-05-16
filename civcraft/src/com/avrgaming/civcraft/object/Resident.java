@@ -69,7 +69,6 @@ import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.permission.PermissionGroup;
 import com.avrgaming.civcraft.road.RoadBlock;
 import com.avrgaming.civcraft.sessiondb.SessionEntry;
@@ -512,8 +511,8 @@ public class Resident extends SQLObject {
 		Player player;
 		try {
 			player = CivGlobal.getPlayer(this);
-			CivMessage.send(player, Colors.Yellow+"You are in "+this.getTreasury().getDebt()+" coins of debt!");
-			CivMessage.send(player, Colors.LightGray+"If you do not pay your debt within "+this.daysTilEvict+" days you will be evicted from town.");
+			CivMessage.send(player, CivColor.Yellow+"You are in "+this.getTreasury().getDebt()+" coins of debt!");
+			CivMessage.send(player, CivColor.LightGray+"If you do not pay your debt within "+this.daysTilEvict+" days you will be evicted from town.");
 		} catch (CivException e) {
 			//Player is not online.
 		}
@@ -533,7 +532,7 @@ public class Resident extends SQLObject {
 			this.getTown().removeResident(this);
 
 			try {
-				CivMessage.send(CivGlobal.getPlayer(this), Colors.Yellow+"You have been evicted from town!");
+				CivMessage.send(CivGlobal.getPlayer(this), CivColor.Yellow+"You have been evicted from town!");
 			} catch (CivException e) {
 				// Resident not online.
 			}
@@ -636,14 +635,14 @@ public class Resident extends SQLObject {
 			if (grp.hasMember(this)) {
 				if (grp.getTown() != null) {
 					if (grp.isProtectedGroup()) {
-						out += Colors.LightPurple;
+						out += CivColor.LightPurple;
 					} else {
-						out += Colors.White;
+						out += CivColor.White;
 					}
 					out += grp.getName()+"("+grp.getTown().getName()+")";
 					
 				} else if (grp.getCiv() != null) {
-					out += Colors.Gold+grp.getName()+"("+grp.getCiv().getName()+")";
+					out += CivColor.Gold+grp.getName()+"("+grp.getCiv().getName()+")";
 				}
 				
 				out += ", ";
@@ -655,7 +654,7 @@ public class Resident extends SQLObject {
 
 	public void warnEvict() {
 		try {
-			CivMessage.send(CivGlobal.getPlayer(this), Colors.Yellow+"You are being evicted from town! You have "+
+			CivMessage.send(CivGlobal.getPlayer(this), CivColor.Yellow+"You are being evicted from town! You have "+
 					this.getDaysTilEvict()+" days left to pack your stuff and leave.");
 		} catch (CivException e) {
 			//player offline.
@@ -939,7 +938,7 @@ public class Resident extends SQLObject {
 		/* Notify Resident of any invalid structures. */
 		if (this.getTown() != null) {
 			for (Buildable struct : this.getTown().invalidStructures) {
-				CivMessage.send(player, Colors.Yellow+ChatColor.BOLD+
+				CivMessage.send(player, CivColor.Yellow+ChatColor.BOLD+
 						"WARNING: Your town's "+struct.getDisplayName()+" at "+struct.getCenterLocation()+
 						" is invalid! Reason:"+struct.getInvalidReason());
 			}

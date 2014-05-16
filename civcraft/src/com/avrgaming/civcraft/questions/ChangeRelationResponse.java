@@ -20,10 +20,10 @@ package com.avrgaming.civcraft.questions;
 
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Relation;
 import com.avrgaming.civcraft.object.Resident;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class ChangeRelationResponse implements QuestionResponseInterface {
 
@@ -36,7 +36,7 @@ public class ChangeRelationResponse implements QuestionResponseInterface {
 		if (param.equalsIgnoreCase("accept")) {
 			CivGlobal.setRelation(fromCiv, toCiv, status);
 		} else {
-			CivMessage.sendCiv(fromCiv, Colors.LightGray+toCiv.getName()+" declined our offer.");
+			CivMessage.sendCiv(fromCiv, CivColor.LightGray+toCiv.getName()+" declined our offer.");
 		}
 	}
 	@Override

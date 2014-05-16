@@ -1,0 +1,63 @@
+# ======================================================================
+# CivCraft Configuration File.
+# ======================================================================
+
+
+# =========================== civcraft.net Server Listing Service (SLS) =========================
+
+# Set if you want to use civcraft.net's server listing service (SLS). By setting this to true
+# the civcraft plugin will send your server's information to civcraft.net so players can find
+# your server while looking for civcraft servers to play on.
+use_server_listing_service: 'true'
+
+# IP address or URL of your server. The SLS will use this to inform users how to connect to your server.
+# if left blank, the SLS will attempt to obtain it automatically from packets sent to the SLS.
+server_address: ""
+
+# Name of your server which will appear on civcraft.net, will be clipped to 64 characters.
+server_name: 'CivCraft'
+
+# Timezone hint that will tell users what timezone your server is in. This will help them join
+# servers that are in their own timezone.
+server_timezone: 'PST'
+
+# A short message to display on civcraft.net to advertise your server or explain what it's about.
+server_description: 'Just another CivCraft server.'
+
+# ============================== Database Configuration ====================================
+
+# MySQL database to store game data in across reloads. 
+mysql:
+   hostname: localhost
+   port: '3306'
+   database: 
+   username: 
+   password: 
+   table_prefix: 
+   min_conns: '5'
+   max_conns: '10'
+   parts: '3'
+   
+global_database:
+    database: 
+    hostname:
+    port: '3306'
+    username:
+    password:
+    min_conns: '5'
+    max_conns: '10'
+    parts: '3'
+    
+perk_database:
+    database: 
+    hostname:
+    port: '3306'
+    username:
+    password:
+    min_conns: '5'
+    max_conns: '10'
+    parts: '3'
+
+server_phase: 'beta8'
+
+ 

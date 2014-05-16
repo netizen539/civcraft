@@ -23,7 +23,6 @@ import org.bukkit.entity.Player;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.questions.TownNewRequest;
 import com.avrgaming.civcraft.util.CivColor;
@@ -48,7 +47,7 @@ public class InteractiveConfirmTownCreation implements InteractiveResponse {
 		}
 		
 		if (resident.desiredTownName == null) {
-			CivMessage.send(player, Colors.Rose+"Internal Error Creating Town... =(");
+			CivMessage.send(player, CivColor.Rose+"Internal Error Creating Town... =(");
 			return;
 		}
 		

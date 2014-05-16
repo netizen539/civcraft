@@ -24,8 +24,8 @@ import org.bukkit.entity.Player;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Town;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class TownAddOutlawTask implements Runnable {
 
@@ -43,13 +43,13 @@ public class TownAddOutlawTask implements Runnable {
 		
 		try {
 			Player player = CivGlobal.getPlayer(name);
-			CivMessage.send(player, Colors.Yellow+ChatColor.BOLD+"You are now an outlaw to "+town.getName()+" towers will fire upon you if you visit them!");
+			CivMessage.send(player, CivColor.Yellow+ChatColor.BOLD+"You are now an outlaw to "+town.getName()+" towers will fire upon you if you visit them!");
 		} catch (CivException e) {
 		}
 		
 		town.addOutlaw(name);
 		town.save();
-		CivMessage.sendTown(town, Colors.Yellow+name+" is now an outlaw in this town!");
+		CivMessage.sendTown(town, CivColor.Yellow+name+" is now an outlaw in this town!");
 		
 	}
 	

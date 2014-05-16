@@ -27,9 +27,9 @@ import com.avrgaming.civcraft.command.town.TownCommand;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.threading.TaskMaster;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class InteractiveTownName implements InteractiveResponse {
 
@@ -50,7 +50,7 @@ public class InteractiveTownName implements InteractiveResponse {
 		}
 		
 		if (!StringUtils.isAlpha(message)) {
-			CivMessage.send(player, Colors.Rose+ChatColor.BOLD+"Town names must only contain letters(A-Z). Enter another name.");
+			CivMessage.send(player, CivColor.Rose+ChatColor.BOLD+"Town names must only contain letters(A-Z). Enter another name.");
 			return;
 		}
 		
@@ -59,7 +59,7 @@ public class InteractiveTownName implements InteractiveResponse {
 		message = message.replace("\'", "");
 		
 		resident.desiredTownName = message;
-		CivMessage.send(player, Colors.LightGreen+"The Town shall be called "+Colors.Yellow+resident.desiredTownName+Colors.LightGreen+"!");
+		CivMessage.send(player, CivColor.LightGreen+"The Town shall be called "+CivColor.Yellow+resident.desiredTownName+CivColor.LightGreen+"!");
 		
 		class SyncTask implements Runnable {
 			Resident resident;
@@ -88,7 +88,7 @@ public class InteractiveTownName implements InteractiveResponse {
 					return;
 				}
 				
-				CivMessage.send(player, Colors.LightGreen+ChatColor.BOLD+"Are you sure? Type 'yes' and I will create this Town. Type anything else, and I will forget the whole thing.");
+				CivMessage.send(player, CivColor.LightGreen+ChatColor.BOLD+"Are you sure? Type 'yes' and I will create this Town. Type anything else, and I will forget the whole thing.");
 				
 				resident.setInteractiveMode(new InteractiveConfirmTownCreation());				
 			}

@@ -7,10 +7,10 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.questions.TradeRequest;
 import com.avrgaming.civcraft.trade.TradeInventoryListener;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class TradeCommand extends CommandBase {
 
@@ -67,8 +67,8 @@ public class TradeCommand extends CommandBase {
 
 	@Override
 	public void showHelp() {
-		CivMessage.send(sender, Colors.LightPurple+command+" "+Colors.Yellow+"[resident name] "+
-				Colors.LightGray+"Opens trading window with this player.");
+		CivMessage.send(sender, CivColor.LightPurple+command+" "+CivColor.Yellow+"[resident name] "+
+				CivColor.LightGray+"Opens trading window with this player.");
 	}
 
 	@Override

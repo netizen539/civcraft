@@ -32,7 +32,6 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.interactive.InteractiveCivName;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.structure.Buildable;
 import com.avrgaming.civcraft.threading.TaskMaster;
@@ -43,10 +42,10 @@ public class FoundCivilization extends ItemComponent implements CallbackInterfac
 	
 	@Override
 	public void onPrepareCreate(AttributeUtil attrUtil) {
-		attrUtil.addLore(ChatColor.RESET+Colors.Gold+"Founds a Civilization");
-		attrUtil.addLore(ChatColor.RESET+Colors.Rose+"<Right Click To Use>");
+		attrUtil.addLore(ChatColor.RESET+CivColor.Gold+"Founds a Civilization");
+		attrUtil.addLore(ChatColor.RESET+CivColor.Rose+"<Right Click To Use>");
 		attrUtil.addEnhancement("LoreEnhancementSoulBound", null, null);
-		attrUtil.addLore(Colors.Gold+"Soulbound");
+		attrUtil.addLore(CivColor.Gold+"Soulbound");
 	}
 	
 	public void foundCiv(Player player) throws CivException {
@@ -115,13 +114,13 @@ public class FoundCivilization extends ItemComponent implements CallbackInterfac
 		/* Save the location so we dont have to re-validate the structure position. */
 		resident.desiredTownLocation = player.getLocation();
 		CivMessage.sendHeading(player, "Founding A New Civ");
-		CivMessage.send(player, Colors.LightGreen+"You and your small band of travelers have finally found the chosen land.");
-		CivMessage.send(player, Colors.LightGreen+"While you are few, will your numbers will grow?");
-		CivMessage.send(player, Colors.LightGreen+"Will you journey boldy forth into new frontiers?");
-		CivMessage.send(player, Colors.LightGreen+"Can you build a Civilization that can stand the test of time?");
+		CivMessage.send(player, CivColor.LightGreen+"You and your small band of travelers have finally found the chosen land.");
+		CivMessage.send(player, CivColor.LightGreen+"While you are few, will your numbers will grow?");
+		CivMessage.send(player, CivColor.LightGreen+"Will you journey boldy forth into new frontiers?");
+		CivMessage.send(player, CivColor.LightGreen+"Can you build a Civilization that can stand the test of time?");
 		CivMessage.send(player, " ");
-		CivMessage.send(player, Colors.LightGreen+ChatColor.BOLD+"What shall your new Civilization be called?");
-		CivMessage.send(player, Colors.LightGray+"(To cancel, type 'cancel')");
+		CivMessage.send(player, CivColor.LightGreen+ChatColor.BOLD+"What shall your new Civilization be called?");
+		CivMessage.send(player, CivColor.LightGray+"(To cancel, type 'cancel')");
 		
 		resident.setInteractiveMode(new InteractiveCivName());
 	}

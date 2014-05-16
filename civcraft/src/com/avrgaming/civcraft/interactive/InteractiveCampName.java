@@ -26,8 +26,8 @@ import com.avrgaming.civcraft.camp.Camp;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class InteractiveCampName implements InteractiveResponse {
 
@@ -47,7 +47,7 @@ public class InteractiveCampName implements InteractiveResponse {
 		}
 
 		if (!StringUtils.isAlpha(message)) {
-			CivMessage.send(player, Colors.Rose+ChatColor.BOLD+"Camp names must only contain letters(A-Z). Enter another name.");
+			CivMessage.send(player, CivColor.Rose+ChatColor.BOLD+"Camp names must only contain letters(A-Z). Enter another name.");
 			return;
 		}
 	

@@ -25,7 +25,6 @@ import org.bukkit.Location;
 
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.TownChunk;
 
 public class AsciiMap {
@@ -53,31 +52,31 @@ public class AsciiMap {
 		for (int x = 0; x < width; x++) {
 			String outRow = new String("         ");
 			for (int z = 0; z < height; z++) {
-				String color = Colors.White;
+				String color = CivColor.White;
 								
 				currentChunk = new ChunkCoord(center.getWorld().getName(), 
 						startX+x, startZ+z);
 				
 				if (currentChunk.equals(centerChunk)) {
-					color = Colors.Yellow;
+					color = CivColor.Yellow;
 				}
 				
 				/* Try to see if there is a town chunk here.. */
 				TownChunk tc = CivGlobal.getTownChunk(currentChunk);
 				if (tc != null) {
 					
-					if (color.equals(Colors.White)) {
+					if (color.equals(CivColor.White)) {
 						if (tc.perms.getOwner() != null) {
-							color = Colors.LightGreen;
+							color = CivColor.LightGreen;
 						} else {
-							color = Colors.Rose;
+							color = CivColor.Rose;
 						}
 					}
 					
 					if (tc.isForSale()) {
-						outRow += Colors.Yellow+"$";
+						outRow += CivColor.Yellow+"$";
 					} else if (tc.isOutpost()) { 
-						outRow += Colors.Yellow+"O";
+						outRow += CivColor.Yellow+"O";
 					} else {
 						outRow += color+"T";
 					}

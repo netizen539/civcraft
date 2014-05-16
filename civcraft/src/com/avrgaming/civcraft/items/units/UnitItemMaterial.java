@@ -41,7 +41,7 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.lorestorage.LoreMaterial;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
+import com.avrgaming.civcraft.util.CivColor;
 
 
 public class UnitItemMaterial extends LoreMaterial {
@@ -158,7 +158,7 @@ public class UnitItemMaterial extends LoreMaterial {
 			this.addLore(str);
 		}
 		
-		this.addLore(Colors.Gold+"Soulbound");
+		this.addLore(CivColor.Gold+"Soulbound");
 	}
 
 	public int getSocketSlot() {

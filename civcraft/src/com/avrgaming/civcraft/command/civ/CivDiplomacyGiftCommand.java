@@ -24,13 +24,13 @@ import com.avrgaming.civcraft.command.CommandBase;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.questions.DiplomacyGiftResponse;
 import com.avrgaming.civcraft.questions.QuestionResponseInterface;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.threading.tasks.CivQuestionTask;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.war.War;
 
 public class CivDiplomacyGiftCommand extends CommandBase {
@@ -92,7 +92,7 @@ public class CivDiplomacyGiftCommand extends CommandBase {
 		dipResponse.toCiv = toCiv;
 		
 		sendGiftRequest(toCiv, fromCiv, 
-				Colors.Yellow+ChatColor.BOLD+"The Civilization of "+fromCiv.getName()+" wishes to give itself to you. All of their towns will be yours."+
+				CivColor.Yellow+ChatColor.BOLD+"The Civilization of "+fromCiv.getName()+" wishes to give itself to you. All of their towns will be yours."+
 						" It will cost us "+fromCiv.getMergeCost()+" coins. Do you accept?", dipResponse);
 		CivMessage.sendSuccess(sender, "Gift request sent, waiting for them to accept the gift.");
 	}

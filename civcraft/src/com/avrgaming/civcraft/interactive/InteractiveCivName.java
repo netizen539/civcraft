@@ -25,8 +25,8 @@ import org.bukkit.entity.Player;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class InteractiveCivName implements InteractiveResponse {
 
@@ -46,7 +46,7 @@ public class InteractiveCivName implements InteractiveResponse {
 		}
 
 		if (!StringUtils.isAlpha(message)) {
-			CivMessage.send(player, Colors.Rose+ChatColor.BOLD+"Civilization names must only contain letters(A-Z). Enter another name.");
+			CivMessage.send(player, CivColor.Rose+ChatColor.BOLD+"Civilization names must only contain letters(A-Z). Enter another name.");
 			return;
 		}
 	
@@ -55,10 +55,10 @@ public class InteractiveCivName implements InteractiveResponse {
 		message = message.replace("\'", "");
 		
 		resident.desiredCivName = message;
-		CivMessage.send(player, Colors.LightGreen+"The Civilization of "+Colors.Yellow+message+Colors.LightGreen+"? An awesome choice.");
+		CivMessage.send(player, CivColor.LightGreen+"The Civilization of "+CivColor.Yellow+message+CivColor.LightGreen+"? An awesome choice.");
 		CivMessage.send(player, " ");
-		CivMessage.send(player, Colors.LightGreen+ChatColor.BOLD+"Now what should your capitol be called?");
-		CivMessage.send(player, Colors.LightGray+"(To cancel type 'cancel')");
+		CivMessage.send(player, CivColor.LightGreen+ChatColor.BOLD+"Now what should your capitol be called?");
+		CivMessage.send(player, CivColor.LightGray+"(To cancel type 'cancel')");
 		resident.setInteractiveMode(new InteractiveCapitolName());
 
 		return;

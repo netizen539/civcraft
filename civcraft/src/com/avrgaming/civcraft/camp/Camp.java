@@ -65,7 +65,6 @@ import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.BuildableDamageBlock;
 import com.avrgaming.civcraft.object.ControlPoint;
 import com.avrgaming.civcraft.object.CultureChunk;
@@ -665,11 +664,11 @@ public class Camp extends Buildable {
 			}
 		} else {
 			this.firepoints--;
-			CivMessage.sendCamp(this, Colors.Yellow+"Our campfire doesn't have enough coal to keep burning, its starting to go out! "+this.firepoints+" hours left.");
+			CivMessage.sendCamp(this, CivColor.Yellow+"Our campfire doesn't have enough coal to keep burning, its starting to go out! "+this.firepoints+" hours left.");
 			
 			double percentLeft = (double)this.firepoints / (double)this.maxFirePoints;
 			if (percentLeft < 0.3) {
-				CivMessage.sendCamp(this, Colors.Yellow+ChatColor.BOLD+"Warning! Our campfire is less than 30% out! We need to stock it with more coal or our camp will be destroyed!");
+				CivMessage.sendCamp(this, CivColor.Yellow+ChatColor.BOLD+"Warning! Our campfire is less than 30% out! We need to stock it with more coal or our camp will be destroyed!");
 			}
 			
 			if (this.firepoints < 0) {
@@ -696,7 +695,7 @@ public class Camp extends Buildable {
 		}
 		
 		if (mInv.getInventoryCount() == 0) {
-			CivMessage.sendCamp(this, Colors.Rose+"Your camp's longhouse could not find an input chest for food! Nothing happens.");
+			CivMessage.sendCamp(this, CivColor.Rose+"Your camp's longhouse could not find an input chest for food! Nothing happens.");
 			return;
 		}
 		
@@ -706,16 +705,16 @@ public class Camp extends Buildable {
 		
 		switch (result) {
 		case STARVE:
-			CivMessage.sendCamp(this, Colors.LightGreen+"Your camp's longhouse "+Colors.Rose+"starved"+consumeComponent.getCountString()+Colors.LightGreen+" and generated no coins.");
+			CivMessage.sendCamp(this, CivColor.LightGreen+"Your camp's longhouse "+CivColor.Rose+"starved"+consumeComponent.getCountString()+CivColor.LightGreen+" and generated no coins.");
 			return;
 		case LEVELDOWN:
-			CivMessage.sendCamp(this, Colors.LightGreen+"Your camp's longhouse "+Colors.Rose+"starved and leveled-down"+Colors.LightGreen+" and generated no coins.");
+			CivMessage.sendCamp(this, CivColor.LightGreen+"Your camp's longhouse "+CivColor.Rose+"starved and leveled-down"+CivColor.LightGreen+" and generated no coins.");
 			return;
 		case STAGNATE:
-			CivMessage.sendCamp(this, Colors.LightGreen+"Your camp's longhouse "+Colors.Yellow+"stagnated"+Colors.LightGreen+" and generated no coins.");
+			CivMessage.sendCamp(this, CivColor.LightGreen+"Your camp's longhouse "+CivColor.Yellow+"stagnated"+CivColor.LightGreen+" and generated no coins.");
 			return;
 		case UNKNOWN:
-			CivMessage.sendCamp(this, Colors.LightGreen+"Your camp's longhouse has done "+Colors.Purple+"something unknown"+Colors.LightGreen+" and generated no coins.");
+			CivMessage.sendCamp(this, CivColor.LightGreen+"Your camp's longhouse has done "+CivColor.Purple+"something unknown"+CivColor.LightGreen+" and generated no coins.");
 			return;
 		default:
 			break;
@@ -748,19 +747,19 @@ public class Camp extends Buildable {
 		String stateMessage = "";
 		switch (result) {
 		case GROW:
-			stateMessage = Colors.Green+"grew"+consumeComponent.getCountString()+Colors.LightGreen;
+			stateMessage = CivColor.Green+"grew"+consumeComponent.getCountString()+CivColor.LightGreen;
 			break;
 		case LEVELUP:
-			stateMessage = Colors.Green+"leveled up"+Colors.LightGreen;
+			stateMessage = CivColor.Green+"leveled up"+CivColor.LightGreen;
 			break;
 		case MAXED:
-			stateMessage = Colors.Green+"is maxed"+consumeComponent.getCountString()+Colors.LightGreen;
+			stateMessage = CivColor.Green+"is maxed"+consumeComponent.getCountString()+CivColor.LightGreen;
 			break;
 		default:
 			break;
 		}
 		
-		CivMessage.sendCamp(this, Colors.LightGreen+"Your camp's longhouse "+stateMessage+" and generated "+total_coins+" coins. Coins were given to the camp's owner.");
+		CivMessage.sendCamp(this, CivColor.LightGreen+"Your camp's longhouse "+stateMessage+" and generated "+total_coins+" coins. Coins were given to the camp's owner.");
 	}
 	
 	private void buildCampFromTemplate(Template tpl, BlockCoord corner) {
@@ -1232,8 +1231,8 @@ public class Camp extends Buildable {
 		world.playSound(cp.getCoord().getLocation(), Sound.ANVIL_USE, 0.2f, 1);
 		world.playEffect(cp.getCoord().getLocation(), Effect.MOBSPAWNER_FLAMES, 0);
 		
-		CivMessage.send(player, Colors.LightGray+"Damaged Control Block ("+cp.getHitpoints()+" / "+cp.getMaxHitpoints()+")");
-		CivMessage.sendCamp(this, Colors.Yellow+"One of our camp's Control Points is under attack!");
+		CivMessage.send(player, CivColor.LightGray+"Damaged Control Block ("+cp.getHitpoints()+" / "+cp.getMaxHitpoints()+")");
+		CivMessage.sendCamp(this, CivColor.Yellow+"One of our camp's Control Points is under attack!");
 	}
 	
 	
@@ -1261,10 +1260,10 @@ public class Camp extends Buildable {
 		}
 
 		if (allDestroyed) {
-			CivMessage.sendCamp(this, Colors.Rose+"Our camp has been destroyed!");
+			CivMessage.sendCamp(this, CivColor.Rose+"Our camp has been destroyed!");
 			this.destroy();
 		} else {
-			CivMessage.sendCamp(this, Colors.Rose+"One of camps's Control Points has been destroyed!");
+			CivMessage.sendCamp(this, CivColor.Rose+"One of camps's Control Points has been destroyed!");
 		}
 		
 	}
@@ -1291,11 +1290,11 @@ public class Camp extends Buildable {
 						onControlBlockHit(cp, world, player);
 					}
 				} else {
-					CivMessage.send(player, Colors.Rose+"Control Block already destroyed.");
+					CivMessage.send(player, CivColor.Rose+"Control Block already destroyed.");
 				}
 			} else {
 				SimpleDateFormat sdf = new SimpleDateFormat("M/dd h:mm:ss a z");
-				CivMessage.send(player, Colors.Rose+"Cannot damage control blocks for this camp until "+sdf.format(getNextRaidDate()));
+				CivMessage.send(player, CivColor.Rose+"Cannot damage control blocks for this camp until "+sdf.format(getNextRaidDate()));
 			}
 			
 		}

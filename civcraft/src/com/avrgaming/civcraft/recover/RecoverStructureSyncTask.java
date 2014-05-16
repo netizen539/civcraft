@@ -28,9 +28,9 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.structure.Structure;
 import com.avrgaming.civcraft.template.Template;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.util.SimpleBlock.Type;
 
@@ -100,7 +100,7 @@ public class RecoverStructureSyncTask implements Runnable {
 	@Override
 	public void run() {
 		for (Structure struct : this.structures) {
-			CivMessage.send(sender, "Reparing "+struct.getDisplayName()+" at "+Colors.Yellow+struct.getCorner());
+			CivMessage.send(sender, "Reparing "+struct.getDisplayName()+" at "+CivColor.Yellow+struct.getCorner());
 			repairStructure(struct);
 		}
 		

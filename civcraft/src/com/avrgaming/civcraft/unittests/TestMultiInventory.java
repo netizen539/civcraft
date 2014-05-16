@@ -1,7 +1,8 @@
 package com.avrgaming.civcraft.unittests;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;

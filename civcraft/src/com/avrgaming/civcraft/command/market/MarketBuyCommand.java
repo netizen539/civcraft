@@ -22,9 +22,9 @@ import com.avrgaming.civcraft.command.CommandBase;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Town;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.war.War;
 
 public class MarketBuyCommand extends CommandBase {
@@ -45,7 +45,7 @@ public class MarketBuyCommand extends CommandBase {
 		for (Town town : CivGlobal.getTowns()) {
 			if (!town.isCapitol()) {
 				if (town.isForSale()) {
-					CivMessage.send(sender, town.getName()+" - "+Colors.Yellow+
+					CivMessage.send(sender, town.getName()+" - "+CivColor.Yellow+
 							df.format(town.getForSalePrice())+" coins.");
 				}
 			}
@@ -58,7 +58,7 @@ public class MarketBuyCommand extends CommandBase {
 		CivMessage.sendHeading(sender, "Civs For Sale");
 		for (Civilization civ : CivGlobal.getCivs()) {
 				if (civ.isForSale()) {
-					CivMessage.send(sender, civ.getName()+" - "+Colors.Yellow+
+					CivMessage.send(sender, civ.getName()+" - "+CivColor.Yellow+
 							df.format(civ.getTotalSalePrice())+" coins.");
 				}
 		}

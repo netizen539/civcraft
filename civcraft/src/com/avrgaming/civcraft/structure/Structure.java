@@ -37,7 +37,6 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.StructureChest;
 import com.avrgaming.civcraft.object.StructureSign;
@@ -45,6 +44,7 @@ import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.road.Road;
 import com.avrgaming.civcraft.template.Template;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class Structure extends Buildable {
 		
@@ -588,7 +588,7 @@ public class Structure extends Buildable {
 			throw new CivException("Internal database error.");
 		}		
 		
-		CivMessage.sendTown(getTown(), Colors.LightGreen+getDisplayName()+" was unbuilt with the undo command.");
+		CivMessage.sendTown(getTown(), CivColor.LightGreen+getDisplayName()+" was unbuilt with the undo command.");
 				
 		double refund = this.getCost();
 		this.getTown().depositDirect(refund);
@@ -653,7 +653,7 @@ public class Structure extends Buildable {
 		repairStructureForFree();
 		
 		getTown().getTreasury().withdraw(cost);
-		CivMessage.sendTown(getTown(), Colors.Yellow+"The town has repaired a "+getDisplayName()+" at "+getCorner());
+		CivMessage.sendTown(getTown(), CivColor.Yellow+"The town has repaired a "+getDisplayName()+" at "+getCorner());
 	}
 
 	@Override

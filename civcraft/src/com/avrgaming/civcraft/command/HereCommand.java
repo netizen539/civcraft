@@ -25,10 +25,10 @@ import org.bukkit.entity.Player;
 
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.object.TownChunk;
 import com.avrgaming.civcraft.util.ChunkCoord;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class HereCommand implements CommandExecutor {
 
@@ -42,20 +42,20 @@ public class HereCommand implements CommandExecutor {
 			
 			CultureChunk cc = CivGlobal.getCultureChunk(coord);
 			if (cc != null) {
-				CivMessage.send(sender, Colors.LightPurple+"You're currently inside the culture of Civ:"+
-						Colors.Yellow+cc.getCiv().getName()+Colors.LightPurple+" for town:"+Colors.Yellow+cc.getTown().getName());
+				CivMessage.send(sender, CivColor.LightPurple+"You're currently inside the culture of Civ:"+
+						CivColor.Yellow+cc.getCiv().getName()+CivColor.LightPurple+" for town:"+CivColor.Yellow+cc.getTown().getName());
 			}
 			
 			TownChunk tc = CivGlobal.getTownChunk(coord);
 			if (tc != null) {
-				CivMessage.send(sender, Colors.Green+"You're currently inside the town borders of "+Colors.LightGreen+tc.getTown().getName());
+				CivMessage.send(sender, CivColor.Green+"You're currently inside the town borders of "+CivColor.LightGreen+tc.getTown().getName());
 				if (tc.isOutpost()) {
-					CivMessage.send(sender, Colors.Yellow+"This chunk is an outpost.");
+					CivMessage.send(sender, CivColor.Yellow+"This chunk is an outpost.");
 				}
 			}
 			
 			if (cc == null && tc == null) {
-				CivMessage.send(sender, Colors.Yellow+"You stand in wilderness.");
+				CivMessage.send(sender, CivColor.Yellow+"You stand in wilderness.");
 			}
 			
 		}

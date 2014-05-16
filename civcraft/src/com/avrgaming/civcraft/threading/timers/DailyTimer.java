@@ -29,7 +29,6 @@ import com.avrgaming.civcraft.event.DailyEvent;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
@@ -38,6 +37,7 @@ import com.avrgaming.civcraft.structure.wonders.NotreDame;
 import com.avrgaming.civcraft.structure.wonders.Wonder;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.global.perks.PlatinumManager;
 
 public class DailyTimer implements Runnable {
@@ -123,7 +123,7 @@ public class DailyTimer implements Runnable {
 				if (civ.getTreasury().inDebt()) {
 					civ.incrementDaysInDebt();
 				}
-				CivMessage.sendCiv(civ, Colors.Yellow+"Paid "+total+" in civ upkeep costs.");
+				CivMessage.sendCiv(civ, CivColor.Yellow+"Paid "+total+" in civ upkeep costs.");
 				civ.save();
 			}
 			catch (Exception e) {

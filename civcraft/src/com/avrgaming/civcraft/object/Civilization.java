@@ -51,7 +51,6 @@ import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Relation.Status;
 import com.avrgaming.civcraft.permission.PermissionGroup;
 import com.avrgaming.civcraft.structure.Capitol;
@@ -63,6 +62,7 @@ import com.avrgaming.civcraft.threading.tasks.UpdateTechBar;
 import com.avrgaming.civcraft.threading.timers.BeakerTimer;
 import com.avrgaming.civcraft.util.BlockCoord;
 import com.avrgaming.civcraft.util.ChunkCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.DateUtil;
 import com.avrgaming.civcraft.util.ItemManager;
 
@@ -901,7 +901,7 @@ public class Civilization extends SQLObject {
 		Random rand = new Random();
 		boolean found = false;
 		int c = 0;
-		//Tries to get colors that are not the same.
+		//Tries to get CivColor that are not the same.
 		for (int i = 0; i < max_retries; i++) {
 			c = rand.nextInt(HEX_COLOR_MAX); //Must clip at a 24 bit integer.
 			if (testColorForCloseness(c) == false) {
@@ -921,7 +921,7 @@ public class Civilization extends SQLObject {
 	}
 	
 	private boolean testColorForCloseness(int c) {
-		int tolerance = HEX_COLOR_TOLERANCE; //out of 255 colors, 40 is about a 15% difference.
+		int tolerance = HEX_COLOR_TOLERANCE; //out of 255 CivColor, 40 is about a 15% difference.
 
 		if (simpleColorDistance(c, 0xFF0000) < tolerance) {
 			return false; //never accept pure red, or anything close to it, used for town markers.
@@ -935,8 +935,8 @@ public class Civilization extends SQLObject {
 			return false; //not too dark/
 		}
 		
-		//Check all the currently held colors.
-		for (int c2 : CivGlobal.colorsInUse.keySet()) {
+		//Check all the currently held CivColor.
+		for (int c2 : CivGlobal.CivColorInUse.keySet()) {
 			if (simpleColorDistance(c, c2) < tolerance) {
 				return false; //if this color is too close to any other color, reject it.
 			}
@@ -1320,7 +1320,7 @@ public class Civilization extends SQLObject {
 						CultureChunk cc = CivGlobal.getCultureChunk(coord);
 						if (cc != null && cc.getCiv() != this && 
 								cc.getCiv().getDiplomacyManager().atWarWith(this)) {
-							CivMessage.send(player, Colors.Purple+reason);
+							CivMessage.send(player, CivColor.Purple+reason);
 							player.teleport(revive.getLocation());			
 						}
 						
@@ -1336,7 +1336,7 @@ public class Civilization extends SQLObject {
 //
 //						if (player.getBedSpawnLocation() != null) {
 //							player.teleport(player.getBedSpawnLocation());
-//							CivMessage.send(player, Colors.Purple+reason);
+//							CivMessage.send(player, CivColor.Purple+reason);
 //						} else {
 //							player.gets
 //						}

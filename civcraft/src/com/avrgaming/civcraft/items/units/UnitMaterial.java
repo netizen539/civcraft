@@ -46,11 +46,11 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.lorestorage.LoreMaterial;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.threading.tasks.DelayMoveInventoryItem;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class UnitMaterial extends LoreMaterial {
 	
@@ -165,7 +165,7 @@ public class UnitMaterial extends LoreMaterial {
 			lore = stripTownLore(lore);
 			
 			if (lore != null) {
-				lore.add("Town:"+town.getName()+" "+Colors.Black+town.getId());
+				lore.add("Town:"+town.getName()+" "+CivColor.Black+town.getId());
 			}
 			
 			meta.setLore(lore);
@@ -193,7 +193,7 @@ public class UnitMaterial extends LoreMaterial {
 		}
 		
 		try {
-			String[] split = loreLine.split(Colors.Black);
+			String[] split = loreLine.split(CivColor.Black);
 			int townId = Integer.valueOf(split[1]);
 			
 			return CivGlobal.getTownFromId(townId);

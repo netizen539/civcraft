@@ -23,7 +23,6 @@ import org.bukkit.entity.Player;
 
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.questions.QuestionBaseTask;
 import com.avrgaming.civcraft.questions.QuestionResponseInterface;
 import com.avrgaming.civcraft.util.CivColor;
@@ -56,9 +55,9 @@ public class PlayerQuestionTask extends QuestionBaseTask implements Runnable {
 	
 	@Override
 	public void run() {	
-		CivMessage.send(askedPlayer, Colors.LightGray+"Question from: "+Colors.LightBlue+questionPlayer.getName());
+		CivMessage.send(askedPlayer, CivColor.LightGray+"Question from: "+CivColor.LightBlue+questionPlayer.getName());
 		CivMessage.send(askedPlayer, CivColor.LightPurple+CivColor.BOLD+question);
-		CivMessage.send(askedPlayer, Colors.LightGray+"Respond by typing "+Colors.LightBlue+"/accept"+Colors.LightGray+" or "+Colors.LightBlue+"/deny");
+		CivMessage.send(askedPlayer, CivColor.LightGray+"Respond by typing "+CivColor.LightBlue+"/accept"+CivColor.LightGray+" or "+CivColor.LightBlue+"/deny");
 		
 		try {
 			synchronized(this) {
@@ -75,8 +74,8 @@ public class PlayerQuestionTask extends QuestionBaseTask implements Runnable {
 			return;
 		}
 		
-		CivMessage.send(askedPlayer, Colors.LightGray+"You failed to respond to the question from "+questionPlayer.getName()+" in time.");
-		CivMessage.send(questionPlayer, Colors.LightGray+askedPlayer.getName()+" failed to answer the question in time.");
+		CivMessage.send(askedPlayer, CivColor.LightGray+"You failed to respond to the question from "+questionPlayer.getName()+" in time.");
+		CivMessage.send(questionPlayer, CivColor.LightGray+askedPlayer.getName()+" failed to answer the question in time.");
 		cleanup();
 	}
 

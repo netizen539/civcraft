@@ -6,8 +6,8 @@ import java.util.Random;
 
 import org.bukkit.inventory.ItemStack;
 
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.BuildableDamageBlock;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class LoreEnhancementPunchout extends LoreEnhancement {
 	
@@ -17,7 +17,7 @@ public class LoreEnhancementPunchout extends LoreEnhancement {
 	
 	public AttributeUtil add(AttributeUtil attrs) {
 		attrs.addEnhancement("LoreEnhancementPunchout", null, null);
-		attrs.addLore(Colors.Gold+getDisplayName());
+		attrs.addLore(CivColor.Gold+getDisplayName());
 		return attrs;
 	}
 	

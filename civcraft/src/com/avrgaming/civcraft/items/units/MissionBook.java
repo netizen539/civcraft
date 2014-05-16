@@ -43,7 +43,6 @@ import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.object.MissionLogger;
 import com.avrgaming.civcraft.object.Resident;
@@ -59,6 +58,7 @@ import com.avrgaming.civcraft.structure.TradeOutpost;
 import com.avrgaming.civcraft.structure.wonders.Wonder;
 import com.avrgaming.civcraft.util.BookUtil;
 import com.avrgaming.civcraft.util.ChunkCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.war.War;
 
@@ -113,8 +113,8 @@ public class MissionBook extends UnitItemMaterial {
 		for (String str : mission.description) {
 			this.addLore(str);
 		}
-		this.addLore(Colors.Yellow+mission.cost+" Coins.");
-		this.addLore(Colors.Gold+"Soulbound");
+		this.addLore(CivColor.Yellow+mission.cost+" Coins.");
+		this.addLore(CivColor.Gold+"Soulbound");
 	}
 	
 	@Override
@@ -250,7 +250,7 @@ public class MissionBook extends UnitItemMaterial {
 		}
 		
 		if (!resident.getTown().getTreasury().hasEnough(mission.cost)) {
-			CivMessage.send(player, Colors.Rose+"Suddenly, your town doesn't have enough cash to follow through with the mission.");
+			CivMessage.send(player, CivColor.Rose+"Suddenly, your town doesn't have enough cash to follow through with the mission.");
 			return false;
 		}
 		
@@ -264,16 +264,16 @@ public class MissionBook extends UnitItemMaterial {
 			result += "Failed";
 			
 			if (next < compromise_rate) {
-				CivMessage.global(Colors.Yellow+"INTERNATIONAL INCIDENT!"+Colors.White+" "+
+				CivMessage.global(CivColor.Yellow+"INTERNATIONAL INCIDENT!"+CivColor.White+" "+
 						player.getName()+" was caught trying to perform a "+mission.name+" spy mission in "+
 						target.getName()+"!");
-				CivMessage.send(player, Colors.Rose+"You've been compromised! (Rolled "+next+" vs "+compromise_rate+") Spy unit was destroyed!");
+				CivMessage.send(player, CivColor.Rose+"You've been compromised! (Rolled "+next+" vs "+compromise_rate+") Spy unit was destroyed!");
 				Unit.removeUnit(player);
 				result += ", COMPROMISED";
 			}
 			
 			MissionLogger.logMission(resident.getTown(), target, player.getName(), mission.name, result);
-			CivMessage.send(player, Colors.Rose+"Mission Failed! (Rolled "+failnext+" vs "+fail_rate+")");
+			CivMessage.send(player, CivColor.Rose+"Mission Failed! (Rolled "+failnext+" vs "+fail_rate+")");
 			return false;
 		}
 		
@@ -326,11 +326,11 @@ public class MissionBook extends UnitItemMaterial {
 		double failMod = 1.0;
 		if (resident.getTown().getBuffManager().hasBuff("buff_sabotage")) {
 			failMod = resident.getTown().getBuffManager().getEffectiveDouble("buff_sabotage");
-			CivMessage.send(player, Colors.LightGray+"Your goodie buff 'Sabotage' will come in handy here.");
+			CivMessage.send(player, CivColor.LightGray+"Your goodie buff 'Sabotage' will come in handy here.");
 		}
 		
 		if (processMissionResult(player, cc.getTown(), mission, failMod, 1.0)) {
-			CivMessage.global(Colors.Yellow+"DISASTER!"+Colors.White+" A "+buildable.getDisplayName()+" has been destroyed! Foul play is suspected.");
+			CivMessage.global(CivColor.Yellow+"DISASTER!"+CivColor.White+" A "+buildable.getDisplayName()+" has been destroyed! Foul play is suspected.");
 			buildable.setHitpoints(0);
 			buildable.fancyDestroyStructureBlocks();
 			buildable.save();
@@ -384,7 +384,7 @@ public class MissionBook extends UnitItemMaterial {
 			player.getWorld().dropItem(player.getLocation(), stack);
 		
 			CivMessage.sendSuccess(player, "Arg! Got the booty!");
-			CivMessage.sendTown(cc.getTown(), Colors.Rose+"Avast! Someone stole our trade goodie "+outpost.getGood().getInfo().name+" at "+outpost.getCorner());
+			CivMessage.sendTown(cc.getTown(), CivColor.Rose+"Avast! Someone stole our trade goodie "+outpost.getGood().getInfo().name+" at "+outpost.getCorner());
 		}
 	}
 	
@@ -421,7 +421,7 @@ public class MissionBook extends UnitItemMaterial {
 		double failMod = 1.0;
 		if (resident.getTown().getBuffManager().hasBuff("buff_espionage")) {
 			failMod = resident.getTown().getBuffManager().getEffectiveDouble("buff_espionage");
-			CivMessage.send(player, Colors.LightGray+"Your goodie buff 'Espionage' will come in handy here.");
+			CivMessage.send(player, CivColor.LightGray+"Your goodie buff 'Espionage' will come in handy here.");
 		}
 		
 		if (processMissionResult(player, tc.getTown(), mission, failMod, 1.0)) {
@@ -452,7 +452,7 @@ public class MissionBook extends UnitItemMaterial {
 						}
 					}
 					
-					CivMessage.global(Colors.Yellow+"DISASTER!"+Colors.White+" The cottages in "+tc.getTown().getName()+
+					CivMessage.global(CivColor.Yellow+"DISASTER!"+CivColor.White+" The cottages in "+tc.getTown().getName()+
 							" have suffered a famine from poison grain! Each cottage loses 1 level.");
 				}
 			} catch (InvalidConfiguration e) {
@@ -493,7 +493,7 @@ public class MissionBook extends UnitItemMaterial {
 		double failMod = 1.0;
 		if (resident.getTown().getBuffManager().hasBuff("buff_dirty_money")) {
 			failMod = resident.getTown().getBuffManager().getEffectiveDouble("buff_dirty_money");
-			CivMessage.send(player, Colors.LightGray+"Your goodie buff 'Dirty Money' will come in handy here.");
+			CivMessage.send(player, CivColor.LightGray+"Your goodie buff 'Dirty Money' will come in handy here.");
 		}
 		
 		if(processMissionResult(player, tc.getTown(), mission, failMod, 1.0)) {

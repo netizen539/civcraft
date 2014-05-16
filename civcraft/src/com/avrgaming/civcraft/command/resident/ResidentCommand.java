@@ -38,7 +38,6 @@ import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.lorestorage.LoreGuiItem;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.tutorial.CivTutorial;
 import com.avrgaming.civcraft.util.CivColor;
@@ -130,8 +129,8 @@ public class ResidentCommand extends CommandBase {
 		for (Perk p : resident.perks.values()) {
 			ItemStack stack = LoreGuiItem.build(p.configPerk.display_name, 
 					p.configPerk.type_id, 
-					p.configPerk.data, Colors.Gold+"<Click To Activate>",
-					Colors.LightBlue+"Count: "+p.count);
+					p.configPerk.data, CivColor.Gold+"<Click To Activate>",
+					CivColor.LightBlue+"Count: "+p.count);
 			stack = LoreGuiItem.setAction(stack, "activatePerk:"+p.configPerk.id);
 			
 			inv.addItem(stack);
@@ -319,30 +318,30 @@ public class ResidentCommand extends CommandBase {
 		Date lastOnline = new Date(resident.getLastOnline());
 		SimpleDateFormat sdf = new SimpleDateFormat("M/dd/yy h:mm:ss a z");
 		CivMessage.send(sender, CivColor.Green+"Last Online:"+CivColor.LightGreen+sdf.format(lastOnline));
-		CivMessage.send(sender, Colors.Green+"Town: "+Colors.LightGreen+resident.getTownString());
-		CivMessage.send(sender, Colors.Green+"Camp: "+Colors.LightGreen+resident.getCampString());
+		CivMessage.send(sender, CivColor.Green+"Town: "+CivColor.LightGreen+resident.getTownString());
+		CivMessage.send(sender, CivColor.Green+"Camp: "+CivColor.LightGreen+resident.getCampString());
 		
 		if (sender.getName().equalsIgnoreCase(resident.getName()) || sender.isOp()) {
-			CivMessage.send(sender, Colors.Green+"Personal Treasury: "+Colors.LightGreen+resident.getTreasury().getBalance()+" "+
-								  Colors.Green+"Taxes Owed: "+Colors.LightGreen+(resident.getPropertyTaxOwed()+resident.getFlatTaxOwed()));
+			CivMessage.send(sender, CivColor.Green+"Personal Treasury: "+CivColor.LightGreen+resident.getTreasury().getBalance()+" "+
+								  CivColor.Green+"Taxes Owed: "+CivColor.LightGreen+(resident.getPropertyTaxOwed()+resident.getFlatTaxOwed()));
 			if (resident.hasTown()) {
 				if (resident.getSelectedTown() != null) {
-					CivMessage.send(sender, Colors.Green+"Selected Town: "+Colors.LightGreen+resident.getSelectedTown().getName());
+					CivMessage.send(sender, CivColor.Green+"Selected Town: "+CivColor.LightGreen+resident.getSelectedTown().getName());
 				} else {
-					CivMessage.send(sender, Colors.Green+"Selected Town: "+Colors.LightGreen+resident.getTown().getName());
+					CivMessage.send(sender, CivColor.Green+"Selected Town: "+CivColor.LightGreen+resident.getTown().getName());
 				}
 			}
 		}
 		
 		if (resident.getTreasury().inDebt()) {
-			CivMessage.send(resident, Colors.Yellow+"In Debt "+resident.getTreasury().getDebt()+" coins!");
+			CivMessage.send(resident, CivColor.Yellow+"In Debt "+resident.getTreasury().getDebt()+" coins!");
 		}
 		
 		if (resident.getDaysTilEvict() > 0) {
-			CivMessage.send(resident, Colors.Yellow+"Eviction in "+resident.getDaysTilEvict()+" days.");
+			CivMessage.send(resident, CivColor.Yellow+"Eviction in "+resident.getDaysTilEvict()+" days.");
 		}
 		
-		CivMessage.send(sender, Colors.Green+"Groups: "+resident.getGroupsString());
+		CivMessage.send(sender, CivColor.Green+"Groups: "+resident.getGroupsString());
 		
 		try {
 			if (resident.isUsesAntiCheat()) {
@@ -359,7 +358,7 @@ public class ResidentCommand extends CommandBase {
 	public void doDefaultAction() throws CivException {
 		showHelp();
 		//info_cmd();
-		//CivMessage.send(sender, Colors.LightGray+"Subcommands available: See /resident help");
+		//CivMessage.send(sender, CivColor.LightGray+"Subcommands available: See /resident help");
 	}
 
 	@Override

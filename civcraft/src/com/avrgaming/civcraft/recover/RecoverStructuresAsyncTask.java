@@ -31,11 +31,11 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.structure.Structure;
 import com.avrgaming.civcraft.template.Template;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.util.SimpleBlock.Type;
 
@@ -130,7 +130,7 @@ public class RecoverStructuresAsyncTask implements Runnable {
 			try {
 				if (isBrokenStructure(struct)) {
 					if (listOnly) {
-						CivMessage.send(sender, struct.getDisplayName()+" at "+Colors.Yellow+struct.getCorner());
+						CivMessage.send(sender, struct.getDisplayName()+" at "+CivColor.Yellow+struct.getCorner());
 					}
 					
 					//CivLog.debug("\tIS BROKEN");

@@ -41,7 +41,6 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import net.milkbowl.vault.economy.Economy;
-import net.shotbow.serverstatusupdater.StatusInfo;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -59,7 +58,6 @@ import com.avrgaming.civcraft.arena.ArenaTeam;
 import com.avrgaming.civcraft.camp.Camp;
 import com.avrgaming.civcraft.camp.CampBlock;
 import com.avrgaming.civcraft.camp.WarCamp;
-import com.avrgaming.civcraft.command.ShotbowCommand;
 import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.database.SQL;
 import com.avrgaming.civcraft.endgame.EndGameCondition;
@@ -107,13 +105,12 @@ import com.avrgaming.civcraft.threading.tasks.CultureProcessAsyncTask;
 import com.avrgaming.civcraft.threading.tasks.PlayerQuestionTask;
 import com.avrgaming.civcraft.threading.tasks.UpdateTagBetweenCivsTask;
 import com.avrgaming.civcraft.threading.tasks.onLoadTask;
-import com.avrgaming.civcraft.threading.timers.ServerStatusTimer;
 import com.avrgaming.civcraft.util.BlockCoord;
 import com.avrgaming.civcraft.util.BukkitObjects;
 import com.avrgaming.civcraft.util.ChunkCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemFrameStorage;
 import com.avrgaming.civcraft.util.ItemManager;
-import com.avrgaming.civcraft.util.TimeTools;
 import com.avrgaming.civcraft.war.War;
 import com.avrgaming.civcraft.war.WarRegen;
 
@@ -158,7 +155,7 @@ public class CivGlobal {
 	public static HashSet<String> researchedTechs = new HashSet<String>();
 	
 	
-	public static Map<Integer, Boolean> colorsInUse = new ConcurrentHashMap<Integer, Boolean>();
+	public static Map<Integer, Boolean> CivColorInUse = new ConcurrentHashMap<Integer, Boolean>();
 	public static TradeGoodPreGenerate preGenerator = new TradeGoodPreGenerate();
 	
 	//TODO fix the duplicate score issue...
@@ -167,9 +164,7 @@ public class CivGlobal {
 
 	public static HashMap<String, Date> playerFirstLoginMap = new HashMap<String, Date>();
 	public static HashSet<String> banWords = new HashSet<String>();
-		
-	public static StatusInfo info;
-	
+			
 	//public static Scoreboard globalBoard;
 	
 	public static Integer maxPlayers = -1;
@@ -200,24 +195,7 @@ public class CivGlobal {
 	public static void loadGlobals() throws SQLException, CivException {
 		
 		CivLog.heading("Loading CivCraft Objects From Database");
-	
-		try {
-			Class.forName("net.shotbow.serverstatusupdater.StatusInfo");
 			
-			info = new StatusInfo(Bukkit.getServerName());
-
-			info.onlinePlayers = 0;
-			info.maxPlayers = 50;
-			info.joinable = false;
-			info.online = false;
-			info.kickMessage = "Coming Soon";
-			
-			CivCraft.getPlugin().getCommand("sb").setExecutor(new ShotbowCommand());
-			TaskMaster.asyncTimer("serverstatus", new ServerStatusTimer(), TimeTools.toTicks(5));
-		} catch (ClassNotFoundException e) {
-			CivLog.warning("NO SERVER STATUS UPDATER FOUND.");
-		}
-		
 		sdb = new SessionDatabase();
 		loadCamps();
 		loadCivs();
@@ -1338,7 +1316,7 @@ public class CivGlobal {
 			}
 						
 			if (outpostsInFrames.containsKey(goodie.getOutpost().getCorner().toString())) {
-			//	CivMessage.sendTown(goodie.getOutpost().getTown(), Colors.Rose+"WARNING: "+Colors.Yellow+"Duplicate goodie item detected for good "+
+			//	CivMessage.sendTown(goodie.getOutpost().getTown(), CivColor.Rose+"WARNING: "+CivColor.Yellow+"Duplicate goodie item detected for good "+
 			//			goodie.getDisplayName()+" at outpost "+goodie.getOutpost().getCorner().toString()+
 			//			". Item was reset back to outpost.");
 				fs.clearItem();
@@ -1487,7 +1465,7 @@ public class CivGlobal {
 //		master.getDiplomacyManager().setRelation(vassal, Status.MASTER, expires.getTime());
 //		vassal.getDiplomacyManager().setRelation(master, Status.VASSAL, expires.getTime());
 //		
-//		CivMessage.global(master.getName()+" is now the "+Colors.Gold+"MASTER"+Colors.White+" of "+vassal.getName());
+//		CivMessage.global(master.getName()+" is now the "+CivColor.Gold+"MASTER"+CivColor.White+" of "+vassal.getName());
 //		CivGlobal.updateTagsBetween(master, vassal);
 //	}
 	
@@ -1510,16 +1488,16 @@ public class CivGlobal {
 			out += "NEUTRAL with ";
 			break;
 		case HOSTILE:
-			out += Colors.Yellow+"HOSTILE"+Colors.White+" towards ";
+			out += CivColor.Yellow+"HOSTILE"+CivColor.White+" towards ";
 			break;
 		case WAR:
-			out += "at "+Colors.Rose+"WAR"+Colors.White+" with ";
+			out += "at "+CivColor.Rose+"WAR"+CivColor.White+" with ";
 			break;
 		case PEACE:
 			out += "at PEACE with ";
 			break;
 		case ALLY:
-			out += Colors.LightGreen+" ALLIED "+Colors.White+" with ";
+			out += CivColor.LightGreen+" ALLIED "+CivColor.White+" with ";
 			break;
 		default:
 			break;
@@ -1647,7 +1625,7 @@ public class CivGlobal {
 		Resident playerRes = CivGlobal.getResident(player);
 
 		if (CivGlobal.isMutualOutlaw(namedRes, playerRes)) {
-			return Colors.Red+namedPlayer.getName();
+			return CivColor.Red+namedPlayer.getName();
 		}
 		
 		if (namedRes == null || !namedRes.hasTown()) {
@@ -1660,24 +1638,24 @@ public class CivGlobal {
 		
 		//ChatColor color = ChatColor.WHITE;
 		//ChatColor style = ChatColor.RESET;
-		String color = Colors.White;
+		String color = CivColor.White;
 		if (namedRes.getTown().getCiv() == playerRes.getTown().getCiv()) {
-			color = Colors.LightGreen;
+			color = CivColor.LightGreen;
 		} else {
 		
 			Relation.Status status = playerRes.getTown().getCiv().getDiplomacyManager().getRelationStatus(namedRes.getTown().getCiv());
 			switch (status) {
 			case PEACE:
-				color = Colors.LightBlue;
+				color = CivColor.LightBlue;
 				break;
 			case ALLY:
-				color = Colors.LightGreen;
+				color = CivColor.LightGreen;
 				break;
 			case HOSTILE:
-				color = Colors.Yellow;
+				color = CivColor.Yellow;
 				break;
 			case WAR:
-				color = Colors.Rose;
+				color = CivColor.Rose;
 				break;
 			default:
 				break;

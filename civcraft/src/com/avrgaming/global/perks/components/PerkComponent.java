@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.global.perks.NotVerifiedException;
 import com.avrgaming.global.perks.Perk;
 import com.avrgaming.global.perks.PerkManager;
@@ -54,7 +54,7 @@ public class PerkComponent {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NotVerifiedException e) {
-			CivMessage.send(resident, Colors.Rose+"You're not verified!? Please contact an admin.");
+			CivMessage.send(resident, CivColor.Rose+"You're not verified!? Please contact an admin.");
 			e.printStackTrace();
 		}
 	}

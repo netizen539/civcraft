@@ -1021,7 +1021,7 @@ public class CustomItemManager implements Listener {
 //				build());
 //		
 //		if (level != 0) {
-//			attrs.addLore(Colors.LightBlue+level+" free enhancements! Redeem at blacksmith.");
+//			attrs.addLore(CivColor.LightBlue+level+" free enhancements! Redeem at blacksmith.");
 //			CivLog.cleanupLog("Converted stack:"+stack+" with enhancement level:"+level);
 //		
 //		}

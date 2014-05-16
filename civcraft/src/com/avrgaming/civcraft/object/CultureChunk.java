@@ -34,9 +34,9 @@ import com.avrgaming.civcraft.config.ConfigCultureBiomeInfo;
 import com.avrgaming.civcraft.config.ConfigCultureLevel;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.util.BiomeCache;
 import com.avrgaming.civcraft.util.ChunkCoord;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class CultureChunk {
 
@@ -84,11 +84,11 @@ public class CultureChunk {
 	}
 	
 	public String getOnLeaveString() {
-		return Colors.LightPurple+"Leaving "+town.getCiv().getName()+" Borders";
+		return CivColor.LightPurple+"Leaving "+town.getCiv().getName()+" Borders";
 	}
 	
 	public String getOnEnterString() {
-		return Colors.LightPurple+"Entering "+town.getCiv().getName()+" Borders";
+		return CivColor.LightPurple+"Entering "+town.getCiv().getName()+" Borders";
 	}
 	public double getPower() {
 		// power = max/(distance^2).
@@ -187,19 +187,19 @@ public class CultureChunk {
 	//	CivLog.debug("showing info.");
 		
 		if (cc == null) {
-			CivMessage.send(player, Colors.LightPurple+biome.name()+
-					Colors.Green+" Coins: "+Colors.LightGreen+info.coins+
-					Colors.Green+" Happiness:"+Colors.LightGreen+info.happiness+
-					Colors.Green+" Hammers:"+Colors.LightGreen+info.hammers+
-					Colors.Green+" Growth:"+Colors.LightGreen+info.growth+				
-					Colors.Green+" Beakers:"+Colors.LightGreen+info.beakers);
+			CivMessage.send(player, CivColor.LightPurple+biome.name()+
+					CivColor.Green+" Coins: "+CivColor.LightGreen+info.coins+
+					CivColor.Green+" Happiness:"+CivColor.LightGreen+info.happiness+
+					CivColor.Green+" Hammers:"+CivColor.LightGreen+info.hammers+
+					CivColor.Green+" Growth:"+CivColor.LightGreen+info.growth+				
+					CivColor.Green+" Beakers:"+CivColor.LightGreen+info.beakers);
 		} else {
-			CivMessage.send(player, Colors.LightPurple+biome.name()+
-					Colors.Green+" Coins: "+Colors.LightGreen+cc.getCoins()+
-					Colors.Green+" Happiness:"+Colors.LightGreen+cc.getHappiness()+
-					Colors.Green+" Hammers:"+Colors.LightGreen+cc.getHammers()+
-					Colors.Green+" Growth:"+Colors.LightGreen+cc.getGrowth()+				
-					Colors.Green+" Beakers:"+Colors.LightGreen+cc.getBeakers());
+			CivMessage.send(player, CivColor.LightPurple+biome.name()+
+					CivColor.Green+" Coins: "+CivColor.LightGreen+cc.getCoins()+
+					CivColor.Green+" Happiness:"+CivColor.LightGreen+cc.getHappiness()+
+					CivColor.Green+" Hammers:"+CivColor.LightGreen+cc.getHammers()+
+					CivColor.Green+" Growth:"+CivColor.LightGreen+cc.getGrowth()+				
+					CivColor.Green+" Beakers:"+CivColor.LightGreen+cc.getBeakers());
 		}
 
 	}

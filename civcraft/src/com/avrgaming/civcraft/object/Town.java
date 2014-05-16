@@ -60,7 +60,6 @@ import com.avrgaming.civcraft.items.units.Unit;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.permission.PermissionGroup;
 import com.avrgaming.civcraft.randomevents.RandomEvent;
 import com.avrgaming.civcraft.road.Road;
@@ -1095,7 +1094,7 @@ public class Town extends SQLObject {
 			}
 			
 			double capturePayment = amount * capturedPenalty;
-			CivMessage.sendTown(this, Colors.Yellow+"Your town paid "+(amount - capturePayment)+" coins due to being captured by "+this.getCiv().getName());
+			CivMessage.sendTown(this, CivColor.Yellow+"Your town paid "+(amount - capturePayment)+" coins due to being captured by "+this.getCiv().getName());
 			amount = capturePayment;
 		}
 		
@@ -1193,12 +1192,12 @@ public class Town extends SQLObject {
 	public String getPvpString() {
 		if (!this.getCiv().getDiplomacyManager().isAtWar()) {
 			if (pvp) {
-				return Colors.Red+"[PvP]";
+				return CivColor.Red+"[PvP]";
 			} else {
-				return Colors.Green+"[No PvP]";
+				return CivColor.Green+"[No PvP]";
 			}
 		} else {
-			return Colors.Red+"[WAR-PvP]";
+			return CivColor.Red+"[WAR-PvP]";
 		}
 	}
 	
@@ -1571,7 +1570,7 @@ public class Town extends SQLObject {
 		wonders.put(wonder.getCorner(), wonder);
 		
 		this.getTreasury().withdraw(cost);
-		CivMessage.sendTown(this, Colors.Yellow+"The town has started construction on  "+wonder.getDisplayName());
+		CivMessage.sendTown(this, CivColor.Yellow+"The town has started construction on  "+wonder.getDisplayName());
 		this.save();
 	}
 	
@@ -1651,7 +1650,7 @@ public class Town extends SQLObject {
 		}
 				
 		this.getTreasury().withdraw(cost);
-		CivMessage.sendTown(this, Colors.Yellow+"The town has started construction on a "+struct.getDisplayName());
+		CivMessage.sendTown(this, CivColor.Yellow+"The town has started construction on a "+struct.getDisplayName());
 		
 	//	try {
 			//this.save();

@@ -3,9 +3,9 @@ package com.avrgaming.civcraft.command.debug;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
-import org.bukkit.entity.Player;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
+import org.bukkit.entity.Player;
 
 import com.avrgaming.civcraft.arena.ArenaManager;
 import com.avrgaming.civcraft.command.CommandBase;

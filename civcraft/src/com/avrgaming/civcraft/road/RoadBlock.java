@@ -16,7 +16,6 @@ import com.avrgaming.civcraft.exception.InvalidObjectException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.BuildableDamageBlock;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.SQLObject;
@@ -25,6 +24,7 @@ import com.avrgaming.civcraft.structure.Buildable;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.threading.tasks.StructureBlockHitEvent;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class RoadBlock extends SQLObject implements BuildableDamageBlock {
 	private BlockCoord coord;
@@ -160,7 +160,7 @@ public class RoadBlock extends SQLObject implements BuildableDamageBlock {
 			TaskMaster.syncTask(new StructureBlockHitEvent(player.getName(), this.getCoord(), this, player.getWorld()), 0);
 		} else {
 			SimpleDateFormat sdf = new SimpleDateFormat("M/dd h:mm:ss a z");
-			CivMessage.send(player, Colors.Rose+"Cannot damage the road owned by "+this.getOwner().getCiv().getName()+" until "+sdf.format(this.road.getNextRaidDate()));		
+			CivMessage.send(player, CivColor.Rose+"Cannot damage the road owned by "+this.getOwner().getCiv().getName()+" until "+sdf.format(this.road.getNextRaidDate()));		
 		}
 	}
 

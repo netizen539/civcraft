@@ -53,21 +53,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
+
 import com.avrgaming.civcraft.util.NBTStaticHelper;
 import com.google.common.io.Files;
-/*Import must be updated to match each new version*/
-/*Import must be updated to match each new version*/
-/*Import must be updated to match each new version*/
-/*Import must be updated to match each new version*/
-/*Import must be updated to match each new version*/
-/*Import must be updated to match each new version*/
-/*Import must be updated to match each new version*/
-/*Import must be updated to match each new version*/
-/*Import must be updated to match each new version*/
-/*Import must be updated to match each new version*/
-/*Import must be updated to match each new version*/
-/*Import must be updated to match each new version*/
-/*Import must be updated to match each new version*/
 
 /**
  * @name ImprovedOfflinePlayer

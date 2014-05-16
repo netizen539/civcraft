@@ -21,7 +21,7 @@ public class ConfigMaterial {
 	public int item_data;
 	public String name;
 	public String category = "Misc";
-	public String categoryColorStripped = category;
+	public String categoryCivColortripped = category;
 	public int tier;
 	
 	/* Optional */
@@ -52,7 +52,7 @@ public class ConfigMaterial {
 			String category = (String)b.get("category");
 			if (category != null) {
 				mat.category = CivColor.colorize(category);
-				mat.categoryColorStripped = CivColor.stripTags(category);
+				mat.categoryCivColortripped = CivColor.stripTags(category);
 				
 				if (mat.category.toLowerCase().contains("tier 1")) {
 					mat.tier = 1;

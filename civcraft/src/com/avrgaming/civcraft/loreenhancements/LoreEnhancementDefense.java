@@ -2,12 +2,11 @@ package com.avrgaming.civcraft.loreenhancements;
 
 import gpl.AttributeUtil;
 
-
 import org.bukkit.inventory.ItemStack;
 
 import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.exception.InvalidConfiguration;
-import com.avrgaming.civcraft.main.Colors;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class LoreEnhancementDefense extends LoreEnhancement {
 	
@@ -16,7 +15,7 @@ public class LoreEnhancementDefense extends LoreEnhancement {
 	}
 	
 	public String getLoreString(double baseLevel) {
-		return Colors.Blue+"+"+baseLevel+" Defense";
+		return CivColor.Blue+"+"+baseLevel+" Defense";
 	}
 	
 	@Override
@@ -53,7 +52,7 @@ public class LoreEnhancementDefense extends LoreEnhancement {
 		} else {
 			attrs.addEnhancement("LoreEnhancementDefense", "level", ""+baseLevel);
 			attrs.addLore(getLoreString(baseLevel));
-			attrs.setName(attrs.getName()+Colors.LightBlue+"(+"+amount+")");
+			attrs.setName(attrs.getName()+CivColor.LightBlue+"(+"+amount+")");
 		}
 		
 		return attrs;
@@ -96,7 +95,7 @@ public class LoreEnhancementDefense extends LoreEnhancement {
 	public ItemStack deserialize(ItemStack stack, String data) {
 		AttributeUtil attrs = new AttributeUtil(stack);
 		attrs.setEnhancementData("LoreEnhancementDefense", "level", data);
-		attrs.setName(attrs.getName()+Colors.LightBlue+"(+"+Double.valueOf(data)+")");
+		attrs.setName(attrs.getName()+CivColor.LightBlue+"(+"+Double.valueOf(data)+")");
 		return attrs.getStack();
 	}
 }

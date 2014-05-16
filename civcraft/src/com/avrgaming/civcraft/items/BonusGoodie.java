@@ -50,12 +50,12 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.exception.InvalidNameException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.TradeGood;
 import com.avrgaming.civcraft.structure.Structure;
 import com.avrgaming.civcraft.structure.TradeOutpost;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.EntityUtil;
 import com.avrgaming.civcraft.util.InventoryHolderStorage;
 import com.avrgaming.civcraft.util.ItemFrameStorage;
@@ -174,11 +174,11 @@ public class BonusGoodie extends LoreItem {
 		
 		String[] split = getBonusDisplayString().split(";");
 		for (String str : split) {
-			lore.add(Colors.Yellow+str);
+			lore.add(CivColor.Yellow+str);
 		}
 				
 		if (isStackable()) {
-			lore.add(Colors.LightBlue+"Stackable");
+			lore.add(CivColor.LightBlue+"Stackable");
 		}
 		
 		this.setLore(stack, lore);
@@ -719,7 +719,7 @@ public class BonusGoodie extends LoreItem {
 		for (ConfigBuff cBuff : this.config.buffs.values()) {
 			out += ChatColor.UNDERLINE+cBuff.name;
 			out += ";";
-			out += Colors.White+ChatColor.ITALIC+cBuff.description;
+			out += CivColor.White+ChatColor.ITALIC+cBuff.description;
 			out += ";";
 		}
 

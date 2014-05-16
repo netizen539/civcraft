@@ -24,7 +24,7 @@ import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.config.ConfigCampUpgrade;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class CampUpgradeCommand extends CommandBase {
 	@Override
@@ -54,7 +54,7 @@ public class CampUpgradeCommand extends CommandBase {
 	private void list_upgrades(Camp camp) throws CivException {				
 		for (ConfigCampUpgrade upgrade : CivSettings.campUpgrades.values()) {
 			if (upgrade.isAvailable(camp)) {
-				CivMessage.send(sender, upgrade.name+Colors.LightGray+" Cost: "+Colors.Yellow+upgrade.cost);
+				CivMessage.send(sender, upgrade.name+CivColor.LightGray+" Cost: "+CivColor.Yellow+upgrade.cost);
 			}
 		}
 	}

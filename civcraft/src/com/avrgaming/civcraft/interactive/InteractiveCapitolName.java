@@ -26,9 +26,9 @@ import com.avrgaming.civcraft.command.town.TownCommand;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.threading.TaskMaster;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class InteractiveCapitolName implements InteractiveResponse {
 
@@ -49,7 +49,7 @@ public class InteractiveCapitolName implements InteractiveResponse {
 		}
 		
 		if (!StringUtils.isAlpha(message)) {
-			CivMessage.send(player, Colors.Rose+ChatColor.BOLD+"Town names must only contain letters(A-Z). Enter another name.");
+			CivMessage.send(player, CivColor.Rose+ChatColor.BOLD+"Town names must only contain letters(A-Z). Enter another name.");
 			return;
 		}
 		
@@ -58,8 +58,8 @@ public class InteractiveCapitolName implements InteractiveResponse {
 		message = message.replace("\'", "");
 		
 		resident.desiredCapitolName = message;
-		CivMessage.send(player, Colors.LightGreen+"The Civilization of "+Colors.Yellow+resident.desiredCivName+
-				Colors.LightGreen+"! And its capitol will be "+Colors.Yellow+resident.desiredCapitolName+Colors.LightGreen+"!");
+		CivMessage.send(player, CivColor.LightGreen+"The Civilization of "+CivColor.Yellow+resident.desiredCivName+
+				CivColor.LightGreen+"! And its capitol will be "+CivColor.Yellow+resident.desiredCapitolName+CivColor.LightGreen+"!");
 		CivMessage.sendHeading(player, "Survey Results");
 		
 		class SyncTask implements Runnable {
@@ -86,7 +86,7 @@ public class InteractiveCapitolName implements InteractiveResponse {
 				
 				CivMessage.send(player, TownCommand.survey(player.getLocation()));
 				CivMessage.send(player, "");
-				CivMessage.send(player, Colors.LightGreen+ChatColor.BOLD+"Are you sure? Type 'yes' and I will create this Civilization. Type anything else, and I will forget the whole thing.");
+				CivMessage.send(player, CivColor.LightGreen+ChatColor.BOLD+"Are you sure? Type 'yes' and I will create this Civilization. Type anything else, and I will forget the whole thing.");
 				resident.setInteractiveMode(new InteractiveConfirmCivCreation());				
 			}
 		

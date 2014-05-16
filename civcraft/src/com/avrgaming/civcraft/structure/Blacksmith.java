@@ -44,7 +44,6 @@ import com.avrgaming.civcraft.lorestorage.LoreMaterial;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.StructureSign;
 import com.avrgaming.civcraft.object.Town;
@@ -52,6 +51,7 @@ import com.avrgaming.civcraft.sessiondb.SessionEntry;
 import com.avrgaming.civcraft.threading.tasks.NotificationTask;
 import com.avrgaming.civcraft.util.BlockCoord;
 import com.avrgaming.civcraft.util.BukkitObjects;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.util.SimpleBlock;
 import com.avrgaming.civcraft.util.TimeTools;
@@ -314,7 +314,7 @@ public class Blacksmith extends Structure {
 				String str = lore[i];
 				if (str.contains("free enhancements")) {
 					if (level != 0) {
-						lore[i] = Colors.LightBlue+level+" free enhancements! Redeem at blacksmith.";
+						lore[i] = CivColor.LightBlue+level+" free enhancements! Redeem at blacksmith.";
 					} else {
 						lore[i] = "";
 					}
@@ -386,11 +386,11 @@ public class Blacksmith extends Structure {
 		//BukkitTools.sch
 		// Schedule a message to notify the player when the smelting is finished.
 		BukkitObjects.scheduleAsyncDelayedTask(new NotificationTask(player.getName(), 
-				Colors.LightGreen+" Your stack of "+itemsInHand.getAmount()+" "+
+				CivColor.LightGreen+" Your stack of "+itemsInHand.getAmount()+" "+
 				CivData.getDisplayName(itemsInHand.getTypeId())+" has finished smelting."), 
 				TimeTools.toTicks(SMELT_TIME_SECONDS));
 		
-		CivMessage.send(player,Colors.LightGreen+ "Deposited "+itemsInHand.getAmount()+ " ore.");
+		CivMessage.send(player,CivColor.LightGreen+ "Deposited "+itemsInHand.getAmount()+ " ore.");
 		
 		player.updateInventory();
 	}
@@ -441,7 +441,7 @@ public class Blacksmith extends Structure {
 				 
 				double timeLeft = ((double)Blacksmith.SMELT_TIME_SECONDS - (double)secondsBetween) / (double)60;
 				//Date finish = new Date(now+(secondsBetween*1000));
-				CivMessage.send(player, Colors.Yellow+"Stack of "+amount+" "+
+				CivMessage.send(player, CivColor.Yellow+"Stack of "+amount+" "+
 						CivData.getDisplayName(itemId)+" will be finished in "+ df1.format(timeLeft) +" minutes.");
 				continue;
 			}
@@ -453,11 +453,11 @@ public class Blacksmith extends Structure {
 			// If this stack was successfully withdrawn, delete it from the DB.
 			if (leftovers.size() == 0) {
 				CivGlobal.getSessionDB().delete(se.request_id, se.key);
-				CivMessage.send(player, Colors.LightGreen+"Withdrew "+amount+" "+CivData.getDisplayName(itemId));
+				CivMessage.send(player, CivColor.LightGreen+"Withdrew "+amount+" "+CivData.getDisplayName(itemId));
 				break;
 			} else {
 				// We do not have space in our inventory, inform the player.
-				CivMessage.send(player, Colors.Rose+"Not enough inventory space for all items.");
+				CivMessage.send(player, CivColor.Rose+"Not enough inventory space for all items.");
 				
 				// If the leftover size is the same as the size we are trying to withdraw, do nothing.
 				int leftoverAmount = CivGlobal.getLeftoverSize(leftovers);

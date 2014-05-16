@@ -49,7 +49,6 @@ import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Buff;
 import com.avrgaming.civcraft.object.BuildableDamageBlock;
 import com.avrgaming.civcraft.object.ControlPoint;
@@ -361,7 +360,7 @@ public class TownHall extends Structure implements RespawnLocationHolder {
 		if (allDestroyed) {
 			
 			if (this.getTown().getCiv().getCapitolName().equals(this.getTown().getName())) {
-				CivMessage.global(Colors.LightBlue+ChatColor.BOLD+"The civilization of "+this.getTown().getCiv().getName()+" has been conquered by "+attacker.getCiv().getName()+"!");
+				CivMessage.global(CivColor.LightBlue+ChatColor.BOLD+"The civilization of "+this.getTown().getCiv().getName()+" has been conquered by "+attacker.getCiv().getName()+"!");
 				for (Town town : this.getTown().getCiv().getTowns()) {
 					town.defeated = true;
 				}
@@ -378,7 +377,7 @@ public class TownHall extends Structure implements RespawnLocationHolder {
 				}
 				
 			} else {
-				CivMessage.global(Colors.Yellow+ChatColor.BOLD+"The town of "+getTown().getName()+" in "+this.getCiv().getName()+" has been conquered by "+attacker.getCiv().getName()+"!");
+				CivMessage.global(CivColor.Yellow+ChatColor.BOLD+"The town of "+getTown().getName()+" in "+this.getCiv().getName()+" has been conquered by "+attacker.getCiv().getName()+"!");
 				//this.getTown().onDefeat(attacker.getTown().getCiv());
 				this.getTown().defeated = true;
 				//War.defeatedTowns.put(this.getTown().getName(), attacker.getTown().getCiv());
@@ -388,9 +387,9 @@ public class TownHall extends Structure implements RespawnLocationHolder {
 			
 		}
 		else {
-			CivMessage.sendTown(hit.getTown(), Colors.Rose+"One of our Town Hall's Control Points has been destroyed!");
-			CivMessage.sendCiv(attacker.getTown().getCiv(), Colors.LightGreen+"We've destroyed a control block in "+hit.getTown().getName()+"!");
-			CivMessage.sendCiv(hit.getTown().getCiv(), Colors.Rose+"A control block in "+hit.getTown().getName()+" has been destroyed!");
+			CivMessage.sendTown(hit.getTown(), CivColor.Rose+"One of our Town Hall's Control Points has been destroyed!");
+			CivMessage.sendCiv(attacker.getTown().getCiv(), CivColor.LightGreen+"We've destroyed a control block in "+hit.getTown().getName()+"!");
+			CivMessage.sendCiv(hit.getTown().getCiv(), CivColor.Rose+"A control block in "+hit.getTown().getName()+" has been destroyed!");
 		}
 		
 	}
@@ -399,8 +398,8 @@ public class TownHall extends Structure implements RespawnLocationHolder {
 		world.playSound(hit.getCoord().getLocation(), Sound.ANVIL_USE, 0.2f, 1);
 		world.playEffect(hit.getCoord().getLocation(), Effect.MOBSPAWNER_FLAMES, 0);
 		
-		CivMessage.send(player, Colors.LightGray+"Damaged Control Block ("+cp.getHitpoints()+" / "+cp.getMaxHitpoints()+")");
-		CivMessage.sendTown(hit.getTown(), Colors.Yellow+"One of our Town Hall's Control Points is under attack!");
+		CivMessage.send(player, CivColor.LightGray+"Damaged Control Block ("+cp.getHitpoints()+" / "+cp.getMaxHitpoints()+")");
+		CivMessage.sendTown(hit.getTown(), CivColor.Yellow+"One of our Town Hall's Control Points is under attack!");
 	}
 	
 	@Override
@@ -429,11 +428,11 @@ public class TownHall extends Structure implements RespawnLocationHolder {
 					onControlBlockHit(cp, world, player, (StructureBlock)hit);
 				}
 			} else {
-				CivMessage.send(player, Colors.Rose+"Control Block already destroyed.");
+				CivMessage.send(player, CivColor.Rose+"Control Block already destroyed.");
 			}
 			
 		} else {
-			CivMessage.send(player, Colors.Rose+"Cannot Damage " +this.getDisplayName()+ ", go after the control points!");
+			CivMessage.send(player, CivColor.Rose+"Cannot Damage " +this.getDisplayName()+ ", go after the control points!");
 		}
 	}
 

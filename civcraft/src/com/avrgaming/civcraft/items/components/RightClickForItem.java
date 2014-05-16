@@ -1,13 +1,13 @@
 package com.avrgaming.civcraft.items.components;
 
 
+import gpl.AttributeUtil;
+
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.util.CivColor;
-
-import gpl.AttributeUtil;
 
 public class RightClickForItem extends ItemComponent {
 	

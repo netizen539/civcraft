@@ -23,10 +23,10 @@ import org.bukkit.entity.Player;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.questions.QuestionResponseInterface;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class CivQuestionTask implements Runnable {
 	
@@ -51,13 +51,13 @@ public class CivQuestionTask implements Runnable {
 	}
 	
 	public void askPlayer(Player player) {
-		CivMessage.send(player, Colors.LightGray+"Request from: "+Colors.LightBlue+questionCiv.getName());
+		CivMessage.send(player, CivColor.LightGray+"Request from: "+CivColor.LightBlue+questionCiv.getName());
 		CivMessage.send(player, question);
-		CivMessage.send(player, Colors.LightGray+"Respond by typing "+Colors.LightBlue+"/civ dip respond yes"+Colors.LightGray+" or "+Colors.LightBlue+"/civ dip respond no");
+		CivMessage.send(player, CivColor.LightGray+"Respond by typing "+CivColor.LightBlue+"/civ dip respond yes"+CivColor.LightGray+" or "+CivColor.LightBlue+"/civ dip respond no");
 	}
 	
 	public void notifyExpired(Player player) {
-		CivMessage.send(player, Colors.LightGray+"The offer from "+questionCiv.getName()+" expired.");
+		CivMessage.send(player, CivColor.LightGray+"The offer from "+questionCiv.getName()+" expired.");
 	}
 	
 	
@@ -106,7 +106,7 @@ public class CivQuestionTask implements Runnable {
 			}
 		}
 		
-		CivMessage.sendCiv(questionCiv, Colors.LightGray+askedCiv.getName()+" gave no response to our offer.");
+		CivMessage.sendCiv(questionCiv, CivColor.LightGray+askedCiv.getName()+" gave no response to our offer.");
 		cleanup();		
 	}
 	

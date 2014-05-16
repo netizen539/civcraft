@@ -28,13 +28,13 @@ import com.avrgaming.civcraft.command.CommandBase;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.structure.Buildable;
 import com.avrgaming.civcraft.structure.BuildableLayer;
 import com.avrgaming.civcraft.structure.Structure;
 import com.avrgaming.civcraft.structure.wonders.Wonder;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class AdminBuildCommand extends CommandBase {
 
@@ -103,7 +103,7 @@ public class AdminBuildCommand extends CommandBase {
 		Buildable buildable = town.getNearestBuildable(player.getLocation());
 		
 		if (args.length < 3 || !args[2].equalsIgnoreCase("yes")) {
-			CivMessage.send(player, Colors.Yellow+ChatColor.BOLD+"Would validate "+buildable.getDisplayName()+" at "+buildable.getCorner()+" are you sure? use '/ad validatenearest [town] yes' to confirm.");
+			CivMessage.send(player, CivColor.Yellow+ChatColor.BOLD+"Would validate "+buildable.getDisplayName()+" at "+buildable.getCorner()+" are you sure? use '/ad validatenearest [town] yes' to confirm.");
 			return;
 		}
 		
@@ -119,7 +119,7 @@ public class AdminBuildCommand extends CommandBase {
 		Buildable struct = town.getNearestStrucutreOrWonderInprogress(player.getLocation());
 		
 		if (args.length < 3 || !args[2].equalsIgnoreCase("yes")) {
-			CivMessage.send(player, Colors.Yellow+ChatColor.BOLD+"Would destroy "+struct.getDisplayName()+" at "+struct.getCorner()+" are you sure? use '/ad destroynearest [town] yes' to confirm.");
+			CivMessage.send(player, CivColor.Yellow+ChatColor.BOLD+"Would destroy "+struct.getDisplayName()+" at "+struct.getCorner()+" are you sure? use '/ad destroynearest [town] yes' to confirm.");
 			return;
 		}
 		
@@ -168,9 +168,9 @@ public class AdminBuildCommand extends CommandBase {
 		}
 		
 		if (args.length < 2 || !args[1].equalsIgnoreCase("yes")) {
-			CivMessage.send(player, Colors.LightGreen+"Are you sure you want to repair the structure "+Colors.Yellow+nearest.getDisplayName()+
-					Colors.LightGreen+" at "+Colors.Yellow+nearest.getCorner()+Colors.LightGreen+" ?");
-			CivMessage.send(player, Colors.LightGray+"If yes, use /ad repair yes");
+			CivMessage.send(player, CivColor.LightGreen+"Are you sure you want to repair the structure "+CivColor.Yellow+nearest.getDisplayName()+
+					CivColor.LightGreen+" at "+CivColor.Yellow+nearest.getCorner()+CivColor.LightGreen+" ?");
+			CivMessage.send(player, CivColor.LightGray+"If yes, use /ad repair yes");
 			return;
 		}
 		
@@ -195,8 +195,8 @@ public class AdminBuildCommand extends CommandBase {
 		if (args.length < 3) {
 			CivMessage.sendHeading(sender, "Demolish Structure");
 			for (Structure struct : town.getStructures()) {
-				CivMessage.send(sender, struct.getDisplayName()+" type: "+Colors.Yellow+struct.getCorner().toString()+
-						Colors.White+" to demolish");
+				CivMessage.send(sender, struct.getDisplayName()+" type: "+CivColor.Yellow+struct.getCorner().toString()+
+						CivColor.White+" to demolish");
 			}
 			return;
 		}
@@ -204,7 +204,7 @@ public class AdminBuildCommand extends CommandBase {
 		BlockCoord coord = new BlockCoord(args[2]);
 		Structure struct = town.getStructure(coord);
 		if (struct == null) {
-			CivMessage.send(sender, Colors.Rose+"No structure at "+args[2]);
+			CivMessage.send(sender, CivColor.Rose+"No structure at "+args[2]);
 			return;
 		}
 		

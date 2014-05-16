@@ -28,7 +28,6 @@ import com.avrgaming.civcraft.config.ConfigBuildableInfo;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.structure.Buildable;
@@ -36,6 +35,7 @@ import com.avrgaming.civcraft.structure.Structure;
 import com.avrgaming.civcraft.structure.wonders.Wonder;
 import com.avrgaming.civcraft.threading.tasks.BuildAsyncTask;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.war.War;
 
 public class BuildCommand extends CommandBase {
@@ -107,9 +107,9 @@ public class BuildCommand extends CommandBase {
 		}
 	
 		if (args.length < 2 || !args[1].equalsIgnoreCase("yes")) {
-			CivMessage.send(player, Colors.LightGreen+"Are you sure you want to repair the structure "+Colors.Yellow+nearest.getDisplayName()+
-					Colors.LightGreen+" at "+Colors.Yellow+nearest.getCorner()+Colors.LightGreen+" for "+Colors.Yellow+nearest.getRepairCost()+" coins?");
-			CivMessage.send(player, Colors.LightGray+"If yes, use /build repairnearest yes");
+			CivMessage.send(player, CivColor.LightGreen+"Are you sure you want to repair the structure "+CivColor.Yellow+nearest.getDisplayName()+
+					CivColor.LightGreen+" at "+CivColor.Yellow+nearest.getCorner()+CivColor.LightGreen+" for "+CivColor.Yellow+nearest.getRepairCost()+" coins?");
+			CivMessage.send(player, CivColor.LightGray+"If yes, use /build repairnearest yes");
 			return;
 		}
 		
@@ -128,9 +128,9 @@ public class BuildCommand extends CommandBase {
 		}
 		
 		if (args.length < 2 || !args[1].equalsIgnoreCase("yes")) {
-			CivMessage.send(player, Colors.LightGreen+"Are you sure you want to demolish the structure "+Colors.Yellow+nearest.getDisplayName()+
-					Colors.LightGreen+" at "+Colors.Yellow+nearest.getCorner()+Colors.LightGreen+" ?");
-			CivMessage.send(player, Colors.LightGray+"If yes, use /build demolishnearest yes");
+			CivMessage.send(player, CivColor.LightGreen+"Are you sure you want to demolish the structure "+CivColor.Yellow+nearest.getDisplayName()+
+					CivColor.LightGreen+" at "+CivColor.Yellow+nearest.getCorner()+CivColor.LightGreen+" ?");
+			CivMessage.send(player, CivColor.LightGray+"If yes, use /build demolishnearest yes");
 						
 			nearest.flashStructureBlocks();
 			return;
@@ -148,8 +148,8 @@ public class BuildCommand extends CommandBase {
 		if (args.length < 2) {
 			CivMessage.sendHeading(sender, "Demolish Structure");
 			for (Structure struct : town.getStructures()) {
-				CivMessage.send(sender, struct.getDisplayName()+" type: "+Colors.Yellow+struct.getCorner().toString()+
-						Colors.White+" to demolish");
+				CivMessage.send(sender, struct.getDisplayName()+" type: "+CivColor.Yellow+struct.getCorner().toString()+
+						CivColor.White+" to demolish");
 			}
 			return;
 		}
@@ -158,7 +158,7 @@ public class BuildCommand extends CommandBase {
 			BlockCoord coord = new BlockCoord(args[1]);
 			Structure struct = town.getStructure(coord);
 			if (struct == null) {
-				CivMessage.send(sender, Colors.Rose+"No structure at "+args[1]);
+				CivMessage.send(sender, CivColor.Rose+"No structure at "+args[1]);
 				return;
 			}
 			struct.getTown().demolish(struct, false);
@@ -180,10 +180,10 @@ public class BuildCommand extends CommandBase {
 			Buildable b = task.buildable;
 			DecimalFormat df = new DecimalFormat();
 			
-			CivMessage.send(sender, Colors.LightPurple+b.getDisplayName()+": "+Colors.Yellow+"("+df.format(b.getBuiltHammers()) + "/"+b.getHammerCost()+")"+
-					Colors.LightPurple+" Blocks "+Colors.Yellow+"("+b.builtBlockCount+"/"+b.getTotalBlockCount()+")");
+			CivMessage.send(sender, CivColor.LightPurple+b.getDisplayName()+": "+CivColor.Yellow+"("+df.format(b.getBuiltHammers()) + "/"+b.getHammerCost()+")"+
+					CivColor.LightPurple+" Blocks "+CivColor.Yellow+"("+b.builtBlockCount+"/"+b.getTotalBlockCount()+")");
 			
-			//CivMessage.send(sender, Colors.LightPurple+b.getDisplayName()+" "+Colors.Yellow+"("+
+			//CivMessage.send(sender, CivColor.LightPurple+b.getDisplayName()+" "+CivColor.Yellow+"("+
 				//	b.builtBlockCount+" / "+b.getTotalBlockCount()+")");
 		}
 		
@@ -201,8 +201,8 @@ public class BuildCommand extends CommandBase {
 					leftString = ""+(sinfo.limit - town.getStructureTypeCount(sinfo.id));
 				}
 				
-				CivMessage.send(sender, Colors.LightPurple+sinfo.displayName+
-						Colors.Yellow+
+				CivMessage.send(sender, CivColor.LightPurple+sinfo.displayName+
+						CivColor.Yellow+
 						" Cost: "+sinfo.cost+
 						" Upkeep: "+sinfo.upkeep+" Hammers: "+sinfo.hammer_cost+ 
 						" Left: "+leftString);
@@ -223,14 +223,14 @@ public class BuildCommand extends CommandBase {
 				}
 				
 				if (Wonder.isWonderAvailable(sinfo.id)) {				
-					CivMessage.send(sender, Colors.LightPurple+sinfo.displayName+
-							Colors.Yellow+
+					CivMessage.send(sender, CivColor.LightPurple+sinfo.displayName+
+							CivColor.Yellow+
 							" Cost: "+sinfo.cost+
 							" Upkeep: "+sinfo.upkeep+" Hammers: "+sinfo.hammer_cost+ 
 							" Left: "+leftString);
 				} else {
 					Wonder wonder = CivGlobal.getWonderByConfigId(sinfo.id);
-					CivMessage.send(sender, Colors.LightGray+sinfo.displayName+" Cost: "+sinfo.cost+" - Already built in "+
+					CivMessage.send(sender, CivColor.LightGray+sinfo.displayName+" Cost: "+sinfo.cost+" - Already built in "+
 							wonder.getTown().getName()+"("+wonder.getTown().getCiv().getName()+")");
 				}
 			}
@@ -326,8 +326,8 @@ public class BuildCommand extends CommandBase {
 	@Override
 	public void showHelp() {
 		showBasicHelp();		
-		CivMessage.send(sender, Colors.LightPurple+command+" "+Colors.Yellow+"[structure name] "+
-				Colors.LightGray+"builds this structure at your location.");
+		CivMessage.send(sender, CivColor.LightPurple+command+" "+CivColor.Yellow+"[structure name] "+
+				CivColor.LightGray+"builds this structure at your location.");
 	}
 
 	@Override

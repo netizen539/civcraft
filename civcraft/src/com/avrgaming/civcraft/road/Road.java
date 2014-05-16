@@ -26,7 +26,6 @@ import com.avrgaming.civcraft.listener.MarkerPlacementManager;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.BuildableDamageBlock;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.object.StructureBlock;
@@ -126,7 +125,7 @@ public class Road extends Structure {
 		
 		double totalCost = this.getTotalCost();
 		this.getTown().getTreasury().deposit(totalCost);
-		CivMessage.sendTown(this.getTown(), Colors.Yellow+"Refunded "+totalCost+" coins from road construction.");
+		CivMessage.sendTown(this.getTown(), CivColor.Yellow+"Refunded "+totalCost+" coins from road construction.");
 		
 		try {
 			this.delete();
@@ -209,7 +208,7 @@ public class Road extends Structure {
 		}
 		
 		if (locs.size() <= 1) {
-			CivMessage.send(player, Colors.LightGray+"First location placed, place another to start build a Road.");
+			CivMessage.send(player, CivColor.LightGray+"First location placed, place another to start build a Road.");
 			return;
 		}
 	

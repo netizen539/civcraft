@@ -19,9 +19,9 @@
 package com.avrgaming.civcraft.questions;
 
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Resident;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class SurrenderRequest implements QuestionResponseInterface {
 
@@ -34,7 +34,7 @@ public class SurrenderRequest implements QuestionResponseInterface {
 			fromCiv.onDefeat(toCiv);
 			CivMessage.global(fromCiv.getName()+" has surrendered to "+toCiv.getName());
 		} else {
-			CivMessage.sendCiv(fromCiv, Colors.LightGray+toCiv.getName()+" declined our offer.");
+			CivMessage.sendCiv(fromCiv, CivColor.LightGray+toCiv.getName()+" declined our offer.");
 		}
 	}
 

@@ -4,13 +4,14 @@ import gpl.AttributeUtil;
 
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
-import com.avrgaming.civcraft.main.Colors;
+
+import com.avrgaming.civcraft.util.CivColor;
 
 public class LoreEnhancementSoulBound extends LoreEnhancement {
 	
 	public AttributeUtil add(AttributeUtil attrs) {
 		attrs.addEnhancement("LoreEnhancementSoulBound", null, null);
-		attrs.addLore(Colors.Gold+getDisplayName());
+		attrs.addLore(CivColor.Gold+getDisplayName());
 		return attrs;
 	}
 	

@@ -1,9 +1,9 @@
 package com.avrgaming.civcraft.items.components;
 
+import gpl.AttributeUtil;
+
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.ItemStack;
-
-import gpl.AttributeUtil;
 
 public class NoDurability extends ItemComponent {
 

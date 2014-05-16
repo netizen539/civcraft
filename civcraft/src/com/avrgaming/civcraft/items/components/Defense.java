@@ -20,7 +20,6 @@ package com.avrgaming.civcraft.items.components;
 
 import gpl.AttributeUtil;
 
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
@@ -31,7 +30,6 @@ import com.avrgaming.civcraft.loreenhancements.LoreEnhancementDefense;
 import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.util.CivColor;
 
@@ -39,7 +37,7 @@ public class Defense extends ItemComponent {
 
 	@Override
 	public void onPrepareCreate(AttributeUtil attrs) {
-		attrs.addLore(Colors.Blue+""+this.getDouble("value")+" Defense");
+		attrs.addLore(CivColor.Blue+""+this.getDouble("value")+" Defense");
 	}
 	
 	@Override

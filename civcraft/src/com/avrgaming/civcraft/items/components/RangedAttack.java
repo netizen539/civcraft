@@ -15,7 +15,6 @@ import com.avrgaming.civcraft.loreenhancements.LoreEnhancement;
 import com.avrgaming.civcraft.loreenhancements.LoreEnhancementAttack;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.util.CivColor;
 
@@ -23,7 +22,7 @@ public class RangedAttack extends ItemComponent {
 
 	@Override
 	public void onPrepareCreate(AttributeUtil attrs) {
-		attrs.addLore(Colors.Rose+this.getDouble("value")+" Ranged Attack");	
+		attrs.addLore(CivColor.Rose+this.getDouble("value")+" Ranged Attack");	
 	}
 	
 	private static double ARROW_MAX_VEL = 6.0; 

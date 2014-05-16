@@ -26,13 +26,13 @@ import com.avrgaming.civcraft.command.CommandBase;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.TownChunk;
 import com.avrgaming.civcraft.permission.PermissionGroup;
 import com.avrgaming.civcraft.structure.farm.FarmChunk;
 import com.avrgaming.civcraft.util.BlockCoord;
 import com.avrgaming.civcraft.util.ChunkCoord;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class PlotCommand extends CommandBase {
 
@@ -76,24 +76,24 @@ public class PlotCommand extends CommandBase {
 		}
 		
 		CivMessage.sendHeading(sender, "Farm Plot Info");
-		CivMessage.send(sender, Colors.Green+"Last Grow Time: "+Colors.LightGreen+dateString);
-		CivMessage.send(sender, Colors.Green+"Last Grow Amount: "+Colors.LightGreen+fc.getLastGrowTickCount());
-		CivMessage.send(sender, Colors.Green+"Growth Ticks While Unloaded: "+Colors.LightGreen+fc.getMissedGrowthTicksStat());
-		CivMessage.send(sender, Colors.Green+"Last Effective Growth Rate: "+Colors.LightGreen+df.format(fc.getFarm().getLastEffectiveGrowthRate()*100)+"%");
+		CivMessage.send(sender, CivColor.Green+"Last Grow Time: "+CivColor.LightGreen+dateString);
+		CivMessage.send(sender, CivColor.Green+"Last Grow Amount: "+CivColor.LightGreen+fc.getLastGrowTickCount());
+		CivMessage.send(sender, CivColor.Green+"Growth Ticks While Unloaded: "+CivColor.LightGreen+fc.getMissedGrowthTicksStat());
+		CivMessage.send(sender, CivColor.Green+"Last Effective Growth Rate: "+CivColor.LightGreen+df.format(fc.getFarm().getLastEffectiveGrowthRate()*100)+"%");
 		
 		String success = "no";
 		if (fc.getLastRandomInt() < fc.getLastChanceForLast()) {
 			success = "yes";
 		}
 		
-		CivMessage.send(sender, Colors.Green+"Last Extra Grow Chance: "+Colors.LightGreen+fc.getLastChanceForLast()+" vs "+Colors.LightGreen+fc.getLastRandomInt()+" success? "+Colors.LightGreen+success);
+		CivMessage.send(sender, CivColor.Green+"Last Extra Grow Chance: "+CivColor.LightGreen+fc.getLastChanceForLast()+" vs "+CivColor.LightGreen+fc.getLastRandomInt()+" success? "+CivColor.LightGreen+success);
 		
 		String out = "";
 		for (BlockCoord bcoord : fc.getLastGrownCrops()) {
 			out += bcoord.toString()+", ";
 		}
 		
-		CivMessage.send(sender, Colors.Green+"Crops Grown: "+Colors.LightGreen+out);
+		CivMessage.send(sender, CivColor.Green+"Crops Grown: "+CivColor.LightGreen+out);
 		
 		
 	}
@@ -276,22 +276,22 @@ public class PlotCommand extends CommandBase {
 	}
 	
 	private void showCurrentPermissions(TownChunk tc) {
-		CivMessage.send(sender, Colors.Green+"Build: "+Colors.LightGreen+tc.perms.getBuildString());
-		CivMessage.send(sender, Colors.Green+"Destroy: "+Colors.LightGreen+tc.perms.getDestroyString());
-		CivMessage.send(sender, Colors.Green+"Interact: "+Colors.LightGreen+tc.perms.getInteractString());
-		CivMessage.send(sender, Colors.Green+"Item Use: "+Colors.LightGreen+tc.perms.getItemUseString());
+		CivMessage.send(sender, CivColor.Green+"Build: "+CivColor.LightGreen+tc.perms.getBuildString());
+		CivMessage.send(sender, CivColor.Green+"Destroy: "+CivColor.LightGreen+tc.perms.getDestroyString());
+		CivMessage.send(sender, CivColor.Green+"Interact: "+CivColor.LightGreen+tc.perms.getInteractString());
+		CivMessage.send(sender, CivColor.Green+"Item Use: "+CivColor.LightGreen+tc.perms.getItemUseString());
 	}
 	
 	private void showPermOwnership(TownChunk tc) {
-		String out = Colors.Green+"Town: "+Colors.LightGreen+tc.getTown().getName();
-		out += Colors.Green+" Owner: "+Colors.LightGreen;
+		String out = CivColor.Green+"Town: "+CivColor.LightGreen+tc.getTown().getName();
+		out += CivColor.Green+" Owner: "+CivColor.LightGreen;
 		if (tc.perms.getOwner() != null) {
 			out += tc.perms.getOwner().getName();
 		} else {
 			out += "none";
 		}
 		
-		out += Colors.Green+" Group: "+Colors.LightGreen;
+		out += CivColor.Green+" Group: "+CivColor.LightGreen;
 		if (tc.perms.getGroups().size() != 0) {
 			out += tc.perms.getGroupString();
 		} else {
@@ -302,9 +302,9 @@ public class PlotCommand extends CommandBase {
 	}
 	
 	/*private void showPermCmdHelp() {
-		CivMessage.send(sender, Colors.LightGray+"/plot perm set <type> <groupType> [on|off] ");
-		CivMessage.send(sender, Colors.LightGray+"    types: [build|destroy|interact|itemuse|reset]");
-		CivMessage.send(sender, Colors.LightGray+"    groupType: [owner|group|others]");
+		CivMessage.send(sender, CivColor.LightGray+"/plot perm set <type> <groupType> [on|off] ");
+		CivMessage.send(sender, CivColor.LightGray+"    types: [build|destroy|interact|itemuse|reset]");
+		CivMessage.send(sender, CivColor.LightGray+"    groupType: [owner|group|others]");
 	}*/
 	
 	public void info_cmd() throws CivException {
@@ -326,16 +326,16 @@ public class PlotCommand extends CommandBase {
 	}
 	
 	private void showToggles(TownChunk tc) {
-		CivMessage.send(sender, Colors.Green+"Mobs: "+Colors.LightGreen+tc.perms.isMobs()+" "+
-								Colors.Green+"Fire: "+Colors.LightGreen+tc.perms.isFire());
+		CivMessage.send(sender, CivColor.Green+"Mobs: "+CivColor.LightGreen+tc.perms.isMobs()+" "+
+								CivColor.Green+"Fire: "+CivColor.LightGreen+tc.perms.isFire());
 	}
 
 	private void showPriceInfo(TownChunk tc) {
 		String out = "";
 		if (tc.isForSale()) {
-			out += Colors.Yellow+" [For Sale at "+tc.getPrice()+" coins] ";
+			out += CivColor.Yellow+" [For Sale at "+tc.getPrice()+" coins] ";
 		}
-		CivMessage.send(sender, Colors.Green+"Value: "+Colors.LightGreen+tc.getValue()+out);
+		CivMessage.send(sender, CivColor.Green+"Value: "+CivColor.LightGreen+tc.getValue()+out);
 	}
 
 	@Override
@@ -352,7 +352,7 @@ public class PlotCommand extends CommandBase {
 	public void doDefaultAction() throws CivException {
 		showHelp();
 		//info_cmd();
-		//CivMessage.send(sender, Colors.LightGray+"Subcommands available: See /plot help");
+		//CivMessage.send(sender, CivColor.LightGray+"Subcommands available: See /plot help");
 	}
 
 }

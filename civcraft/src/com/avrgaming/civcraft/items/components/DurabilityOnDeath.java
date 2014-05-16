@@ -29,7 +29,7 @@ public class DurabilityOnDeath extends ItemComponent {
 
 	@Override
 	public void onPrepareCreate(AttributeUtil attrs) {
-//		attrs.addLore(Colors.Blue+""+this.getDouble("value")+" Durability");
+//		attrs.addLore(CivColor.Blue+""+this.getDouble("value")+" Durability");
 	}
 
 	@Override

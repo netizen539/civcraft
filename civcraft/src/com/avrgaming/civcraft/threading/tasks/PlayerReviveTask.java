@@ -24,9 +24,9 @@ import org.bukkit.entity.Player;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.structure.TownHall;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class PlayerReviveTask implements Runnable {
 
@@ -60,7 +60,7 @@ public class PlayerReviveTask implements Runnable {
 			return;
 		}
 		
-		CivMessage.send(player, Colors.LightGray+"You will respawn in "+timeout+" seconds.");
+		CivMessage.send(player, CivColor.LightGray+"You will respawn in "+timeout+" seconds.");
 		
 		try {
 			synchronized(this) {
@@ -84,7 +84,7 @@ public class PlayerReviveTask implements Runnable {
 			loc = revive.getLocation();
 		}
 		
-		CivMessage.send(player, Colors.LightGreen+"Respawning...");
+		CivMessage.send(player, CivColor.LightGreen+"Respawning...");
 		
 		try {
 			synchronized(this) {

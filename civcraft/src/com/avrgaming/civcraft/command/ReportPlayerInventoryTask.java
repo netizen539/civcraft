@@ -23,6 +23,7 @@ import java.util.Queue;
 
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
+
 import com.avrgaming.civcraft.main.CivMessage;
 
 public class ReportPlayerInventoryTask implements Runnable {

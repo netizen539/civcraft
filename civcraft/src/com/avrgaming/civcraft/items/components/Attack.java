@@ -31,7 +31,6 @@ import com.avrgaming.civcraft.loreenhancements.LoreEnhancement;
 import com.avrgaming.civcraft.loreenhancements.LoreEnhancementAttack;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.util.CivColor;
 
@@ -46,7 +45,7 @@ public class Attack extends ItemComponent {
 				type(AttributeType.GENERIC_ATTACK_DAMAGE).
 				amount(0).
 				build());
-		attrs.addLore(Colors.Rose+""+this.getDouble("value")+" Attack");
+		attrs.addLore(CivColor.Rose+""+this.getDouble("value")+" Attack");
 		return;
 	}
 	

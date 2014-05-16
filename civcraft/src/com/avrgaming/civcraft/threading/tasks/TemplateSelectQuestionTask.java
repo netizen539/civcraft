@@ -51,14 +51,14 @@ public class TemplateSelectQuestionTask extends PlayerQuestionTask {
 //		}
 //		
 //		CivMessage.sendHeading(askedPlayer, "Select Template To Use");
-//		CivMessage.send(askedPlayer, "0) "+Colors.Gold+"Default");
+//		CivMessage.send(askedPlayer, "0) "+CivColor.Gold+"Default");
 //		int i = 1;
 //		for (Perk perk : templatePerkList) {
-//			CivMessage.send(askedPlayer, i+") "+Colors.Gold+perk.getName());
+//			CivMessage.send(askedPlayer, i+") "+CivColor.Gold+perk.getName());
 //			i = 1;
 //		}
 //		
-//		CivMessage.send(askedPlayer, Colors.LightGray+"Respond by typing "+Colors.LightBlue+"/select #");
+//		CivMessage.send(askedPlayer, CivColor.LightGray+"Respond by typing "+CivColor.LightBlue+"/select #");
 //		
 //		try {
 //			synchronized(this) {
@@ -75,7 +75,7 @@ public class TemplateSelectQuestionTask extends PlayerQuestionTask {
 //			return;
 //		}
 //		
-//		CivMessage.send(askedPlayer, Colors.LightGray+"You failed to make a selection. Default selected.");
+//		CivMessage.send(askedPlayer, CivColor.LightGray+"You failed to make a selection. Default selected.");
 //		cleanup();
 //		finishedFunction.processResponse("0");
 //		

@@ -10,9 +10,9 @@ import org.bukkit.inventory.ItemStack;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.siege.Cannon;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.war.War;
 
 public class BuildCannon extends ItemComponent {
@@ -42,8 +42,8 @@ public class BuildCannon extends ItemComponent {
 
 	@Override
 	public void onPrepareCreate(AttributeUtil attrUtil) {
-		attrUtil.addLore(ChatColor.RESET+Colors.Gold+"Deploys War Cannon");
-		attrUtil.addLore(ChatColor.RESET+Colors.Rose+"<Right Click To Use>");	
+		attrUtil.addLore(ChatColor.RESET+CivColor.Gold+"Deploys War Cannon");
+		attrUtil.addLore(ChatColor.RESET+CivColor.Rose+"<Right Click To Use>");	
 	}
 	
 }

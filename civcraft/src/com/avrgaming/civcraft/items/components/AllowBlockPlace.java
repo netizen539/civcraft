@@ -1,8 +1,8 @@
 package com.avrgaming.civcraft.items.components;
 
-import org.bukkit.event.block.BlockPlaceEvent;
-
 import gpl.AttributeUtil;
+
+import org.bukkit.event.block.BlockPlaceEvent;
 
 public class AllowBlockPlace extends ItemComponent {
 

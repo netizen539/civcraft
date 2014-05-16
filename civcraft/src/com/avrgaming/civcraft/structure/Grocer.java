@@ -31,10 +31,10 @@ import com.avrgaming.civcraft.config.ConfigGrocerLevel;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.StructureSign;
 import com.avrgaming.civcraft.object.Town;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class Grocer extends Structure {
 
@@ -112,19 +112,19 @@ public class Grocer extends Structure {
 				if (t == this.getTown()) {
 					// Pay no taxes! You're a member.
 					resident.buyItem(itemName, id, data, price, amount);
-					CivMessage.send(player, Colors.LightGreen + "Bought "+amount+" "+itemName+" for "+ price+ " coins.");
+					CivMessage.send(player, CivColor.LightGreen + "Bought "+amount+" "+itemName+" for "+ price+ " coins.");
 					return;
 				} else {
 					// Pay non-resident taxes
 					resident.buyItem(itemName, id, data, price + payToTown, amount);
 					getTown().depositDirect(payToTown);
-					CivMessage.send(player, Colors.LightGreen + "Bought "+amount+" "+itemName+" for "+ price+ " coins.");
-					CivMessage.send(player, Colors.Yellow + "Paid "+ payToTown+" coins in non-resident taxes.");
+					CivMessage.send(player, CivColor.LightGreen + "Bought "+amount+" "+itemName+" for "+ price+ " coins.");
+					CivMessage.send(player, CivColor.Yellow + "Paid "+ payToTown+" coins in non-resident taxes.");
 				}
 			
 			}
 			catch (CivException e) {
-				CivMessage.send(player, Colors.Rose + e.getMessage());
+				CivMessage.send(player, CivColor.Rose + e.getMessage());
 			}
 		return;
 	}
@@ -163,7 +163,7 @@ public class Grocer extends Structure {
 			sign_buy_material(player, grocerlevel.itemName, grocerlevel.itemId, 
 					(byte)grocerlevel.itemData, grocerlevel.amount, grocerlevel.price);
 		} else {
-			CivMessage.send(player, Colors.Rose+"Grocer shelf empty, stock it using /town upgrade.");
+			CivMessage.send(player, CivColor.Rose+"Grocer shelf empty, stock it using /town upgrade.");
 		}
 	}
 	

@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.global.reports.ReportManager;
 import com.avrgaming.global.reports.ReportManager.ReportType;
 
@@ -29,7 +29,7 @@ public class InteractiveReportPlayer implements InteractiveResponse {
 		}
 
 		if (message.equalsIgnoreCase("cancel")) {
-			CivMessage.send(player, Colors.LightGreen+ChatColor.BOLD+"Report cancelled.");
+			CivMessage.send(player, CivColor.LightGreen+ChatColor.BOLD+"Report cancelled.");
 			resident.clearInteractiveMode();
 			return;
 		}
@@ -47,7 +47,7 @@ public class InteractiveReportPlayer implements InteractiveResponse {
 			return;
 		}
 		
-		CivMessage.send(player, Colors.Yellow+ChatColor.BOLD+"Please enter a description of what happened:");
+		CivMessage.send(player, CivColor.Yellow+ChatColor.BOLD+"Please enter a description of what happened:");
 		resident.setInteractiveMode(new InteractiveReportPlayerMessage(playerName, selectedType));		
 		
 	}

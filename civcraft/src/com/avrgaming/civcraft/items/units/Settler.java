@@ -37,7 +37,6 @@ import com.avrgaming.civcraft.interactive.InteractiveTownName;
 import com.avrgaming.civcraft.lorestorage.LoreMaterial;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.structure.Buildable;
@@ -59,10 +58,10 @@ public class Settler extends UnitMaterial implements CallbackInterface {
 		UnitMaterial.setOwningTown(town, is);
 		
 		AttributeUtil attrs = new AttributeUtil(is);
-		attrs.addLore(Colors.Rose+"Only Usable In Civ: "+Colors.LightBlue+town.getCiv().getName());
-		attrs.addLore(Colors.Gold+"Right Click To Found Town");
+		attrs.addLore(CivColor.Rose+"Only Usable In Civ: "+CivColor.LightBlue+town.getCiv().getName());
+		attrs.addLore(CivColor.Gold+"Right Click To Found Town");
 		attrs.addEnhancement("LoreEnhancementSoulBound", null, null);
-		attrs.addLore(Colors.Gold+"Soulbound");
+		attrs.addLore(CivColor.Gold+"Soulbound");
 		
 		attrs.setCivCraftProperty("owner_civ_id", ""+town.getCiv().getId());
 		is = attrs.getStack();
@@ -148,10 +147,10 @@ public class Settler extends UnitMaterial implements CallbackInterface {
 		resident.desiredTownLocation = player.getLocation();
 		
 		CivMessage.sendHeading(player, "Founding A New Town");
-		CivMessage.send(player, Colors.LightGreen+"This looks like a good place to settle!");
+		CivMessage.send(player, CivColor.LightGreen+"This looks like a good place to settle!");
 		CivMessage.send(player, " ");
-		CivMessage.send(player, Colors.LightGreen+ChatColor.BOLD+"What shall your new Town be called?");
-		CivMessage.send(player, Colors.LightGray+"(To cancel, type 'cancel')");
+		CivMessage.send(player, CivColor.LightGreen+ChatColor.BOLD+"What shall your new Town be called?");
+		CivMessage.send(player, CivColor.LightGray+"(To cancel, type 'cancel')");
 		
 		resident.setInteractiveMode(new InteractiveTownName());
 	}

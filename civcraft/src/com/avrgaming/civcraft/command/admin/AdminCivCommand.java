@@ -32,12 +32,12 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.exception.InvalidNameException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Relation;
+import com.avrgaming.civcraft.object.Relation.Status;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
-import com.avrgaming.civcraft.object.Relation.Status;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class AdminCivCommand extends CommandBase {
 
@@ -141,7 +141,7 @@ public class AdminCivCommand extends CommandBase {
 		Civilization civ = getNamedCiv(1);
 		
 		if (args.length < 3) {
-			CivMessage.send(sender, Colors.Yellow+ChatColor.BOLD+"Are you absolutely sure you want to wipe ALL COINS from ALL RESIDENTS and ALL TOWNS of this civ?");
+			CivMessage.send(sender, CivColor.Yellow+ChatColor.BOLD+"Are you absolutely sure you want to wipe ALL COINS from ALL RESIDENTS and ALL TOWNS of this civ?");
 			CivMessage.send(sender, "use /civ bankrupt yes if you do.");
 		}
 		

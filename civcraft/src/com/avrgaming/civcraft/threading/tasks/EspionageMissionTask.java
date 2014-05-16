@@ -29,7 +29,6 @@ import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.items.units.Unit;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
@@ -127,10 +126,10 @@ public class EspionageMissionTask implements Runnable {
 				
 				/* Process exposure penalities */
 				if (target.processSpyExposure(resident)) {
-					CivMessage.global(Colors.Yellow+"INTERNATIONAL INCIDENT!"+Colors.White+" "+
+					CivMessage.global(CivColor.Yellow+"INTERNATIONAL INCIDENT!"+CivColor.White+" "+
 							player.getName()+" was caught trying to perform a "+mission.name+" spy mission in "+
 							target.getName()+"!");
-					CivMessage.send(player, Colors.Rose+"You've been compromised! (Exposure got too high) Spy unit was destroyed!");
+					CivMessage.send(player, CivColor.Rose+"You've been compromised! (Exposure got too high) Spy unit was destroyed!");
 					Unit.removeUnit(player);
 					resident.setPerformingMission(false);
 					return;

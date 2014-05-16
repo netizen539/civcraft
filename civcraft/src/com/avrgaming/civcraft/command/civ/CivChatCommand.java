@@ -25,8 +25,8 @@ import org.bukkit.entity.Player;
 
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class CivChatCommand implements CommandExecutor {
 	
@@ -59,7 +59,7 @@ public class CivChatCommand implements CommandExecutor {
 		}
 	
 		if (resident.getTown() == null) {
-			player.sendMessage(Colors.Rose+"You are not part of a civ, nobody hears you.");
+			player.sendMessage(CivColor.Rose+"You are not part of a civ, nobody hears you.");
 			return false;
 		}
 		

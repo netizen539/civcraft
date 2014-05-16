@@ -37,10 +37,10 @@ import org.bukkit.inventory.ItemStack;
 
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.util.BlockCoord;
 import com.avrgaming.civcraft.util.ChunkCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 
 public class ReportChestsTask implements Runnable {
@@ -97,7 +97,7 @@ public class ReportChestsTask implements Runnable {
 						int goldOre = countItem(inv, ItemManager.getId(Material.GOLD_ORE));
 						int emeraldOre = countItem(inv, ItemManager.getId(Material.EMERALD_ORE));
 						
-						String out = block.getType().name()+": "+Colors.LightPurple+bcoord+Colors.White+" DB:"+diamondBlocks+" EB:"+emeraldBlocks+" GB:"+goldBlocks+" D:"+
+						String out = block.getType().name()+": "+CivColor.LightPurple+bcoord+CivColor.White+" DB:"+diamondBlocks+" EB:"+emeraldBlocks+" GB:"+goldBlocks+" D:"+
 								diamonds+" E:"+emeralds+" G:"+gold+" DO:"+diamondOre+" EO:"+emeraldOre+" GO:"+goldOre;
 						if (diamondBlocks != 0 || diamonds != 0 || goldBlocks != 0 || gold != 0 || emeraldBlocks != 0 
 								|| emeralds != 0 || diamondOre != 0 || goldOre != 0 || emeraldOre != 0) {	
@@ -136,7 +136,7 @@ public class ReportChestsTask implements Runnable {
 				int goldOre = countItem(inv, ItemManager.getId(Material.GOLD_ORE));
 				int emeraldOre = countItem(inv, ItemManager.getId(Material.EMERALD_ORE));
 				
-				String out =  e.getType().name()+": "+Colors.LightPurple+bcoord+Colors.White+" DB:"+diamondBlocks+" EB:"+emeraldBlocks+" GB:"+goldBlocks+" D:"+
+				String out =  e.getType().name()+": "+CivColor.LightPurple+bcoord+CivColor.White+" DB:"+diamondBlocks+" EB:"+emeraldBlocks+" GB:"+goldBlocks+" D:"+
 						diamonds+" E:"+emeralds+" G:"+gold+" DO:"+diamondOre+" EO:"+emeraldOre+" GO:"+goldOre;
 				if (diamondBlocks != 0 || diamonds != 0 || goldBlocks != 0 || gold != 0 || emeraldBlocks != 0 
 						|| emeralds != 0 || diamondOre != 0 || goldOre != 0 || emeraldOre != 0) {

@@ -116,7 +116,6 @@ import com.avrgaming.civcraft.util.TimeTools;
 import com.avrgaming.civcraft.war.WarListener;
 import com.avrgaming.global.perks.PlatinumManager;
 import com.avrgaming.global.scores.CalculateScoreTimer;
-import com.avrgaming.global.serverstatus.ServerStatusUpdateTimer;
 import com.avrgaming.moblib.MobLib;
 import com.avrgaming.sls.SLSManager;
 
@@ -206,7 +205,6 @@ public final class CivCraft extends JavaPlugin {
 		TaskMaster.asyncTimer(PlayerProximityComponentTimer.class.getName(), 
 				new PlayerProximityComponentTimer(), TimeTools.toTicks(1));
 		
-		TaskMaster.asyncTimer(ServerStatusUpdateTimer.class.getName(), new ServerStatusUpdateTimer(), TimeTools.toTicks(5));
 		TaskMaster.asyncTimer(EventTimerTask.class.getName(), new EventTimerTask(), TimeTools.toTicks(5));
 
 		TaskMaster.asyncTimer(PlatinumManager.class.getName(), new PlatinumManager(), TimeTools.toTicks(5));

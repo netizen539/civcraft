@@ -33,12 +33,12 @@ import com.avrgaming.civcraft.lorestorage.LoreMaterial;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Buff;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.StructureSign;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.SimpleBlock;
 
 public class Bank extends Structure {
@@ -171,7 +171,7 @@ public class Bank extends Structure {
 			DecimalFormat df = new DecimalFormat();
 			resident.getTreasury().deposit((double)((int)(coins*exchange_rate)));
 			CivMessage.send(player,
-					Colors.LightGreen + "Exchanged 1 "+itemName+" for "+ df.format(coins*exchange_rate)+ " coins.");	
+					CivColor.LightGreen + "Exchanged 1 "+itemName+" for "+ df.format(coins*exchange_rate)+ " coins.");	
 			return;
 		}
 		
@@ -186,8 +186,8 @@ public class Bank extends Structure {
 			this.getTown().depositDirect(giveToTown);
 			resident.getTreasury().deposit(giveToPlayer);
 		
-		CivMessage.send(player, Colors.LightGreen + "Exchanged 1 "+itemName+" for "+ giveToPlayer+ " coins.");
-		CivMessage.send(player,Colors.Yellow+" Paid "+giveToTown+" coins in non-resident taxes.");
+		CivMessage.send(player, CivColor.LightGreen + "Exchanged 1 "+itemName+" for "+ giveToPlayer+ " coins.");
+		CivMessage.send(player,CivColor.Yellow+" Paid "+giveToTown+" coins in non-resident taxes.");
 		return;
 		
 	}
@@ -222,7 +222,7 @@ public class Bank extends Structure {
 				break;
 			}
 		} catch (CivException e) {
-			CivMessage.send(player, Colors.Rose+e.getMessage());
+			CivMessage.send(player, CivColor.Rose+e.getMessage());
 		}
 	}
 	
@@ -326,7 +326,7 @@ public class Bank extends Structure {
 		if (this.getTown().getBuffManager().hasBuff("buff_greed")) {
 			double increase = this.getTown().getBuffManager().getEffectiveDouble("buff_greed");
 			effectiveInterestRate += increase;
-			CivMessage.sendTown(this.getTown(), Colors.LightGray+"Your goodie buff 'Greed' has increased the interest our town generated.");
+			CivMessage.sendTown(this.getTown(), CivColor.LightGray+"Your goodie buff 'Greed' has increased the interest our town generated.");
 		}
 		
 		double newCoins = principal*effectiveInterestRate;
@@ -335,7 +335,7 @@ public class Bank extends Structure {
 		newCoins = Math.floor(newCoins);
 		
 		if (newCoins != 0) {
-			CivMessage.sendTown(this.getTown(), Colors.LightGreen+"Our town earned "+newCoins+" coins from interest on a principal of "+principal+" coins.");
+			CivMessage.sendTown(this.getTown(), CivColor.LightGreen+"Our town earned "+newCoins+" coins from interest on a principal of "+principal+" coins.");
 			this.getTown().getTreasury().deposit(newCoins);
 			
 		}

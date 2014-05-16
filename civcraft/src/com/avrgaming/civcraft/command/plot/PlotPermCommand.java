@@ -24,9 +24,9 @@ import com.avrgaming.civcraft.command.CommandBase;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.TownChunk;
 import com.avrgaming.civcraft.permission.PermissionNode;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class PlotPermCommand extends CommandBase {
 
@@ -104,9 +104,9 @@ public class PlotPermCommand extends CommandBase {
 	}
 	
 	private void showPermCmdHelp() {
-		CivMessage.send(sender, Colors.LightGray+"/plot perm set <type> <groupType> [on|off] ");
-		CivMessage.send(sender, Colors.LightGray+"    types: [build|destroy|interact|itemuse|reset]");
-		CivMessage.send(sender, Colors.LightGray+"    groupType: [owner|group|others]");
+		CivMessage.send(sender, CivColor.LightGray+"/plot perm set <type> <groupType> [on|off] ");
+		CivMessage.send(sender, CivColor.LightGray+"    types: [build|destroy|interact|itemuse|reset]");
+		CivMessage.send(sender, CivColor.LightGray+"    groupType: [owner|group|others]");
 	}
 
 	@Override

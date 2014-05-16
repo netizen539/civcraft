@@ -27,12 +27,11 @@ import com.avrgaming.civcraft.command.CommandBase;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Relation;
+import com.avrgaming.civcraft.object.Relation.Status;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
-import com.avrgaming.civcraft.object.Relation.Status;
 import com.avrgaming.civcraft.questions.CapitulateRequest;
 import com.avrgaming.civcraft.questions.ChangeRelationResponse;
 import com.avrgaming.civcraft.threading.tasks.CivQuestionTask;
@@ -85,22 +84,22 @@ public class CivDiplomacyCommand extends CommandBase {
 
 		if (args.length < 3 || !args[2].equalsIgnoreCase("yes")) {
 			if (entireCiv) {
-				CivMessage.send(sender, Colors.Yellow+ChatColor.BOLD+"Capitualting means that this civ will be DELETED and all of its towns will become a normal towns in "+
+				CivMessage.send(sender, CivColor.Yellow+ChatColor.BOLD+"Capitualting means that this civ will be DELETED and all of its towns will become a normal towns in "+
 						town.getCiv().getName()+" and can no longer revolt. Are you sure?");
-				CivMessage.send(sender, Colors.Yellow+ChatColor.BOLD+"If you're sure, type /civ dip capitulate "+town.getName()+" yes");
+				CivMessage.send(sender, CivColor.Yellow+ChatColor.BOLD+"If you're sure, type /civ dip capitulate "+town.getName()+" yes");
 			} else {
-				CivMessage.send(sender, Colors.Yellow+ChatColor.BOLD+"Capitualting means that this town will become a normal town in "+town.getCiv().getName()+" and can no longer revolt. Are you sure?");
-				CivMessage.send(sender, Colors.Yellow+ChatColor.BOLD+"If you're sure, type /civ dip capitulate "+town.getName()+" yes");
+				CivMessage.send(sender, CivColor.Yellow+ChatColor.BOLD+"Capitualting means that this town will become a normal town in "+town.getCiv().getName()+" and can no longer revolt. Are you sure?");
+				CivMessage.send(sender, CivColor.Yellow+ChatColor.BOLD+"If you're sure, type /civ dip capitulate "+town.getName()+" yes");
 			}
 			return;
 		}
 		
 		if (entireCiv) {
-			requestMessage = Colors.Yellow+ChatColor.BOLD+"The Civilization of "+motherCiv.getName()+" would like to capitulate. Bringing in more towns will increase civ-wide unhappiness. Do we accept?";
+			requestMessage = CivColor.Yellow+ChatColor.BOLD+"The Civilization of "+motherCiv.getName()+" would like to capitulate. Bringing in more towns will increase civ-wide unhappiness. Do we accept?";
 			capitulateResponse.from = town.getMotherCiv().getName();
 		} else {
 			capitulateResponse.from = "Town of "+town.getName();
-			requestMessage = Colors.Yellow+ChatColor.BOLD+"The Town of "+town.getName()+" would like to capitulate. If we accept this town become ours and we"+
+			requestMessage = CivColor.Yellow+ChatColor.BOLD+"The Town of "+town.getName()+" would like to capitulate. If we accept this town become ours and we"+
 					" will have to pay distance upkeep to it. Do we accept?";	
 		}
 		
@@ -254,7 +253,7 @@ public class CivDiplomacyCommand extends CommandBase {
 				throw new CivException("Already "+status.name()+" with "+otherCiv.getName());
 			}
 			
-			String message = Colors.LightGreen+ChatColor.BOLD+ourCiv.getName()+" has requested ";
+			String message = CivColor.LightGreen+ChatColor.BOLD+ourCiv.getName()+" has requested ";
 			switch (status) {
 			case NEUTRAL:
 				message += "a NEUTRAL relationship";
@@ -393,7 +392,7 @@ public class CivDiplomacyCommand extends CommandBase {
 	}
 	
 	public void show(Civilization civ) {
-		CivMessage.sendHeading(sender, "Diplomatic Relations for "+Colors.Yellow+civ.getName());
+		CivMessage.sendHeading(sender, "Diplomatic Relations for "+CivColor.Yellow+civ.getName());
 		
 		for (Relation relation : civ.getDiplomacyManager().getRelations()) {
 			if (relation.getStatus() == Relation.Status.NEUTRAL) {
@@ -404,9 +403,9 @@ public class CivDiplomacyCommand extends CommandBase {
 		
 		int warCount = civ.getDiplomacyManager().getWarCount();
 		if (warCount != 0) {
-			CivMessage.send(sender, Colors.Rose+"Your civilization is currently engaged in "+warCount+" wars.");
+			CivMessage.send(sender, CivColor.Rose+"Your civilization is currently engaged in "+warCount+" wars.");
 		}
-		CivMessage.send(sender, Colors.LightGray+"Not shown means NEUTRAL.");
+		CivMessage.send(sender, CivColor.LightGray+"Not shown means NEUTRAL.");
 	}
 	
 	

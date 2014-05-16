@@ -14,7 +14,6 @@ import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.interactive.InteractiveWarCampFound;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.structure.Buildable;
 import com.avrgaming.civcraft.threading.TaskMaster;
@@ -37,8 +36,8 @@ public class FoundWarCamp extends ItemComponent implements CallbackInterface {
 	
 	@Override
 	public void onPrepareCreate(AttributeUtil attrUtil) {
-		attrUtil.addLore(ChatColor.RESET+Colors.Gold+"Deploys War Camp");
-		attrUtil.addLore(ChatColor.RESET+Colors.Rose+"<Right Click To Use>");		
+		attrUtil.addLore(ChatColor.RESET+CivColor.Gold+"Deploys War Camp");
+		attrUtil.addLore(ChatColor.RESET+CivColor.Rose+"<Right Click To Use>");		
 	}
 	
 	public void foundCamp(Player player) throws CivException {
@@ -123,12 +122,12 @@ public class FoundWarCamp extends ItemComponent implements CallbackInterface {
 		}
 		
 		CivMessage.sendHeading(player, "Ready for War! War Camp.");
-		CivMessage.send(player, Colors.LightGreen+"Lets get down to buisness. ");
-		CivMessage.send(player, Colors.LightGreen+"   -Your Civilization will be able to spawn here.");
-		CivMessage.send(player, Colors.LightGreen+"   -Cannot be rebuilt for at least "+warTimeout+" mins.");
+		CivMessage.send(player, CivColor.LightGreen+"Lets get down to buisness. ");
+		CivMessage.send(player, CivColor.LightGreen+"   -Your Civilization will be able to spawn here.");
+		CivMessage.send(player, CivColor.LightGreen+"   -Cannot be rebuilt for at least "+warTimeout+" mins.");
 		CivMessage.send(player, " ");
-		CivMessage.send(player, Colors.LightGreen+ChatColor.BOLD+"Do you want to place the War Camp here?");
-		CivMessage.send(player, Colors.LightGray+"(To accept, type 'yes')");
+		CivMessage.send(player, CivColor.LightGreen+ChatColor.BOLD+"Do you want to place the War Camp here?");
+		CivMessage.send(player, CivColor.LightGray+"(To accept, type 'yes')");
 		
 		resident.setInteractiveMode(new InteractiveWarCampFound(info));
 	}

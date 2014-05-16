@@ -44,11 +44,11 @@ import com.avrgaming.civcraft.items.BonusGoodie;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.StructureSign;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.util.SimpleBlock;
 
@@ -127,7 +127,7 @@ public class Stable extends Structure {
 					
 					resident.getTreasury().withdraw(getItemCost(cost));
 					getTown().depositTaxed(getFeeToTown(cost));
-					CivMessage.send(player, Colors.Yellow+"Paid "+getFeeToTown(cost)+" in non-resident fees.");
+					CivMessage.send(player, CivColor.Yellow+"Paid "+getFeeToTown(cost)+" in non-resident fees.");
 					paid = getItemCost(cost);
 				} else {
 					if (!resident.getTreasury().hasEnough(cost)) {
@@ -155,7 +155,7 @@ public class Stable extends Structure {
 				((Horse)mod.getHorse()).setOwner(player);
 				((Horse)mod.getHorse()).setBaby();
 				
-				CivMessage.send(player, Colors.LightGreen+"Paid "+paid+" coins.");
+				CivMessage.send(player, CivColor.LightGreen+"Paid "+paid+" coins.");
 			}
 		}
 		
@@ -182,7 +182,7 @@ public class Stable extends Structure {
 					}
 					
 					resident.getTreasury().withdraw(getItemCost(cost));
-					CivMessage.send(player, Colors.Yellow+"Paid "+getFeeToTown(cost)+" in non-resident fees.");
+					CivMessage.send(player, CivColor.Yellow+"Paid "+getFeeToTown(cost)+" in non-resident fees.");
 					paid = getItemCost(cost);
 				} else {
 					if (!resident.getTreasury().hasEnough(cost)) {
@@ -201,7 +201,7 @@ public class Stable extends Structure {
 					}
 				}
 				
-				CivMessage.send(player, Colors.LightGreen+"Paid "+paid+" coins.");
+				CivMessage.send(player, CivColor.LightGreen+"Paid "+paid+" coins.");
 			}
 			
 		}
@@ -212,9 +212,9 @@ public class Stable extends Structure {
 				continue;
 			}
 			if (item.item_id == 0) {
-				comp.addItem(new String[] {Colors.LightGreen+item.name, "Buy For", ""+item.cost, "Fee:"+this.nonMemberFeeComponent.getFeeString()}, new buyHorseAction(item.horse_id, item.cost));
+				comp.addItem(new String[] {CivColor.LightGreen+item.name, "Buy For", ""+item.cost, "Fee:"+this.nonMemberFeeComponent.getFeeString()}, new buyHorseAction(item.horse_id, item.cost));
 			} else {
-				comp.addItem(new String[] {Colors.LightGreen+item.name, "Buy For", ""+item.cost, "Fee: "+this.nonMemberFeeComponent.getFeeString()}, new buyItemAction(item.item_id, item.cost));			
+				comp.addItem(new String[] {CivColor.LightGreen+item.name, "Buy For", ""+item.cost, "Fee: "+this.nonMemberFeeComponent.getFeeString()}, new buyItemAction(item.item_id, item.cost));			
 			}
 		}
 	}

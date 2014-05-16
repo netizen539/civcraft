@@ -35,10 +35,10 @@ import com.avrgaming.civcraft.lorestorage.LoreMaterial;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.StructureSign;
 import com.avrgaming.civcraft.object.Town;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 
 public class GreatLibrary extends Wonder {
@@ -91,19 +91,19 @@ public class GreatLibrary extends Wonder {
 			switch (sign.getAction().toLowerCase()) {
 			case "0":
 				enchant = CivSettings.enchants.get("ench_fire_aspect");
-				sign.setText(enchant.name+"\n\n"+Colors.LightGreen+enchant.cost+" Coins.");
+				sign.setText(enchant.name+"\n\n"+CivColor.LightGreen+enchant.cost+" Coins.");
 				break;
 			case "1":
 				enchant = CivSettings.enchants.get("ench_fire_protection");
-				sign.setText(enchant.name+"\n\n"+Colors.LightGreen+enchant.cost+" Coins.");
+				sign.setText(enchant.name+"\n\n"+CivColor.LightGreen+enchant.cost+" Coins.");
 				break;
 			case "2":
 				enchant = CivSettings.enchants.get("ench_flame");
-				sign.setText(enchant.name+"\n\n"+Colors.LightGreen+enchant.cost+" Coins.");				
+				sign.setText(enchant.name+"\n\n"+CivColor.LightGreen+enchant.cost+" Coins.");				
 				break;			
 			case "3":
 				enchant = CivSettings.enchants.get("ench_punchout");
-				sign.setText(enchant.name+"\n\n"+Colors.LightGreen+enchant.cost+" Coins.");
+				sign.setText(enchant.name+"\n\n"+CivColor.LightGreen+enchant.cost+" Coins.");
 				break;
 			}
 			
@@ -138,7 +138,7 @@ public class GreatLibrary extends Wonder {
 			
 			configEnchant = CivSettings.enchants.get("ench_fire_aspect");
 			if (!resident.getTreasury().hasEnough(configEnchant.cost)) {
-				CivMessage.send(player, Colors.Rose+"You do not have enough money, you need "+configEnchant.cost+" coins.");
+				CivMessage.send(player, CivColor.Rose+"You do not have enough money, you need "+configEnchant.cost+" coins.");
 				return;
 			}
 			
@@ -153,7 +153,7 @@ public class GreatLibrary extends Wonder {
 			
 			configEnchant = CivSettings.enchants.get("ench_fire_protection");
 			if (!resident.getTreasury().hasEnough(configEnchant.cost)) {
-				CivMessage.send(player, Colors.Rose+"You do not have enough money, you need "+configEnchant.cost+" coins.");
+				CivMessage.send(player, CivColor.Rose+"You do not have enough money, you need "+configEnchant.cost+" coins.");
 				return;
 			}
 			
@@ -168,7 +168,7 @@ public class GreatLibrary extends Wonder {
 			
 			configEnchant = CivSettings.enchants.get("ench_flame");
 			if (!resident.getTreasury().hasEnough(configEnchant.cost)) {
-				CivMessage.send(player, Colors.Rose+"You do not have enough money, you need "+configEnchant.cost+" coins.");
+				CivMessage.send(player, CivColor.Rose+"You do not have enough money, you need "+configEnchant.cost+" coins.");
 				return;
 			}
 			
@@ -195,7 +195,7 @@ public class GreatLibrary extends Wonder {
 				}
 				
 				if (!resident.getTreasury().hasEnough(configEnchant.cost)) {
-					CivMessage.send(player, Colors.Rose+"You do not have enough money, you need "+configEnchant.cost+" coins.");
+					CivMessage.send(player, CivColor.Rose+"You do not have enough money, you need "+configEnchant.cost+" coins.");
 					return;
 				}
 				

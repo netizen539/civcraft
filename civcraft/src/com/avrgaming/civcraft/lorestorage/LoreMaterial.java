@@ -44,7 +44,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.avrgaming.civcraft.loreenhancements.LoreEnhancement;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.BuildableDamageBlock;
 import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
@@ -59,7 +58,7 @@ public abstract class LoreMaterial {
 	private String name;
 		
 	public static Map<String, LoreMaterial> materialMap = new HashMap<String, LoreMaterial>();
-	public static final String MID_TAG = Colors.Black+"MID";
+	public static final String MID_TAG = CivColor.Black+"MID";
 	
 	public LoreMaterial(String id, int typeID, short damage) {
 		this.id = id;

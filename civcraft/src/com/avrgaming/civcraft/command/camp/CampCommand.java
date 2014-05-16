@@ -30,7 +30,6 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.questions.JoinCampResponse;
 import com.avrgaming.civcraft.util.CivColor;
@@ -67,16 +66,16 @@ public class CampCommand extends CommandBase {
 		info.put("Owner", camp.getOwnerName());
 		info.put("Members", ""+camp.getMembers().size());
 		info.put("Next Raid", ""+sdf.format(camp.getNextRaidDate()));
-		CivMessage.send(sender, this.makeInfoString(info, Colors.Green, Colors.LightGreen));
+		CivMessage.send(sender, this.makeInfoString(info, CivColor.Green, CivColor.LightGreen));
 		
 		info.clear();
 		info.put("Hours of Fire Left", ""+camp.getFirepoints());
 		info.put("Longhouse Level", ""+camp.getLonghouseLevel()+""+camp.getLonghouseCountString());
-		CivMessage.send(sender, this.makeInfoString(info, Colors.Green, Colors.LightGreen));
+		CivMessage.send(sender, this.makeInfoString(info, CivColor.Green, CivColor.LightGreen));
 
 		info.clear();
 		info.put("Members", camp.getMembersString());
-		CivMessage.send(sender, this.makeInfoString(info, Colors.Green, Colors.LightGreen));
+		CivMessage.send(sender, this.makeInfoString(info, CivColor.Green, CivColor.LightGreen));
 	}
 	
 	public void remove_cmd() throws CivException {

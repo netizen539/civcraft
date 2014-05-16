@@ -26,7 +26,7 @@ import java.util.Map;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.avrgaming.civcraft.main.Colors;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class LoreStoreage {
 
@@ -40,7 +40,7 @@ public class LoreStoreage {
 			lore = new ArrayList<String>();
 		}
 		
-		lore.set(0, Colors.Black+"MID:"+id);
+		lore.set(0, CivColor.Black+"MID:"+id);
 		meta.setLore(lore);
 		stack.setItemMeta(meta);
 	}
@@ -58,11 +58,11 @@ public class LoreStoreage {
 		ItemMeta meta = stack.getItemMeta();
 		ArrayList<String> lore = new ArrayList<String>();
 		
-		lore.add(Colors.Blue+type);
+		lore.add(CivColor.Blue+type);
 		
 		for (String key : map.keySet()) {
 			String value = map.get(key);
-			lore.add(Colors.Gray+key+":"+value);
+			lore.add(CivColor.Gray+key+":"+value);
 		}
 		
 		meta.setLore(lore);

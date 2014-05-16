@@ -37,7 +37,6 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Relation.Status;
 import com.avrgaming.civcraft.object.Resident;
@@ -172,10 +171,10 @@ public class CivCommand extends CommandBase {
 		double revolutionFee = motherCiv.getRevolutionFee();
 		
 		if (args.length < 2 || !args[1].equalsIgnoreCase("yes")) {
-			CivMessage.send(sender, Colors.Yellow+ChatColor.BOLD+"For a measly "+revolutionFee+" we could fund a revolution and get our old civ back!");
-			CivMessage.send(sender, Colors.Yellow+ChatColor.BOLD+"Funding a revolution will put us AT WAR with any town that currently owns one of our native towns. To win the revolution, we" +
+			CivMessage.send(sender, CivColor.Yellow+ChatColor.BOLD+"For a measly "+revolutionFee+" we could fund a revolution and get our old civ back!");
+			CivMessage.send(sender, CivColor.Yellow+ChatColor.BOLD+"Funding a revolution will put us AT WAR with any town that currently owns one of our native towns. To win the revolution, we" +
 					"only need to survive the wars. Are you sure you want to do this?");
-			CivMessage.send(sender, Colors.LightGreen+"Type '/civ revolution yes' to start the revolution.");
+			CivMessage.send(sender, CivColor.LightGreen+"Type '/civ revolution yes' to start the revolution.");
 			return;
 		}
 		
@@ -210,9 +209,9 @@ public class CivCommand extends CommandBase {
 		
 		
 		town.getTreasury().withdraw(revolutionFee);
-		CivMessage.global(Colors.Yellow+ChatColor.BOLD+"The civilization of "+motherCiv.getName()+" demands its freedom and has started a revolution! It has declared WAR on any civ that owns its old towns.");
-		CivMessage.global(Colors.Rose+"RED!"+Colors.LightGreen+" The blood of angry men! "+Colors.LightGray+"BLACK!"+Colors.LightGreen+" The dark of ages past!");
-		CivMessage.global(Colors.Rose+"RED!"+Colors.LightGreen+" A world about to dawn! "+Colors.LightGray+"BLACK!"+Colors.LightGreen+" The night that ends at last!");
+		CivMessage.global(CivColor.Yellow+ChatColor.BOLD+"The civilization of "+motherCiv.getName()+" demands its freedom and has started a revolution! It has declared WAR on any civ that owns its old towns.");
+		CivMessage.global(CivColor.Rose+"RED!"+CivColor.LightGreen+" The blood of angry men! "+CivColor.LightGray+"BLACK!"+CivColor.LightGreen+" The dark of ages past!");
+		CivMessage.global(CivColor.Rose+"RED!"+CivColor.LightGreen+" A world about to dawn! "+CivColor.LightGray+"BLACK!"+CivColor.LightGreen+" The night that ends at last!");
 
 	}
 	
@@ -235,9 +234,9 @@ public class CivCommand extends CommandBase {
 //		}
 //		
 //		if (args.length < 2 || !args[1].equalsIgnoreCase("yes")) {
-//			CivMessage.send(sender, Colors.Yellow+ChatColor.BOLD+"Capitualting means that this civ will be DELETED and all of its towns will become a normal towns in "+
+//			CivMessage.send(sender, CivColor.Yellow+ChatColor.BOLD+"Capitualting means that this civ will be DELETED and all of its towns will become a normal towns in "+
 //					town.getCiv().getName()+" and can no longer revolt. Are you sure?");
-//			CivMessage.send(sender, Colors.Yellow+ChatColor.BOLD+"If you're sure, type /civ capitulate yes");
+//			CivMessage.send(sender, CivColor.Yellow+ChatColor.BOLD+"If you're sure, type /civ capitulate yes");
 //			return;
 //		}
 //		
@@ -265,7 +264,7 @@ public class CivCommand extends CommandBase {
 			town.disband();
 		}
 		
-		CivMessage.send(sender, Colors.Yellow+"Waiting on mayor to type /town disbandtown");
+		CivMessage.send(sender, CivColor.Yellow+"Waiting on mayor to type /town disbandtown");
 	}
 	
 	public void top5_cmd() {	
@@ -282,7 +281,7 @@ public class CivCommand extends CommandBase {
 		synchronized(CivGlobal.civilizationScores) {
 			int i = 1;
 			for (Integer score : CivGlobal.civilizationScores.descendingKeySet()) {
-				CivMessage.send(sender, i+") "+Colors.Gold+CivGlobal.civilizationScores.get(score).getName()+Colors.White+" - "+score+" points");
+				CivMessage.send(sender, i+") "+CivColor.Gold+CivGlobal.civilizationScores.get(score).getName()+CivColor.White+" - "+score+" points");
 				i++;
 				if (i > 5) {
 					break;
@@ -318,27 +317,27 @@ public class CivCommand extends CommandBase {
 		sdf.setTimeZone(cal.getTimeZone());
 		
 		
-		out.add(Colors.Green+"Current Server Time: "+Colors.LightGreen+sdf.format(cal.getTime()));
+		out.add(CivColor.Green+"Current Server Time: "+CivColor.LightGreen+sdf.format(cal.getTime()));
 		
 		cal.setTime(CivGlobal.getNextUpkeepDate());
-		out.add(Colors.Green+"Next Upkeep: "+Colors.LightGreen+sdf.format(cal.getTime()));
+		out.add(CivColor.Green+"Next Upkeep: "+CivColor.LightGreen+sdf.format(cal.getTime()));
 		
 		cal.setTime(CivGlobal.getNextHourlyTickDate());
-		out.add(Colors.Green+"Next Hourly Tick: "+Colors.LightGreen+sdf.format(cal.getTime()));
+		out.add(CivColor.Green+"Next Hourly Tick: "+CivColor.LightGreen+sdf.format(cal.getTime()));
 		
 		cal.setTime(CivGlobal.getNextRepoTime());
-		out.add(Colors.Green+"Next Trade Good Repo: "+Colors.LightGreen+sdf.format(cal.getTime()));
+		out.add(CivColor.Green+"Next Trade Good Repo: "+CivColor.LightGreen+sdf.format(cal.getTime()));
 		
 		if (War.isWarTime()) {
-			out.add(Colors.Yellow+"WarTime is now!");
+			out.add(CivColor.Yellow+"WarTime is now!");
 			cal.setTime(War.getStart());
-			out.add(Colors.Yellow+"    Started: "+Colors.LightGreen+sdf.format(cal.getTime()));
+			out.add(CivColor.Yellow+"    Started: "+CivColor.LightGreen+sdf.format(cal.getTime()));
 			
 			cal.setTime(War.getEnd());
-			out.add(Colors.Yellow+"    Ends: "+Colors.LightGreen+sdf.format(cal.getTime()));
+			out.add(CivColor.Yellow+"    Ends: "+CivColor.LightGreen+sdf.format(cal.getTime()));
 		} else {
 			cal.setTime(War.getNextWarTime());
-			out.add(Colors.Green+"Next WarTime: "+Colors.LightGreen+sdf.format(cal.getTime()));
+			out.add(CivColor.Green+"Next WarTime: "+CivColor.LightGreen+sdf.format(cal.getTime()));
 		}
 		
 		Player player = null;
@@ -349,10 +348,10 @@ public class CivCommand extends CommandBase {
 
 		if (player == null || player.hasPermission(CivSettings.MINI_ADMIN) || player.isOp()) {
 			cal.setTime(CivGlobal.getTodaysSpawnRegenDate());
-			out.add(Colors.LightPurple+"Next Spawn Regen: "+Colors.LightGreen+sdf.format(cal.getTime()));
+			out.add(CivColor.LightPurple+"Next Spawn Regen: "+CivColor.LightGreen+sdf.format(cal.getTime()));
 			
 			cal.setTime(CivGlobal.getNextRandomEventTime());
-			out.add(Colors.LightPurple+"Next Random Event: "+Colors.LightGreen+sdf.format(cal.getTime()));
+			out.add(CivColor.LightPurple+"Next Random Event: "+CivColor.LightGreen+sdf.format(cal.getTime()));
 		}
 		
 		CivMessage.send(sender, out);

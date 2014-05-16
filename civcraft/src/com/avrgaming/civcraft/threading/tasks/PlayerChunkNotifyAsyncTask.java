@@ -29,7 +29,6 @@ import com.avrgaming.civcraft.camp.Camp;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.object.Relation;
 import com.avrgaming.civcraft.object.Resident;
@@ -37,6 +36,7 @@ import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.object.TownChunk;
 import com.avrgaming.civcraft.util.AsciiMap;
 import com.avrgaming.civcraft.util.ChunkCoord;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class PlayerChunkNotifyAsyncTask implements Runnable {
 
@@ -55,34 +55,34 @@ public class PlayerChunkNotifyAsyncTask implements Runnable {
 	
 	public static String getNotifyColor(CultureChunk toCc, Relation.Status status, Player player) {
 
-		String color = Colors.White;
+		String color = CivColor.White;
 		switch (status) {
 		case NEUTRAL:
 			if (toCc.getTown().isOutlaw(player.getName())) {
-				color = Colors.Yellow;
+				color = CivColor.Yellow;
 			}
 			
 			break;
 		case HOSTILE:
-			color = Colors.Yellow;
+			color = CivColor.Yellow;
 			break;
 		case WAR:
-			color = Colors.Rose;
+			color = CivColor.Rose;
 
 			break;
 		case PEACE:
-			color = Colors.LightBlue;
+			color = CivColor.LightBlue;
 
 			break;
 		case ALLY:
-			color = Colors.Green;
+			color = CivColor.Green;
 		}
 		
 		return color;
 	}
 	
 	private String getToWildMessage() {
-		return Colors.LightGray+"Entering Wilderness "+Colors.Rose+"[PvP]";
+		return CivColor.LightGray+"Entering Wilderness "+CivColor.Rose+"[PvP]";
 	}
 	
 	private String getToTownMessage(Town town, TownChunk tc) {
@@ -96,14 +96,14 @@ public class PlayerChunkNotifyAsyncTask implements Runnable {
 		if (town.getBuffManager().hasBuff("buff_hanging_gardens_regen")) {
 			Resident resident = CivGlobal.getResident(player);
 			if (resident != null && resident.getTown() == town) {
-				CivMessage.send(player, Colors.Green+ChatColor.ITALIC+"You feel invigorated by the glorious hanging gardens.");
+				CivMessage.send(player, CivColor.Green+ChatColor.ITALIC+"You feel invigorated by the glorious hanging gardens.");
 			}
 		}
 		
 		if (!tc.isOutpost()) {
-			return Colors.LightGray+"Entering "+Colors.White+town.getName()+" "+town.getPvpString()+" ";
+			return CivColor.LightGray+"Entering "+CivColor.White+town.getName()+" "+town.getPvpString()+" ";
 		} else {
-			return Colors.LightGray+"Entering Outpost of "+Colors.White+town.getName()+" "+town.getPvpString()+" ";
+			return CivColor.LightGray+"Entering Outpost of "+CivColor.White+town.getName()+" "+town.getPvpString()+" ";
 		}
 	}
 	
@@ -129,7 +129,7 @@ public class PlayerChunkNotifyAsyncTask implements Runnable {
 		
 		//We've entered a camp.
 		if (toCamp != null && toCamp != fromCamp) {
-			out += Colors.Gold+"Camp "+toCamp.getName()+" "+Colors.Rose+"[PvP]";
+			out += CivColor.Gold+"Camp "+toCamp.getName()+" "+CivColor.Rose+"[PvP]";
 		}
 		
 		if (toCamp == null && fromCamp != null) {

@@ -34,7 +34,6 @@ import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Relation;
 import com.avrgaming.civcraft.object.Relation.Status;
@@ -267,7 +266,7 @@ public class War {
 					Civilization winner = defeatedTowns.get(townName);
 					
 					town.onDefeat(winner);
-					CivMessage.sendTown(town, Colors.LightBlue+"Welcome our new overlords "+winner.getName());
+					CivMessage.sendTown(town, CivColor.LightBlue+"Welcome our new overlords "+winner.getName());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -286,7 +285,7 @@ public class War {
 					}
 					
 					Civilization winner = defeatedCivs.get(civName);
-					CivMessage.sendCiv(civ, Colors.LightBlue+"Welcome our new overlords "+winner.getName());
+					CivMessage.sendCiv(civ, CivColor.LightBlue+"Welcome our new overlords "+winner.getName());
 					civ.onDefeat(winner);
 				} catch (Exception e) {
 					e.printStackTrace();

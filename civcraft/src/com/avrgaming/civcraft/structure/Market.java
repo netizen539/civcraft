@@ -37,11 +37,11 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.StructureSign;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.util.SimpleBlock;
 
@@ -139,13 +139,13 @@ public class Market extends Structure {
 		String itemColor;
 		switch (item.lastaction) {
 		case BUY:
-			itemColor = Colors.LightGreen;
+			itemColor = CivColor.LightGreen;
 			break;
 		case SELL:
-			itemColor = Colors.Rose;
+			itemColor = CivColor.Rose;
 			break;
 		default:
-			itemColor = Colors.Black;
+			itemColor = CivColor.Black;
 			break;
 		}
 		

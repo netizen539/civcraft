@@ -14,6 +14,10 @@ import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.util.ItemManager;
 
+/*
+ * Original serializer by Phil2812 (https://forums.bukkit.org/threads/serialize-inventory-to-single-string-and-vice-versa.92094/)
+ */
+
 public class InventorySerializer {
 	
 	private static String getSerializedItemStack(ItemStack is) {

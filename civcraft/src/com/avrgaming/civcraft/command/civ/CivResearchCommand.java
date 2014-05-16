@@ -26,11 +26,11 @@ import com.avrgaming.civcraft.config.ConfigTech;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.structure.TownHall;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class CivResearchCommand extends CommandBase {
 
@@ -70,7 +70,7 @@ public class CivResearchCommand extends CommandBase {
 		
 		if (civ.getResearchTech() != null) {
 			civ.setResearchProgress(0);
-			CivMessage.send(sender, Colors.Rose+"Progress on "+civ.getResearchTech().name+" has been lost.");
+			CivMessage.send(sender, CivColor.Rose+"Progress on "+civ.getResearchTech().name+" has been lost.");
 			civ.setResearchTech(null);
 		}
 	
@@ -141,9 +141,9 @@ public class CivResearchCommand extends CommandBase {
 		
 		CivMessage.sendHeading(sender, "Available Research");
 		for (ConfigTech tech : techs) {
-			CivMessage.send(sender, tech.name+Colors.LightGray+" Cost: "+
-					Colors.Yellow+tech.cost+Colors.LightGray+" Beakers: "+
-					Colors.Yellow+tech.beaker_cost);
+			CivMessage.send(sender, tech.name+CivColor.LightGray+" Cost: "+
+					CivColor.Yellow+tech.cost+CivColor.LightGray+" Beakers: "+
+					CivColor.Yellow+tech.beaker_cost);
 		}
 				
 	}

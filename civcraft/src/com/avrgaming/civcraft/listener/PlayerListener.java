@@ -69,7 +69,6 @@ import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.mobs.timers.MobSpawnerTimer;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.object.Resident;
@@ -193,7 +192,7 @@ public class PlayerListener implements Listener {
 				
 				Chatter you = Herochat.getChatterManager().getChatter(player);
 				if (!event.getSender().isInRange(you, event.getChannel().getDistance())) {
-					player.sendMessage(Colors.White+event.getSender().getName()+"[Far]: "+event.getMessage());
+					player.sendMessage(CivColor.White+event.getSender().getName()+"[Far]: "+event.getMessage());
 				}
 			}
 		}
@@ -302,7 +301,7 @@ public class PlayerListener implements Listener {
 						//PlayerReviveTask reviveTask = new PlayerReviveTask(player, townhall.getRespawnTime(), townhall, event.getRespawnLocation());
 						resident.setLastKilledTime(new Date());
 						event.setRespawnLocation(respawn.getCenteredLocation());
-						CivMessage.send(player, Colors.LightGray+"You've respawned in the War Room since it's WarTime and you're at war.");
+						CivMessage.send(player, CivColor.LightGray+"You've respawned in the War Room since it's WarTime and you're at war.");
 						
 						//TaskMaster.asyncTask("", reviveTask, 0);
 					}

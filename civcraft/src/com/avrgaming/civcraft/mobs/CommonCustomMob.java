@@ -7,6 +7,14 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.UUID;
 
+import net.minecraft.server.v1_7_R2.DamageSource;
+import net.minecraft.server.v1_7_R2.Entity;
+import net.minecraft.server.v1_7_R2.EntityCreature;
+import net.minecraft.server.v1_7_R2.EntityInsentient;
+import net.minecraft.server.v1_7_R2.EntityLiving;
+import net.minecraft.server.v1_7_R2.GenericAttributes;
+import net.minecraft.server.v1_7_R2.PathfinderGoalSelector;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -34,14 +42,6 @@ import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.war.War;
 import com.avrgaming.mob.ICustomMob;
 import com.avrgaming.mob.ISpawnable;
-
-import net.minecraft.server.v1_7_R2.DamageSource;
-import net.minecraft.server.v1_7_R2.Entity;
-import net.minecraft.server.v1_7_R2.EntityCreature;
-import net.minecraft.server.v1_7_R2.EntityInsentient;
-import net.minecraft.server.v1_7_R2.EntityLiving;
-import net.minecraft.server.v1_7_R2.GenericAttributes;
-import net.minecraft.server.v1_7_R2.PathfinderGoalSelector;
 
 public abstract class CommonCustomMob implements ICustomMob {
 

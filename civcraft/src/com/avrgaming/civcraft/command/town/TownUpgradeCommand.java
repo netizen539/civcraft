@@ -25,8 +25,8 @@ import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.config.ConfigTownUpgrade;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Town;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class TownUpgradeCommand extends CommandBase {
 
@@ -62,7 +62,7 @@ public class TownUpgradeCommand extends CommandBase {
 		for (ConfigTownUpgrade upgrade : CivSettings.townUpgrades.values()) {
 			if (category.equalsIgnoreCase("all") || upgrade.category.equalsIgnoreCase(category)) {	
 				if (upgrade.isAvailable(town)) {
-					CivMessage.send(sender, upgrade.name+Colors.LightGray+" Cost: "+Colors.Yellow+upgrade.cost);
+					CivMessage.send(sender, upgrade.name+CivColor.LightGray+" Cost: "+CivColor.Yellow+upgrade.cost);
 				}
 			}
 		}
@@ -74,11 +74,11 @@ public class TownUpgradeCommand extends CommandBase {
 		CivMessage.sendHeading(sender, "Available Upgrades");
 		
 		if (args.length < 2) {
-			CivMessage.send(sender, "- "+Colors.Gold+"All "+
-					Colors.LightBlue+"("+ConfigTownUpgrade.getAvailableCategoryCount("all", town)+")");
+			CivMessage.send(sender, "- "+CivColor.Gold+"All "+
+					CivColor.LightBlue+"("+ConfigTownUpgrade.getAvailableCategoryCount("all", town)+")");
 			for (String category : ConfigTownUpgrade.categories.keySet()) {
-				CivMessage.send(sender, "- "+Colors.Gold+WordUtils.capitalize(category)+
-						Colors.LightBlue+" ("+ConfigTownUpgrade.getAvailableCategoryCount(category, town)+")");
+				CivMessage.send(sender, "- "+CivColor.Gold+WordUtils.capitalize(category)+
+						CivColor.LightBlue+" ("+ConfigTownUpgrade.getAvailableCategoryCount(category, town)+")");
 			}
 			return;
 		}

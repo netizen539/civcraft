@@ -43,7 +43,6 @@ import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.lorestorage.LoreGuiItem;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
@@ -56,6 +55,7 @@ import com.avrgaming.civcraft.structure.TownHall;
 import com.avrgaming.civcraft.tutorial.CivTutorial;
 import com.avrgaming.civcraft.util.BlockCoord;
 import com.avrgaming.civcraft.util.ChunkCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.war.War;
 import com.avrgaming.global.perks.Perk;
 import com.avrgaming.global.perks.components.CustomTemplate;
@@ -206,7 +206,7 @@ public class TownCommand extends CommandBase {
 				ItemStack stack = LoreGuiItem.build(p.configPerk.display_name, 
 						p.configPerk.type_id, 
 						p.configPerk.data, 
-						Colors.Gray+"Provided by: "+Colors.LightBlue+p.provider);
+						CivColor.Gray+"Provided by: "+CivColor.LightBlue+p.provider);
 				inv.addItem(stack);
 			}
 		}
@@ -283,22 +283,22 @@ public class TownCommand extends CommandBase {
 			beakers += info.beakers;
 		}
 		
-		outList.add(Colors.LightBlue+"Biome Counts");
+		outList.add(CivColor.LightBlue+"Biome Counts");
 		//int totalBiomes = 0;
 		String out = "";
 		for (String biome : biomes.keySet()) {
 			Integer count = biomes.get(biome);
-			out += Colors.Green+biome+": "+Colors.LightGreen+count+Colors.Green+", ";
+			out += CivColor.Green+biome+": "+CivColor.LightGreen+count+CivColor.Green+", ";
 			//totalBiomes += count;
 		}
 		outList.add(out);
 	//	outList.add(CivColor.Green+"Biome Count: "+CivColor.LightGreen+totalBiomes);
 		
-		outList.add(Colors.LightBlue+"Totals");
-		outList.add(Colors.Green+" Happiness:"+Colors.LightGreen+df.format(happiness)+
-				Colors.Green+" Hammers:"+Colors.LightGreen+df.format(hammers)+
-				Colors.Green+" Growth:"+Colors.LightGreen+df.format(growth)+
-				Colors.Green+" Beakers:"+Colors.LightGreen+df.format(beakers));
+		outList.add(CivColor.LightBlue+"Totals");
+		outList.add(CivColor.Green+" Happiness:"+CivColor.LightGreen+df.format(happiness)+
+				CivColor.Green+" Hammers:"+CivColor.LightGreen+df.format(hammers)+
+				CivColor.Green+" Growth:"+CivColor.LightGreen+df.format(growth)+
+				CivColor.Green+" Beakers:"+CivColor.LightGreen+df.format(beakers));
 		return outList;
 	}
 	
@@ -320,8 +320,8 @@ public class TownCommand extends CommandBase {
 		}
 		
 		if (args.length < 2 || !args[1].equalsIgnoreCase("yes")) {
-			CivMessage.send(sender, Colors.Yellow+ChatColor.BOLD+"Capitualting means that this town will become a normal town in "+town.getCiv().getName()+" and can no longer revolt. Are you sure?");
-			CivMessage.send(sender, Colors.Yellow+ChatColor.BOLD+"If you're sure, type /town capitulate yes");
+			CivMessage.send(sender, CivColor.Yellow+ChatColor.BOLD+"Capitualting means that this town will become a normal town in "+town.getCiv().getName()+" and can no longer revolt. Are you sure?");
+			CivMessage.send(sender, CivColor.Yellow+ChatColor.BOLD+"If you're sure, type /town capitulate yes");
 			return;
 		}
 		
@@ -461,7 +461,7 @@ public class TownCommand extends CommandBase {
 		synchronized(CivGlobal.townScores) {
 			int i = 1;
 			for (Integer score : CivGlobal.townScores.descendingKeySet()) {
-				CivMessage.send(sender, i+") "+Colors.Gold+CivGlobal.townScores.get(score).getName()+Colors.White+" - "+score+" points");
+				CivMessage.send(sender, i+") "+CivColor.Gold+CivGlobal.townScores.get(score).getName()+CivColor.White+" - "+score+" points");
 				i++;
 				if (i > 5) {
 					break;
@@ -508,7 +508,7 @@ public class TownCommand extends CommandBase {
 			town.removeResident(residentToKick);
 
 			try {
-				CivMessage.send(CivGlobal.getPlayer(residentToKick), Colors.Yellow+"You have been evicted from town!");
+				CivMessage.send(CivGlobal.getPlayer(residentToKick), CivColor.Yellow+"You have been evicted from town!");
 			} catch (CivException e) {
 				//Player not online.
 			}
@@ -553,11 +553,11 @@ public class TownCommand extends CommandBase {
 							potentialDistanceLow = civ.getDistanceUpkeepAtLocation(ourCapLoc, theirTownHallLoc, true);
 							potentialDistanceHigh = civ.getDistanceUpkeepAtLocation(ourCapLoc, theirTownHallLoc, false);
 							
-							CivMessage.send(player, Colors.Yellow+"Your civilization would pay "+potentialDistanceLow+" if it or owned it."); 
-							CivMessage.send(player, Colors.Yellow+"Your civilization would pay 0 upkeep if you conquered it and it remains uncapitulated"); 
-							CivMessage.send(player, Colors.Yellow+"If this town's culture is not connected to your captial's culture and it was owned fully by your civ, you would pay "+potentialDistanceHigh+" coins in distance upkeep if you owned it.");
+							CivMessage.send(player, CivColor.Yellow+"Your civilization would pay "+potentialDistanceLow+" if it or owned it."); 
+							CivMessage.send(player, CivColor.Yellow+"Your civilization would pay 0 upkeep if you conquered it and it remains uncapitulated"); 
+							CivMessage.send(player, CivColor.Yellow+"If this town's culture is not connected to your captial's culture and it was owned fully by your civ, you would pay "+potentialDistanceHigh+" coins in distance upkeep if you owned it.");
 						} else {
-							CivMessage.send(player, Colors.Yellow+"This town has no town hall! Cannot calculate distance upkeep to it.");
+							CivMessage.send(player, CivColor.Yellow+"This town has no town hall! Cannot calculate distance upkeep to it.");
 						}
 					} catch (InvalidConfiguration e) {
 						e.printStackTrace();
@@ -592,7 +592,7 @@ public class TownCommand extends CommandBase {
 		
 		if (resident.isTownChat()) {
 			resident.setTownChat(false);
-			CivMessage.send(sender, Colors.LightGray+"You've been removed from town chat since you've left the town.");		
+			CivMessage.send(sender, CivColor.LightGray+"You've been removed from town chat since you've left the town.");		
 		}
 		
 		CivMessage.sendSuccess(sender, "You left the town of "+town.getName());
@@ -688,7 +688,7 @@ public class TownCommand extends CommandBase {
 		if (newResident.hasCamp()) {
 			try {
 				Player resPlayer = CivGlobal.getPlayer(newResident);
-				CivMessage.send(resPlayer, Colors.Yellow+player.getName()+" tried to invite you to the town of "+town.getName()+
+				CivMessage.send(resPlayer, CivColor.Yellow+player.getName()+" tried to invite you to the town of "+town.getName()+
 						" but cannot since you are in a camp. Leave camp first using /camp leave");
 			} catch(CivException e) {
 				//player not online
@@ -715,7 +715,7 @@ public class TownCommand extends CommandBase {
 				"Would you like to join the town of "+town.getName()+"?",
 				INVITE_TIMEOUT, join);
 		
-		CivMessage.sendSuccess(sender, Colors.LightGray+"Invited to "+args[1]+" to town "+town.getName());
+		CivMessage.sendSuccess(sender, CivColor.LightGray+"Invited to "+args[1]+" to town "+town.getName());
 	}
 	
 	public void info_cmd() throws CivException {
@@ -740,10 +740,10 @@ public class TownCommand extends CommandBase {
 //		}
 //		
 //		CivMessage.sendHeading(sender, "Founding A New Town");
-//		CivMessage.send(sender, Colors.LightGreen+"This looks like a good place to settle!");
+//		CivMessage.send(sender, CivColor.LightGreen+"This looks like a good place to settle!");
 //		CivMessage.send(sender, " ");
-//		CivMessage.send(sender, Colors.LightGreen+ChatColor.BOLD+"What shall your new Town be called?");
-//		CivMessage.send(sender, Colors.LightGray+"(To cancel, type 'cancel')");
+//		CivMessage.send(sender, CivColor.LightGreen+ChatColor.BOLD+"What shall your new Town be called?");
+//		CivMessage.send(sender, CivColor.LightGray+"(To cancel, type 'cancel')");
 //		
 //		resident.setInteractiveMode(new InteractiveTownName());
 //

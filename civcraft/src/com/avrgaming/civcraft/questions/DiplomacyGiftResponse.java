@@ -20,7 +20,6 @@ package com.avrgaming.civcraft.questions;
 
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
@@ -48,7 +47,7 @@ public class DiplomacyGiftResponse implements QuestionResponseInterface {
 				
 				toCiv.getTreasury().withdraw(town.getGiftCost());
 				town.changeCiv(toCiv);
-				CivMessage.sendCiv(fromCiv, Colors.LightGray+toCiv.getName()+" has accepted the offer of our town of "+town.getName());
+				CivMessage.sendCiv(fromCiv, CivColor.LightGray+toCiv.getName()+" has accepted the offer of our town of "+town.getName());
 				return;
 			} else if (giftedObject instanceof Civilization) {
 				int coins = fromCiv.getMergeCost();
@@ -60,7 +59,7 @@ public class DiplomacyGiftResponse implements QuestionResponseInterface {
 				}
 				
 				toCiv.getTreasury().withdraw(coins);
-				CivMessage.sendCiv(fromCiv, Colors.Yellow+toCiv.getName()+" has accepted the offer, our civ is now merging with theirs!");
+				CivMessage.sendCiv(fromCiv, CivColor.Yellow+toCiv.getName()+" has accepted the offer, our civ is now merging with theirs!");
 				toCiv.mergeInCiv(fromCiv);
 				CivMessage.global("The Civilization of "+fromCiv.getName()+" has agreed to merge into the Civilizaiton of "+toCiv.getName());
 				return;
@@ -69,7 +68,7 @@ public class DiplomacyGiftResponse implements QuestionResponseInterface {
 				return;
 			}
 		} else {
-			CivMessage.sendCiv(fromCiv, Colors.LightGray+toCiv.getName()+" declined our offer.");
+			CivMessage.sendCiv(fromCiv, CivColor.LightGray+toCiv.getName()+" declined our offer.");
 		}
 		
 	}

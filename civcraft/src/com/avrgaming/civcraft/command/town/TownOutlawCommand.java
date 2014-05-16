@@ -25,11 +25,11 @@ import com.avrgaming.civcraft.command.CommandBase;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.threading.tasks.TownAddOutlawTask;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class TownOutlawCommand extends CommandBase {
 
@@ -53,7 +53,7 @@ public class TownOutlawCommand extends CommandBase {
 			
 			try {
 				Player player = CivGlobal.getPlayer(args[1]);
-				CivMessage.send(player, Colors.Yellow+ChatColor.BOLD+"You're going to be declared an outlaw in "+
+				CivMessage.send(player, CivColor.Yellow+ChatColor.BOLD+"You're going to be declared an outlaw in "+
 						town.getName()+"! You have one minute to get out ...");
 			} catch (CivException e) {
 			}
@@ -86,7 +86,7 @@ public class TownOutlawCommand extends CommandBase {
 		
 		try {
 			Player player = CivGlobal.getPlayer(args[1]);
-			CivMessage.send(player, Colors.Yellow+ChatColor.BOLD+"You're going to be declared an outlaw in "+town.getName()+"! You have one minute to get out ...");			
+			CivMessage.send(player, CivColor.Yellow+ChatColor.BOLD+"You're going to be declared an outlaw in "+town.getName()+"! You have one minute to get out ...");			
 		} catch (CivException e) {
 		}	
 		

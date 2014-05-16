@@ -27,10 +27,10 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.exception.InvalidNameException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.permission.PermissionGroup;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class TownGroupCommand extends CommandBase {
 
@@ -122,7 +122,7 @@ public class TownGroupCommand extends CommandBase {
 		
 		try {
 			Player newPlayer = CivGlobal.getPlayer(oldMember);
-			CivMessage.send(newPlayer, Colors.Rose+"You were removed from the "+grp.getName()+" group in town "+grp.getTown().getName());
+			CivMessage.send(newPlayer, CivColor.Rose+"You were removed from the "+grp.getName()+" group in town "+grp.getTown().getName());
 		} catch (CivException e) {
 			/* player not online. forget the exception*/
 		}
@@ -194,7 +194,7 @@ public class TownGroupCommand extends CommandBase {
 			CivMessage.sendHeading(sender, town.getName()+" Group Information");
 
 			for (PermissionGroup grp : town.getGroups()) {
-				CivMessage.send(sender, grp.getName()+Colors.LightGray+" ("+grp.getMemberCount()+" members)");
+				CivMessage.send(sender, grp.getName()+CivColor.LightGray+" ("+grp.getMemberCount()+" members)");
 			}		
 		}
 	}

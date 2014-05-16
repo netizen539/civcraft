@@ -36,12 +36,12 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.structure.Buildable;
 import com.avrgaming.civcraft.template.Template;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 
 public abstract class Wonder extends Buildable {
 
@@ -210,11 +210,11 @@ public abstract class Wonder extends Buildable {
 			this.undoFromTemplate();
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			CivMessage.sendTown(getTown(), Colors.Rose+"Couldn't find undo data! Destroying structure instead.");;
+			CivMessage.sendTown(getTown(), CivColor.Rose+"Couldn't find undo data! Destroying structure instead.");;
 			this.fancyDestroyStructureBlocks();
 		}
 		
-		CivMessage.global("The "+Colors.LightGreen+this.getDisplayName()+Colors.White+" has been unbuilt by "+this.getTown().getName()
+		CivMessage.global("The "+CivColor.LightGreen+this.getDisplayName()+CivColor.White+" has been unbuilt by "+this.getTown().getName()
 				+"("+this.getTown().getCiv().getName()+") with the undo command.");
 				
 		double refund = this.getCost();
@@ -450,7 +450,7 @@ public abstract class Wonder extends Buildable {
 		double total = coinsPerCulture*cultureCount;
 		this.getCiv().getTreasury().deposit(total);
 		
-		CivMessage.sendCiv(this.getCiv(), Colors.LightGreen+"The Colossus generated "+Colors.Yellow+total+Colors.LightGreen+" coins from culture.");
+		CivMessage.sendCiv(this.getCiv(), CivColor.LightGreen+"The Colossus generated "+CivColor.Yellow+total+CivColor.LightGreen+" coins from culture.");
 	}
 	
 }

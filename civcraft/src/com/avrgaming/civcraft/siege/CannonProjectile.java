@@ -7,8 +7,8 @@ import net.minecraft.server.v1_7_R2.EntityPlayer;
 
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
-import org.bukkit.Location;
 import org.bukkit.FireworkEffect.Type;
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;

@@ -38,12 +38,12 @@ import com.avrgaming.civcraft.camp.Camp;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.object.TownChunk;
 import com.avrgaming.civcraft.permission.PermissionGroup;
+import com.avrgaming.civcraft.util.CivColor;
 
 public abstract class CommandBase implements CommandExecutor {
 	
@@ -168,12 +168,12 @@ public abstract class CommandBase implements CommandExecutor {
 		for (String c : commands.keySet()) {
 			String info = commands.get(c);
 			
-			info = info.replace("[", Colors.Yellow+"[");
-			info = info.replace("]", "]"+Colors.LightGray);
-			info = info.replace("(", Colors.Yellow+"(");
-			info = info.replace(")", ")"+Colors.LightGray);
+			info = info.replace("[", CivColor.Yellow+"[");
+			info = info.replace("]", "]"+CivColor.LightGray);
+			info = info.replace("(", CivColor.Yellow+"(");
+			info = info.replace(")", ")"+CivColor.LightGray);
 						
-			CivMessage.send(sender, Colors.LightPurple+command+" "+c+Colors.LightGray+" "+info);
+			CivMessage.send(sender, CivColor.LightPurple+command+" "+c+CivColor.LightGray+" "+info);
 		}
 	}
 	
@@ -207,7 +207,7 @@ public abstract class CommandBase implements CommandExecutor {
 					try {
 						res.getSelectedTown().validateResidentSelect(res);
 					} catch (CivException e) {
-						CivMessage.send(player, Colors.Yellow+"You can no longer use the selected town "+res.getSelectedTown().getName()+", switched back to "+res.getTown().getName());
+						CivMessage.send(player, CivColor.Yellow+"You can no longer use the selected town "+res.getSelectedTown().getName()+", switched back to "+res.getTown().getName());
 						res.setSelectedTown(res.getTown());
 						return res.getTown();
 					}
@@ -401,14 +401,14 @@ public abstract class CommandBase implements CommandExecutor {
 		}
 		
 		if (potentialMatches.size() != 1) {
-			CivMessage.send(sender, Colors.LightPurple+ChatColor.UNDERLINE+"Potential Matches");
+			CivMessage.send(sender, CivColor.LightPurple+ChatColor.UNDERLINE+"Potential Matches");
 			CivMessage.send(sender, " ");
 			String out = "";
 			for (Resident resident : potentialMatches) {
 				out += resident.getName()+", ";
 			}
 		
-			CivMessage.send(sender, Colors.LightBlue+ChatColor.ITALIC+out);
+			CivMessage.send(sender, CivColor.LightBlue+ChatColor.ITALIC+out);
 			throw new CivException("More than one resident matches, please clarify.");
 		}
 		
@@ -444,14 +444,14 @@ public abstract class CommandBase implements CommandExecutor {
 		}
 		
 		if (potentialMatches.size() != 1) {
-			CivMessage.send(sender, Colors.LightPurple+ChatColor.UNDERLINE+"Potential Matches");
+			CivMessage.send(sender, CivColor.LightPurple+ChatColor.UNDERLINE+"Potential Matches");
 			CivMessage.send(sender, " ");
 			String out = "";
 			for (Civilization civ : potentialMatches) {
 				out += civ.getName()+", ";
 			}
 		
-			CivMessage.send(sender, Colors.LightBlue+ChatColor.ITALIC+out);
+			CivMessage.send(sender, CivColor.LightBlue+ChatColor.ITALIC+out);
 			throw new CivException("More than one civ matches, please clarify.");
 		}
 		
@@ -487,14 +487,14 @@ public abstract class CommandBase implements CommandExecutor {
 		}
 		
 		if (potentialMatches.size() != 1) {
-			CivMessage.send(sender, Colors.LightPurple+ChatColor.UNDERLINE+"Potential Matches");
+			CivMessage.send(sender, CivColor.LightPurple+ChatColor.UNDERLINE+"Potential Matches");
 			CivMessage.send(sender, " ");
 			String out = "";
 			for (Civilization civ : potentialMatches) {
 				out += civ.getName()+", ";
 			}
 		
-			CivMessage.send(sender, Colors.LightBlue+ChatColor.ITALIC+out);
+			CivMessage.send(sender, CivColor.LightBlue+ChatColor.ITALIC+out);
 			throw new CivException("More than one civ matches, please clarify.");
 		}
 		
@@ -542,14 +542,14 @@ public abstract class CommandBase implements CommandExecutor {
 		}
 		
 		if (potentialMatches.size() != 1) {
-			CivMessage.send(sender, Colors.LightPurple+ChatColor.UNDERLINE+"Potential Matches");
+			CivMessage.send(sender, CivColor.LightPurple+ChatColor.UNDERLINE+"Potential Matches");
 			CivMessage.send(sender, " ");
 			String out = "";
 			for (Town town : potentialMatches) {
 				out += town.getName()+", ";
 			}
 		
-			CivMessage.send(sender, Colors.LightBlue+ChatColor.ITALIC+out);
+			CivMessage.send(sender, CivColor.LightBlue+ChatColor.ITALIC+out);
 			throw new CivException("More than one town matches, please clarify.");
 		}
 		
@@ -652,14 +652,14 @@ public abstract class CommandBase implements CommandExecutor {
 		
 		
 		if (potentialMatches.size() != 1) {
-			CivMessage.send(sender, Colors.LightPurple+ChatColor.UNDERLINE+"Potential Matches");
+			CivMessage.send(sender, CivColor.LightPurple+ChatColor.UNDERLINE+"Potential Matches");
 			CivMessage.send(sender, " ");
 			String out = "";
 			for (Camp camp : potentialMatches) {
 				out += camp.getName()+", ";
 			}
 		
-			CivMessage.send(sender, Colors.LightBlue+ChatColor.ITALIC+out);
+			CivMessage.send(sender, CivColor.LightBlue+ChatColor.ITALIC+out);
 			throw new CivException("More than one camp matches, please clarify.");
 		}
 		
@@ -695,14 +695,14 @@ public abstract class CommandBase implements CommandExecutor {
 		}
 		
 		if (potentialMatches.size() != 1) {
-			CivMessage.send(sender, Colors.LightPurple+ChatColor.UNDERLINE+"Potential Matches");
+			CivMessage.send(sender, CivColor.LightPurple+ChatColor.UNDERLINE+"Potential Matches");
 			CivMessage.send(sender, " ");
 			String out = "";
 			for (ArenaTeam team : potentialMatches) {
 				out += team.getName()+", ";
 			}
 		
-			CivMessage.send(sender, Colors.LightBlue+ChatColor.ITALIC+out);
+			CivMessage.send(sender, CivColor.LightBlue+ChatColor.ITALIC+out);
 			throw new CivException("More than one team matches, please clarify.");
 		}
 		

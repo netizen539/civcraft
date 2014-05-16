@@ -19,7 +19,6 @@ public class SessionDBAsyncTimer implements Runnable {
 	public static Queue<SessionAsyncRequest> requestQueue = new LinkedList<SessionAsyncRequest>();
 	
 	
-	@SuppressWarnings("resource")
 	@Override
 	public void run() {
 		

@@ -31,11 +31,11 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.StoreMaterial;
 import com.avrgaming.civcraft.object.StructureSign;
 import com.avrgaming.civcraft.object.Town;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class Store extends Structure {
 	
@@ -133,7 +133,7 @@ public class Store extends Structure {
 			StoreMaterial mat = this.materials.get(special_id);
 			sign_buy_material(player, mat.name, mat.type, mat.data, 64, mat.price);
 		} else {
-			CivMessage.send(player, Colors.Rose+"Store shelf empty, stock it using /town upgrade.");
+			CivMessage.send(player, CivColor.Rose+"Store shelf empty, stock it using /town upgrade.");
 		}
 	}
 	
@@ -150,18 +150,18 @@ public class Store extends Structure {
 				if (t == this.getTown()) {
 					// Pay no taxes! You're a member.
 					resident.buyItem(itemName, id, data, price, amount);
-					CivMessage.send(player, Colors.LightGreen + "Bought "+amount+" "+itemName+" for "+ price+ " coins.");
+					CivMessage.send(player, CivColor.LightGreen + "Bought "+amount+" "+itemName+" for "+ price+ " coins.");
 					return;
 				} else {
 					// Pay non-resident taxes
 					resident.buyItem(itemName, id, data, price + payToTown, amount);
 					getTown().depositDirect(payToTown);
-					CivMessage.send(player, Colors.Yellow + "Paid "+ payToTown+" coins in non-resident taxes.");
+					CivMessage.send(player, CivColor.Yellow + "Paid "+ payToTown+" coins in non-resident taxes.");
 				}
 			
 			}
 			catch (CivException e) {
-				CivMessage.send(player, Colors.Rose + e.getMessage());
+				CivMessage.send(player, CivColor.Rose + e.getMessage());
 			}
 		return;
 	}

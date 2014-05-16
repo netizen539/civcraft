@@ -22,7 +22,7 @@ import com.avrgaming.civcraft.lorestorage.LoreGuiItem;
 import com.avrgaming.civcraft.lorestorage.LoreGuiItemListener;
 import com.avrgaming.civcraft.lorestorage.LoreMaterial;
 import com.avrgaming.civcraft.main.CivGlobal;
-import com.avrgaming.civcraft.main.Colors;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 
 public class CivTutorial {
@@ -37,16 +37,16 @@ public class CivTutorial {
 			tutorialInventory = Bukkit.getServer().createInventory(player, 9*3, "CivCraft Tutorial");
 		
 	
-			tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"What is CivCraft?", ItemManager.getId(Material.WORKBENCH), 0, 
+			tutorialInventory.addItem(LoreGuiItem.build(CivColor.LightBlue+ChatColor.BOLD+"What is CivCraft?", ItemManager.getId(Material.WORKBENCH), 0, 
 				ChatColor.RESET+"CivCraft is a game about building civilizations set in a large,",
 				ChatColor.RESET+"persistent world filled with players.",
 				ChatColor.RESET+"Players start out as nomads, gathering",
 				ChatColor.RESET+"resources and making allies until they can build a camp.",
 				ChatColor.RESET+"Gather more resources and allies and found a civilization!",
-				ChatColor.RESET+Colors.LightGreen+"Research technology! Build structures! Conquer the world!"
+				ChatColor.RESET+CivColor.LightGreen+"Research technology! Build structures! Conquer the world!"
 				));
 		
-			tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"Explore", ItemManager.getId(Material.COMPASS), 0, 
+			tutorialInventory.addItem(LoreGuiItem.build(CivColor.LightBlue+ChatColor.BOLD+"Explore", ItemManager.getId(Material.COMPASS), 0, 
 					ChatColor.RESET+"Venture outward from spawn into the wild",
 					ChatColor.RESET+"and find a spot to settle. You may encounter",
 					ChatColor.RESET+"trade resources, and other player towns which",
@@ -54,16 +54,16 @@ public class CivTutorial {
 					ChatColor.RESET+"Different biomes generate different resources."
 					));
 			
-			tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"Resources and Materials", ItemManager.getId(Material.DIAMOND_ORE), 0, 
+			tutorialInventory.addItem(LoreGuiItem.build(CivColor.LightBlue+ChatColor.BOLD+"Resources and Materials", ItemManager.getId(Material.DIAMOND_ORE), 0, 
 					ChatColor.RESET+"CivCraft contains many new custom items.",
 					ChatColor.RESET+"These items are crafted using a crafting bench",
 					ChatColor.RESET+"and combining many more normal Minecraft items",
 					ChatColor.RESET+"into higher tier items. Certain items like iron, gold,",
-					ChatColor.RESET+"diamonds and emeralds can be exchanged for coins at "+Colors.Yellow+"Bank",
-					ChatColor.RESET+"structures. Coins can be traded for materials at the "+Colors.Yellow+"Market"
+					ChatColor.RESET+"diamonds and emeralds can be exchanged for coins at "+CivColor.Yellow+"Bank",
+					ChatColor.RESET+"structures. Coins can be traded for materials at the "+CivColor.Yellow+"Market"
 					));
 			
-			tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"Towns", ItemManager.getId(Material.FENCE), 0, 
+			tutorialInventory.addItem(LoreGuiItem.build(CivColor.LightBlue+ChatColor.BOLD+"Towns", ItemManager.getId(Material.FENCE), 0, 
 					ChatColor.RESET+"Towns can be created by players to protect",
 					ChatColor.RESET+"areas from outsiders. Inside a town the owners are",
 					ChatColor.RESET+"free to build creatively without interference from griefers",
@@ -73,7 +73,7 @@ public class CivTutorial {
 					ChatColor.RESET+"inside of a civilization."
 					));
 			
-			tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"Civilizations", ItemManager.getId(Material.GOLD_HELMET), 0, 
+			tutorialInventory.addItem(LoreGuiItem.build(CivColor.LightBlue+ChatColor.BOLD+"Civilizations", ItemManager.getId(Material.GOLD_HELMET), 0, 
 					ChatColor.RESET+"Civilizations are collections of towns",
 					ChatColor.RESET+"All towns inside of the civilization share technology",
 					ChatColor.RESET+"which is researched by the civ. Many items and structures",
@@ -84,7 +84,7 @@ public class CivTutorial {
 					));
 			
 			if (CivGlobal.isCasualMode()) {
-				tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"Casual War!", ItemManager.getId(Material.FIREWORK), 0, 
+				tutorialInventory.addItem(LoreGuiItem.build(CivColor.LightBlue+ChatColor.BOLD+"Casual War!", ItemManager.getId(Material.FIREWORK), 0, 
 						ChatColor.RESET+"War allows civilizations to settle their differences.",
 						ChatColor.RESET+"In casual mode, Civs have to the option to request war from",
 						ChatColor.RESET+"each other. The winner of a war is awarded a trophy which can be",
@@ -92,7 +92,7 @@ public class CivTutorial {
 						ChatColor.RESET+"After a civilization is defeated in war, war must be requested again."
 						));
 			} else {
-				tutorialInventory.addItem(LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"War!", ItemManager.getId(Material.IRON_SWORD), 0, 
+				tutorialInventory.addItem(LoreGuiItem.build(CivColor.LightBlue+ChatColor.BOLD+"War!", ItemManager.getId(Material.IRON_SWORD), 0, 
 						ChatColor.RESET+"War allows civilizations to settle their differences.",
 						ChatColor.RESET+"Normally, all structures inside a civilization are protected",
 						ChatColor.RESET+"from damage. However civs have to the option to declare war on",
@@ -102,14 +102,14 @@ public class CivTutorial {
 						));
 			}
 			
-			tutorialInventory.setItem(8, LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"More Info?", ItemManager.getId(Material.BOOK_AND_QUILL), 0, 
+			tutorialInventory.setItem(8, LoreGuiItem.build(CivColor.LightBlue+ChatColor.BOLD+"More Info?", ItemManager.getId(Material.BOOK_AND_QUILL), 0, 
 					ChatColor.RESET+"There is much more information you will require for your",
 					ChatColor.RESET+"journey into CivCraft. Please visit the wiki at ",
-					ChatColor.RESET+Colors.LightGreen+ChatColor.BOLD+"http://civcraft.net/wiki",
+					ChatColor.RESET+CivColor.LightGreen+ChatColor.BOLD+"http://civcraft.net/wiki",
 					ChatColor.RESET+"For more detailed information about CivCraft and it's features."
 					));
 			
-			tutorialInventory.setItem(9, LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"QUEST: Build a Camp", ItemManager.getId(Material.BOOK_AND_QUILL), 0, 
+			tutorialInventory.setItem(9, LoreGuiItem.build(CivColor.LightBlue+ChatColor.BOLD+"QUEST: Build a Camp", ItemManager.getId(Material.BOOK_AND_QUILL), 0, 
 					ChatColor.RESET+"First things first, in order to start your journey",
 					ChatColor.RESET+"you must first build a camp. Camps allow you to store",
 					ChatColor.RESET+"your materials safely, and allow you to obtain leadership",
@@ -118,7 +118,7 @@ public class CivTutorial {
 			
 			tutorialInventory.setItem(18,getInfoBookForItem("mat_found_camp"));
 			
-			tutorialInventory.setItem(10, LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"QUEST: Found a Civ", ItemManager.getId(Material.BOOK_AND_QUILL), 0, 
+			tutorialInventory.setItem(10, LoreGuiItem.build(CivColor.LightBlue+ChatColor.BOLD+"QUEST: Found a Civ", ItemManager.getId(Material.BOOK_AND_QUILL), 0, 
 					ChatColor.RESET+"Next, you'll want to start a civilization.",
 					ChatColor.RESET+"To do this, you must first obtain leadership tokens",
 					ChatColor.RESET+"by feeding bread to your camp's longhouse.",
@@ -128,7 +128,7 @@ public class CivTutorial {
 			
 			tutorialInventory.setItem(19,getInfoBookForItem("mat_found_civ"));
 			
-			tutorialInventory.setItem(11, LoreGuiItem.build(Colors.LightBlue+ChatColor.BOLD+"Need to know a recipe?", ItemManager.getId(Material.WORKBENCH), 0, 
+			tutorialInventory.setItem(11, LoreGuiItem.build(CivColor.LightBlue+ChatColor.BOLD+"Need to know a recipe?", ItemManager.getId(Material.WORKBENCH), 0, 
 					ChatColor.RESET+"Type /res book to obtain the tutorial book",
 					ChatColor.RESET+"and then click on 'Crafting Recipies'",
 					ChatColor.RESET+"Every new item in CivCraft is listed here",
@@ -157,7 +157,7 @@ public class CivTutorial {
 		LinkedList<String> lore = new LinkedList<String>();
 		
 		if (!loreMat.isShaped()) {
-			lore.add(ChatColor.RESET+Colors.Gold+"Shapeless");
+			lore.add(ChatColor.RESET+CivColor.Gold+"Shapeless");
 			for (ConfigIngredient cfgIngred : loreMat.getConfigMaterial().incredients.values()) {
 				String name;
 				
@@ -168,11 +168,11 @@ public class CivTutorial {
 					name = LoreMaterial.materialMap.get(cfgIngred.custom_id).getName();
 				}
 				
-				lore.add(ChatColor.RESET+Colors.White+cfgIngred.count+" "+Colors.LightBlue+name);
+				lore.add(ChatColor.RESET+CivColor.White+cfgIngred.count+" "+CivColor.LightBlue+name);
 			}
 			
 		} else {
-			lore.add(ChatColor.RESET+Colors.Gold+"x"+Colors.White+" is "+Colors.LightBlue+"empty");
+			lore.add(ChatColor.RESET+CivColor.Gold+"x"+CivColor.White+" is "+CivColor.LightBlue+"empty");
 			
 			for (ConfigIngredient cfgIngred : loreMat.getConfigMaterial().incredients.values()) {
 				String name;
@@ -184,12 +184,12 @@ public class CivTutorial {
 					name = LoreMaterial.materialMap.get(cfgIngred.custom_id).getName();
 				}
 				
-				lore.add(ChatColor.RESET+Colors.Gold+cfgIngred.letter+Colors.White+" is "+Colors.LightBlue+name);
+				lore.add(ChatColor.RESET+CivColor.Gold+cfgIngred.letter+CivColor.White+" is "+CivColor.LightBlue+name);
 			}
 			
 			for (String shapeStr : loreMat.getConfigMaterial().shape) {
 				String line;
-				line = Colors.LightGreen+shapeStr.replace(" ", Colors.LightGray+"x"+Colors.LightGreen);
+				line = CivColor.LightGreen+shapeStr.replace(" ", CivColor.LightGray+"x"+CivColor.LightGreen);
 				lore.add(ChatColor.RESET+line);
 			}
 			
@@ -198,7 +198,7 @@ public class CivTutorial {
 		if (loreMat.getConfigMaterial().required_tech != null) {
 			ConfigTech tech = CivSettings.techs.get(loreMat.getConfigMaterial().required_tech);
 			if (tech != null) {
-				lore.add(Colors.Rose+"Requires: "+Colors.LightBlue+tech.name);
+				lore.add(CivColor.Rose+"Requires: "+CivColor.LightBlue+tech.name);
 			}
 		}
 		
@@ -220,8 +220,8 @@ public class CivTutorial {
 				ItemStack infoRec = LoreGuiItem.build(cat.name, 
 						ItemManager.getId(Material.WRITTEN_BOOK), 
 						0, 
-						Colors.LightBlue+cat.materials.size()+" Items",
-						Colors.Gold+"<Click To Open>");
+						CivColor.LightBlue+cat.materials.size()+" Items",
+						CivColor.Gold+"<Click To Open>");
 						infoRec = LoreGuiItem.setAction(infoRec, "openinv:showGuiInv:"+cat.name+" Recipies");
 						craftingHelpInventory.addItem(infoRec);
 						
@@ -257,13 +257,13 @@ public class CivTutorial {
 
 			ItemStack infoRec = LoreGuiItem.build("CivCraft Info", 
 					ItemManager.getId(Material.WRITTEN_BOOK), 
-							0, Colors.Gold+"<Click To View>");
+							0, CivColor.Gold+"<Click To View>");
 			infoRec = LoreGuiItem.setAction(infoRec, "openinv:showTutorialInventory");
 			guiInventory.addItem(infoRec);
 			
 			ItemStack craftRec = LoreGuiItem.build("Crafting Recipes", 
 					ItemManager.getId(Material.WRITTEN_BOOK), 
-					0, Colors.Gold+"<Click To View>");
+					0, CivColor.Gold+"<Click To View>");
 			craftRec = LoreGuiItem.setAction(craftRec, "openinv:showCraftingHelp");
 			guiInventory.addItem(craftRec);
 			LoreGuiItemListener.guiInventories.put(guiInventory.getName(), guiInventory);

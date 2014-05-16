@@ -92,7 +92,6 @@ import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.ControlPoint;
 import com.avrgaming.civcraft.object.ProtectedBlock;
 import com.avrgaming.civcraft.object.Resident;
@@ -116,6 +115,7 @@ import com.avrgaming.civcraft.threading.tasks.FireWorkTask;
 import com.avrgaming.civcraft.threading.tasks.StructureBlockHitEvent;
 import com.avrgaming.civcraft.util.BlockCoord;
 import com.avrgaming.civcraft.util.ChunkCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemFrameStorage;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.war.War;
@@ -799,7 +799,7 @@ public class BlockListener implements Listener {
 						event.setCancelled(true);
 						return;
 					} else {
-						CivMessage.send(event.getPlayer(), Colors.LightGray+"We destroyed a block protected by a wall. This was allowed because we're a member of "+
+						CivMessage.send(event.getPlayer(), CivColor.LightGray+"We destroyed a block protected by a wall. This was allowed because we're a member of "+
 								resident.getTown().getCiv().getName());
 						break;
 					}
@@ -1006,9 +1006,9 @@ public class BlockListener implements Listener {
 
 				try {
 					MarkerPlacementManager.setMarker(event.getPlayer(), block.getLocation());
-					CivMessage.send(event.getPlayer(), Colors.LightGreen+"Marked Location.");
+					CivMessage.send(event.getPlayer(), CivColor.LightGreen+"Marked Location.");
 				} catch (CivException e) {
-					CivMessage.send(event.getPlayer(), Colors.Rose+e.getMessage());
+					CivMessage.send(event.getPlayer(), CivColor.Rose+e.getMessage());
 				}
 
 				event.setCancelled(true);
@@ -1025,7 +1025,7 @@ public class BlockListener implements Listener {
 							sign.getOwner().processSignAction(event.getPlayer(), sign, event);
 							event.setCancelled(true);
 						} catch (CivException e) {
-							CivMessage.send(event.getPlayer(), Colors.Rose+e.getMessage());
+							CivMessage.send(event.getPlayer(), CivColor.Rose+e.getMessage());
 							event.setCancelled(true);
 							return;
 						}
@@ -1661,15 +1661,15 @@ public class BlockListener implements Listener {
 				case ALLOWED:
 					continue;
 				case NOT_AT_WAR:
-					CivMessage.send(attacker, Colors.Rose+"You cannot use potions against "+defender.getName()+". You are not at war.");
+					CivMessage.send(attacker, CivColor.Rose+"You cannot use potions against "+defender.getName()+". You are not at war.");
 					event.setCancelled(true);
 					return;
 				case NEUTRAL_IN_WARZONE:
-					CivMessage.send(attacker, Colors.Rose+"You cannot use potions against "+defender.getName()+". You a neutral in a war-zone.");
+					CivMessage.send(attacker, CivColor.Rose+"You cannot use potions against "+defender.getName()+". You a neutral in a war-zone.");
 					event.setCancelled(true);
 					return;
 				case NON_PVP_ZONE:
-					CivMessage.send(attacker, Colors.Rose+"You cannot use potions against "+defender.getName()+". You are in a non-pvp zone.");
+					CivMessage.send(attacker, CivColor.Rose+"You cannot use potions against "+defender.getName()+". You are in a non-pvp zone.");
 					event.setCancelled(true);
 					return;
 				}

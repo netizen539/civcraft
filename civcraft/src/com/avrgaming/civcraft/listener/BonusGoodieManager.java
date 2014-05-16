@@ -60,9 +60,9 @@ import com.avrgaming.civcraft.lorestorage.LoreMaterial;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.util.BlockCoord;
+import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemFrameStorage;
 import com.avrgaming.civcraft.util.ItemManager;
 
@@ -83,7 +83,7 @@ public class BonusGoodieManager implements Listener {
 			return;
 		}
 		
-		CivMessage.send(event.getPlayer(), Colors.Purple+"Bonus Goodie: "+Colors.Yellow+goodie.getDisplayName());
+		CivMessage.send(event.getPlayer(), CivColor.Purple+"Bonus Goodie: "+CivColor.Yellow+goodie.getDisplayName());
 		
 	}
 	
@@ -459,12 +459,12 @@ public class BonusGoodieManager implements Listener {
 			
 			player.getWorld().dropItemNaturally(frame.getLocation(), stack);
 			frame.setItem(ItemManager.createItemStack(CivData.AIR, 1));
-			CivMessage.send(player, Colors.LightGray+"You unsocket the trade goodie from the frame.");
+			CivMessage.send(player, CivColor.LightGray+"You unsocket the trade goodie from the frame.");
 		} else if (goodie != null) {
 			//Item frame was empty, add goodie to it.
 			frame.setItem(player.getItemInHand());
 			player.getInventory().remove(player.getItemInHand());
-			CivMessage.send(player, Colors.LightGray+"You socket the trade goodie into the frame");
+			CivMessage.send(player, CivColor.LightGray+"You socket the trade goodie into the frame");
 			clickedFrame.getTown().onGoodiePlaceIntoFrame(clickedFrame, goodie);
 			
 			try {

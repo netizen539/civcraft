@@ -28,7 +28,7 @@ import java.util.List;
 
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class AnnouncementTimer implements Runnable {
 
@@ -73,7 +73,7 @@ public class AnnouncementTimer implements Runnable {
 	public void run() {		
 		
 		for (String str : announcements) {
-			CivMessage.sendAll(Colors.Gold+"Tip: "+Colors.White+str);
+			CivMessage.sendAll(CivColor.Gold+"Tip: "+CivColor.White+str);
 			
 			try {
 				Thread.sleep(60*5*1000); //sleep for 5 mins

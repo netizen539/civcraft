@@ -30,7 +30,6 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.interactive.InteractiveCampName;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.structure.Buildable;
 import com.avrgaming.civcraft.threading.TaskMaster;
@@ -41,8 +40,8 @@ public class FoundCamp extends ItemComponent implements CallbackInterface {
 
 	@Override
 	public void onPrepareCreate(AttributeUtil attrUtil) {
-		attrUtil.addLore(ChatColor.RESET+Colors.Gold+"Starts a Camp");
-		attrUtil.addLore(ChatColor.RESET+Colors.Rose+"<Right Click To Use>");		
+		attrUtil.addLore(ChatColor.RESET+CivColor.Gold+"Starts a Camp");
+		attrUtil.addLore(ChatColor.RESET+CivColor.Rose+"<Right Click To Use>");		
 	}
 	
 	public void foundCamp(Player player) throws CivException {
@@ -121,10 +120,10 @@ public class FoundCamp extends ItemComponent implements CallbackInterface {
 		Resident resident = CivGlobal.getResident(playerName);
 		
 		CivMessage.sendHeading(player, "Setting up Camp!");
-		CivMessage.send(player, Colors.LightGreen+"You and your small band of travelers need a place to sleep for the night.");
+		CivMessage.send(player, CivColor.LightGreen+"You and your small band of travelers need a place to sleep for the night.");
 		CivMessage.send(player, " ");
-		CivMessage.send(player, Colors.LightGreen+ChatColor.BOLD+"What shall your new camp be called?");
-		CivMessage.send(player, Colors.LightGray+"(To cancel, type 'cancel')");
+		CivMessage.send(player, CivColor.LightGreen+ChatColor.BOLD+"What shall your new camp be called?");
+		CivMessage.send(player, CivColor.LightGray+"(To cancel, type 'cancel')");
 		
 		resident.setInteractiveMode(new InteractiveCampName());
 	}

@@ -29,10 +29,10 @@ import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.interactive.InteractiveTownName;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.util.CallbackInterface;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class FoundTown extends ItemComponent implements CallbackInterface {
 
@@ -40,8 +40,8 @@ public class FoundTown extends ItemComponent implements CallbackInterface {
 	
 	@Override
 	public void onPrepareCreate(AttributeUtil attrUtil) {
-		attrUtil.addLore(ChatColor.RESET+Colors.Gold+"Founds a Town");
-		attrUtil.addLore(ChatColor.RESET+Colors.Rose+"<Right Click To Use>");			
+		attrUtil.addLore(ChatColor.RESET+CivColor.Gold+"Founds a Town");
+		attrUtil.addLore(ChatColor.RESET+CivColor.Rose+"<Right Click To Use>");			
 	}
 	
 	public void foundTown(Player player) throws CivException {
@@ -102,10 +102,10 @@ public class FoundTown extends ItemComponent implements CallbackInterface {
 		Resident resident = CivGlobal.getResident(playerName);
 		
 		CivMessage.sendHeading(player, "Founding A New Town");
-		CivMessage.send(player, Colors.LightGreen+"This looks like a good place to settle!");
+		CivMessage.send(player, CivColor.LightGreen+"This looks like a good place to settle!");
 		CivMessage.send(player, " ");
-		CivMessage.send(player, Colors.LightGreen+ChatColor.BOLD+"What shall your new Town be called?");
-		CivMessage.send(player, Colors.LightGray+"(To cancel, type 'cancel')");
+		CivMessage.send(player, CivColor.LightGreen+ChatColor.BOLD+"What shall your new Town be called?");
+		CivMessage.send(player, CivColor.LightGray+"(To cancel, type 'cancel')");
 		
 		resident.setInteractiveMode(new InteractiveTownName());		
 	}

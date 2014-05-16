@@ -24,8 +24,8 @@ import com.avrgaming.civcraft.command.CommandBase;
 import com.avrgaming.civcraft.config.ConfigGovernment;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
 import com.avrgaming.civcraft.object.Civilization;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class CivGovCommand extends CommandBase {
 
@@ -67,9 +67,9 @@ public class CivGovCommand extends CommandBase {
 		
 		for (ConfigGovernment gov : govs) {
 			if (gov == civ.getGovernment()) {
-				CivMessage.send(sender, Colors.Gold+gov.displayName+" (current)");
+				CivMessage.send(sender, CivColor.Gold+gov.displayName+" (current)");
 			} else {
-				CivMessage.send(sender, Colors.Green+gov.displayName);
+				CivMessage.send(sender, CivColor.Green+gov.displayName);
 			}
 		}
 		
@@ -79,14 +79,14 @@ public class CivGovCommand extends CommandBase {
 		Civilization civ = getSenderCiv();
 		
 		CivMessage.sendHeading(sender, "Government "+civ.getGovernment().displayName);
-		CivMessage.send(sender, Colors.Green+"Trade Rate: "+Colors.LightGreen+civ.getGovernment().trade_rate+
-				Colors.Green+" Cottage Rate: "+Colors.LightGreen+civ.getGovernment().cottage_rate);
-		CivMessage.send(sender, Colors.Green+"Upkeep Rate: "+Colors.LightGreen+civ.getGovernment().upkeep_rate+
-				Colors.Green+" Growth Rate: "+Colors.LightGreen+civ.getGovernment().growth_rate);
-		CivMessage.send(sender, Colors.Green+"Hammer Rate: "+Colors.LightGreen+civ.getGovernment().hammer_rate+
-				Colors.Green+" Beaker Rate: "+Colors.LightGreen+civ.getGovernment().beaker_rate);
-		CivMessage.send(sender, Colors.Green+"Culture Rate: "+Colors.LightGreen+civ.getGovernment().culture_rate+
-				Colors.Green+" Max Tax Rate: "+Colors.LightGreen+civ.getGovernment().maximum_tax_rate);
+		CivMessage.send(sender, CivColor.Green+"Trade Rate: "+CivColor.LightGreen+civ.getGovernment().trade_rate+
+				CivColor.Green+" Cottage Rate: "+CivColor.LightGreen+civ.getGovernment().cottage_rate);
+		CivMessage.send(sender, CivColor.Green+"Upkeep Rate: "+CivColor.LightGreen+civ.getGovernment().upkeep_rate+
+				CivColor.Green+" Growth Rate: "+CivColor.LightGreen+civ.getGovernment().growth_rate);
+		CivMessage.send(sender, CivColor.Green+"Hammer Rate: "+CivColor.LightGreen+civ.getGovernment().hammer_rate+
+				CivColor.Green+" Beaker Rate: "+CivColor.LightGreen+civ.getGovernment().beaker_rate);
+		CivMessage.send(sender, CivColor.Green+"Culture Rate: "+CivColor.LightGreen+civ.getGovernment().culture_rate+
+				CivColor.Green+" Max Tax Rate: "+CivColor.LightGreen+civ.getGovernment().maximum_tax_rate);
 				
 	}
 

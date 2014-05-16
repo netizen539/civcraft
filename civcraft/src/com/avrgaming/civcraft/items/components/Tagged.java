@@ -1,12 +1,12 @@
 package com.avrgaming.civcraft.items.components;
 
+import gpl.AttributeUtil;
+
 import org.bukkit.inventory.ItemStack;
 
 import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.util.ItemManager;
-
-import gpl.AttributeUtil;
 
 public class Tagged extends ItemComponent {
 

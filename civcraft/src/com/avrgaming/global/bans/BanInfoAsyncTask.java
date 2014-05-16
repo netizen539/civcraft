@@ -27,7 +27,7 @@ import java.util.LinkedList;
 import org.bukkit.command.CommandSender;
 
 import com.avrgaming.civcraft.main.CivMessage;
-import com.avrgaming.civcraft.main.Colors;
+import com.avrgaming.civcraft.util.CivColor;
 
 public class BanInfoAsyncTask implements Runnable {
 
@@ -45,7 +45,7 @@ public class BanInfoAsyncTask implements Runnable {
 		try {
 			entry = BanManager.getBanEntry(name);
 		} catch (SQLException e) {
-			CivMessage.send(sender, Colors.Rose+e.getMessage());
+			CivMessage.send(sender, CivColor.Rose+e.getMessage());
 			return;
 		}
 		ArrayList<String> out = new ArrayList<String>();
@@ -53,31 +53,31 @@ public class BanInfoAsyncTask implements Runnable {
 		if (entry != null) {
 			CivMessage.sendHeading(sender, "BanEntry "+name);
 			
-			out.add(Colors.Green+"Muted: "+Colors.LightGreen+entry.muted+
-					Colors.Green+" MutedBy: "+Colors.LightGreen+entry.muted_by+
-					Colors.Green+" Reason: "+Colors.LightGreen+entry.muted_reason);
+			out.add(CivColor.Green+"Muted: "+CivColor.LightGreen+entry.muted+
+					CivColor.Green+" MutedBy: "+CivColor.LightGreen+entry.muted_by+
+					CivColor.Green+" Reason: "+CivColor.LightGreen+entry.muted_reason);
 		
-			out.add(Colors.Green+" Banned: "+Colors.LightGreen+entry.banned+
-					Colors.Green+" Server: "+Colors.LightGreen+entry.server);
+			out.add(CivColor.Green+" Banned: "+CivColor.LightGreen+entry.banned+
+					CivColor.Green+" Server: "+CivColor.LightGreen+entry.server);
 			
-			out.add(Colors.Green+" BannedBy: "+Colors.LightGreen+entry.banned_by+
-					Colors.Green+" BanCount: "+Colors.LightGreen+entry.banned_count);
+			out.add(CivColor.Green+" BannedBy: "+CivColor.LightGreen+entry.banned_by+
+					CivColor.Green+" BanCount: "+CivColor.LightGreen+entry.banned_count);
 			
-			out.add(Colors.Green+" Reason: "+Colors.LightGreen+entry.reason);
-			out.add(Colors.Green+" Unbanned by: "+Colors.LightGreen+entry.unbanned_by+
-					Colors.Green+" UnbanReason: "+Colors.LightGreen+entry.unbanned_reason);
+			out.add(CivColor.Green+" Reason: "+CivColor.LightGreen+entry.reason);
+			out.add(CivColor.Green+" Unbanned by: "+CivColor.LightGreen+entry.unbanned_by+
+					CivColor.Green+" UnbanReason: "+CivColor.LightGreen+entry.unbanned_reason);
 			
 			SimpleDateFormat sdf = new SimpleDateFormat("M/dd h:mm:ss a z");
 			Date bannedTime = new Date();
 			bannedTime.setTime(entry.time);
-			out.add(Colors.Green+"Banned On: "+Colors.LightGreen+sdf.format(bannedTime));
+			out.add(CivColor.Green+"Banned On: "+CivColor.LightGreen+sdf.format(bannedTime));
 			
 			if (entry.expires != 0) {
 				Date expiresDate = new Date();
 				expiresDate.setTime(entry.expires);
-				out.add(Colors.Green+"Expires: "+Colors.LightGreen+sdf.format(expiresDate));
+				out.add(CivColor.Green+"Expires: "+CivColor.LightGreen+sdf.format(expiresDate));
 			} else {
-				out.add(Colors.Green+"Expires: "+Colors.Rose+"NEVER");
+				out.add(CivColor.Green+"Expires: "+CivColor.Rose+"NEVER");
 			}
 		}
 		
@@ -88,21 +88,21 @@ public class BanInfoAsyncTask implements Runnable {
 				if (ipEntry.banned) {
 					ipBanned = true;
 					if (sender.isOp()) {
-						out.add(Colors.LightGray+"IP Banned on "+ipEntry.ip);
+						out.add(CivColor.LightGray+"IP Banned on "+ipEntry.ip);
 					} else {
 						break;
 					}
 				}
 			}
 			if (ipBanned) {
-				out.add(Colors.Rose+"IP Banned!");
+				out.add(CivColor.Rose+"IP Banned!");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		if (entry == null && ipBanned == false) {
-			out.add(Colors.Yellow+name+" is not banned!");
+			out.add(CivColor.Yellow+name+" is not banned!");
 		}
 		
 		CivMessage.send(sender, out);
