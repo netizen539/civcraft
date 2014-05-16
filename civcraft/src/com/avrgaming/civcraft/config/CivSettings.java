@@ -18,9 +18,15 @@
  */
 package com.avrgaming.civcraft.config;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -462,6 +468,27 @@ public class CivSettings {
 		return getDouble(civConfig, path);
 	}
 	
+	public static void saveGenID(String gen_id) {
+		try {
+			Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("plugins/CivCraft/genid.data")));
+			writer.write(gen_id);
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static String getGenID() {
+		String genid = null;
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("plugins/CivCraft/genid.data"));
+			genid = br.readLine();
+			br.close();
+		} catch (IOException e) {
+		}
+		return genid;
+	}
+	
 	public static Double getDoubleStructure(String path) {
 		Double ret;
 		try {
@@ -680,6 +707,7 @@ public class CivSettings {
 		return biomeInfo;
 	}
 
+	
 	
 	
 }

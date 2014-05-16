@@ -118,6 +118,7 @@ import com.avrgaming.global.perks.PlatinumManager;
 import com.avrgaming.global.scores.CalculateScoreTimer;
 import com.avrgaming.global.serverstatus.ServerStatusUpdateTimer;
 import com.avrgaming.moblib.MobLib;
+import com.avrgaming.sls.SLSManager;
 
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.hooks.NCPHookManager;
@@ -276,7 +277,16 @@ public final class CivCraft extends JavaPlugin {
 			SQL.initCivObjectTables();
 			ChunkCoord.buildWorldList();
 			CivGlobal.loadGlobals();
+			
 			ACManager.init();
+			try {
+				SLSManager.init();
+			} catch (CivException e1) {
+				e1.printStackTrace();
+			} catch (InvalidConfiguration e1) {
+				e1.printStackTrace();
+			}
+			
 
 		} catch (InvalidConfiguration | SQLException | IOException | InvalidConfigurationException | CivException | ClassNotFoundException e) {
 			e.printStackTrace();
