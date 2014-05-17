@@ -34,7 +34,6 @@ public class SLSManager implements Runnable {
 		if (!useListing.equalsIgnoreCase("true")) {
 			return;
 		}
-		CivLog.debug("server listing service enabled: "+useListing);
 		
 		serverName = CivSettings.getStringBase("server_name");
 		if (serverName.contains(";")) {
@@ -79,7 +78,6 @@ public class SLSManager implements Runnable {
 			try {
 				socket = new DatagramSocket();
 				socket.send(packet);
-				CivLog.debug("Sent heartbeat message:"+message);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
