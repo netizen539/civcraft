@@ -60,7 +60,6 @@ import org.bukkit.util.Vector;
 
 import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.config.ConfigTechPotion;
-import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.items.units.Unit;
 import com.avrgaming.civcraft.items.units.UnitItemMaterial;
 import com.avrgaming.civcraft.items.units.UnitMaterial;
@@ -86,10 +85,6 @@ import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.war.War;
 import com.avrgaming.civcraft.war.WarStats;
 import com.avrgaming.global.bans.BanCheckOnJoinTask;
-import com.dthielke.herochat.ChannelChatEvent;
-import com.dthielke.herochat.Chatter;
-import com.dthielke.herochat.Chatter.Result;
-import com.dthielke.herochat.Herochat;
 
 public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
@@ -165,39 +160,6 @@ public class PlayerListener implements Listener {
 		}
 		
 	}
-	
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void onChannelChatEvent(ChannelChatEvent event) {
-		Resident resident = CivGlobal.getResident(event.getSender().getName());
-		if (resident == null) {
-			event.setResult(Result.FAIL);
-			return;
-		}
-		
-		if (!resident.isInteractiveMode()) {
-			if (resident.isMuted()) {
-				event.setResult(Result.MUTED);
-				return;
-			}
-		}
-		
-		if (event.getChannel().getDistance() > 0) {
-			for (String name : Resident.allchatters) {
-				Player player;
-				try {
-					player = CivGlobal.getPlayer(name);
-				} catch (CivException e) {
-					continue;
-				}
-				
-				Chatter you = Herochat.getChatterManager().getChatter(player);
-				if (!event.getSender().isInRange(you, event.getChannel().getDistance())) {
-					player.sendMessage(CivColor.White+event.getSender().getName()+"[Far]: "+event.getMessage());
-				}
-			}
-		}
-	}
-	
 	
 	private void setModifiedMovementSpeed(Player player) {
 		/* Change move speed based on armor. */

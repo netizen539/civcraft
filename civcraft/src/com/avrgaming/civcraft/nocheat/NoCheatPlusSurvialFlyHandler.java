@@ -8,8 +8,13 @@ import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.checks.access.IViolationInfo;
 import fr.neatmonster.nocheatplus.hooks.AbstractNCPHook;
+import fr.neatmonster.nocheatplus.hooks.NCPHookManager;
 
 public class NoCheatPlusSurvialFlyHandler extends AbstractNCPHook {
+	
+	public static void init() {
+		NCPHookManager.addHook(CheckType.MOVING_SURVIVALFLY, new NoCheatPlusSurvialFlyHandler());
+	}
 	
 	@Override
 	public String getHookName() {

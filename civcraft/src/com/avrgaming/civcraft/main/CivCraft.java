@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -69,6 +70,7 @@ import com.avrgaming.civcraft.listener.ChatListener;
 import com.avrgaming.civcraft.listener.CustomItemManager;
 import com.avrgaming.civcraft.listener.DebugListener;
 import com.avrgaming.civcraft.listener.DisableXPListener;
+import com.avrgaming.civcraft.listener.HeroChatListener;
 import com.avrgaming.civcraft.listener.MarkerPlacementManager;
 import com.avrgaming.civcraft.listener.PlayerListener;
 import com.avrgaming.civcraft.listener.TagAPIListener;
@@ -119,25 +121,9 @@ import com.avrgaming.global.scores.CalculateScoreTimer;
 import com.avrgaming.moblib.MobLib;
 import com.avrgaming.sls.SLSManager;
 
-import fr.neatmonster.nocheatplus.checks.CheckType;
-import fr.neatmonster.nocheatplus.hooks.NCPHookManager;
-
 public final class CivCraft extends JavaPlugin {
 
-	private boolean isError = false;
-	private final PlayerListener civPlayerListener = new PlayerListener();
-	private final BlockListener civBlockListener = new BlockListener();
-	private final ChatListener civChatListener = new ChatListener();
-	private final BonusGoodieManager civBonusGoodieManager = new BonusGoodieManager();
-	private final MarkerPlacementManager civMarkerPlacementManager = new MarkerPlacementManager();
-	private final CustomItemManager customManager = new CustomItemManager();
-	private final DebugListener civDebugListener = new DebugListener();
-	private final LoreCraftableMaterialListener civCraftableListener = new LoreCraftableMaterialListener();
-	private final LoreGuiItemListener civGuiItemListener = new LoreGuiItemListener();
-	private final TradeInventoryListener civTradeInventoryListener = new TradeInventoryListener();
-	private final TagAPIListener civTagAPIListener = new TagAPIListener();
-//	private CreativeInventoryPacketManager creativeInvPacketManager = new CreativeInventoryPacketManager();
-	
+	private boolean isError = false;	
 	private static JavaPlugin plugin;	
 	
 	private void startTimers() {
@@ -232,19 +218,20 @@ public final class CivCraft extends JavaPlugin {
 	
 	private void registerEvents() {
 		final PluginManager pluginManager = getServer().getPluginManager();
-		pluginManager.registerEvents(civBlockListener, this);
-		pluginManager.registerEvents(civChatListener, this);
-		pluginManager.registerEvents(civBonusGoodieManager, this);
-		pluginManager.registerEvents(civMarkerPlacementManager, this);
-		pluginManager.registerEvents(customManager, this);
-		pluginManager.registerEvents(civPlayerListener, this);		
-		pluginManager.registerEvents(civDebugListener, this);
-		pluginManager.registerEvents(civCraftableListener, this);
-		pluginManager.registerEvents(civGuiItemListener, this);
+		pluginManager.registerEvents(new BlockListener(), this);
+		pluginManager.registerEvents(new ChatListener(), this);
+		pluginManager.registerEvents(new BonusGoodieManager(), this);
+		pluginManager.registerEvents(new MarkerPlacementManager(), this);
+		pluginManager.registerEvents(new CustomItemManager(), this);
+		pluginManager.registerEvents(new PlayerListener(), this);		
+		pluginManager.registerEvents(new DebugListener(), this);
+		pluginManager.registerEvents(new LoreCraftableMaterialListener(), this);
+		pluginManager.registerEvents(new LoreGuiItemListener(), this);
 		pluginManager.registerEvents(new DisableXPListener(), this);
 		pluginManager.registerEvents(new PvPLogger(), this);
-		pluginManager.registerEvents(civTradeInventoryListener, this);
-		pluginManager.registerEvents(civTagAPIListener, this);
+		pluginManager.registerEvents(new TradeInventoryListener(), this);
+		pluginManager.registerEvents(new TagAPIListener(), this);
+		pluginManager.registerEvents(new HeroChatListener(), this);
 		pluginManager.registerEvents(new MobListener(), this);
 		pluginManager.registerEvents(new ArenaListener(), this);
 		pluginManager.registerEvents(new CannonListener(), this);
@@ -255,7 +242,7 @@ public final class CivCraft extends JavaPlugin {
 	}
 	
 	private void registerNPCHooks() {
-		NCPHookManager.addHook(CheckType.MOVING_SURVIVALFLY, new NoCheatPlusSurvialFlyHandler());
+		NoCheatPlusSurvialFlyHandler.init();
 	}
 	
 	@Override
@@ -320,12 +307,23 @@ public final class CivCraft extends JavaPlugin {
 		getCommand("team").setExecutor(new TeamCommand());
 	
 		registerEvents();
-		registerNPCHooks();
+		
+		if (hasPlugin("NoCheatPlus")) {
+			registerNPCHooks();
+		} else {
+			CivLog.warning("NoCheatPlus not found, not registering NCP hooks. This is fine if you're not using NCP.");
+		}
 		MobLib.registerAllEntities();
 		startTimers();
 		MobSpawner.register();
 				
 		//creativeInvPacketManager.init(this);		
+	}
+	
+	private boolean hasPlugin(String name) {
+		Plugin p;
+		p = getServer().getPluginManager().getPlugin(name);
+		return (p != null);
 	}
 	
 	@Override
