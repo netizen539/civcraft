@@ -48,6 +48,7 @@ import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.items.units.Unit;
 import com.avrgaming.civcraft.loreenhancements.LoreEnhancement;
 import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
+import com.avrgaming.civcraft.main.CivCraft;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
@@ -60,7 +61,7 @@ import com.avrgaming.global.perks.Perk;
 
 public class CivSettings {
 	
-	public static JavaPlugin plugin;
+	public static CivCraft plugin;
 	public static final long MOB_REMOVE_INTERVAL = 5000;
 	/* Number of days that you can remain in debt before an action occurs. */
 
@@ -194,6 +195,7 @@ public class CivSettings {
 	public static ArrayList<String> kitItems = new ArrayList<String>();
 	public static HashMap<Integer, ConfigRemovedRecipes> removedRecipies = new HashMap<Integer, ConfigRemovedRecipes>();
 	public static HashSet<Material> restrictedUndoBlocks = new HashSet<Material>();
+	public static boolean hasVanishNoPacket = false;
 	
 	public static final String MINI_ADMIN = "civ.admin";
 	public static final String MODERATOR = "civ.moderator";
@@ -203,7 +205,7 @@ public class CivSettings {
 	public static final int MARKET_STEP_THRESHOLD = 2;
 	
 	public static void init(JavaPlugin plugin) throws FileNotFoundException, IOException, InvalidConfigurationException, InvalidConfiguration {
-		CivSettings.plugin = plugin;
+		CivSettings.plugin = (CivCraft)plugin;
 		
 		initRestrictedItems();
 		initRestrictedUndoBlocks();
@@ -262,6 +264,10 @@ public class CivSettings {
 		LoreCraftableMaterial.buildStaticMaterials();
 		LoreCraftableMaterial.buildRecipes();
 		Template.initAttachableTypes();
+		
+		if (CivSettings.plugin.hasPlugin("VanishNoPacket")) {
+			hasVanishNoPacket = true;
+		}
 
 	}
 	

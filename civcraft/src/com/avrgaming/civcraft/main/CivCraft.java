@@ -231,8 +231,6 @@ public final class CivCraft extends JavaPlugin {
 		pluginManager.registerEvents(new DisableXPListener(), this);
 		pluginManager.registerEvents(new PvPLogger(), this);
 		pluginManager.registerEvents(new TradeInventoryListener(), this);
-		pluginManager.registerEvents(new TagAPIListener(), this);
-		pluginManager.registerEvents(new HeroChatListener(), this);
 		pluginManager.registerEvents(new MobListener(), this);
 		pluginManager.registerEvents(new ArenaListener(), this);
 		pluginManager.registerEvents(new CannonListener(), this);
@@ -240,6 +238,14 @@ public final class CivCraft extends JavaPlugin {
 		pluginManager.registerEvents(new FishingListener(), this);	
 		pluginManager.registerEvents(new PvPListener(), this);
 		pluginManager.registerEvents(new LoreEnhancementArenaItem(), this);
+		
+		if (hasPlugin("TagAPI")) {
+			pluginManager.registerEvents(new TagAPIListener(), this);
+		}
+		
+		if (hasPlugin("HeroChat")) {
+			pluginManager.registerEvents(new HeroChatListener(), this);
+		}
 	}
 	
 	private void registerNPCHooks() {
@@ -320,7 +326,7 @@ public final class CivCraft extends JavaPlugin {
 		//creativeInvPacketManager.init(this);		
 	}
 	
-	private boolean hasPlugin(String name) {
+	public boolean hasPlugin(String name) {
 		Plugin p;
 		p = getServer().getPluginManager().getPlugin(name);
 		return (p != null);
