@@ -22,14 +22,14 @@ system:
     # 2) create a web application that will add users to that database, and associate perks 
     #    with users by adding the correct entries to the correct tables. (good luck!)
     enabled: 'false'
-	
+
     # Enables free perks for all users. Even if the system is disabled above, setting this
     # to true will give all users perks of each type.
     free_perks: 'false'
-	
+
     # For each perk, give this many copies.
     free_perk_count: 100
-	
+
     # Gives free perks only to players who have the 'civ.admin' permission node.
     free_admin_perks: 'true'
 

@@ -10,7 +10,9 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
+import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.exception.CivException;
+import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
@@ -54,6 +56,22 @@ public class StructureValidator implements Runnable {
 	private String iTemplateName = null;
 	private BlockCoord iCornerLoc = null;
 	private CallbackInterface iCallback = null;
+	
+	public static boolean isEnabled() {
+		String enabledStr;
+		try {
+			enabledStr = CivSettings.getString(CivSettings.civConfig, "global.structure_validation");
+		} catch (InvalidConfiguration e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		if (enabledStr.equalsIgnoreCase("true")) {
+			return true;
+		}
+		
+		return false;
+	}
 	
 	public StructureValidator(Player player, Buildable bld) {
 		if (player != null) {
@@ -201,6 +219,12 @@ public class StructureValidator implements Runnable {
 	
 	@Override
 	public void run() {
+		if (!isEnabled()) {
+			iBuildable.validated = true;
+			iBuildable.setValid(true);
+			return;
+		}
+		
 		/* Wait for validation lock to open. */
 		validationLock.lock();
 

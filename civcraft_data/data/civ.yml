@@ -56,6 +56,9 @@ global:
 
    # Casual mode, war disabled. Wonders for all. No spies.
    casual_mode: 'false'
+   
+   # Attempt to validate structures to make sure they're not floating.
+   structure_validation: 'true'
 
 platinum:
 ### DAILY EVENTS ######

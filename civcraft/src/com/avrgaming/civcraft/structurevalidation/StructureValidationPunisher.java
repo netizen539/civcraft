@@ -11,6 +11,9 @@ public class StructureValidationPunisher implements Runnable {
 
 	@Override
 	public void run() {
+		if (!StructureValidator.isEnabled()) {
+			return;
+		}
 
 		Iterator<Entry<BlockCoord, Structure>> structIter = CivGlobal.getStructureIterator();
 		while (structIter.hasNext()) {
