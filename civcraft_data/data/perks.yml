@@ -15,6 +15,30 @@
 # so that the same perk isnt bound twice, and so we can lookup the perks when we build.
 #
 
+system:
+    # Enables the perk/platinum/registration system, by default this is set to false since creating a working
+    # perk system is VERY complicated. To use the perks system you'll need to do the following:
+    # 1) load the perks.sql database provided.
+    # 2) create a web application that will add users to that database, and associate perks 
+    #    with users by adding the correct entries to the correct tables. (good luck!)
+    enabled: 'false'
+	
+    # Enables free perks for all users. Even if the system is disabled above, setting this
+    # to true will give all users perks of each type.
+    free_perks: 'false'
+	
+    # For each perk, give this many copies.
+    free_perk_count: 100
+	
+    # Gives free perks only to players who have the 'civ.admin' permission node.
+    free_admin_perks: 'true'
+
+    # Registration URL to direct users to when they are detected as not registered with the perk system
+    register_url: 'EDIT perks.yml to change'
+
+    # URL of your online store to sell perks to users. 
+    store_url: 'EDIT perks.yml to change'
+
 perks:
 ########### Personal Perks
     - id: 'perk_rename_civ_town'

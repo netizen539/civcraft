@@ -1,7 +1,6 @@
 name: CivCraft
 main: com.avrgaming.civcraft.main.CivCraft
 version: 1.0
-depend: [Herochat, TagAPI]
 
 commands:
     town:
@@ -37,8 +36,6 @@ commands:
     econ:
         aliases: [money]
     pay:
-        aliases:
-    mod:
         aliases:
     here:
         aliases:

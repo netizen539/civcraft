@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -112,9 +111,7 @@ import com.avrgaming.civcraft.util.FireworkEffectPlayer;
 import com.avrgaming.civcraft.util.ItemFrameStorage;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.util.SimpleBlock;
-import com.avrgaming.global.perks.NotVerifiedException;
 import com.avrgaming.global.perks.Perk;
-import com.avrgaming.global.perks.PerkManager;
 
 public class DebugCommand extends CommandBase {
 
@@ -610,22 +607,6 @@ public class DebugCommand extends CommandBase {
 		CivMessage.sendSuccess(player, "Set color.");
 	}
 	
-	public void loadperks_cmd() throws CivException {
-		Resident resident = getResident();
-		
-		try {
-			LinkedList<String> perks = PerkManager.loadPerksForResident(resident);
-			for (String str : perks) {
-				CivMessage.send(sender, "Perk:"+str);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NotVerifiedException e) {
-			e.printStackTrace();
-			CivMessage.sendError(sender, "Not verified!");
-		}
-	}
-
 	public void circle_cmd() throws CivException {
 		Player player = getPlayer();
 		int radius = getNamedInteger(1);

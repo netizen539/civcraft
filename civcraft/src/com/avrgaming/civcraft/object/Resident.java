@@ -1074,7 +1074,29 @@ public class Resident extends SQLObject {
 		this.onRoad = onRoad;
 	}
 
+	public void giveAllFreePerks() {
+		int perkCount;
+		try {
+			perkCount = CivSettings.getInteger(CivSettings.perkConfig, "system.free_perk_count");
+		} catch (InvalidConfiguration e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		for (ConfigPerk p : CivSettings.perks.values()) {
+			Perk perk = new Perk(p);
+			perk.count = perkCount;
+			this.perks.put(perk.getIdent(), perk);
+		}
+		
+		CivMessage.send(this, CivColor.LightGreen+"You've got free perks! Use /resident perks to see them.");
+	}
+	
 	public void loadPerks() {
+		if (!PlatinumManager.isEnabled()) {
+			return;
+		}
+		
 		class AsyncTask implements Runnable {
 			Resident resident;
 			
@@ -1110,7 +1132,15 @@ public class Resident extends SQLObject {
 						e.printStackTrace();
 						return;
 					} catch (NotVerifiedException e) {
-						CivMessage.send(player, CivColor.Yellow+CivColor.BOLD+"Hey! You're in-game account is not registered! Register it at http://civcraft.net.");
+						String url;
+						try {
+							url = CivSettings.getString(CivSettings.perkConfig, "system.register_url");
+						} catch (InvalidConfiguration e1) {
+							e1.printStackTrace();
+							return;
+						}
+						
+						CivMessage.send(player, CivColor.Yellow+CivColor.BOLD+"Hey! You're in-game account is not registered! Register it at "+url);
 						CivMessage.send(player, CivColor.Yellow+CivColor.BOLD+"You'll be unable to earn Platinum until you register.");	
 						return;
 					}	

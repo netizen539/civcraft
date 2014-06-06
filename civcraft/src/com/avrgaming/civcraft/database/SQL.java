@@ -59,6 +59,7 @@ import com.avrgaming.civcraft.structure.wonders.Wonder;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.util.BiomeCache;
 import com.avrgaming.global.perks.PerkManager;
+import com.avrgaming.global.perks.PlatinumManager;
 import com.avrgaming.global.reports.ReportManager;
 import com.avrgaming.global.scores.ScoreManager;
 import com.jolbox.bonecp.Statistics;
@@ -130,17 +131,18 @@ public class SQL {
 		globalDatabase = new ConnectionPool(SQL.global_dsn, SQL.global_username, SQL.global_password, SQL.global_min_conns, SQL.global_max_conns, SQL.global_parts);
 		CivLog.info("\t Connected to GLOBAL database");
 		
-		
-		CivLog.heading("Initializing Perk/Web Database");	
-		PerkManager.hostname = CivSettings.getStringBase("perk_database.hostname");
-		PerkManager.port = CivSettings.getStringBase("perk_database.port");
-		PerkManager.db_name = CivSettings.getStringBase("perk_database.database");
-		PerkManager.username = CivSettings.getStringBase("perk_database.username");
-		PerkManager.password = CivSettings.getStringBase("perk_database.password");
-		PerkManager.dsn = "jdbc:mysql://" + PerkManager.hostname + ":" + PerkManager.port + "/" + PerkManager.db_name;
-		CivLog.info("\t Using "+PerkManager.dsn+" as PERK database.");
-		perkDatabase = new ConnectionPool(PerkManager.dsn, PerkManager.username, PerkManager.password, SQL.global_min_conns, SQL.global_max_conns, SQL.global_parts);
-		CivLog.info("\t Connected to PERK database.");
+		if (PlatinumManager.isEnabled()) {
+			CivLog.heading("Initializing Perk/Web Database");	
+			PerkManager.hostname = CivSettings.getStringBase("perk_database.hostname");
+			PerkManager.port = CivSettings.getStringBase("perk_database.port");
+			PerkManager.db_name = CivSettings.getStringBase("perk_database.database");
+			PerkManager.username = CivSettings.getStringBase("perk_database.username");
+			PerkManager.password = CivSettings.getStringBase("perk_database.password");
+			PerkManager.dsn = "jdbc:mysql://" + PerkManager.hostname + ":" + PerkManager.port + "/" + PerkManager.db_name;
+			CivLog.info("\t Using "+PerkManager.dsn+" as PERK database.");
+			perkDatabase = new ConnectionPool(PerkManager.dsn, PerkManager.username, PerkManager.password, SQL.global_min_conns, SQL.global_max_conns, SQL.global_parts);
+			CivLog.info("\t Connected to PERK database.");
+		}
 
 		
 		CivLog.heading("Initializing SQL Finished");

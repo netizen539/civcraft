@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.avrgaming.civcraft.config.CivSettings;
+import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.Resident;
@@ -18,12 +20,14 @@ import com.avrgaming.civcraft.util.CivColor;
 
 public class PlatinumManager implements Runnable {
 
-
-	
 	/* Pending platinum updates that didn't make it. Holding until reboot. */
 	public static ConcurrentHashMap<String, Queue<PendingPlatinum>> pendingPlatinum = new ConcurrentHashMap<String, Queue<PendingPlatinum>>();
 		
-	public static void givePlatinum(Resident resident, Integer plat, String reason) {	
+	public static void givePlatinum(Resident resident, Integer plat, String reason) {
+		if (!isEnabled()) {
+			return;
+		}
+		
 		Queue<PendingPlatinum> pending = pendingPlatinum.get(resident.getName());
 		if (pending == null) {
 			pending = new LinkedList<PendingPlatinum>();
@@ -44,6 +48,10 @@ public class PlatinumManager implements Runnable {
 	}
 	
 	public static void givePlatinumDaily(Resident resident, String ident, Integer plat, String reason) {
+		if (!isEnabled()) {
+			return;
+		}
+		
 		class AsyncTask implements Runnable {
 			Resident resident;
 			Integer plat;
@@ -85,6 +93,10 @@ public class PlatinumManager implements Runnable {
 	}
 	
 	public static void giveManyPlatinumDaily(LinkedList<Resident> residents, String ident, Integer plat, String reason) {
+		if (!isEnabled()) {
+			return;
+		}
+		
 		class GiveManyPlatinumDailyAsyncTask implements Runnable {
 			LinkedList<Resident> residents;
 			Integer plat;
@@ -134,6 +146,10 @@ public class PlatinumManager implements Runnable {
 	}
 	
 	public static void givePlatinumOnce(Resident resident, String ident, Integer plat, String reason) {
+		if (!isEnabled()) {
+			return;
+		}
+		
 		class AsyncTask implements Runnable {
 			Resident resident;
 			Integer plat;
@@ -196,8 +212,16 @@ public class PlatinumManager implements Runnable {
 					} catch (NotVerifiedException e) {
 						
 						if (!warnedPlayers.contains(resident.getName())) {
+							String url;
+							try {
+								url = CivSettings.getString(CivSettings.perkConfig, "system.store_url");
+							} catch (InvalidConfiguration e1) {
+								e1.printStackTrace();
+								return;
+							}
+							
 							CivMessage.sendError(resident, "Aww man! You've earned "+CivColor.Yellow+pending.amount+" Platinum"+CivColor.Rose+" but your in-game name is not currently verified!");
-							CivMessage.sendError(resident, "Go to "+CivColor.Yellow+"http://civcraft.net/store"+CivColor.Rose+" and verify first! We'll hold on to it until the server reboots.");
+							CivMessage.sendError(resident, "Go to "+CivColor.Yellow+url+CivColor.Rose+" and verify first! We'll hold on to it until the server reboots.");
 							warnedPlayers.add(resident.getName());
 						}
 						newQueue.add(pending);
@@ -224,6 +248,23 @@ public class PlatinumManager implements Runnable {
 			/* Every so often say 5 sec, check for any missing platinum. And try to add it to the DB. */
 			/* Implemented as a bukkit timer. */
 			updatePendingPlatinum();
+		}
+
+
+		public static boolean isEnabled() {
+			String enabledStr;
+			try {
+				enabledStr = CivSettings.getString(CivSettings.perkConfig, "system.enabled");
+			} catch (InvalidConfiguration e) {
+				e.printStackTrace();
+				return false;
+			}
+			
+			if (enabledStr.equalsIgnoreCase("true")) {
+				return true;
+			}
+			
+			return false;
 		}
 }
 

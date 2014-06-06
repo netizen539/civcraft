@@ -147,6 +147,19 @@ public class PlayerLoginAsyncTask implements Runnable {
 		resident.showWarnings(player);
 		resident.loadPerks();
 
+		try {
+			if (CivSettings.getString(CivSettings.perkConfig, "system.free_perks").equalsIgnoreCase("true")) {
+				resident.giveAllFreePerks();
+			} else if (CivSettings.getString(CivSettings.perkConfig, "system.free_admin_perks").equalsIgnoreCase("true")) {
+				if (player.hasPermission(CivSettings.MINI_ADMIN)) {
+					resident.giveAllFreePerks();
+				}
+			}
+		} catch (InvalidConfiguration e) {
+			e.printStackTrace();
+		}
+		
+		
 		/* Send Anti-Cheat challenge to player. */
 		resident.setUsesAntiCheat(false);
 		ACManager.sendChallenge(player);
