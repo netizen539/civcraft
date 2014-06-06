@@ -50,7 +50,6 @@ public class PlayerKickBan implements Runnable {
 		if (ban) {
 			Resident resident = CivGlobal.getResident(player);
 			resident.setBanned(true);
-			resident.setBannedMessage(reason);
 			resident.save();
 		}
 		

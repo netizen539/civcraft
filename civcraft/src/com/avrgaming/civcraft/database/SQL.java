@@ -58,7 +58,6 @@ import com.avrgaming.civcraft.structure.Structure;
 import com.avrgaming.civcraft.structure.wonders.Wonder;
 import com.avrgaming.civcraft.threading.TaskMaster;
 import com.avrgaming.civcraft.util.BiomeCache;
-import com.avrgaming.global.bans.BanManager;
 import com.avrgaming.global.perks.PerkManager;
 import com.avrgaming.global.reports.ReportManager;
 import com.avrgaming.global.scores.ScoreManager;
@@ -176,7 +175,6 @@ public class SQL {
 		ArenaTeam.init();
 					
 		CivLog.heading("Building Global Tables!!");
-		BanManager.init();
 		ReportManager.init();
 		ScoreManager.init();
 		

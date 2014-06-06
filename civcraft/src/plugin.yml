@@ -37,8 +37,6 @@ commands:
         aliases: [money]
     pay:
         aliases:
-    mod:
-        aliases:
     here:
         aliases:
     camp:

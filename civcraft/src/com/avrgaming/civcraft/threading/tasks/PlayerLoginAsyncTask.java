@@ -89,12 +89,7 @@ public class PlayerLoginAsyncTask implements Runnable {
 		if (!resident.isGivenKit()) {
 			TaskMaster.syncTask(new GivePlayerStartingKit(resident.getName()));
 		}
-		
-		if (resident.isBanned()) {
-			TaskMaster.syncTask(new PlayerKickBan(player.getName(), true, false, resident.getBannedMessage()));
-			return;
-		}
-		
+				
 		if (War.isWarTime() && War.isOnlyWarriors()) {
 			if (player.isOp() || player.hasPermission(CivSettings.MINI_ADMIN)) {
 				//Allowed to connect since player is OP or mini admin.

@@ -82,7 +82,6 @@ import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.util.PlayerBlockChangeUtil;
 import com.avrgaming.civcraft.util.SimpleBlock;
-import com.avrgaming.global.bans.BanManager;
 import com.avrgaming.global.perks.NotVerifiedException;
 import com.avrgaming.global.perks.Perk;
 import com.avrgaming.global.perks.PerkManager;
@@ -115,7 +114,6 @@ public class Resident extends SQLObject {
 	private String timezone;
 	
 	private boolean banned = false;
-	private String bannedMessage = "You are banned. You may issue an appeal at http://civcraft.net/support";
 	
 	private long registered;
 	private long lastOnline;
@@ -1023,14 +1021,6 @@ public class Resident extends SQLObject {
 		this.banned = banned;
 	}
 
-	public String getBannedMessage() {
-		return bannedMessage;
-	}
-
-	public void setBannedMessage(String bannedMessage) {
-		this.bannedMessage = bannedMessage;
-	}
-
 	public double getSpyExposure() {
 		return spyExposure;
 	}
@@ -1248,18 +1238,6 @@ public class Resident extends SQLObject {
 
 	
 	public boolean isMuted() {
-		if (this.muted == true && this.muteExpires != null) {
-			Date now = new Date();
-			if (now.after(muteExpires)) {
-				this.muted = false;
-				try {
-					BanManager.unmutePlayer(this.getName(), null);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				CivMessage.send(this, CivColor.LightGray+"Your mute has expired. Allowing you to talk now.");
-			}
-		}
 		return muted;
 	}
 

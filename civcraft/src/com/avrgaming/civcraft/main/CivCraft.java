@@ -50,7 +50,6 @@ import com.avrgaming.civcraft.command.civ.CivChatCommand;
 import com.avrgaming.civcraft.command.civ.CivCommand;
 import com.avrgaming.civcraft.command.debug.DebugCommand;
 import com.avrgaming.civcraft.command.market.MarketCommand;
-import com.avrgaming.civcraft.command.mod.ModeratorCommand;
 import com.avrgaming.civcraft.command.plot.PlotCommand;
 import com.avrgaming.civcraft.command.resident.ResidentCommand;
 import com.avrgaming.civcraft.command.team.TeamCommand;
@@ -297,7 +296,6 @@ public final class CivCraft extends JavaPlugin {
 		getCommand("build").setExecutor(new BuildCommand());
 		getCommand("market").setExecutor(new MarketCommand());
 		getCommand("select").setExecutor(new SelectCommand());
-		getCommand("mod").setExecutor(new ModeratorCommand());
 		getCommand("here").setExecutor(new HereCommand());
 		getCommand("camp").setExecutor(new CampCommand());
 		getCommand("report").setExecutor(new ReportCommand());

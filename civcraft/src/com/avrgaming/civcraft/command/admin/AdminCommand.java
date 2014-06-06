@@ -299,7 +299,6 @@ public class AdminCommand extends CommandBase {
 			Resident resident = CivGlobal.getResident(offplayer.getName());
 			if (resident != null) {
 				resident.setBanned(false);
-				resident.setBannedMessage("");
 				resident.save();
 			}
 			CivMessage.sendSuccess(sender, "Unbanned "+args[1]);
