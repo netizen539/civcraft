@@ -162,6 +162,9 @@ public class LoreGuiItem {
 			TaskMaster.syncTask(new SyncTaskDelayed(player.getName(), args));
 			break;
 		//case ""openinv:showGuiInv:"+cat.name+" Spawn"
+		case "showperkpage":
+			resident.showPerkPage(Integer.valueOf(args[1]));			
+			break;
 		case "activateperk":
 			perk = resident.perks.get(args[1]);
 			if (perk != null) {

@@ -23,11 +23,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.TimeZone;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.avrgaming.civcraft.command.CommandBase;
@@ -35,14 +33,11 @@ import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
-import com.avrgaming.civcraft.lorestorage.LoreGuiItem;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.Resident;
-import com.avrgaming.civcraft.tutorial.CivTutorial;
 import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.civcraft.util.ItemManager;
-import com.avrgaming.global.perks.Perk;
 
 public class ResidentCommand extends CommandBase {
 
@@ -117,26 +112,12 @@ public class ResidentCommand extends CommandBase {
 	
 	public void perks_cmd() throws CivException {
 		Resident resident = getResident();
-		Player player = getPlayer();
 		
 		//CivMessage.sendHeading(sender, "Your Perks");
 		//for (Perk p : resident.perks.values()) {
 		//	CivMessage.send(sender, "Perk:"+p.getIdent());
 		//}
-		Inventory inv = Bukkit.getServer().createInventory(player, CivTutorial.MAX_CHEST_SIZE*9, "Perks");
-
-		
-		for (Perk p : resident.perks.values()) {
-			ItemStack stack = LoreGuiItem.build(p.configPerk.display_name, 
-					p.configPerk.type_id, 
-					p.configPerk.data, CivColor.Gold+"<Click To Activate>",
-					CivColor.LightBlue+"Count: "+p.count);
-			stack = LoreGuiItem.setAction(stack, "activatePerk:"+p.configPerk.id);
-			
-			inv.addItem(stack);
-		}
-		
-		player.openInventory(inv);
+		resident.showPerkPage(0);
 	}
 	
 	public void book_cmd() throws CivException {
