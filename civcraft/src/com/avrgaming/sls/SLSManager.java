@@ -67,12 +67,25 @@ public class SLSManager implements Runnable {
 		TaskMaster.asyncTimer("SLS", new SLSManager(), TimeTools.toTicks(60));
 	}
 	
+	public static String getParsedVersion() {
+		String version = Bukkit.getVersion();
+		version = version.split("MC: ")[1].split(")")[0];
+		return version;
+	}
 	
 	public static void sendHeartbeat() {
 		try {
 			InetAddress address = InetAddress.getByName("atlas.civcraft.net");
 			String message = gen_id+";"+serverName+";"+serverDescription+";"+serverTimezone+";"+serverAddress+";"+
-					Bukkit.getOnlinePlayers().length+";"+Bukkit.getMaxPlayers();
+					Bukkit.getOnlinePlayers().length+";"+Bukkit.getMaxPlayers()+";"+getParsedVersion();
+			
+			try {
+				if (CivSettings.getStringBase("debug_heartbeat").equalsIgnoreCase("true")) {
+					CivLog.info("SLS HEARTBEAT:"+message);
+				}
+			} catch (InvalidConfiguration e1) {
+			}
+			
 			DatagramPacket packet = new DatagramPacket(message.getBytes(), message.toCharArray().length, address, 25580);
 			DatagramSocket socket;
 			try {

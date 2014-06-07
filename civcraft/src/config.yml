@@ -24,6 +24,9 @@ server_timezone: 'PST'
 # A short message to display on civcraft.net to advertise your server or explain what it's about.
 server_description: 'Just another CivCraft server.'
 
+# Prints a message to the console for every heartbeat packet sent to the server. Useful for debugging.
+debug_heartbeat: 'false'
+
 # ============================== Database Configuration ====================================
 
 # MySQL database to store game data in across reloads. 
