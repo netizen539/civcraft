@@ -56,7 +56,7 @@ public class Ruffian extends CommonCustomMob implements ICustomMob {
 	    getGoalSelector().a(3, new PathfinderGoalRandomLookaround((EntityInsentient) entity));
 	    getTargetSelector().a(1, new PathfinderGoalHurtByTarget((EntityCreature) entity, false));
 	    getTargetSelector().a(2, new PathfinderGoalNearestAttackableTarget((EntityCreature) entity, EntityHuman.class, 0, true));
-	    this.setName(this.level.getName()+" "+this.type.getName());
+	    this.setName(this.getLevel().getName()+" "+this.getType().getName());
 	}
 
 	public void onCreateAttributes() {
@@ -64,7 +64,7 @@ public class Ruffian extends CommonCustomMob implements ICustomMob {
 	    this.setKnockbackResistance(0.5D);
 	    this.setMovementSpeed(0.2);
 
-		switch (this.level) {
+		switch (this.getLevel()) {
 		case LESSER:
 		    defense = new MobComponentDefense(3.5);
 		    setMaxHealth(10.0);

@@ -35,7 +35,7 @@ public class YoboBoss extends CommonCustomMob implements ICustomMob {
 	    MobComponentDefense defense = new MobComponentDefense(9.0);
 	    this.addComponent(defense);
 	    
-	    this.setName(this.level.getName()+" "+this.type.getName());
+	    this.setName(this.getLevel().getName()+" "+this.getType().getName());
 	}
 	
 	public void onCreateAttributes() {
@@ -58,7 +58,7 @@ public class YoboBoss extends CommonCustomMob implements ICustomMob {
 		goalSelector.a(2, new PathfinderGoalMeleeAttack(e, EntityHuman.class, 1.0D, false));
 		for (int i = 0; i < 6; i++) {
 			try {
-				MobSpawner.spawnCustomMob(MobSpawner.CustomMobType.ANGRYYOBO, this.level, getLocation(e));
+				MobSpawner.spawnCustomMob(MobSpawner.CustomMobType.ANGRYYOBO, this.getLevel(), getLocation(e));
 			} catch (CivException e1) {
 				e1.printStackTrace();
 			}

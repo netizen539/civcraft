@@ -29,7 +29,7 @@ public class AngryYobo  extends CommonCustomMob implements ICustomMob {
 	    getGoalSelector().a(8, new PathfinderGoalLookAtPlayer((EntityInsentient) entity, EntityHuman.class, 8.0F));
 
 	    getTargetSelector().a(2, new PathfinderGoalNearestAttackableTarget((EntityCreature) entity, EntityHuman.class, 0, true));
-	    this.setName(this.level.getName()+" "+this.type.getName());
+	    this.setName(this.getLevel().getName()+" "+this.getType().getName());
 	    MobBaseZombie zombie = ((MobBaseZombie)this.entity);
 	    zombie.setBaby(true);
 	}
@@ -53,7 +53,7 @@ public class AngryYobo  extends CommonCustomMob implements ICustomMob {
 		MobComponentDefense defense;
 	    this.setKnockbackResistance(0.99);
 
-		switch (this.level) {
+		switch (this.getLevel()) {
 		case LESSER:
 		    defense = new MobComponentDefense(3.5);
 		    setMaxHealth(10.0);

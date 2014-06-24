@@ -26,7 +26,7 @@ public class Behemoth extends CommonCustomMob implements ICustomMob {
 	    getGoalSelector().a(2, new PathfinderGoalMeleeAttack((EntityCreature) entity, EntityHuman.class, 1.0D, false));
 	    getTargetSelector().a(2, new PathfinderGoalNearestAttackableTarget((EntityCreature) entity, EntityHuman.class, 0, true));
 
-	    this.setName(this.level.getName()+" "+this.type.getName());
+	    this.setName(this.getLevel().getName()+" "+this.getType().getName());
 	}
 
 	public void onCreateAttributes() {
@@ -34,7 +34,7 @@ public class Behemoth extends CommonCustomMob implements ICustomMob {
 	    this.setKnockbackResistance(1.0D);
 	    this.setMovementSpeed(0.15);
 
-		switch (this.level) {
+		switch (this.getLevel()) {
 		case LESSER:
 		    defense = new MobComponentDefense(3.5);
 		    setMaxHealth(75);

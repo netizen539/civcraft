@@ -26,7 +26,7 @@ public class Savage extends CommonCustomMob implements ICustomMob {
 	    getGoalSelector().a(8, new PathfinderGoalLookAtPlayer((EntityInsentient) entity, EntityHuman.class, 8.0F));
 
 	    getTargetSelector().a(2, new PathfinderGoalNearestAttackableTarget((EntityCreature) entity, EntityHuman.class, 0, true));
-	    this.setName(this.level.getName()+" "+this.type.getName());
+	    this.setName(this.getLevel().getName()+" "+this.getType().getName());
 	}
 
 	public void onCreateAttributes() {
@@ -35,7 +35,7 @@ public class Savage extends CommonCustomMob implements ICustomMob {
 	    this.setMovementSpeed(0.2);
 	    this.setFollowRange(10.0D);
 
-		switch (this.level) {
+		switch (this.getLevel()) {
 		case LESSER:
 		    defense = new MobComponentDefense(3.5);
 		    setMaxHealth(10.0);
