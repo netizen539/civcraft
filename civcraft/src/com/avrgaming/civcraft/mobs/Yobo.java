@@ -19,6 +19,7 @@ import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.EntityTargetEvent.TargetReason;
 
 import com.avrgaming.civcraft.exception.CivException;
+import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.mobs.MobSpawner.CustomMobLevel;
 import com.avrgaming.civcraft.mobs.MobSpawner.CustomMobType;
 import com.avrgaming.civcraft.mobs.components.MobComponentDefense;
@@ -39,14 +40,14 @@ public class Yobo extends CommonCustomMob implements ICustomMob {
 	    getGoalSelector().a(8, new PathfinderGoalLookAtPlayer((EntityInsentient) entity, EntityHuman.class, 8.0F));
 	    getTargetSelector().a(1, new PathfinderGoalHurtByTarget((EntityCreature) entity, true));
 
-	    this.setName(this.level.getName()+" "+this.type.getName());
+	    this.setName(this.getLevel().getName()+" "+this.getType().getName());
 	}
 	
 	public void onCreateAttributes() {
 		MobComponentDefense defense;
 	    this.setKnockbackResistance(0.99);
 
-		switch (this.level) {
+		switch (this.getLevel()) {
 		case LESSER:
 		    defense = new MobComponentDefense(3.5);
 		    setMaxHealth(20.0);
@@ -131,13 +132,25 @@ public class Yobo extends CommonCustomMob implements ICustomMob {
 		if (!(damagesource instanceof EntityDamageSource)) {
 			return;
 		}
-				
+		
+		if (this.getLevel() == null) {
+			this.setLevel(MobSpawner.CustomMobLevel.valueOf(getData("level")));
+			if (this.getLevel() == null) {
+				try {
+					throw new CivException("Level was null after retry.");
+				} catch (CivException e2) {
+					CivLog.error("getData(level):"+getData("level"));
+					e2.printStackTrace();
+				}
+			}
+		}
+		
 		if (!angry) {
 			angry = true;
 			goalSelector.a(2, new PathfinderGoalMeleeAttack(e, EntityHuman.class, 1.0D, false));
 			for (int i = 0; i < 4; i++) {
 				try {
-					this.minions.add(MobSpawner.spawnCustomMob(MobSpawner.CustomMobType.ANGRYYOBO, this.level, getLocation(e)).entity);
+					this.minions.add(MobSpawner.spawnCustomMob(MobSpawner.CustomMobType.ANGRYYOBO, this.getLevel(), getLocation(e)).entity);
 				} catch (CivException e1) {
 					e1.printStackTrace();
 				}

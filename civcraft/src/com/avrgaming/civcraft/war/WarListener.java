@@ -15,6 +15,7 @@ import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
+import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.siege.Cannon;
@@ -26,6 +27,48 @@ public class WarListener implements Listener {
 	ChunkCoord coord = new ChunkCoord();
 	@EventHandler(priority = EventPriority.HIGH)
     public void onBlockBreak(BlockBreakEvent event) {
+		if (event.isCancelled()) {
+			CivLog.debug("This event was cancelled.");
+			return;
+		}
+		
+		if (!War.isWarTime()) {
+			return;
+		}
+		
+		coord.setFromLocation(event.getBlock().getLocation());
+		CultureChunk cc = CivGlobal.getCultureChunk(coord);
+		
+		if (cc == null) {
+			CivLog.debug("This is not a culture chunk.");
+			return;
+		}
+		
+		if (!cc.getCiv().getDiplomacyManager().isAtWar()) {
+			return;
+		}
+				
+		if (event.getBlock().getType().equals(Material.DIRT) || 
+			event.getBlock().getType().equals(Material.GRASS) ||
+			event.getBlock().getType().equals(Material.SAND) ||
+			event.getBlock().getType().equals(Material.GRAVEL) ||
+			event.getBlock().getType().equals(Material.TORCH) ||
+			event.getBlock().getType().equals(Material.REDSTONE_TORCH_OFF) ||
+			event.getBlock().getType().equals(Material.REDSTONE_TORCH_ON) ||
+			event.getBlock().getType().equals(Material.REDSTONE) ||
+			event.getBlock().getType().equals(Material.TNT) ||
+			event.getBlock().getType().equals(Material.LADDER) ||
+			event.getBlock().getType().equals(Material.VINE) ||
+			!event.getBlock().getType().isSolid()) {
+			return;
+		}
+		
+		CivMessage.sendError(event.getPlayer(), "Must use TNT to break blocks in at-war civilization cultures during WarTime.");
+		event.setCancelled(true);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGH)
+    public void onBlockPlace(BlockPlaceEvent event) {
 		if (event.isCancelled()) {
 			return;
 		}
@@ -53,46 +96,20 @@ public class WarListener implements Listener {
 			event.getBlock().getType().equals(Material.REDSTONE_TORCH_OFF) ||
 			event.getBlock().getType().equals(Material.REDSTONE_TORCH_ON) ||
 			event.getBlock().getType().equals(Material.REDSTONE) ||
-			event.getBlock().getType().equals(Material.TNT) ||
-			!event.getBlock().getType().isSolid()) {
-			return;
-		}
-		
-		CivMessage.sendError(event.getPlayer(), "Must use TNT to break blocks in at-war civilization cultures during WarTime.");
-		event.setCancelled(true);
-	}
-	
-	@EventHandler(priority = EventPriority.HIGH)
-    public void onBlockPlace(BlockPlaceEvent event) {
-		if (event.isCancelled()) {
-			return;
-		}
-		
-		if (!War.isWarTime()) {
-			return;
-		}
-		
-		coord.setFromLocation(event.getBlock().getLocation());
-		CultureChunk cc = CivGlobal.getCultureChunk(coord);
-		
-		if (!cc.getCiv().getDiplomacyManager().isAtWar()) {
-			return;
-		}
-				
-		if (event.getBlock().getType().equals(Material.DIRT) || 
-			event.getBlock().getType().equals(Material.GRASS) ||
-			event.getBlock().getType().equals(Material.SAND) ||
-			event.getBlock().getType().equals(Material.GRAVEL) ||
-			event.getBlock().getType().equals(Material.TORCH) ||
-			event.getBlock().getType().equals(Material.REDSTONE_TORCH_OFF) ||
-			event.getBlock().getType().equals(Material.REDSTONE_TORCH_ON) ||
-			event.getBlock().getType().equals(Material.REDSTONE) ||
+			event.getBlock().getType().equals(Material.LADDER) ||
+			event.getBlock().getType().equals(Material.VINE) ||
 			event.getBlock().getType().equals(Material.TNT)) {
 			
-			event.getBlock().getLocation().getWorld().spawnFallingBlock(event.getBlock().getLocation(), 
-					ItemManager.getId(event.getBlock()), ItemManager.getData(event.getBlock()));
+			if (event.getBlock().getLocation().subtract(0, 1, 0).getBlock().getType() != Material.AIR) {
+				return;
+			}
 			
-			event.setCancelled(true);
+			event.getBlock().getWorld().spawnFallingBlock(event.getBlock().getLocation(), event.getBlock().getType(), (byte) 0);
+			event.getBlock().setType(Material.AIR);
+			
+//			event.getBlock().getLocation().getWorld().spawnFallingBlock(event.getBlock().getLocation(), 
+//					ItemManager.getId(event.getBlock()), ItemManager.getData(event.getBlock()));			
+								
 			return;
 		}
 		
@@ -102,11 +119,7 @@ public class WarListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onEntityExplode(EntityExplodeEvent event) {
-		if (!event.getEntityType().equals(EntityType.PRIMED_TNT) &&
-			!event.getEntityType().equals(EntityType.MINECART_TNT)) {
-			return;
-		}
-		
+			
 		if (event.isCancelled()) {
 			return;
 		}
@@ -115,29 +128,40 @@ public class WarListener implements Listener {
 			return;
 		}
 		
-		event.setCancelled(true);
-			
-		int yield;
-		try {
-			yield = CivSettings.getInteger(CivSettings.warConfig, "cannon.yield");
-		} catch (InvalidConfiguration e) {
-			e.printStackTrace();
+		if (event.getEntity() == null) {
 			return;
 		}
 		
-		yield = yield / 2;
+		if (event.getEntityType().equals(EntityType.UNKNOWN)) {
+			return;
+		}
 		
-		for (int y = -yield; y <= yield; y++) {
-			for (int x = -yield; x <= yield; x++) {
-				for (int z = -yield; z <= yield; z++) {
-					Location loc = event.getLocation().clone().add(new Vector(x,y,z));
+		if (event.getEntityType().equals(EntityType.PRIMED_TNT) ||
+				event.getEntityType().equals(EntityType.MINECART_TNT)) {
+						
+			int yield;
+			try {
+				yield = CivSettings.getInteger(CivSettings.warConfig, "cannon.yield");
+			} catch (InvalidConfiguration e) {
+				e.printStackTrace();
+				return;
+			}
+		
+			yield = yield / 2;
+		
+			for (int y = -yield; y <= yield; y++) {
+				for (int x = -yield; x <= yield; x++) {
+					for (int z = -yield; z <= yield; z++) {
+						Location loc = event.getLocation().clone().add(new Vector(x,y,z));
 					
-					if (loc.distance(event.getLocation()) < yield) {
-						WarRegen.saveBlock(loc.getBlock(), Cannon.RESTORE_NAME, false);
-						ItemManager.setTypeIdAndData(loc.getBlock(), CivData.AIR, 0, false);
-					}
+						if (loc.distance(event.getLocation()) < yield) {
+							WarRegen.saveBlock(loc.getBlock(), Cannon.RESTORE_NAME, false);
+							ItemManager.setTypeIdAndData(loc.getBlock(), CivData.AIR, 0, false);
+						}
+					}	
 				}
 			}
+			event.setCancelled(true);
 		}
 	}
 

@@ -69,6 +69,7 @@ public class MobSpawner {
 	}
 	
 	public static CommonCustomMob spawnCustomMob(CustomMobType type, CustomMobLevel level, Location loc) throws CivException {
+		
 		ICustomMob custom = MobLib.spawnCustom(type.className, loc);
 		if (custom == null) {
 			throw new CivException("Couldn't spawn custom mob type:"+type.toString());

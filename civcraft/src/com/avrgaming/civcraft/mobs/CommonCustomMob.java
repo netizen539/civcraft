@@ -48,8 +48,8 @@ public abstract class CommonCustomMob implements ICustomMob {
 	public static HashMap<UUID, CommonCustomMob> customMobs = new HashMap<UUID, CommonCustomMob>();
 	public static HashMap<String, LinkedList<TypeLevel>> biomes = new HashMap<String, LinkedList<TypeLevel>>();
 	
-	public CustomMobType type;
-	public CustomMobLevel level;
+	private CustomMobType type;
+	private CustomMobLevel level;
 	public EntityLiving entity;
 	
 	public HashMap<String, String> dataMap = new HashMap<String, String>();
@@ -110,9 +110,9 @@ public abstract class CommonCustomMob implements ICustomMob {
 	}
 	
 	protected void initLevelAndType() {
-		this.type = MobSpawner.CustomMobType.valueOf(getData("type"));
-		this.level = MobSpawner.CustomMobLevel.valueOf(getData("level"));
-		
+		this.setType(MobSpawner.CustomMobType.valueOf(getData("type")));
+		this.setLevel(MobSpawner.CustomMobLevel.valueOf(getData("level")));
+				
 		/* common drops. */
 		this.addVanillaDrop(ItemManager.getId(Material.BONE), (short)0, 0.1);
 		this.addVanillaDrop(ItemManager.getId(Material.SUGAR), (short)0, 0.1);
@@ -459,6 +459,34 @@ public abstract class CommonCustomMob implements ICustomMob {
 	public void coinDrop(int min, int max) {
 		this.coinMin = min;
 		this.coinMax = max;
+	}
+
+	public CustomMobLevel getLevel() {
+		if (level == null) {
+			/* re-init mob if it was unloaded or something. */
+			initLevelAndType();
+			onCreate();
+			onCreateAttributes();
+		}
+		return level;
+	}
+
+	public void setLevel(CustomMobLevel level) {
+		this.level = level;
+	}
+
+	public CustomMobType getType() {
+		return type;
+	}
+
+	public void setType(CustomMobType type) {
+		if (type == null) {
+			/* re-init mob if it was unloaded or something. */
+			initLevelAndType();
+			onCreate();
+			onCreateAttributes();
+		}
+		this.type = type;
 	}
 	
 }

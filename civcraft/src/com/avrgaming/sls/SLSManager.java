@@ -69,7 +69,7 @@ public class SLSManager implements Runnable {
 	
 	public static String getParsedVersion() {
 		String version = Bukkit.getVersion();
-		version = version.split("MC: ")[1].split(")")[0];
+		version = version.split("MC: ")[1].split("\\)")[0];
 		return version;
 	}
 	
