@@ -113,6 +113,7 @@ import com.avrgaming.civcraft.util.ItemFrameStorage;
 import com.avrgaming.civcraft.util.ItemManager;
 import com.avrgaming.civcraft.war.War;
 import com.avrgaming.civcraft.war.WarRegen;
+import com.avrgaming.global.perks.PerkManager;
 
 public class CivGlobal {
 
@@ -191,6 +192,7 @@ public class CivGlobal {
 	public static boolean checkForBooks = true;
 	public static boolean debugDateBypass = false;
 	public static boolean endWorld = false;
+	public static PerkManager perkManager = null;
 	
 	public static void loadGlobals() throws SQLException, CivException {
 		

@@ -86,7 +86,6 @@ import com.avrgaming.civcraft.util.PlayerBlockChangeUtil;
 import com.avrgaming.civcraft.util.SimpleBlock;
 import com.avrgaming.global.perks.NotVerifiedException;
 import com.avrgaming.global.perks.Perk;
-import com.avrgaming.global.perks.PerkManager;
 import com.avrgaming.global.perks.PlatinumManager;
 import com.avrgaming.global.perks.components.CustomPersonalTemplate;
 import com.avrgaming.global.perks.components.CustomTemplate;
@@ -168,11 +167,13 @@ public class Resident extends SQLObject {
 	public HashMap<String, Perk> perks = new HashMap<String, Perk>();
 	private Date lastKilledTime = null;
 	private String lastIP = "";
+	private String uuid = null;
 	
 	private boolean onRoad = false;
 	
-	public Resident(String name) throws InvalidNameException {
+	public Resident(String name, String uuid) throws InvalidNameException {
 		this.setName(name);
+		this.setUuid(uuid);
 		this.treasury = new EconObject(this);
 		setTimezoneToServerDefault();
 		loadSettings();
@@ -192,7 +193,8 @@ public class Resident extends SQLObject {
 		if (!SQL.hasTable(TABLE_NAME)) {
 			String table_create = "CREATE TABLE " + SQL.tb_prefix + TABLE_NAME+" (" + 
 					"`id` int(11) unsigned NOT NULL auto_increment," +
-					"`name` VARCHAR(64) NOT NULL," + 
+					"`name` VARCHAR(64) NOT NULL," +
+					"`uuid` VARCHAR(256) NOT NULL,"+
 					"`town_id` int(11)," + 
 					"`lastOnline` BIGINT NOT NULL," +
 					"`registered` BIGINT NOT NULL," + 
@@ -219,6 +221,11 @@ public class Resident extends SQLObject {
 			CivLog.info("Created "+TABLE_NAME+" table");
 		} else {
 			CivLog.info(TABLE_NAME+" table OK!");
+			
+			if (!SQL.hasColumn(TABLE_NAME, "uuid")) {
+				CivLog.info("\tCouldn't find `uuid` for resident.");
+				SQL.addColumn(TABLE_NAME, "`uuid` VARCHAR(64) NOT NULL");
+			}	
 			
 			if (!SQL.hasColumn(TABLE_NAME, "banned")) {
 				CivLog.info("\tCouldn't find `banned` for resident.");
@@ -269,6 +276,7 @@ public class Resident extends SQLObject {
 		this.townID = rs.getInt("town_id");
 		this.campID = rs.getInt("camp_id");
 		this.lastIP = rs.getString("last_ip");
+		this.uuid = rs.getString("uuid");
 		
 		this.treasury = new EconObject(this);
 		this.getTreasury().setBalance(rs.getDouble("coins"), false);
@@ -417,6 +425,7 @@ public class Resident extends SQLObject {
 		HashMap<String, Object> hashmap = new HashMap<String, Object>();
 		
 		hashmap.put("name", this.getName());
+		hashmap.put("uuid", this.getUuid());
 		if (this.getTown() != null) {
 			hashmap.put("town_id", this.getTown().getId());
 		} else {
@@ -1112,23 +1121,7 @@ public class Resident extends SQLObject {
                     resident.perks.clear();
 					Player player = CivGlobal.getPlayer(resident);				
 					try {
-						LinkedList<String> perkIDs = PerkManager.loadPerksForResident(resident);
-						for (String perkID : perkIDs) {
-							ConfigPerk configPerk = CivSettings.perks.get(perkID);
-							if (configPerk == null) {
-								continue;
-							}
-							
-							Perk p2 = resident.perks.get(configPerk.id);
-							if (p2 != null) {
-								p2.count++;
-								resident.perks.put(p2.getIdent(), p2);
-							} else {
-								Perk p = new Perk(configPerk);
-								resident.perks.put(p.getIdent(), p);
-							}
-						}
-						
+						CivGlobal.perkManager.loadPerksForResident(resident);
 					} catch (SQLException e) {
 						CivMessage.sendError(player, "Unable to load perks from perk database. Contact an admin.");
 						e.printStackTrace();
@@ -1666,5 +1659,27 @@ public class Resident extends SQLObject {
 		}
 		
 		player.openInventory(inv);
+	}
+
+	public String getUuid() {
+		if (uuid == null || uuid.isEmpty()) {
+			Player player;
+			try {
+				player = CivGlobal.getPlayer(this);
+			} catch (CivException e) {
+				CivLog.error("Tried to get UUID of offline player and couldn't find a last known UUID.");
+				e.printStackTrace();
+				return "";
+			}
+			setUuid(player.getUniqueId().toString());
+			this.save();
+			return uuid;
+		}
+		
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 }

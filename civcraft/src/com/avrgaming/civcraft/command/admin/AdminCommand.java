@@ -88,9 +88,13 @@ public class AdminCommand extends CommandBase {
 		commands.put("clearendgame", "[key] [civ] - clears this end game condition for this civ.");
 		commands.put("endworld", "Starts the Apocalypse.");
 		commands.put("arena", "Arena management commands.");
+		commands.put("perk", "Admin perk management.");
 	}
 	
-	
+	public void perk_cmd() {
+		AdminPerkCommand cmd = new AdminPerkCommand();	
+		cmd.onCommand(sender, null, "perk", this.stripArgs(args, 1));
+	}
 	
 	public void endworld_cmd() {
 		CivGlobal.endWorld = !CivGlobal.endWorld;

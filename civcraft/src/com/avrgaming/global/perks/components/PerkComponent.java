@@ -3,12 +3,12 @@ package com.avrgaming.global.perks.components;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.util.CivColor;
 import com.avrgaming.global.perks.NotVerifiedException;
 import com.avrgaming.global.perks.Perk;
-import com.avrgaming.global.perks.PerkManager;
 
 
 public class PerkComponent {
@@ -50,7 +50,7 @@ public class PerkComponent {
 		}
 		
 		try {
-			PerkManager.markAsUsed(resident, this.getParent());
+			CivGlobal.perkManager.markAsUsed(resident, this.getParent());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NotVerifiedException e) {

@@ -8,7 +8,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+import com.avrgaming.civcraft.config.CivSettings;
+import com.avrgaming.civcraft.config.ConfigPerk;
 import com.avrgaming.civcraft.database.SQL;
+import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.object.Resident;
@@ -26,24 +29,11 @@ public class PerkManager {
 	public static HashMap<String, Integer> identPlatinumRewards = new HashMap<String, Integer>();
 	
 
-//	public static void connect() throws SQLException {
-//		if (context == null || context.isClosed()) {
-//			if (username.equalsIgnoreCase("") && password.equalsIgnoreCase("")) {
-//				context = DriverManager.getConnection(dsn);
-//			} else {
-//				context = DriverManager.getConnection(dsn, username, password);
-//			}
-//		}
-//
-//		if (context == null || context.isClosed()) {
-//			throw new SQLException("Lost context to MYSQL server!");
-//		}
-//		
-//		return;
-//	}
+	public void init() throws SQLException {
+	}
 	
 	private static HashMap<String, Integer> userIdCache = new HashMap<String, Integer>();
-	public static Integer getUserWebsiteId(Resident resident) throws SQLException, NotVerifiedException {
+	private static Integer getUserWebsiteId(Resident resident) throws SQLException, NotVerifiedException {
 		Connection context = null;
 		ResultSet rs = null;
 		PreparedStatement s = null;
@@ -79,7 +69,14 @@ public class PerkManager {
 		}
 	}
 	
-	public static LinkedList<String> loadPerksForResident(Resident resident) throws SQLException, NotVerifiedException {
+	public int addPerkToResident(Resident resident, String perk_id, Integer count) throws SQLException, CivException {
+		return 0;
+	}
+	
+	public int removePerkFromResident(Resident resident, String perk_id, Integer count) throws SQLException, CivException {
+		return 0;
+	}
+	public void loadPerksForResident(Resident resident) throws SQLException, NotVerifiedException, CivException {
 		LinkedList<String> perkIdents = new LinkedList<String>();
 		String sql;
 		Connection context = null;
@@ -151,13 +148,30 @@ public class PerkManager {
 			} finally {
 				SQL.close(rs, s, null);
 			}
-			return perkIdents;
+			
+			for (String perkID : perkIdents) {
+				ConfigPerk configPerk = CivSettings.perks.get(perkID);
+				if (configPerk == null) {
+					continue;
+				}
+				
+				Perk p2 = resident.perks.get(configPerk.id);
+				if (p2 != null) {
+					p2.count++;
+					resident.perks.put(p2.getIdent(), p2);
+				} else {
+					Perk p = new Perk(configPerk);
+					resident.perks.put(p.getIdent(), p);
+				}
+			}
+			
+			return;
 		} finally {
 			SQL.close(rs, s, context);
 		}
 	}
 	
-	public static void markAsUsed(Resident resident, Perk parent) throws SQLException, NotVerifiedException {
+	public void markAsUsed(Resident resident, Perk parent) throws SQLException, NotVerifiedException {
 		Connection context = null;
 		PreparedStatement s = null;
 		
@@ -209,8 +223,13 @@ public class PerkManager {
 			SQL.close(rs, s, context);
 		}
 	}
-
-	public static void updatePlatinum(Integer userID, Integer plat) throws SQLException {
+	
+	public void updatePlatinum(Resident resident, Integer plat) throws SQLException, NotVerifiedException {
+		Integer userId = PerkManager.getUserWebsiteId(resident);
+		PerkManager.updatePlatinum(userId, plat);
+	}
+	
+	private static void updatePlatinum(Integer userID, Integer plat) throws SQLException {
 		Connection context = null;
 		PreparedStatement s = null;
 		

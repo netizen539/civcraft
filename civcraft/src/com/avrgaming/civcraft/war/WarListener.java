@@ -15,7 +15,6 @@ import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.exception.InvalidConfiguration;
 import com.avrgaming.civcraft.main.CivData;
 import com.avrgaming.civcraft.main.CivGlobal;
-import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.siege.Cannon;
@@ -28,7 +27,6 @@ public class WarListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGH)
     public void onBlockBreak(BlockBreakEvent event) {
 		if (event.isCancelled()) {
-			CivLog.debug("This event was cancelled.");
 			return;
 		}
 		
@@ -40,7 +38,6 @@ public class WarListener implements Listener {
 		CultureChunk cc = CivGlobal.getCultureChunk(coord);
 		
 		if (cc == null) {
-			CivLog.debug("This is not a culture chunk.");
 			return;
 		}
 		

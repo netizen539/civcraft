@@ -16,12 +16,12 @@
 #
 
 system:
-    # Enables the perk/platinum/registration system, by default this is set to false since creating a working
-    # perk system is VERY complicated. To use the perks system you'll need to do the following:
-    # 1) load the perks.sql database provided.
-    # 2) create a web application that will add users to that database, and associate perks 
-    #    with users by adding the correct entries to the correct tables. (good luck!)
+    # Enables the perk/platinum/registration system.
     enabled: 'false'
+
+    # The legacy perk system used by AvRGaming, this is likely to be non-functional only enable this
+    # If you know what you're doing.
+    legacy_enabled: 'false'
 
     # Enables free perks for all users. Even if the system is disabled above, setting this
     # to true will give all users perks of each type.

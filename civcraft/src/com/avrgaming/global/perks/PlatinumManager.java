@@ -199,8 +199,7 @@ public class PlatinumManager implements Runnable {
 					}
 					
 				    try {
-						Integer userId = PerkManager.getUserWebsiteId(resident);
-						PerkManager.updatePlatinum(userId, plat);
+						CivGlobal.perkManager.updatePlatinum(resident, plat);
 						
 						reason = CivColor.LightGreen+reason.replace("%d", CivColor.Yellow+plat+" Platinum"+CivColor.LightGreen);
 						CivMessage.sendSuccess(resident, reason);
@@ -257,6 +256,22 @@ public class PlatinumManager implements Runnable {
 				enabledStr = CivSettings.getString(CivSettings.perkConfig, "system.enabled");
 			} catch (InvalidConfiguration e) {
 				e.printStackTrace();
+				return false;
+			}
+			
+			if (enabledStr.equalsIgnoreCase("true")) {
+				return true;
+			}
+			
+			return false;
+		}
+		
+		public static boolean isLegacyEnabled() {
+			String enabledStr;
+			try {
+				enabledStr = CivSettings.getString(CivSettings.perkConfig, "system.legacy_enabled");
+			} catch (InvalidConfiguration e) {
+				// Ignore missing config option.
 				return false;
 			}
 			

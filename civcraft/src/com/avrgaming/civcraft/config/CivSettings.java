@@ -199,6 +199,7 @@ public class CivSettings {
 	
 	public static final String MINI_ADMIN = "civ.admin";
 	public static final String MODERATOR = "civ.moderator";
+	public static final String FREE_PERKS = "civ.freeperks";
 	public static final String ECON = "civ.econ";
 	public static final int MARKET_COIN_STEP = 5;
 	public static final int MARKET_BUYSELL_COIN_DIFF = 30;

@@ -85,7 +85,7 @@ public class AdminTimerCommand extends CommandBase {
 			next.setTime(parser.parse(dateStr));
 			timer.setNext(next);
 			timer.save();
-			CivMessage.sendSuccess(sender, "Set timer "+timer.getName()+" to "+parser.format(next));
+			CivMessage.sendSuccess(sender, "Set timer "+timer.getName()+" to "+parser.format(next.getTime()));
 		} catch (ParseException e) {
 			throw new CivException("Couldnt parse "+args[2]+" into a date, use format: DAY:MONTH:YEAR:HOUR:MIN");
 		}

@@ -30,6 +30,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -782,7 +783,7 @@ public class DebugCommand extends CommandBase {
 			String name = (new BigInteger(130, random).toString(32));
 			
 			try {
-				Resident fake = new Resident("RANDOM_"+name);
+				Resident fake = new Resident("RANDOM_"+name, UUID.randomUUID().toString());
 				town.addResident(fake);
 				town.addFakeResident(fake);
 			} catch (AlreadyRegisteredException e) {

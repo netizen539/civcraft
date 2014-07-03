@@ -63,7 +63,7 @@ public class PlayerLoginAsyncTask implements Runnable {
 			if (resident == null) {
 				CivLog.info("No resident found. Creating for "+playerName);
 				try {
-					resident = new Resident(playerName);
+					resident = new Resident(playerName, getPlayer().getUniqueId().toString());
 				} catch (InvalidNameException e) {
 					TaskMaster.syncTask(new PlayerKickBan(playerName, true, false, "You have an invalid name. Sorry."));
 					return;
@@ -147,7 +147,7 @@ public class PlayerLoginAsyncTask implements Runnable {
 				if (CivSettings.getString(CivSettings.perkConfig, "system.free_perks").equalsIgnoreCase("true")) {
 					resident.giveAllFreePerks();
 				} else if (CivSettings.getString(CivSettings.perkConfig, "system.free_admin_perks").equalsIgnoreCase("true")) {
-					if (getPlayer().hasPermission(CivSettings.MINI_ADMIN)) {
+					if (getPlayer().hasPermission(CivSettings.MINI_ADMIN) || getPlayer().hasPermission(CivSettings.FREE_PERKS)) {
 						resident.giveAllFreePerks();
 					}
 				}
