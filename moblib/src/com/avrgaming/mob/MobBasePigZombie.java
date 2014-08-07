@@ -4,20 +4,19 @@ package com.avrgaming.mob;
 import java.util.ArrayList;
 
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_7_R2.CraftWorld;
-//import org.bukkit.craftbukkit.v1_7_R2.TrigMath;
-import org.bukkit.craftbukkit.v1_7_R2.event.CraftEventFactory;
+import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
+//import org.bukkit.craftbukkit.v1_7_R4.TrigMath;
+import org.bukkit.craftbukkit.v1_7_R4.event.CraftEventFactory;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 import com.avrgaming.nms.NMSUtil;
 
-import net.minecraft.server.v1_7_R2.DamageSource;
-import net.minecraft.server.v1_7_R2.Entity;
-import net.minecraft.server.v1_7_R2.EntityHuman;
-import net.minecraft.server.v1_7_R2.EntityPigZombie;
-import net.minecraft.server.v1_7_R2.ItemStack;
-import net.minecraft.server.v1_7_R2.NBTTagCompound;
-import net.minecraft.server.v1_7_R2.World;
+import net.minecraft.server.v1_7_R4.DamageSource;
+import net.minecraft.server.v1_7_R4.Entity;
+import net.minecraft.server.v1_7_R4.EntityHuman;
+import net.minecraft.server.v1_7_R4.EntityPigZombie;
+import net.minecraft.server.v1_7_R4.NBTTagCompound;
+import net.minecraft.server.v1_7_R4.World;
 
 public class MobBasePigZombie extends EntityPigZombie implements ISpawnable {
 	public ICustomMob customMob = null;
@@ -67,7 +66,7 @@ public class MobBasePigZombie extends EntityPigZombie implements ISpawnable {
 	
 	
 	@Override
-	public boolean bj() {
+	public boolean bk() {
 		return false;
 	}
 	
@@ -164,12 +163,13 @@ public class MobBasePigZombie extends EntityPigZombie implements ISpawnable {
 	@Override
 	protected Entity findTarget() {
 		EntityHuman entityhuman = this.world.findNearbyVulnerablePlayer(this, 3.0D);
-		return (entityhuman != null) && (p(entityhuman)) ? entityhuman : null;
+		//this.n(arg0)
+		return (entityhuman != null) && (hasLineOfSight(entityhuman)) ? entityhuman : null;
 	}
 	
 	@Override
-	protected ItemStack getRareDrop(int i) {
-		return null;
+	protected void getRareDrop(int i) {
+		return;
 	}
 	
 	public static Entity spawnCustom(Location loc, ICustomMob iCustom) {

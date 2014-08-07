@@ -7,21 +7,21 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.UUID;
 
-import net.minecraft.server.v1_7_R2.DamageSource;
-import net.minecraft.server.v1_7_R2.Entity;
-import net.minecraft.server.v1_7_R2.EntityCreature;
-import net.minecraft.server.v1_7_R2.EntityInsentient;
-import net.minecraft.server.v1_7_R2.EntityLiving;
-import net.minecraft.server.v1_7_R2.GenericAttributes;
-import net.minecraft.server.v1_7_R2.PathfinderGoalSelector;
+import net.minecraft.server.v1_7_R4.DamageSource;
+import net.minecraft.server.v1_7_R4.Entity;
+import net.minecraft.server.v1_7_R4.EntityCreature;
+import net.minecraft.server.v1_7_R4.EntityInsentient;
+import net.minecraft.server.v1_7_R4.EntityLiving;
+import net.minecraft.server.v1_7_R4.GenericAttributes;
+import net.minecraft.server.v1_7_R4.PathfinderGoalSelector;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
-import org.bukkit.craftbukkit.v1_7_R2.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_7_R2.util.UnsafeList;
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_7_R4.util.UnsafeList;
 import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityTargetEvent;
@@ -76,7 +76,7 @@ public abstract class CommonCustomMob implements ICustomMob {
 		
 		Field gsa;
 		try {
-			gsa = net.minecraft.server.v1_7_R2.EntityInsentient.class.getDeclaredField("goalSelector");
+			gsa = net.minecraft.server.v1_7_R4.EntityInsentient.class.getDeclaredField("goalSelector");
 			gsa.setAccessible(true);
 			return (PathfinderGoalSelector)gsa.get((EntityInsentient)entity);
 		} catch (NoSuchFieldException e) {
@@ -94,7 +94,7 @@ public abstract class CommonCustomMob implements ICustomMob {
 	public PathfinderGoalSelector getTargetSelector() {
 		Field gsa;
 		try {
-			gsa = net.minecraft.server.v1_7_R2.EntityInsentient.class.getDeclaredField("targetSelector");
+			gsa = net.minecraft.server.v1_7_R4.EntityInsentient.class.getDeclaredField("targetSelector");
 			gsa.setAccessible(true);
 			return (PathfinderGoalSelector)gsa.get((EntityInsentient)entity);
 		} catch (NoSuchFieldException e) {
@@ -135,7 +135,7 @@ public abstract class CommonCustomMob implements ICustomMob {
 		System.out.println("Printing goals:");
 	    Field gsa;
 		try {
-			gsa = net.minecraft.server.v1_7_R2.PathfinderGoalSelector.class.getDeclaredField("b");
+			gsa = net.minecraft.server.v1_7_R4.PathfinderGoalSelector.class.getDeclaredField("b");
 			gsa.setAccessible(true);
 			//PathfinderGoalSelectorItem item;
 			UnsafeList<?> list = (UnsafeList<?>) gsa.get(goals);
@@ -302,7 +302,7 @@ public abstract class CommonCustomMob implements ICustomMob {
 	}
 	
 	public void setMaxHealth(double health) {
-		entity.getAttributeInstance(GenericAttributes.a).setValue(health);
+		entity.getAttributeInstance(GenericAttributes.maxHealth).setValue(health);
 		entity.setHealth((float) health);
 	}
 	
@@ -318,7 +318,7 @@ public abstract class CommonCustomMob implements ICustomMob {
 				CivLog.info("Entity was null!");
 			}
 			CivLog.info("Speed:"+entity.getAttributeInstance(GenericAttributes.d).getValue());
-			CivLog.info("MaxHealth:"+entity.getAttributeInstance(GenericAttributes.a).getValue()+" Health:"+entity.getHealth());
+			CivLog.info("MaxHealth:"+entity.getAttributeInstance(GenericAttributes.maxHealth).getValue()+" Health:"+entity.getHealth());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -436,7 +436,6 @@ public abstract class CommonCustomMob implements ICustomMob {
 				if (d.isVanillaDrop) {
 					stack = ItemManager.createItemStack(d.vanillaType, 1, d.vanillaData);
 				} else {
-					CivLog.info("Dropping item:"+d.craftMatId);
 					LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterialFromId(d.craftMatId);
 					stack = LoreCraftableMaterial.spawn(craftMat);
 				}
@@ -464,9 +463,10 @@ public abstract class CommonCustomMob implements ICustomMob {
 	public CustomMobLevel getLevel() {
 		if (level == null) {
 			/* re-init mob if it was unloaded or something. */
-			initLevelAndType();
-			onCreate();
-			onCreateAttributes();
+			//initLevelAndType();
+			//onCreate();
+			//onCreateAttributes();
+			CivLog.warning("This mob was unloaded?!");
 		}
 		return level;
 	}

@@ -3,6 +3,7 @@ package com.avrgaming.civcraft.mobs.listeners;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Monster;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -21,39 +22,12 @@ public class MobListener implements Listener {
 	public void onChunkLoad(ChunkLoadEvent event) {
 		
 		for (Entity e : event.getChunk().getEntities()) {
-			if (!(e instanceof LivingEntity)) {
+			if (e instanceof Monster) {
+				e.remove();
 				return;
 			}
-			
-			LivingEntity living = (LivingEntity)e;
-			
-			if (MobLib.isMobLibEntity(living)) {
-				return;
-			}
-			
-			switch (living.getType()) {
-			case CHICKEN:
-				if (!living.isEmpty()) {
-					break;			
-				}
-			case SLIME:
-			case COW:
-			case PIG:
-			case SHEEP:
-			case HORSE:
-			case VILLAGER:
-			case MUSHROOM_COW:
-			case SQUID:
-			case BAT:
-			case OCELOT:
-			case WOLF:
-				return;
-			default:
-				break;
-			}
-			
-			e.remove();
 		}
+	
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL)

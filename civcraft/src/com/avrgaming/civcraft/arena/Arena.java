@@ -115,8 +115,6 @@ public class Arena {
 				teleportToRandomRevivePoint(resident, teamCount);
 				createInventory(resident);
 				team.getScoreboardTeam().addPlayer(Bukkit.getOfflinePlayer(resident.getName()));
-				
-				
 			} catch (CivException e) {
 				e.printStackTrace();
 			}

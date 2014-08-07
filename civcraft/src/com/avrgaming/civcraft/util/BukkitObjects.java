@@ -22,7 +22,6 @@ import java.util.List;
 
 import org.bukkit.Server;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -37,22 +36,6 @@ public class BukkitObjects {
 
 		BukkitObjects.plugin = plugin;
 		BukkitObjects.server = plugin.getServer();
-	}
-	
-	public static Player[] getOnlinePlayers() {
-		return getServer().getOnlinePlayers();
-	}
-	
-	public static List<Player> matchPlayer(String name) {
-		return getServer().matchPlayer(name);
-	}
-	
-	public static Player getPlayerExact(String name) {
-		return getServer().getPlayerExact(name);
-	}
-	
-	public static Player getPlayer(String name) {
-		return getServer().getPlayer(name);
 	}
 
 	public static List<World> getWorlds() {

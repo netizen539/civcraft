@@ -409,12 +409,12 @@ public class SQL {
 			String where = " WHERE `"+keyname+"` = ?;";
 			ArrayList<Object> values = new ArrayList<Object>();
 	
+			Object keyValue = hashmap.get(keyname);
+			hashmap.remove(keyname);
+			
 			Iterator<String> keyIter = hashmap.keySet().iterator();
 			while (keyIter.hasNext()) {
 				String key = keyIter.next();
-				if (key.equals(keyname)) {
-					continue;
-				}
 				
 				sql += "`"+key+"` = ?";
 				sql += "" + (keyIter.hasNext() ? ", " : " ");
@@ -446,7 +446,7 @@ public class SQL {
 				i++;
 			}
 			
-			ps.setObject(i, hashmap.get(keyname));
+			ps.setObject(i, keyValue);
 	
 			if (ps.executeUpdate() == 0) {
 				insertNow(hashmap, tablename);

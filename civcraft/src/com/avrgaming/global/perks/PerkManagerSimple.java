@@ -186,13 +186,17 @@ public class PerkManagerSimple extends PerkManager {
 	public void updatePlatinum(Resident resident, Integer plat) throws SQLException, NotVerifiedException {
 		Connection context = null;
 		PreparedStatement s = null;
-		
+	
 		try {
 			context = SQL.getGlobalConnection();
-			String sql = "UPDATE `"+USER_PLATINUM_TABLE_NAME+"` SET `platinum` = `platinum` + ? WHERE `uuid` = ?";
+			String sql = "INSERT INTO `"+USER_PLATINUM_TABLE_NAME+"` (`uuid`, `game_name`, `platinum`) "+
+					 "VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE `platinum`=`platinum`+?";
 			s = context.prepareStatement(sql);
-			s.setInt(1, plat);
-			s.setString(2, resident.getUuid());
+			s.setString(1, resident.getUuid());
+			s.setString(2, resident.getName());
+			s.setInt(3, plat);
+			s.setInt(4, plat);
+
 		
 			CivLog.info("Updated Platinum, resident:"+resident.getName()+"(uuid:"+resident.getUuid()+")"+" with:"+plat);
 			int update = s.executeUpdate();

@@ -12,9 +12,12 @@ import com.avrgaming.civcraft.loreenhancements.LoreEnhancementArenaItem;
 import com.avrgaming.civcraft.loreenhancements.LoreEnhancementAttack;
 import com.avrgaming.civcraft.loreenhancements.LoreEnhancementDefense;
 import com.avrgaming.civcraft.loreenhancements.LoreEnhancementSoulBound;
+import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.lorestorage.LoreMaterial;
 import com.avrgaming.civcraft.main.CivData;
+import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
+import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.util.ItemManager;
 
 public class AdminItemCommand extends CommandBase {
@@ -25,8 +28,32 @@ public class AdminItemCommand extends CommandBase {
 		displayName = "Admin Item";
 		
 		commands.put("enhance", "[name] - Adds the specified enhancement.");
+		commands.put("give", "[player] [custom_id] [amount] - Gives player this custom item.");
 	}
 
+	public void give_cmd() throws CivException {
+		Resident resident = getNamedResident(1);
+		String id = getNamedString(2, "Enter a custom id from materials.yml");
+		int amount = getNamedInteger(3);
+		
+		Player player = CivGlobal.getPlayer(resident);
+		
+		LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterialFromId(id);
+		if (craftMat == null) {
+			throw new CivException("No custom item with id:"+id);
+		}
+		
+		ItemStack stack = LoreCraftableMaterial.spawn(craftMat);
+		
+		stack.setAmount(amount);
+		HashMap<Integer, ItemStack> leftovers = player.getInventory().addItem(stack);
+		for (ItemStack is : leftovers.values()) {
+			player.getWorld().dropItem(player.getLocation(), is);
+		}
+		
+		CivMessage.sendSuccess(player, "Gave item.");
+	}
+	
 	public void enhance_cmd() throws CivException {
 		Player player = getPlayer();
 		HashMap<String, LoreEnhancement> enhancements = new HashMap<String, LoreEnhancement>();

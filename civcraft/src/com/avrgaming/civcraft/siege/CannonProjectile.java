@@ -3,7 +3,7 @@ package com.avrgaming.civcraft.siege;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import net.minecraft.server.v1_7_R2.EntityPlayer;
+import net.minecraft.server.v1_7_R4.EntityPlayer;
 
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;

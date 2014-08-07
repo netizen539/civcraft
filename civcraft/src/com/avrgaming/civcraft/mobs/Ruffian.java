@@ -3,21 +3,21 @@ package com.avrgaming.civcraft.mobs;
 
 import java.util.List;
 
-import net.minecraft.server.v1_7_R2.AxisAlignedBB;
-import net.minecraft.server.v1_7_R2.DamageSource;
-import net.minecraft.server.v1_7_R2.Entity;
-import net.minecraft.server.v1_7_R2.EntityCreature;
-import net.minecraft.server.v1_7_R2.EntityHuman;
-import net.minecraft.server.v1_7_R2.EntityInsentient;
-import net.minecraft.server.v1_7_R2.EntityPlayer;
-import net.minecraft.server.v1_7_R2.IRangedEntity;
-import net.minecraft.server.v1_7_R2.PathfinderGoalArrowAttack;
-import net.minecraft.server.v1_7_R2.PathfinderGoalFloat;
-import net.minecraft.server.v1_7_R2.PathfinderGoalHurtByTarget;
-import net.minecraft.server.v1_7_R2.PathfinderGoalLookAtPlayer;
-import net.minecraft.server.v1_7_R2.PathfinderGoalNearestAttackableTarget;
-import net.minecraft.server.v1_7_R2.PathfinderGoalRandomLookaround;
-import net.minecraft.server.v1_7_R2.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_7_R4.AxisAlignedBB;
+import net.minecraft.server.v1_7_R4.DamageSource;
+import net.minecraft.server.v1_7_R4.Entity;
+import net.minecraft.server.v1_7_R4.EntityCreature;
+import net.minecraft.server.v1_7_R4.EntityHuman;
+import net.minecraft.server.v1_7_R4.EntityInsentient;
+import net.minecraft.server.v1_7_R4.EntityPlayer;
+import net.minecraft.server.v1_7_R4.IRangedEntity;
+import net.minecraft.server.v1_7_R4.PathfinderGoalArrowAttack;
+import net.minecraft.server.v1_7_R4.PathfinderGoalFloat;
+import net.minecraft.server.v1_7_R4.PathfinderGoalHurtByTarget;
+import net.minecraft.server.v1_7_R4.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_7_R4.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_7_R4.PathfinderGoalRandomLookaround;
+import net.minecraft.server.v1_7_R4.PathfinderGoalRandomStroll;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -27,8 +27,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
-import org.bukkit.craftbukkit.v1_7_R2.CraftWorld;
-import org.bukkit.craftbukkit.v1_7_R2.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftEntity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.util.Vector;
@@ -221,6 +221,7 @@ public class Ruffian extends CommonCustomMob implements ICustomMob {
 				//setFireAt(loc, spread);		
 			}
 			
+			@SuppressWarnings("deprecation")
 			private void damagePlayers(Location loc, int radius) {
 				double x = loc.getX()+0.5;
 				double y = loc.getY()+0.5;

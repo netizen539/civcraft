@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
-import net.minecraft.server.v1_7_R2.EntityCreature;
+import net.minecraft.server.v1_7_R4.EntityCreature;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -66,9 +66,8 @@ public class MobSpawnerTimer implements Runnable {
 						z *= -1;
 					}
 					
-					int y = world.getHighestBlockYAt(x, z);
-					Location loc = new Location(player.getLocation().getWorld(), player.getLocation().getX()+x,
-							y, player.getLocation().getZ()+z);
+					int y = world.getHighestBlockYAt(((Double) player.getLocation().getX()).intValue() + x, ((Double) player.getLocation().getZ()).intValue() + z);
+				    Location loc = new Location(world, player.getLocation().getX() + x, y, player.getLocation().getZ() + z);
 					if (!loc.getChunk().isLoaded()) {
 						continue;
 					}
@@ -80,7 +79,10 @@ public class MobSpawnerTimer implements Runnable {
 						continue;
 					}
 					
-					if (ItemManager.getId(loc.getBlock().getRelative(BlockFace.DOWN)) == CivData.WATER) {
+					if ((ItemManager.getId(loc.getBlock().getRelative(BlockFace.DOWN)) == CivData.WATER) ||
+					    (ItemManager.getId(loc.getBlock().getRelative(BlockFace.DOWN)) == CivData.WATER_RUNNING) ||
+						(ItemManager.getId(loc.getBlock().getRelative(BlockFace.DOWN)) == CivData.LAVA) ||
+						(ItemManager.getId(loc.getBlock().getRelative(BlockFace.DOWN)) == CivData.LAVA_RUNNING)) {
 						/* Dont spawn mobs in water. */
 						continue;
 					}

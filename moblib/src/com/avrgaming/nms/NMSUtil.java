@@ -2,9 +2,9 @@ package com.avrgaming.nms;
 
 import java.lang.reflect.Field;
 
-import net.minecraft.server.v1_7_R2.PathfinderGoalSelector;
+import net.minecraft.server.v1_7_R4.PathfinderGoalSelector;
 
-import org.bukkit.craftbukkit.v1_7_R2.util.UnsafeList;
+import org.bukkit.craftbukkit.v1_7_R4.util.UnsafeList;
 
 public class NMSUtil {
 
@@ -17,14 +17,14 @@ public class NMSUtil {
 
         Field gsa;
 		try {
-			gsa = net.minecraft.server.v1_7_R2.PathfinderGoalSelector.class.getDeclaredField("b");
+			gsa = net.minecraft.server.v1_7_R4.PathfinderGoalSelector.class.getDeclaredField("b");
 			gsa.setAccessible(true);
 
 		    /* Clear out the goals. */
 			gsa.set(selector, new UnsafeList());
 		    
 		    /* Clear out the 'c' list as well. */
-			gsa = net.minecraft.server.v1_7_R2.PathfinderGoalSelector.class.getDeclaredField("c");
+			gsa = net.minecraft.server.v1_7_R4.PathfinderGoalSelector.class.getDeclaredField("c");
 			gsa.setAccessible(true);
 
 		    /* Clear out the goals. */

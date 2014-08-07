@@ -1,15 +1,15 @@
 package com.avrgaming.civcraft.mobs;
 
-import net.minecraft.server.v1_7_R2.DamageSource;
-import net.minecraft.server.v1_7_R2.EntityCreature;
-import net.minecraft.server.v1_7_R2.EntityHuman;
-import net.minecraft.server.v1_7_R2.EntityInsentient;
-import net.minecraft.server.v1_7_R2.GenericAttributes;
-import net.minecraft.server.v1_7_R2.PathfinderGoalLookAtPlayer;
-import net.minecraft.server.v1_7_R2.PathfinderGoalMeleeAttack;
-import net.minecraft.server.v1_7_R2.PathfinderGoalNearestAttackableTarget;
-import net.minecraft.server.v1_7_R2.PathfinderGoalRandomStroll;
-import net.minecraft.server.v1_7_R2.PathfinderGoalSelector;
+import net.minecraft.server.v1_7_R4.DamageSource;
+import net.minecraft.server.v1_7_R4.EntityCreature;
+import net.minecraft.server.v1_7_R4.EntityHuman;
+import net.minecraft.server.v1_7_R4.EntityInsentient;
+import net.minecraft.server.v1_7_R4.GenericAttributes;
+import net.minecraft.server.v1_7_R4.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_7_R4.PathfinderGoalMeleeAttack;
+import net.minecraft.server.v1_7_R4.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_7_R4.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_7_R4.PathfinderGoalSelector;
 
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.mobs.components.MobComponentDefense;
@@ -41,7 +41,7 @@ public class YoboBoss extends CommonCustomMob implements ICustomMob {
 	public void onCreateAttributes() {
 		MobBaseZombieGiant zombie = (MobBaseZombieGiant)this.entity;
 		zombie.getAttributeInstance(GenericAttributes.e).setValue(200.0D);
-		zombie.getAttributeInstance(GenericAttributes.a).setValue(5000.0D);
+		zombie.getAttributeInstance(GenericAttributes.maxHealth).setValue(5000.0D);
 		zombie.getAttributeInstance(GenericAttributes.c).setValue(1.0D);
 		zombie.getAttributeInstance(GenericAttributes.d).setValue(200000.0D);
 		//AttributeModifier mod = new AttributeModifier()

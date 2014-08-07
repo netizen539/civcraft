@@ -25,9 +25,8 @@ public class Apocalypse implements Runnable {
 		
 		for (int i = 0; i < 40; i++) {
 			Random rand = new Random();
-			int ran = rand.nextInt(Bukkit.getOnlinePlayers().length);
-			
-			Player player = Bukkit.getOnlinePlayers()[ran];
+			int ran = rand.nextInt(Bukkit.getOnlinePlayers().size());
+			Player player = (Player) Bukkit.getOnlinePlayers().toArray()[ran];
 
 			CultureChunk cc = CivGlobal.getCultureChunk(new ChunkCoord(player.getLocation()));
 			if (cc != null) {

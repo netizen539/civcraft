@@ -57,15 +57,17 @@ public class SQLUpdate implements Runnable {
 					while (true) {
 						try {
 							if (lock.tryLock(3, TimeUnit.SECONDS)) {
-								saveObjects.add(obj);
-								return;
+								try {
+									saveObjects.add(obj);
+									return;
+								} finally {
+									lock.unlock();
+								}
 							} else {
 								CivLog.warning("Couldn't obtain lock to save SQL Object:"+obj+" after 3 seconds! Retrying.");
 							}
 						} catch (InterruptedException e) {
 							e.printStackTrace();
-						} finally {
-							lock.unlock();
 						}
 					}
 				}

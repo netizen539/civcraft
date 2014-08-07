@@ -69,7 +69,7 @@ public class SLSManager implements Runnable {
 	
 	public static String getParsedVersion() {
 		String version = Bukkit.getVersion();
-		version = version.split("MC: ")[1].split("\\)")[0];
+		//version = version.split("MC: ")[1].split("\\)")[0];
 		return version;
 	}
 	
@@ -77,7 +77,7 @@ public class SLSManager implements Runnable {
 		try {
 			InetAddress address = InetAddress.getByName("atlas.civcraft.net");
 			String message = gen_id+";"+serverName+";"+serverDescription+";"+serverTimezone+";"+serverAddress+";"+
-					Bukkit.getOnlinePlayers().length+";"+Bukkit.getMaxPlayers()+";"+getParsedVersion();
+					Bukkit.getOnlinePlayers().size()+";"+Bukkit.getMaxPlayers()+";"+getParsedVersion();
 			
 			try {
 				if (CivSettings.getStringBase("debug_heartbeat").equalsIgnoreCase("true")) {

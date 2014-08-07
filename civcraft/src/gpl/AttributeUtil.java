@@ -10,14 +10,14 @@ import java.util.concurrent.ConcurrentMap;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import net.minecraft.server.v1_7_R2.NBTBase;
-import net.minecraft.server.v1_7_R2.NBTTagCompound;
-import net.minecraft.server.v1_7_R2.NBTTagInt;
-import net.minecraft.server.v1_7_R2.NBTTagList;
-import net.minecraft.server.v1_7_R2.NBTTagString;
+import net.minecraft.server.v1_7_R4.NBTBase;
+import net.minecraft.server.v1_7_R4.NBTTagCompound;
+import net.minecraft.server.v1_7_R4.NBTTagInt;
+import net.minecraft.server.v1_7_R4.NBTTagList;
+import net.minecraft.server.v1_7_R4.NBTTagString;
 
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_7_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
 import com.avrgaming.civcraft.loreenhancements.LoreEnhancement;
@@ -222,7 +222,7 @@ public class AttributeUtil {
     }
     
     // This may be modified
-    public net.minecraft.server.v1_7_R2.ItemStack nmsStack;
+    public net.minecraft.server.v1_7_R4.ItemStack nmsStack;
     
     private NBTTagCompound parent;
     private NBTTagList attributes;
@@ -415,7 +415,7 @@ public class AttributeUtil {
     	
     	String[] lore = new String[loreList.size()];
     	for (int i = 0; i < loreList.size(); i++) {
-    		lore[i] = loreList.f(i).replace("\"", "");;
+    		lore[i] = loreList.getString(i).replace("\"", "");;
     	}
     	
     	return lore;
