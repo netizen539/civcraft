@@ -70,14 +70,11 @@ public class PerkManagerSimple extends PerkManager {
 		PreparedStatement s = null;
 		HashMap<String, Integer> perkCounts = new HashMap<String, Integer>();
 		
-		if (resident.getUuid().isEmpty()) {
-			throw new CivException("Couldn't find UUID for resident:"+resident.getName());
-		}
 
 		try {
 			context = SQL.getGlobalConnection();
 			
-			String uuid = resident.getUuid();
+			String uuid = resident.getUUIDString();
 		
 			try {
 				/* Lookup join table for perks and users. */
@@ -130,14 +127,10 @@ public class PerkManagerSimple extends PerkManager {
 		ResultSet rs = null;
 		PreparedStatement s = null;
 		
-		if (resident.getUuid().isEmpty()) {
-			throw new CivException("Couldn't find UUID for resident:"+resident.getName()+" user must login to obtain a valid UUID");
-		}
-		
 		try {
 			context = SQL.getGlobalConnection();
 			
-			String uuid = resident.getUuid();
+			String uuid = resident.getUUIDString();
 
 			int added = 0;
 			for (int i = 0; i < count; i++) {
@@ -161,14 +154,10 @@ public class PerkManagerSimple extends PerkManager {
 		ResultSet rs = null;
 		PreparedStatement s = null;
 		
-		if (resident.getUuid().isEmpty()) {
-			throw new CivException("Couldn't find UUID for resident:"+resident.getName()+" user must login to obtain a valid UUID");
-		}
-		
 		try {
 			context = SQL.getGlobalConnection();
 			
-			String uuid = resident.getUuid();
+			String uuid = resident.getUUIDString();
 
 			/* Lookup join table for perks and users. */
 			sql = "DELETE FROM `"+USER_PERKS_TABLE_NAME+"` WHERE `uuid` = ? AND `perk_id` = ? LIMIT ?";
@@ -192,13 +181,13 @@ public class PerkManagerSimple extends PerkManager {
 			String sql = "INSERT INTO `"+USER_PLATINUM_TABLE_NAME+"` (`uuid`, `game_name`, `platinum`) "+
 					 "VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE `platinum`=`platinum`+?";
 			s = context.prepareStatement(sql);
-			s.setString(1, resident.getUuid());
+			s.setString(1, resident.getUUIDString());
 			s.setString(2, resident.getName());
 			s.setInt(3, plat);
 			s.setInt(4, plat);
 
 		
-			CivLog.info("Updated Platinum, resident:"+resident.getName()+"(uuid:"+resident.getUuid()+")"+" with:"+plat);
+			CivLog.info("Updated Platinum, resident:"+resident.getName()+"(uuid:"+resident.getUUIDString()+")"+" with:"+plat);
 			int update = s.executeUpdate();
 			if (update != 1) {
 				CivLog.error("Failed to update platinum. Updated "+update+" rows when it should have been 1");
@@ -217,7 +206,7 @@ public class PerkManagerSimple extends PerkManager {
 		
 		try {
 			context = SQL.getGlobalConnection();	
-			String uuid = resident.getUuid();
+			String uuid = resident.getUUIDString();
 			String perkID = parent.getIdent();
 						
 			String sql = "UPDATE `"+USER_PERKS_TABLE_NAME+"` SET `used_phase` = ? WHERE `uuid` = ? AND `perk_id` = ? AND (`used_phase` IS NULL OR `used_phase` NOT LIKE ?) LIMIT 1";

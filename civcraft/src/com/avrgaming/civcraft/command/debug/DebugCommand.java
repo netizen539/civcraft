@@ -60,6 +60,7 @@ import com.avrgaming.civcraft.config.ConfigBuildableInfo;
 import com.avrgaming.civcraft.config.ConfigPerk;
 import com.avrgaming.civcraft.config.ConfigTradeGood;
 import com.avrgaming.civcraft.database.SQL;
+import com.avrgaming.civcraft.database.SQLUpdate;
 import com.avrgaming.civcraft.event.EventTimer;
 import com.avrgaming.civcraft.event.GoodieRepoEvent;
 import com.avrgaming.civcraft.exception.AlreadyRegisteredException;
@@ -570,6 +571,14 @@ public class DebugCommand extends CommandBase {
 		stats.put("ConnectionsRequested", ""+SQL.gameDatabase.getStats().getConnectionsRequested());
 		stats.put("Free Pool Members", ""+SQL.gameDatabase.getStats().getTotalFree());
 		stats.put("Leased Pool Members", ""+SQL.gameDatabase.getStats().getTotalLeased());
+		stats.put("--------------", "------------");
+		
+		for (String key : SQLUpdate.saveObjectCounts.keySet()) {
+			Integer value = SQLUpdate.saveObjectCounts.get((key));
+			stats.put(key, "Count: "+value);
+			CivLog.debug("Object:"+key+" count:"+value);
+		}
+		
 		CivMessage.send(sender, makeInfoString(stats, CivColor.Green, CivColor.LightGreen));
 	}
 	
@@ -783,7 +792,8 @@ public class DebugCommand extends CommandBase {
 			String name = (new BigInteger(130, random).toString(32));
 			
 			try {
-				Resident fake = new Resident("RANDOM_"+name, UUID.randomUUID().toString());
+				
+				Resident fake = new Resident(UUID.randomUUID(), "RANDOM_"+name);
 				town.addResident(fake);
 				town.addFakeResident(fake);
 			} catch (AlreadyRegisteredException e) {

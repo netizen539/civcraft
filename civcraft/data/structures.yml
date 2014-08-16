@@ -1,0 +1,892 @@
+# 
+# This config file contains all of the definitions for all of the
+# structures as well as some specific structure related configuration options.
+#
+
+################ Bank Settings ################
+#TODO add bank config options
+
+################# Trommel Settings #############
+trommel:
+    iron_chance: 0.04
+    gold_chance: 0.02
+    diamond_chance: 0.0050
+    emerald_chance: 0.0020
+    chromium_chance: 0.0008
+    gravel_rate: 1
+    despotism_rate: 2.0
+    penalty_rate: 0.8
+
+################ Grocer Settings ###############
+grocer_levels:
+    - level: 1
+      itemName: 'Fish'
+      itemId: 350
+      itemData: 0
+      amount: 1
+      price: 8.0 
+
+    - level: 2
+      itemName: 'Roast Chicken'
+      itemId: 366
+      itemData: 0
+      amount: 1
+      price: 15.0
+
+    - level: 3
+      itemName: 'Cooked Pork'
+      itemId: 320
+      itemData: 0
+      amount: 1
+      price: 20.0
+ 
+    - level: 4
+      itemName: 'Pumpkin Pie'
+      itemId: 400
+      itemData: 0
+      amount: 1
+      price: 50.0
+################# Blacksmith Settings ##############
+blacksmith:
+    forge_cost: 2500.0
+################# Cottage Settings #################
+cottage_levels:
+   - level: 1
+     consumes:
+         - 297,1
+         - 391,1
+     count: 24
+     coins: 75.0
+
+   - level: 2
+     consumes:
+         - 297,2
+         - 391,2
+         - 392,1
+     count: 48
+     coins: 150.0
+
+   - level: 3
+     consumes:
+         - 297,2
+         - 391,3
+         - 392,2
+     count: 96
+     coins: 225.0
+
+   - level: 4
+     consumes:
+         - 297,3
+         - 391,4
+         - 392,3
+     count: 120
+     coins: 300.0
+   
+   - level: 5
+     consumes:
+         - 297,4
+         - 391,5
+         - 392,4
+     count: 144
+     coins: 375.0
+
+   - level: 6
+     consumes:
+         - 297,5
+         - 391,6
+         - 392,6
+         - 319,1
+     count: 288
+     coins: 450.0
+################### Temple Settings #######################
+temple:
+    # rate which temple modifies total culture output
+    culture_bonus: 0.15
+
+    # range at which temple checks for sacrifies
+    range: 20.0
+
+    # timeout for sacrifices. How long do they have to kill all the things?(in seconds)
+    sacrifice_timeout: 30
+
+    sacrifices:
+        - entities:
+              - 'sheep'
+          reward: 50
+############################### Mine Settings #################
+mine_levels:
+    - level: 1
+      hammers: 100.00
+      amount: 10
+      count: 24
+   
+    - level: 2
+      hammers: 150.00
+      amount: 15
+      count: 48
+    
+    - level: 3
+      hammers: 200.00
+      amount: 20
+      count: 96
+    
+    - level: 4
+      hammers: 250.00
+      amount: 25
+      count: 120
+    
+    - level: 5
+      hammers: 300.00
+      amount: 30
+      count: 144
+##################### Farm Settings ##########################
+farm:
+    # Number of crops that will grow per 100% of growth rate.
+    grows_per_tick: 6
+
+    # Number of seconds it takes for a growth tick to fire, cannot be less than 1.
+    grow_tick_rate: 60
+
+##################### Windmill Settings #####################
+windmill:
+    # Max number of crops to plant per hour
+    # 16 crops per min.
+    plant_max: 16
+
+#################### Pasture Settings #######################
+pasture:
+    # Amount of each mob that gets spawned per hour in the pasture.
+    cow_count: 4
+    sheep_count: 4
+    pig_count: 4
+    chicken_count: 4
+
+    # Rate at which they spawn (in seconds)
+    spawn_rate: 3600
+
+    # Maximum amount of mobs for each type, per pasture
+    max_mobs: 30
+################### Barracks Settings #######################
+barracks:
+    # Barracks repair cost uses the following formula.
+    #
+    # cost = ((base_repair * (((tier+1)*tier_damp) + ((1/damagedPercent)*damage_damp)))
+    #
+    # So the base repair cost is multiplied by the tier's value, the +1 is for tier 0
+    # Then that amount is modified by how damaged the weap is. The more damaged it is,
+    # then the more the repair will cost. The extra multiplier caused by damage is then dampened
+    # by multipliying it by the damage dampen.
+    #
+    # If you want the Tier to be more important, increase the tier damp.
+    # If you want the item durability to be more important increase the damage damp
+
+
+    # Base repair cost of all items
+    base_damage_repair: 500.0
+    base_tier_repair: 2000.0
+
+    # damage dampen. 
+    damage_damp: 1.0
+
+    # tier dampen
+    tier_damp: 0.175
+    
+
+#################### Stable Settings ########################
+# Here is where we can configure which items go with which horses
+# There are 3 "store_ids" inside the stable, one that sells horses
+# another that sells mules, and one that sells items. The 'store_id'
+# property says which item goes in which store_id.
+
+# If 'item_id' and 'item_data' are non-zero then that item 
+# is given to the player when they click the sign.
+#
+# If the item_id is zero, we then try to find a horse via the horse_id
+# Horses are then configured in 'stable_horses'
+stable_items:
+    - name: 'Horse'
+      cost: 25000.0
+      store_id: 0
+      item_id: 0
+      horse_id: 1
+    
+    - name: 'Trusty Steed'
+      cost: 100000.0
+      store_id: 0
+      item_id: 0
+      horse_id: 2
+
+    - name: 'Thoroughbred'
+      cost: 500000.0
+      store_id: 0
+      item_id: 0
+      horse_id: 3
+
+    - name: 'Mule'
+      cost: 2500.0
+      store_id: 1
+      item_id: 0
+      horse_id: 4
+
+    - name: 'Saddle'
+      cost: 3000.0
+      store_id: 2
+      item_id: 329
+      horse_id: 0
+
+    - name: 'Name Tag'
+      cost: 40000.0
+      store_id: 2
+      item_id: 421
+      horse_id: 0
+
+stable_horses:
+      # Normal Horse
+    - id: 1
+      speed: 0.0
+      jump: 0.8
+      health: 10.0
+      variant: 'BROWN'
+
+      # Trusty Steed
+    - id: 2
+      speed: 0.05
+      jump: 0.8
+      health: 15.0
+      variant: 'BLACK'
+
+      # Thoroughbred
+    - id: 3
+      speed: 0.08
+      jump: 0.8
+      health: 20.0
+      variant: 'WHITE'
+
+     # mule
+    - id: 4
+      speed: -0.1
+      jump: 0.8
+      health: 20.0
+      mule: true
+      variant: 'BLACK'
+################# Road Settings ######################
+road:
+    # Speed multiplier for players
+    player_speed: 1.5
+
+    # Speed multiplier for players on horses
+    horse_speed: 1.1
+
+    # Raid time in hours
+    raid_length: 2
+
+    # Maximum number of blocks a single road can take.
+    max_segment: 50 
+
+    # Cost of road per segment
+    cost_per_segment: 300.0
+######################################################################
+#               CIVCRAFT Structure config
+######################################################################
+#   id: <unique ID for this structure>
+#   template: <name of file containing block template>
+#   displayName: <string shown to players when interacting with this object>
+#   upgrade: <name ID of upgrade required for this structure>
+#   update: <name of function this structure invokes upon building/ticks>
+#   check: <name of function that checks for conditions this building requires to function, such as # of books in surrounding area> 
+#   effect: <called once every hour, used for long term effects or checks>
+#   limit: <number of this type of buildings allowed in town, 0 is unlimited.>
+#   onBuild: <function called when structure is built>
+#   signs: <list of signs attached to structure>
+#      id: <unique numerical identifier for sign>
+#      action: <name of function with params>
+#      (... can contain as many signs as needed)
+      
+structures:
+  - id: s_townhall
+    template: town_hall
+    template_y_shift: 0
+    displayName: Town Hall
+    require_tech:
+    require_upgrade:
+    check_event:
+    effect_event: generate_culture:25
+    update_event:
+    onBuild_event:
+    limit: 2
+    cost: 10000.0
+    upkeep: 0.0
+    hammer_cost: 600.0
+    points: 1000
+    max_hitpoints: 1000
+    allow_demolish: false
+    strategic: true
+    components:
+        - name: 'AttributeStatic'
+          type: 'direct'
+          attribute: 'CULTURE'
+          value: '25.0'
+  
+  - id: s_capitol
+    template: capital #XXX misspelt =( but its easier to leave it that way.
+    template_y_shift: 0
+    displayName: Capitol
+    require_tech:
+    require_upgrade:
+    check_event:
+    effect_event: generate_culture:50
+    update_event:
+    onBuild_event:
+    limit: 2
+    cost: 50000.0
+    upkeep: 0.0
+    hammer_cost: 600.0
+    points: 6000
+    max_hitpoints: 2000
+    allow_demolish: false
+    strategic: true
+    components:
+        - name: 'AttributeStatic'
+          type: 'direct'
+          attribute: 'CULTURE'
+          value: '50.0'
+
+  - id: s_bank
+    template: bank
+    template_y_shift: 0
+    displayName: Bank
+    require_upgrade:
+    require_tech: 'tech_religion' 
+    effect_event:
+    check_event:
+    update_event:
+    limit: 1
+    onBuild_event:
+    cost: 2250.0
+    upkeep: 100.0
+    hammer_cost: 1200.0
+    points: 1500
+    max_hitpoints: 200
+  
+  - id: s_trommel
+    template: trommel
+    template_y_shift: 0
+    displayName: Trommel
+    require_upgrade:
+    require_tech: 'tech_mining'
+    effect_event: 
+    check_event: 
+    update_event: trommel_process
+    onBuild_event:
+    limit: 0
+    allow_outside_town: true
+    cost: 5000.0
+    upkeep: 1000.0
+    hammer_cost: 800.0
+    points: 1500
+    max_hitpoints: 200
+
+  - id: s_store
+    template: store
+    template_y_shift: 0
+    displayName: Store
+    require_upgrade:
+    require_tech: 'tech_commerce'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 2500.0
+    upkeep: 250.0
+    hammer_cost: 900.0
+    points: 2000
+    max_hitpoints: 200
+
+  - id: s_library
+    template: library
+    template_y_shift: 0
+    displayName: Library
+    require_upgrade:
+    require_tech: 'tech_productivity'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 5000.0
+    upkeep: 500.0
+    hammer_cost: 1500.0
+    points: 5000
+    max_hitpoints: 250
+    components:
+        - name: 'AttributeStatic'
+          type: 'direct'
+          attribute: 'BEAKERS'
+          value: '50.0'
+        - name: 'AttributeBiome'
+          biomes: 'OCEAN,TAGIA,DESERT'
+          attribute: 'BEAKERS'
+          value: '0.05'
+    
+  - id: s_grocer
+    template: grocer
+    template_y_shift: 0
+    displayName: Grocer
+    require_upgrade:
+    require_tech: 'tech_hunting'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 1500.0
+    upkeep: 150.0
+    hammer_cost: 900.0
+    points: 2500
+    max_hitpoints: 200
+
+  - id: s_blacksmith
+    template: blacksmith
+    template_y_shift: -2
+    displayName: Blacksmith
+    require_upgrade:
+    require_tech: 'tech_blacksmithing'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 32000.0  
+    upkeep: 2000.0
+    hammer_cost: 1500.0
+    points: 10000
+    max_hitpoints: 350
+    components:
+        - name: 'AttributeStatic'
+          type: 'direct'
+          attribute: 'HAPPINESS'
+          value: '-3.0'
+        - name: 'AttributeStatic'
+          type: 'direct'
+          attribute: 'GROWTH'
+          value: '-0.2'
+        - name: 'AttributeStatic'
+          type: 'direct'
+          attribute: 'HAMMERS'
+          value: '50.0'
+        - name: 'AttributeTradeGood'
+          type: 'direct'
+          attribute: 'HAMMERS'
+          value: '100.0'
+          goods: 'good_copper,good_oil,good_silver'
+  
+  - id: s_granary
+    template: granary
+    template_y_shift: 0
+    displayName: Granary
+    require_upgrade:
+    require_tech: 'tech_pottery'
+    effect_event:
+    check_event: 
+    update_event:
+    onBuild_event:
+    limit: 3
+    cost: 2500.0
+    upkeep: 1500.0
+    hammer_cost: 500.0
+    points: 2000
+    max_hitpoints: 50
+
+  - id: ti_cottage
+    template: cottage
+    template_y_shift: 0
+    displayName: Cottage
+    require_upgrade:
+    require_tech: 'tech_advanced_masonry'
+    effect_event: generate_coins
+    check_event: 
+    update_event:
+    onBuild_event:
+    limit: 0
+    cost: 5000.0
+    upkeep: 1000.0
+    hammer_cost: 1400.0
+    tile_improvement: true
+    points: 1000
+    max_hitpoints: 100
+    components:
+        - name: 'AttributeBiomeRadiusPerLevel'
+          attribute: 'COINS'
+          biomes: 'DESERT:5,BEACH:5,RIVER:5,JUNGLE:5'
+          base_value: '15.0'
+        - name: 'ConsumeLevelComponent'
+  
+  - id: s_monument
+    template: monument
+    template_y_shift: -2
+    displayName: Monument
+    require_upgrade:
+    require_tech: 'tech_religion'
+    effect_event: generate_culture:400
+    check_event: 
+    update_event: 
+    onBuild_event:
+    limit: 1
+    cost: 15000.0
+    upkeep: 1500.0
+    hammer_cost: 2000.0
+    points: 1500
+    max_hitpoints: 250
+    components:
+        - name: 'AttributeStatic'
+          type: 'direct'
+          attribute: 'HAPPINESS'
+          value: '3.0'
+        - name: 'AttributeStatic'
+          type: 'direct'
+          attribute: 'CULTURE'
+          value: '200.0'
+  
+  - id: s_temple
+    template: temple
+    template_y_shift: 0
+    displayName: Temple
+    require_upgrade:
+    require_tech: 'tech_priesthood'
+    effect_event: generate_culture:250
+    check_event: 
+    update_event: check_sacrifice 
+    onBuild_event:
+    limit: 1
+    cost: 30000.0
+    upkeep: 2500.0
+    hammer_cost: 2000.0
+    points: 4700
+    max_hitpoints: 250
+    components:
+        - name: 'AttributeStatic'
+          type: 'direct'
+          attribute: 'CULTURE'
+          value: '100.0'
+        - name: 'AttributeStatic'
+          type: 'direct'
+          attribute: 'HAPPINESS'
+          value: '5.0'
+  
+  - id: s_shipyard
+    template: shipyard
+    template_y_shift: -3
+    displayName: Shipyard
+    require_upgrade:
+    require_tech: 'tech_sailing'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 35000.0
+    upkeep: 1500.0
+    hammer_cost: 2000.0
+    points: 7000
+    max_hitpoints: 300
+    ignore_floating: true
+    components:
+        - name: 'AttributeBiome'
+          biomes: 'OCEAN'
+          attribute: 'HAMMERS'
+          value: '0.02'
+        - name: 'AttributeBiome'
+          biomes: 'OCEAN'
+          attribute: 'GROWTH'
+          value: '0.05'
+  
+  - id: ti_mine
+    template: mine
+    template_y_shift: -6
+    displayName: Mine
+    require_upgrade:
+    require_tech: 'tech_productivity'
+    effect_event: process_mine
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 0
+    cost: 25000.0
+    upkeep: 1500.0
+    tile_improvement: true
+    hammer_cost: 900.0
+    points: 6200
+    max_hitpoints: 300
+    components:
+        - name: 'AttributeBiomeRadiusPerLevel'
+          attribute: 'HAMMERS'
+          biomes: 'EXTREME_HILLS:3,SMALL_MOUNTAINS:3,ICE_MOUNTAINS:3,DESERT_HILLS:1,FOREST_HILLS:1,TAGIA_HILLS:1,JUNGLE_HILLS:1'
+          base_value: '7.0'
+        - name: 'ConsumeLevelComponent'
+
+  - id: ti_trade_outpost
+    template: trade_outpost
+    template_y_shift: 0
+    displayName: Trade Outpost
+    require_upgrade:
+    require_tech: 'tech_trade'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event: build_trade_outpost
+    limit: 0
+    cost: 25000.0
+    upkeep: 500.0
+    hammer_cost: 2000.0
+    tile_improvement: true
+    points: 3000
+    max_hitpoints: 500
+    ignore_floating: true
+  
+  - id: ti_fishing_boat
+    template: fishingboats
+    template_y_shift: -3
+    displayName: Fishing Boat
+    require_upgrade:
+    require_tech: 'tech_trade'
+    require_structure: 's_shipyard'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event: build_trade_outpost
+    limit: 0
+    cost: 25000.0
+    upkeep: 500.0
+    hammer_cost: 2000.0
+    tile_improvement: true
+    points: 3000
+    max_hitpoints: 500
+    ignore_floating: true
+  
+  - id: ti_farm
+    template: farm
+    template_y_shift: -1
+    displayName: Farm
+    require_upgrade:
+    require_tech: 'tech_agriculture'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event: build_farm
+    limit: 0
+    cost: 2500.0
+    upkeep: 500.0
+    hammer_cost: 800.0
+    tile_improvement: true
+    max_hitpoints: 50
+    points: 3000
+    destroyable: true
+    ignore_floating: true
+    components:
+        - name: 'ActivateOnBiome'
+          effect: 'THIS'
+          attribute: 'GROWTH'
+          biomes: 'PLAINS'
+          value: '15'
+  
+  - id: ti_pasture
+    template: pasture
+    template_y_shift: -2
+    displayName: Pasture
+    require_upgrade:
+    require_tech: 'tech_hunting'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 0
+    cost: 2500.0
+    upkeep: 500.0
+    hammer_cost: 1000.0
+    tile_improvement: true
+    max_hitpoints: 500
+    points: 1000
+  
+  - id: ti_wall
+    template: notused
+    template_y_shift: 0
+    displayName: Wall
+    require_upgrade:
+    require_tech: 'tech_advanced_masonry' 
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 0
+    cost: 50.0
+    upkeep: 400.0
+    hammer_cost: 300.0
+    points: 50
+    max_hitpoints: 1000
+    ignore_floating: true
+    has_template: false
+ 
+  - id: ti_road
+    template: notused
+    template_y_shift: 0 
+    displayName: Road
+    require_upgrade:
+    require_tech: 'tech_masonry' 
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 0
+    cost: 300.0
+    upkeep: 50.0
+    hammer_cost: 500.0
+    points: 200
+    max_hitpoints: 1000
+    ignore_floating: true
+    has_template: false
+ 
+  - id: s_arrowtower
+    template: arrow_tower
+    template_y_shift: 0
+    displayName: Arrow Tower
+    require_upgrade:
+    require_tech: 'tech_artillery'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 6
+    cost: 50000.0
+    upkeep: 1500.0
+    hammer_cost: 2500.0
+    max_hitpoints: 500
+    points: 4650
+    allow_outside_town: true
+    strategic: true
+  
+  - id: s_cannontower
+    template: cannon_tower
+    template_y_shift: 0
+    displayName: Cannon Tower
+    require_upgrade:
+    require_tech: 'tech_advanced_artillery'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 250000.0
+    upkeep: 3500.0
+    hammer_cost: 5000.0
+    max_hitpoints: 1000
+    points: 10000
+    allow_outside_town: true
+    strategic: true
+  
+  - id: s_scouttower
+    template: scout_tower
+    template_y_shift: 0
+    displayName: Scout Tower
+    require_upgrade:
+    require_tech: 'tech_masonry'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 4
+    cost: 15000.0
+    upkeep: 800.0
+    hammer_cost: 1500.0
+    max_hitpoints: 500
+    points: 3000
+    allow_outside_town: true
+    strategic: true
+  
+  - id: s_barracks
+    template: barracks
+    template_y_shift: 0
+    displayName: Barracks
+    require_upgrade:
+    require_tech: 'tech_armory'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 15000.0
+    upkeep: 1000.0
+    hammer_cost: 1500.0
+    max_hitpoints: 700
+    points: 3000
+    allow_outside_town: false
+    components:
+        - name: 'AttributeWarUnhappiness'
+          value: '-3.0'
+  
+  - id: ti_windmill
+    template: windmill
+    template_y_shift: 0
+    displayName: Windmill
+    require_upgrade:
+    require_tech: 'tech_automation'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 0
+    cost: 25000.0
+    upkeep: 2500.0
+    tile_improvement: true
+    hammer_cost: 3000.0
+    points: 5000
+    max_hitpoints: 350
+  
+  - id: s_market
+    template: market
+    template_y_shift: 0
+    displayName: Market
+    require_upgrade:
+    require_tech: 'tech_commerce'
+    effect_event:
+    check_event:
+    update_event:
+    onBuild_event:
+    limit: 0
+    cost: 10000.0
+    upkeep: 1250.0
+    tile_improvement: false
+    hammer_cost: 2600.0
+    points: 3500
+    max_hitpoints: 200
+    components:
+        - name: 'AttributeStatic'
+          type: 'direct'
+          attribute: 'HAPPINESS'
+          value: '1.0'
+        - name: 'AttributeRate'
+          attribute: 'TRADE'
+          value: '0.1'
+  
+  - id: s_stable
+    template: stable
+    template_y_shift: -2
+    displayName: Stable
+    require_upgrade:
+    require_tech: 'tech_global_trade' 
+    effect_event:
+    check_event:
+    update_event:
+    limit: 1
+    onBuild_event:
+    cost: 5000.0
+    upkeep: 750.0
+    hammer_cost: 1200.0
+    points: 750
+    max_hitpoints: 300
+    components:
+        - name: 'AttributeStatic'
+          type: 'direct'
+          attribute: 'HAMMERS'
+          value: '50.0'
+  

@@ -124,6 +124,8 @@ public class CivGlobal {
 	private static Map<String, QuestionBaseTask> questions = new ConcurrentHashMap<String, QuestionBaseTask>();
 	public static Map<String, CivQuestionTask> civQuestions = new ConcurrentHashMap<String, CivQuestionTask>();
 	private static Map<String, Resident> residents = new ConcurrentHashMap<String, Resident>();
+	private static Map<UUID, Resident> residentsViaUUID = new ConcurrentHashMap<UUID, Resident>();
+
 	private static Map<String, Town> towns = new ConcurrentHashMap<String, Town>();
 	private static Map<String, Civilization> civs = new ConcurrentHashMap<String, Civilization>();
 	private static Map<String, Civilization> conqueredCivs = new ConcurrentHashMap<String, Civilization>();
@@ -193,6 +195,7 @@ public class CivGlobal {
 	public static boolean debugDateBypass = false;
 	public static boolean endWorld = false;
 	public static PerkManager perkManager = null;
+	public static boolean installMode = false;
 	
 	public static void loadGlobals() throws SQLException, CivException {
 		
@@ -208,10 +211,8 @@ public class CivGlobal {
 		loadTownChunks();
 		loadStructures();
 		loadWonders();
-		loadStructureSigns();
 		loadWallBlocks();
 		loadRoadBlocks();
-		loadStructureChests();
 		loadTradeGoods();
 		loadTradeGoodies();
 		loadRandomEvents();
@@ -449,9 +450,7 @@ public class CivGlobal {
 				Resident res;
 				try {
 					res = new Resident(rs);
-					residents.put(res.getName().toLowerCase(), res);
-				
-					
+					CivGlobal.addResident(res);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -591,57 +590,6 @@ public class CivGlobal {
 		}
 	}
 	
-	public static void loadStructureSigns() throws SQLException {
-		Connection context = null;
-		ResultSet rs = null;
-		PreparedStatement ps = null;
-		
-		try {
-			context = SQL.getGameConnection();
-			ps = context.prepareStatement("SELECT * FROM "+SQL.tb_prefix+StructureSign.TABLE_NAME);
-			rs = ps.executeQuery();
-		
-			while(rs.next()) {
-				try {
-				StructureSign sSign = new StructureSign(rs);
-				structureSigns.put(sSign.getCoord(), sSign);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			
-			CivLog.info("Loaded "+structureSigns.size()+" Structure signs");
-		} finally {
-			SQL.close(rs, ps, context);
-		}
-	}
-	
-	private static void loadStructureChests() throws SQLException {
-		Connection context = null;
-		ResultSet rs = null;
-		PreparedStatement ps = null;
-		
-		try {
-			context = SQL.getGameConnection();		
-			ps = context.prepareStatement("SELECT * FROM "+SQL.tb_prefix+StructureChest.TABLE_NAME);
-			rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				StructureChest sChest;
-				try {
-					sChest = new StructureChest(rs);
-					structureChests.put(sChest.getCoord(), sChest);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-	
-			CivLog.info("Loaded "+structureChests.size()+" Structure chests");	
-		} finally {
-			SQL.close(rs, ps, context);
-		}
-	}
-	
 	private static void loadWallBlocks() throws SQLException {
 		Connection context = null;
 		ResultSet rs = null;
@@ -750,7 +698,7 @@ public class CivGlobal {
 	}
 	
 	public static Player getPlayer(Resident resident) throws CivException {
-		Player player = Bukkit.getPlayer(resident.getName());
+		Player player = Bukkit.getPlayer(resident.getUUID());
 		if (player == null)
 			throw new CivException("No player named "+resident.getName());
 		return player;
@@ -780,10 +728,20 @@ public class CivGlobal {
 
 	public static void addResident(Resident res) {
 		residents.put(res.getName().toLowerCase(), res);
+		residentsViaUUID.put(res.getUUID(), res);
+	}
+	
+	public static void removeResident(Resident res) {
+		residents.remove(res.getName().toLowerCase());
+		residentsViaUUID.remove(res.getUUID());
 	}
 
 	public static Resident getResident(String name) {
 		return residents.get(name.toLowerCase());
+	}
+	
+	public static Resident getResidentViaUUID(UUID uuid) {
+		return residentsViaUUID.get(uuid);
 	}
 
 	public static Town getTown(String name) {
@@ -953,7 +911,8 @@ public class CivGlobal {
 	}	
 	
 	public static Player getPlayer(String name) throws CivException {
-		Player player = Bukkit.getPlayer(name);
+		Resident res = CivGlobal.getResident(name);
+		Player player = Bukkit.getPlayer(res.getUUID());
 		if (player == null)
 			throw new CivException("No player named "+name);
 		return player;	
@@ -1787,6 +1746,7 @@ public class CivGlobal {
 		return returnMap;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static OfflinePlayer getFakeOfflinePlayer(String name) {
 		return Bukkit.getOfflinePlayer(name);
 	}

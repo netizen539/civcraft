@@ -1,0 +1,183 @@
+# 
+# This configuration file holds anything relevent to a civilization.
+# Also stores some global data.
+#
+
+global:
+   # Hour at which daily upkeep occurs.
+   daily_upkeep_hour: 20
+
+   hourly_tick: 3600
+
+   start_kit:
+        - '270:1'
+        - '271:1'
+        - '269:1'
+        - '17:10'
+        - '346:2'
+        - '366:10'
+        - '345:1'
+        - 'mat_tutorial_book:1'
+
+   # Amount of mins PvP timer remains active after first login.
+   pvp_timer: 120
+
+   # Regen spawn at midnight every day.
+   regen_spawn_hour: 0
+
+   # Exchange rate you get using /resident exchange instead of using a bank.
+   exchange_rate: 0.3
+
+   starting_coins: 250.0
+
+   # Number of hours that must pass before a resident can join a different civ
+   join_civ_cooldown: 24
+
+   # Distance things must be built away from spawn.
+   distance_from_spawn: 1000.0
+
+   # max distance players can be apart for trading
+   max_trade_distance: 10.0
+    
+   # catalyst free amount
+   free_catalyst_amount: 3
+
+   # extra percentage amount
+   extra_catalyst_amount: 3
+
+   # extra percentage given
+   extra_catalyst_percent: 0.0
+
+   # Amount of extra attack each +1 gives to weapons
+   attack_catalyst_multiplier: 1.0
+
+   # Amount of extra armor each +1 gives to armor
+   defense_catalyst_multiplier: 1.0
+
+   # Casual mode, war disabled. Wonders for all. No spies.
+   casual_mode: 'false'
+   
+   # Attempt to validate structures to make sure they're not floating.
+   structure_validation: 'true'
+
+platinum:
+### DAILY EVENTS ######
+      # amount of plat ervry day
+    - name: 'loginDaily'
+      amount: 5
+      occurs: 'daily'
+
+      # platinum for being in town during the upkeep tick
+    - name: 'inTownDuringUpkeep'
+      amount: 5
+      occurs: 'daily'
+
+### SPAM EVENTS (can happen whenever) ###
+
+    - name: 'winningWar'
+      amount: 25
+      occurs: 'any'
+    
+    - name: 'craft100Items'
+      amount: 1
+      occurs: 'any'
+
+    - name: 'randomEventSuccess'
+      amount: 25
+      occurs: 'any'
+    
+#### ACHEIVEMENTS (only once) ####
+     # amount of plat on first login with verification.
+    - name: 'loginFirstVerified'
+      amount: 50
+      occurs: 'once'
+    
+    - name: 'buildCamp'
+      amount: 150
+      occurs: 'once'
+    
+    - name: 'buildCiv'
+      amount: 200
+      occurs: 'once'
+civ:
+    # Amount of coins required to start a civilization
+    cost: 100000.0
+    
+    # Amount of static upkeep civ's pay for each new town(minus the capital)
+    town_upkeep: 500.0
+
+    # Formula for distance upkeep is:
+    # upkeep = town_distance_base_upkeep * ( distance ^ town_distance_multiplier )
+    #
+
+    # Base amount of upkeep paid for town distance to capital
+    town_distance_base_upkeep: 100.0
+
+    # Multiplier used to make distance upkeep expoential, greater = higher upkeep
+    town_distance_multiplier: 0.3
+
+    # Multiplier used when a town's culture doesnt connect to the capitals culture.
+    town_distance_multiplier_outside_culture: 0.9
+
+    # Maximum amount of distance upkeep anybody can pay per town
+    town_distance_upkeep_max: 500000.0
+
+    # Base beaker rate, usually set to 1, increase to make research faster.
+    base_beaker_rate: 1.0
+    
+    # Number of coins each beaker costs. Beakers can only be 'bought' off of taxed coins from towns.
+    coins_per_beaker: 10
+
+    # must be this many chunks away from the nearest culture block to start a new civilization.
+    min_distance: 15
+
+    # Number of days after a civilization is conquered that it must wait before declaring revolution
+    revolution_cooldown: 7
+
+    # Number of days a leader must be inactive before being able to be reclaimed
+    leader_inactive_days: 7
+
+    # Number of days a civ must be around before it can merge or gift towns.
+    min_gift_age: 14
+
+    # Amount of coins to charge per town gifted.
+    gift_cost_per_town: 150000
+
+    # Amount of hours civs have to wait until a town is gifted or merged.
+    gift_cooldown_hours: 48
+
+ore_rates:
+    iron: 20.0
+    gold: 200.0
+    diamond: 400.0
+    emerald: 500.0
+
+# These are end condition configurations...
+end_conditions:
+    - id: 'end_culture'
+      class: 'EndConditionCulture'
+      name: 'Cultural'
+      culture_level: '10'
+      towns: '3'
+      wonders: '1'
+      days_held: '21'
+
+    - id: 'end_conquest'
+      class: 'EndConditionConquest'
+      name: 'Conquest'
+      percent_captured: '0.75'
+      percent_captured_with_wonder: '0.50'
+      days_after_start: '28'
+      days_held: '21'
+    
+    - id: 'end_science'
+      class: 'EndConditionScience'
+      name: 'Scientific'
+      tech: 'tech_enlightenment'
+      days_held: '21'
+    
+    - id: 'end_diplomacy'
+      class: 'EndConditionDiplomacy'
+      name: 'Diplomatic'
+      vote_cooldown_hours: '24'
+      days_held: '21'

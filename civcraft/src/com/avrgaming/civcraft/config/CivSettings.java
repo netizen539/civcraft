@@ -27,12 +27,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+
+import net.minecraft.util.org.apache.commons.io.FileUtils;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -289,47 +292,63 @@ public class CivSettings {
 		playerEntityWeapons.add(EntityType.SPLASH_POTION);
 		playerEntityWeapons.add(EntityType.FISHING_HOOK);
 	}
+	
+	public static void validateFiles() {
+		//File data = new File(plugin.getDataFolder().getPath()+"/data");
+		//if (!data.exists()) {
+		//	
+		//}
+		
+	}
+	
+	public static void streamResourceToDisk(String filepath) throws IOException {
+		URL inputUrl = filepath.getClass().getResource("/"+filepath);
+		File dest = new File(plugin.getDataFolder().getPath()+"/"+filepath);
+		FileUtils.copyURLToFile(inputUrl, dest);
+	}
 
 	public static FileConfiguration loadCivConfig(String filepath) throws FileNotFoundException, IOException, InvalidConfigurationException {
 
-		File file = new File(filepath);
+		File file = new File(plugin.getDataFolder().getPath()+"/data/"+filepath);
 		if (file.exists()) {
-			CivLog.info("Loading Configuration:"+filepath);
+			CivLog.info("Loading Configuration file:"+filepath);
 
 			// read the config.yml into memory
 			YamlConfiguration cfg = new YamlConfiguration(); 
 			cfg.load(file);
 			return cfg;
 		} else {
-			CivLog.error("Configuration file:"+filepath+" is missing!");
+			CivLog.warning("Configuration file:"+filepath+" was missing. Streaming to disk from Jar.");
+			streamResourceToDisk("data/"+filepath);
 		}
 		return null;
 	}
+	
 		
 	private static void loadConfigFiles() throws FileNotFoundException, IOException, InvalidConfigurationException {
-		townConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/town.yml");
-		civConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/civ.yml");
-		cultureConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/culture.yml");
-		structureConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/structures.yml");
-		techsConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/techs.yml");
-		goodsConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/goods.yml");
-		buffConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/buffs.yml");
-		governmentConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/governments.yml");
-		warConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/war.yml");
-		wonderConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/wonders.yml");
-		unitConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/units.yml");
-		espionageConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/espionage.yml");
-		scoreConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/score.yml");
-		perkConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/perks.yml");
-		enchantConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/enchantments.yml");
-		campConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/camp.yml");
-		marketConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/market.yml");
-		happinessConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/happiness.yml");
-		materialsConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/materials.yml");
-		randomEventsConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/randomevents.yml");
-		nocheatConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/nocheat.yml");
-		arenaConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/arena.yml");
-		fishingConfig = loadCivConfig(plugin.getDataFolder().getPath()+"/data/fishing.yml");
+		townConfig = loadCivConfig("town.yml");
+		civConfig = loadCivConfig("civ.yml");
+		cultureConfig = loadCivConfig("culture.yml");
+		structureConfig = loadCivConfig("structures.yml");
+		techsConfig = loadCivConfig("techs.yml");
+		goodsConfig = loadCivConfig("goods.yml");
+		buffConfig = loadCivConfig("buffs.yml");
+		governmentConfig = loadCivConfig("governments.yml");
+		warConfig = loadCivConfig("war.yml");
+		wonderConfig = loadCivConfig("wonders.yml");
+		unitConfig = loadCivConfig("units.yml");
+		espionageConfig = loadCivConfig("espionage.yml");
+		scoreConfig = loadCivConfig("score.yml");
+		perkConfig = loadCivConfig("perks.yml");
+		enchantConfig = loadCivConfig("enchantments.yml");
+		campConfig = loadCivConfig("camp.yml");
+		marketConfig = loadCivConfig("market.yml");
+		happinessConfig = loadCivConfig("happiness.yml");
+		materialsConfig = loadCivConfig("materials.yml");
+		randomEventsConfig = loadCivConfig("randomevents.yml");
+		nocheatConfig = loadCivConfig("nocheat.yml");
+		arenaConfig = loadCivConfig("arena.yml");
+		fishingConfig = loadCivConfig("fishing.yml");
 	}
 
 	private static void loadConfigObjects() throws InvalidConfiguration {

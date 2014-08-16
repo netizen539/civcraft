@@ -176,7 +176,6 @@ public class Capitol extends TownHall {
 			this.addStructureSign(structSign);
 			CivGlobal.addStructureSign(structSign);
 			
-			structSign.save();	
 		} else if (commandBlock.command.equals("/prev")) {
 			ItemManager.setTypeId(absCoord.getBlock(), commandBlock.getType());
 			ItemManager.setData(absCoord.getBlock(), commandBlock.getData());
@@ -188,7 +187,6 @@ public class Capitol extends TownHall {
 			this.addStructureSign(structSign);
 			CivGlobal.addStructureSign(structSign);
 			
-			structSign.save();
 		} else if (commandBlock.command.equals("/respawndata")) {
 			ItemManager.setTypeId(absCoord.getBlock(), commandBlock.getType());
 			ItemManager.setData(absCoord.getBlock(), commandBlock.getData());

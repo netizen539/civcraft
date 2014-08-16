@@ -143,7 +143,9 @@ public class AdminCommand extends CommandBase {
 						0, 
 						CivColor.LightBlue+cat.materials.size()+" Items",
 						CivColor.Gold+"<Click To Open>");
-						infoRec = LoreGuiItem.setAction(infoRec, "openinv:showGuiInv:"+cat.name+" Spawn");
+						infoRec = LoreGuiItem.setAction(infoRec, "OpenInventory");
+						infoRec = LoreGuiItem.setActionData(infoRec, "invType", "showGuiInv");
+						infoRec = LoreGuiItem.setActionData(infoRec, "invName", cat.name+" Spawn");
 						spawnInventory.addItem(infoRec);
 						
 				/* Build a new GUI Inventory. */
@@ -152,7 +154,7 @@ public class AdminCommand extends CommandBase {
 					LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterialFromId(mat.id);
 					ItemStack stack = LoreMaterial.spawn(craftMat);
 					stack = LoreGuiItem.asGuiItem(stack);
-					stack = LoreGuiItem.setAction(stack, "spawn");
+					stack = LoreGuiItem.setAction(stack, "SpawnItem");
 					inv.addItem(stack);
 					LoreGuiItemListener.guiInventories.put(inv.getName(), inv);			
 				}

@@ -1,0 +1,164 @@
+#
+# All you wanted to know about espionage. 
+# This file contains mission configuration and general espionage properties
+#
+#
+
+espionage:
+    # Default exposure per second.
+    exposure_per_second: 1
+
+    # Exposure per player nearby
+    exposure_per_player: 2
+
+    # Exposure per scout tower nearby
+    exposure_per_scout: 5
+
+    # Town Warning exposure limit (in percent)
+    # When the exposure level of a spy exceeds this percent, the town is notified they are being spied on.
+    town_exposure_warning: 0.4
+
+    # Town location exposure limit
+    # When the exposure level of a spy exceeds this percent, the town is notified of the position the spy is located at.
+    town_exposure_location: 0.8
+
+    # Town name exposure limit
+    # When the exposure level of the spy exceeds this percent, the town knows who is spying on them.
+    town_exposure_name: 0.9
+
+    # Mission failure limit
+    # If the spy exposure level goves above this, the mission automatically fails.
+    # XXX this is disabled for now by setting it at over 100% exposure. I think it's not needed.
+    # I think we'd rather have players attempt the mission and _have_ to be hunted down.
+    town_exposure_failure: 1.95
+
+    # The number of cottage ticks(aka hours) the granary
+    # will remain poisoned. A random number is selected
+    # between min and max.
+    poison_granary_min_ticks: 3
+    poison_granary_max_ticks: 50
+
+    # Chance that the poison will cause an entire
+    # cottage level to be lost.
+    # Nerfed from 0.2 to 0.05 was way too op, would bring ALL cottages down a level
+    poison_granary_famine_chance: 0.05
+
+    # Number of mins a resident must have registered
+    # before being allowed to use a spy unit.
+    spy_register_time: 1440
+
+    # Number of mins a resident must be online before
+    # being able to use a spy unit.
+    spy_online_time: 10
+
+missions:
+    - id: 'spy_investigate_town'
+      name: 'Investigate Town'
+      description: 
+          - 'Provides a report on the target town.'
+          - 'Includes information of strategic value.'
+      cost: 10000.0
+      range: 0.0
+      cooldown: 2.0
+      fail_chance: 0.1
+      compromise_chance: 0.01
+      intel: 0
+      length: 30
+      slot: 7
+
+    - id: 'spy_steal_treasury'
+      name: 'Steal Treasury'
+      description: 
+          - 'Steals 20% of the target towns treasury.'
+          - 'Must be within 50 blocks of town hall.'
+      cost: 20000.0
+      range: 50.0
+      cooldown: 2.0
+      fail_chance: 0.3
+      compromise_chance: 0.25
+      intel: 2
+      length: 140
+      slot: 6
+
+    - id: 'spy_incite_riots'
+      name: 'Incite Riots'
+      description: 
+          - 'Incites riots in the target town.'
+          - 'Causes between 5 to 10 unhappiness for 3 days.'
+      cost: 20000.0
+      range: 50.0
+      cooldown: 2.0
+      fail_chance: 0.3
+      compromise_chance: 0.25
+      intel: 2
+      length: 120
+      slot: 6
+
+#    - id: 'spy_subvert_government'
+#      name: 'Subvert Government'
+#      description: 
+#          - 'Plunges the target civiliztion into Anarchy.'
+#          - 'Emerges in a random government.' 
+#          - 'Must be within 100 blocks of the capital town hall.'
+#      cost: 300000.0
+#      range: 100.0
+#      cooldown: 2.0
+#      fail_chance: 0.40
+#      compromise_chance: 1.0
+#      slot: 5
+
+    - id: 'spy_poison_granary'
+      name: 'Poison Granary'
+      description: 
+          - 'Causes all cottages to starve for 3 to 50 hours. 5% chances to bring famine and down level all cottages.'
+          - 'Must be within 50 blocks of a granary.'
+      range: 50.0
+      cost: 20000.0
+      cooldown: 2.0
+      fail_chance: 0.2
+      compromise_chance: 0.1
+      intel: 0
+      length: 60
+      slot: 4
+    
+    - id: 'spy_pirate'
+      name: 'Pirate'
+      description: 
+          - 'Allows you to take a goodie from an enemy trade outpost.'
+          - 'Must be within 10 blocks of the trade outpost.'
+      range: 10.0
+      cost: 1000.0
+      cooldown: 2.0
+      fail_chance: 0.0
+      compromise_chance: 0.00
+      intel: 0
+      length: 60
+      slot: 3
+ 
+    - id: 'spy_sabotage'
+      name: 'Sabotage'
+      description: 
+          - 'Destroyes the nearest structure.'
+          - 'Must be within 50 blocks.'
+      cost: 250000.0
+      range: 50.0
+      cooldown: 2.0
+      fail_chance: 0.4
+      compromise_chance: 0.5
+      intel: 4
+      length: 300
+      slot: 2
+    
+    - id: 'spy_sabotage_wonder'
+      name: 'Sabotage'
+      description: 
+          - 'Destroyes the nearest wonder.'
+          - 'Must be within 50 blocks.'
+      cost: 500000.0
+      range: 50.0
+      cooldown: 2.0
+      fail_chance: 0.0
+      compromise_chance: 0.5
+      intel: 4
+      length: 300
+      slot: -1

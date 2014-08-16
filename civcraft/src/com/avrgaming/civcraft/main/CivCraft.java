@@ -163,11 +163,7 @@ public final class CivCraft extends JavaPlugin {
 
 		try {
 			double arrow_firerate = CivSettings.getDouble(CivSettings.warConfig, "arrow_tower.fire_rate");
-			TaskMaster.syncTimer("arrowTower", new ProjectileComponentTimer(), (int)(arrow_firerate*20));
-			
-//			double cannon_firerate = CivSettings.getDouble(CivSettings.warConfig, "cannon_tower.fire_rate");
-//			TaskMaster.syncTimer("cannonTower", new CannonTowerTask(), (int)(cannon_firerate*20));
-			
+			TaskMaster.syncTimer("arrowTower", new ProjectileComponentTimer(), (int)(arrow_firerate*20));	
 			TaskMaster.asyncTimer("ScoutTowerTask", new ScoutTowerTask(), TimeTools.toTicks(1));
 			
 		} catch (InvalidConfiguration e) {
@@ -199,18 +195,12 @@ public final class CivCraft extends JavaPlugin {
 		TaskMaster.syncTimer("PvPLogger", new PvPLogger(), TimeTools.toTicks(5));
 		TaskMaster.syncTimer("WindmillTimer", new WindmillTimer(), TimeTools.toTicks(60));
 		TaskMaster.asyncTimer("EndGameNotification", new EndConditionNotificationTask(), TimeTools.toTicks(3600));
-		
-		// Debug version
-	//	TaskMaster.asyncTask(new StructureValidationChecker(), TimeTools.toTicks(30));
-	//	TaskMaster.asyncTimer("StructureValidationPunisher", new StructureValidationPunisher(), TimeTools.toTicks(30));
-		
-		// Production version
+				
 		TaskMaster.asyncTask(new StructureValidationChecker(), TimeTools.toTicks(120));
 		TaskMaster.asyncTimer("StructureValidationPunisher", new StructureValidationPunisher(), TimeTools.toTicks(3600));
 		TaskMaster.asyncTimer("SessionDBAsyncTimer", new SessionDBAsyncTimer(), 10);
 		TaskMaster.asyncTimer("pvptimer", new PvPTimer(), TimeTools.toTicks(30));
 		
-		//TaskMaster.syncTimer("Apoc", new Apocalypse(), TimeTools.toTicks(1200));
 		TaskMaster.syncTimer("MobSpawner", new MobSpawnerTimer(), TimeTools.toTicks(2));
 		TaskMaster.syncTimer("ArenaTimer", new ArenaManager(), TimeTools.toTicks(30));
 		TaskMaster.syncTimer("ArenaTimeoutTimer", new ArenaTimer(), TimeTools.toTicks(1));
@@ -256,13 +246,17 @@ public final class CivCraft extends JavaPlugin {
 	public void onEnable() {
 		setPlugin(this);
 		this.saveDefaultConfig();
+
+		// Check for required data folder, if it's not there export it.
+		CivSettings.validateFiles();
+		
 		
 		CivLog.init(this);
 		BukkitObjects.initialize(this);
 		
 		//Load World Populators
 		BukkitObjects.getWorlds().get(0).getPopulators().add(new TradeGoodPopulator());
-		
+				
 		try {
 			CivSettings.init(this);
 			SQL.initialize();

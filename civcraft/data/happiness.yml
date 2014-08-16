@@ -1,0 +1,149 @@
+#
+# This YAML contains data relevent to happiness, use this to configure its bonuses and stuff.
+#
+# Negative happiness means unhappiness.
+#
+happiness:
+    # Amount of unhappiness per resident in the town.
+    per_resident: 1.0
+
+    # Empire Unhappiness, how much unhappiness to add, per town, to the entire
+    # civilization's towns.
+    per_town: 1.0
+
+    # Captured Town Unhappiness. Amount of unhappiness to add to each non-captured town
+    # for each captured town in the civ.
+    per_captured_town: 2.0
+
+    # Base distance Unhappiness
+    distance_base: 0.01
+
+    # Distance Multiplier to use when town's culture is touching
+    distance_multiplier: 0.75
+
+    # Dstaince Multiplier to use when town's culture is NOT touching
+    distance_multiplier_outside_culture: 1.05
+
+    # Maximum amount of distance unhappiness
+    distance_max: 15.0
+
+    # Amount of happiness generated per war, as the aggressor
+    per_war: 3.0
+
+    # Amount of extra happiness generated per score difference between aggressor and victim civ.
+    # Rounded to the nearest whole number (-1, -2, etc)
+    per_war_score: 0.0001
+    per_war_score_max: 5.0
+    
+    # Static Happiness Levels per town
+    town_levels:
+        - level: 1
+          happiness: 12.0
+ 
+        - level: 2
+          happiness: 12.0
+
+        - level: 3
+          happiness: 12.0
+
+        - level: 4
+          happiness: 12.0
+
+        - level: 5
+          happiness: 12.0
+
+        - level: 6
+          happiness: 12.0
+
+        - level: 7
+          happiness: 12.0
+        
+        - level: 8
+          happiness: 12.0
+
+        - level: 9
+          happiness: 12.0
+
+    # Happiness States
+    #
+    # name - Name displayed for this happiness state
+    # color - color the name is displayed in
+    # amount - minimum percentage of happiness to achieve this level
+    # xxx_rate - the various rates that modify this town's output.
+    #    The rates are added together, so a negatve rate reduces the
+    #    total actual rate by that amount. 
+    #    Example -0.25 rate is added to the standard 1.0 rate to get a 0.75 rate.
+    #
+    states:
+        - level: 0
+          name: 'Revolt'
+          color: 'Red'
+          amount: 0.0
+          beaker_rate: 0.20
+          coin_rate: 0.20
+          culture_rate: 0.20
+          hammer_rate: 0.20
+
+        - level: 1
+          name: 'Unrest'
+          color: 'Rose'
+          amount: 0.2
+          beaker_rate: 0.5
+          coin_rate: 0.5
+          culture_rate: 0.5
+          hammer_rate: 0.5
+
+        - level: 2
+          name: 'Unhappy'
+          color: 'Gold'
+          amount: 0.4
+          beaker_rate: 0.75
+          coin_rate: 0.75
+          culture_rate: 0.75
+          hammer_rate: 0.75
+
+        - level: 3
+          name:  'Content'
+          color: 'White'
+          amount: 0.5
+          beaker_rate: 1.0
+          coin_rate: 1.0
+          culture_rate: 1.0
+          hammer_rate: 1.0
+
+        - level: 4
+          name:  'Happy'
+          color: 'LightGreen'
+          amount: 0.7
+          beaker_rate: 1.15
+          coin_rate: 1.15
+          culture_rate: 1.15
+          hammer_rate: 1.15
+
+        - level: 5
+          name:  'Elated'
+          color: 'LightBlue'
+          amount: 0.85
+          beaker_rate: 1.30
+          coin_rate: 1.30
+          culture_rate: 1.30
+          hammer_rate: 1.30
+
+        - level: 6
+          name:  'Ecstatic'
+          color: 'LightPurple'
+          amount: 0.92
+          beaker_rate: 1.5
+          coin_rate: 1.5
+          culture_rate: 1.5
+          hammer_rate: 1.5
+
+
+
+
+
+
+
+
+
+    

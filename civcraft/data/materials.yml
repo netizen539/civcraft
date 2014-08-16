@@ -1,0 +1,3658 @@
+#
+# This yml describes the recipies for all of the various
+# lore materials that we're using in civcraft. We'll divide
+# up the sections into the following.
+#
+# Primary Materials
+# Secondary Materials
+# Weapons
+# Armors
+# Special (camps, civs, etc)
+#
+# We will be able to attach components to these items which
+# will passed in-game events such as onItemPickup() and onItemUse()
+#-------------------------------------------------------------------
+
+
+# --- Each Material must have the following ----
+# id: - unquie identifier for this material
+# item_id: - This is a minecraft compatible typeID, used to choose which item to convert.
+# item_data: - This is the datavalue for the in-game item.
+# name: - Used as a display name for the item.
+# ----- The following are Optional ------
+# lore: - Multi-line string that should be displayed as item lore.
+# craftable: - True if the item can be crafted, default is false
+# shaped: - True if the item recipie requires a shape, default is false
+# required_tech: - Technology required to craft this item.
+# ingredients: - List of incredients..
+#       type_id: - MC item type id for this ingredient, 0 indicates custom item
+#       data: - MC item data for this ingredient.
+#       custom_id: custom id, one of our material id's instead of type_id and data. (optional)
+#       count: - Number of items required. (optional, not used in shapeless recipie, default is 1)
+#       letter: - Letter used to represent item location in shaped recipie(optional)
+#    ...
+# shape: List of strings for shape data, shape data is composed of 3 strings with 3 letters in them
+#        the first string is the top 3 locations, the middle for the middle three and the last for the
+#        bottom three. For example, a golden apple recipe would look like:
+#       
+#        shape:
+#            - "ggg"
+#            - "gag"
+#            - "ggg"
+#
+#        Where the 'letter' setting in the incredient above had 'g' and 'a' for gold and apples respectively.  
+#   
+# Possible components:
+#    
+#   Attack - Increases attack damage of this item.
+#   - name: 'Attack'
+#     value: '0.5'  
+#
+#   MaxHealth - Increases the max health of the player whne this item is worn or held.
+#   - name: 'MaxHealth'
+#     value: '5'
+#
+#   MoveSpeed - Increases/decreases the move speed of the player when this item is worn or held.
+#   - name: 'MoveSpeed'
+#     value: '-0.3'
+#
+#   Defense - Decreases damage by this % when the item is worn.
+#   - name: 'Defense'
+#     value: '0.5'
+#
+#  NoVanillaDurability - Prevents this item from being damaged normally.
+#  - name: 'NoVanillaDurability'
+#
+#  DurabilityOnDeath - Reduces durability of this item by this % when player dies and is holding or wearing it.
+#  - name: 'DurabilityOnDeath'
+#    value: '0.1'
+#
+#
+materials:
+        #
+        # Primary Materials, Tier 1
+        #
+
+        # Checked 10/8/13
+        - id: 'mat_carved_leather'
+          item_id: 334
+          item_data: 0
+          name: 'T1 Carved Leather'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 334
+                data: 0
+                count: 9
+         
+        # Checked 10/8/13
+        - id: 'mat_refined_stone'
+          item_id: 1
+          item_data: 0
+          name: 'T1 Refined Stone'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 4
+                data: 0
+                count: 9
+
+# Replaced with gold block
+#        - id: 'mat_refined_gold'
+#          item_id: 147
+#          item_data: 0
+#          name: 'Refined Gold'
+#          craftable: true
+#          shaped: false
+#          category: '<lightgreen>Tier 1 Materials'
+#          ingredients:
+#              - type_id: 266
+#                data: 0
+#                count: 9
+
+        # Checked 10/8/13
+        - id: 'mat_refined_feathers'
+          item_id: 406
+          item_data: 0
+          name: 'T1 Packed Feathers'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 288
+                data: 0
+                count: 9
+        
+        # Checked 10/8/13
+        - id: 'mat_crafted_string'
+          item_id: 287
+          item_data: 0
+          name: 'T1 Crafted String'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 287
+                data: 0
+                count: 9
+
+        # Checked 10/8/13
+        - id: 'mat_refined_slime'
+          item_id: 341
+          item_data: 0
+          name: 'T1 Refined Slime'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 341 
+                custom_id: 'mat_vanilla_slime'
+                data: 0
+                count: 9
+
+# Replaced with block of iron
+#        - id: 'mat_forged_iron_ingot'
+#          item_id: 265
+#          item_data: 0
+#          name: 'Forged Iron Ingot'
+#          craftable: true
+#          shaped: false
+#          category: '<lightgreen>Tier 1 Materials'
+#          ingredients:
+#              - type_id: 265
+#                data: 0
+#                count: 9
+
+        # Checked 10/8/13
+        - id: 'mat_crafted_reeds'
+          item_id: 338
+          item_data: 0
+          name: 'T1 Crafted Reeds'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 338
+                data: 0
+                count: 9
+
+# Replcaed with block of coal.
+#        - id: 'mat_refined_coal'
+#          item_id: 263
+#          item_data: 0
+#          name: 'Refined Coal'
+#          craftable: true
+#          shaped: false
+#          category: '<lightgreen>Tier 1 Materials'
+#          ingredients:
+#              - type_id: 263
+#                data: 0
+#                count: 9
+  
+        # Checked 10/8/13
+        - id: 'mat_crafted_sticks'
+          item_id: 280
+          item_data: 0
+          name: 'T1 Crafted Sticks'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 280
+                data: 0
+                count: 9
+
+        # Checked 10/8/13
+        - id: 'mat_refined_sulphur'
+          item_id: 289
+          item_data: 0
+          name: 'T1 Refined Sulphur'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 289
+                data: 0
+                count: 9
+
+        - id: 'mat_compacted_sand'
+          item_id: 24
+          item_data: 1
+          name: 'T1 Compacted Sand'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 12
+                data: -1
+                count: 9
+
+        # Checked 10/8/13
+        - id: 'mat_forged_clay'
+          item_id: 336
+          item_data: 0
+          name: 'T1 Forged Clay'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 337
+                data: 0
+                count: 9
+
+        # Checked 10/8/13
+        - id: 'mat_refined_sugar'
+          item_id: 353
+          item_data: 0
+          name: 'T1 Refined Sugar'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 353
+                data: 0
+                count: 9
+
+        # Checked 10/8/13
+        - id: 'mat_refined_wart'
+          item_id: 372
+          item_data: 0
+          name: 'T1 Refined Wart'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 372
+                data: 0
+                count: 9
+        
+        # Checked 10/8/13
+        - id: 'mat_forged_chromium'
+          item_id: 265
+          item_data: 0
+          name: 'T1 Forged Chromium'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_chromium_ore'
+                count: 9
+
+        # Checked 10/8/13
+        - id: 'mat_forged_tungsten'
+          item_id: 133
+          item_data: 0
+          name: 'T1 Forged Tungsten'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_tungsten_ore'
+                count: 9
+
+        # Checked 10/8/13
+        - id: 'mat_refined_wood'
+          item_id: 126
+          item_data: 0
+          name: 'T1 Refined Wood'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 17
+                data: -1
+                count: 9
+
+#        # Checked 10/8/13
+#        - id: 'mat_refined_wood2'
+#          item_id: 126
+#          item_data: 0
+#          name: 'Refined Wood'
+#          craftable: true
+#          shaped: true
+#          category: '<lightgreen>Tier 1 Materials'
+#          ingredients:
+#              - type_id: 162
+#                data: -1
+#                letter: 'l'
+#          shape:
+#              - "lll"
+#              - "lll"
+#              - "lll"
+
+# Replaced by diamond block
+#        - id: 'mat_refined_diamonds'
+#          item_id: 351
+#          item_data: 12
+#          name: 'Refined Diamonds'
+#          craftable: true
+#          shaped: false
+#          category: '<lightgreen>Tier 1 Materials'
+#          ingredients:
+#              - type_id: 264 
+#                data: 0
+#                count: 9
+
+          # XXX Statically coded to drop from lapis.        
+        # Checked 10/8/13
+        - id: 'mat_tungsten_ore'
+          item_id: 385
+          item_data: 0
+          name: 'Tungsten Ore'
+          components:
+              - name: 'NoRightClick'
+          craftable: false
+          shaped: true
+          category: '<lightgreen>Tier 1 Materials'
+        
+          # XXX Statically coded to drop from trommel 
+        # Checked 10/8/13
+        - id: 'mat_chromium_ore'
+          item_id: 370
+          item_data: 0
+          name: 'Chromium Ore'
+          craftable: false
+          shaped: true
+          category: '<lightgreen>Tier 1 Materials'
+
+
+
+# Tier 2.0 ======================================================
+
+
+        # Checked 10/8/13
+        - id: 'mat_crafted_leather'
+          item_id: 31
+          item_data: 0
+          name: 'T2 Crafted Leather'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_carved_leather'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_crafted_string'
+                data: 0
+                count: 1
+
+        # Checked 10/8/13
+        - id: 'mat_decorative_jewels'
+          item_id: 372
+          item_data: 0
+          name: 'T2 Decorative Jewels'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          ingredients:
+              - type_id: 57
+                data: 0
+                count: 2
+
+        # Checked 10/8/13
+        - id: 'mat_crushed_stone'
+          item_id: 44
+          item_data: 0
+          name: 'T2 Crushed Stone'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_refined_stone'
+                data: 0
+                count: 9
+
+
+        # Checked 10/8/13
+        - id: 'mat_jewelry_grade_gold'
+          item_id: 322
+          item_data: 0
+          name: 'T2 Jewelry Grade Gold'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          ingredients:
+              - type_id: 41
+                data: 0
+                count: 9
+
+        # Checked 10/8/13
+        - id: 'mat_milled_lumber'
+          item_id: 53
+          item_data: 0
+          name: 'T2 Milled Lumber'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_refined_wood'
+                data: 0
+                count: 9
+
+        # Checked 10/8/13
+        - id: 'mat_woven_mesh_patch'
+          item_id: 358
+          item_data: 0
+          name: 'T2 Woven Mesh Patch'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_crafted_string'
+                data: 0
+                count: 3
+              - type_id: 0
+                custom_id: 'mat_crafted_reeds'
+                data: 0
+                count: 3
+              - type_id: 0
+                custom_id: 'mat_refined_slime'
+                data: 0
+                count: 1
+  
+        # Checked 10/8/13
+        - id: 'mat_steel_ingot'
+          item_id: 265
+          item_data: 0
+          name: 'T2 Steel Ingot'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          ingredients:
+              - type_id: 42
+                data: 0
+                count: 3
+              - type_id: 173
+                data: 0
+                count: 3
+              - type_id: 0
+                custom_id: 'mat_refined_sulphur'
+                data: 0
+                count: 1
+
+        # Checked 10/8/13
+        - id: 'mat_varnish'
+          item_id: 384
+          item_data: 0
+          name: 'T2 Varnish'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_refined_slime'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_refined_sugar'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_refined_wart'
+                data: 0
+                count: 2
+
+        # Checked 10/8/13
+        - id: 'mat_sticky_resin'
+          item_id: 282
+          item_data: 0
+          name: 'T2 Sticky Resin'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_refined_slime'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_refined_sugar'
+                data: 0
+                count: 1
+              - type_id: 281
+                data: 0
+                count: 1
+
+        # Checked 10/8/13
+        - id: 'mat_clay_molding'
+          item_id: 45
+          item_data: 0
+          name: 'T2 Clay Molding'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_forged_clay'
+                data: 0
+                count: 3
+              - type_id: 0
+                custom_id: 'mat_crafted_reeds'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_crafted_sticks'
+                data: 0
+                count: 3
+
+
+        # Checked 10/8/13
+        - id: 'mat_chromium_ingot'
+          item_id: 399
+          item_data: 0
+          name: 'T2 Chromium Ingot'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_forged_chromium'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_refined_sulphur'
+                data: 0
+                count: 2
+              - type_id: 173
+                data: 0
+                count: 3
+              - type_id: 264
+                data: 0
+                count: 1
+
+
+        # Checked 10/8/13
+        - id: 'mat_aged_wood_stave'
+          item_id: 280
+          item_data: 0
+          name: 'T2 Aged Wood Stave'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_crafted_sticks'
+                data: 0
+                count: 3
+              - type_id: 0
+                custom_id: 'mat_crafted_reeds'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_crafted_string'
+                data: 0
+                count: 2
+
+        # Checked 10/8/13
+        - id: 'mat_woven_threading'
+          item_id: 420
+          item_data: 0
+          name: 'T2 Woven Threading'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_crafted_string'
+                data: 0
+                count: 4
+              - type_id: 0
+                custom_id: 'mat_refined_slime'
+                data: 0
+                count: 1
+
+        # Checked 10/8/13
+        - id: 'mat_steel_sword_blade'
+          item_id: 265
+          item_data: 0
+          name: 'T2 Steel Sword Blade'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_steel_ingot'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_clay_steel_cast'
+                data: 0
+                count: 1
+        
+        # Checked 10/8/13
+        - id: 'mat_steel_sword_hilt'
+          item_id: 280
+          item_data: 0
+          name: 'T2 Steel Sword Hilt'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_steel_ingot'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_varnish'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_leather_straps'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_sticky_resin'
+                data: 0
+                count: 1
+
+        # Checked 10/8/13
+        - id: 'mat_steel_plate'
+          item_id: 148
+          item_data: 0
+          name: 'T2 Steel Plate'
+          craftable: true
+          shaped: false
+          category: '<lightblue>Tier 2 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_steel_ingot'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_varnish'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_clay_molding'
+                data: 0
+                count: 1
+
+
+
+# <lightpurple>Tier 3 Materials =======================================================
+
+
+        # Checked 10/8/13
+        - id: 'mat_leather_straps'
+          item_id: 32
+          item_data: 0
+          name: 'T3 Leather Straps'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_crafted_leather'
+                data: 0
+                count: 3
+              - type_id: 0
+                custom_id: 'mat_varnish'
+                data: 0
+                count: 2
+
+        # Checked 10/8/13
+        - id: 'mat_clay_steel_cast'
+          item_id: 343
+          item_data: 0
+          name: 'T3 Clay Steel Casting'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_clay_molding'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_sticky_resin'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_crafted_sticks'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_crafted_reeds'
+                data: 0
+                count: 2
+
+        # Checked 10/8/13
+        - id: 'mat_reinforced_braid'
+          item_id: 287
+          item_data: 0
+          name: 'T3 Reinforced Braid'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_woven_threading'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_sticky_resin'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_varnish'
+                data: 0
+                count: 1
+
+        # Checked 10/8/13
+        - id: 'mat_carbide_steel_ingot'
+          item_id: 318
+          item_data: 0
+          name: 'T3 Carbide Steel Ingot'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_steel_ingot'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_chromium_ingot'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_varnish'
+                data: 0
+                count: 1
+        
+        # Checked 10/8/13
+        - id: 'mat_longbow_stave'
+          item_id: 280
+          item_data: 0
+          name: 'T3 Longbow Stave'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_aged_wood_stave'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_sticky_resin'
+                data: 0
+                count: 1
+
+        # Checked 10/8/13
+        - id: 'mat_feathered_lining'
+          item_id: 288
+          item_data: 0
+          name: 'T3 Feathered Lining'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_woven_mesh_patch'
+                data: 0
+                count: 4
+              - type_id: 0
+                custom_id: 'mat_refined_feathers'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_leather_straps'
+                data: 0
+                count: 3
+
+        # Checked 10/8/13
+        - id: 'mat_carbide_molding'
+          item_id: 380
+          item_data: 0
+          name: 'T3 Carbide Molding'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_clay_molding'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_varnish'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_sticky_resin'
+                data: 0
+                count: 1
+
+        # Checked 10/8/13
+        - id: 'mat_smithy_resin'
+          item_id: 378
+          item_data: 0
+          name: 'T3 Smithy Resin'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_sticky_resin'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_refined_sulphur'
+                data: 0
+                count: 2
+              - type_id: 173
+                data: 0
+                count: 1
+
+        # Checked 10/8/13
+        - id: 'mat_tungsten_ingot'
+          item_id: 368
+          item_data: 0
+          name: 'T3 Tungsten Ingot'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_forged_tungsten'
+                data: 0
+                count: 5
+              - type_id: 0
+                custom_id: 'mat_chromium_ingot'
+                data: 0
+                count: 2
+              - type_id: 173
+                data: 0
+                count: 2
+
+        # Checked 10/8/13
+        - id: 'mat_clay_tungsten_casting'
+          item_id: 368
+          item_data: 0
+          name: 'T3 Clay Tungsten Casting'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_clay_molding'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_sticky_resin'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_crafted_reeds'
+                data: 0
+                count: 2
+
+
+        # Checked 10/8/13
+        - id: 'mat_masonry_mortar'
+          item_id: 45
+          item_data: 0
+          name: 'T3 Masonry Mortar'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_sticky_resin'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_clay_molding'
+                data: 0
+                count: 2
+
+        # Checked 10/8/13
+        - id: 'mat_royal_crown'
+          item_id: 314
+          item_data: 0
+          name: 'Royal Crown'
+          craftable: true
+          shaped: false
+          category: 'Special'
+          components:
+              - name: 'NoDurability'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_jewelry_grade_gold'
+                data: 0
+                count: 3
+              - type_id: 0
+                custom_id: 'mat_decorative_jewels'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_proof_of_leadership'
+                data: 0
+                count: 1
+
+        - id: 'mat_proof_of_leadership'
+          item_id: 347
+          item_data: 0
+          name: 'Proof Of Leadership'
+          craftable: true
+          shaped: false
+          category: 'Special'
+          components:
+              - name: 'Tagged'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_badge_of_leadership'
+                data: 0
+                count: 4
+
+        - id: 'mat_badge_of_leadership'
+          item_id: 421
+          item_data: 0
+          name: 'Badge Of Leadership'
+          craftable: true
+          shaped: false
+          category: 'Special'
+          components:
+              - name: 'Tagged'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_token_of_leadership'
+                data: 0
+                count: 9
+
+        - id: 'mat_token_of_leadership'
+          item_id: 370
+          item_data: 0
+          name: 'Token Of Leadership'
+          craftable: false
+          shaped: false
+          category: 'Special'
+          components:
+              - name: 'Tagged'
+         
+        # Checked 10/8/13
+        - id: 'mat_chieftains_headdress'
+          item_id: 302
+          item_data: 0
+          name: 'Chieftains Headdress'
+          craftable: true
+          shaped: false
+          category: 'Special'
+          components:
+              - name: 'NoDurability'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_refined_feathers'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_carved_leather'
+                data: 0
+                count: 2
+
+        # Checked 10/8/13
+        - id: 'mat_compacted_stone'
+          item_id: 98
+          item_data: 0
+          name: 'T3 Compacted Stone'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_crushed_stone'
+                data: 0
+                count: 9
+        
+         # Checked 10/8/13
+        - id: 'mat_carbide_steel_sword_hilt'
+          item_id: 280
+          item_data: 0
+          name: 'T3 Carbide Steel Sword Hilt'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_clay_steel_cast'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_smithy_resin'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_carbide_steel_ingot'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_reinforced_braid'
+                data: 0
+                count: 1
+
+
+        # Checked 10/8/13
+        - id: 'mat_carbide_steel_sword_blade'
+          item_id: 265
+          item_data: 0
+          name: 'T3 Carbide Steel Sword Blade'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_clay_steel_cast'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_carbide_steel_ingot'
+                data: 0
+                count: 4
+              - type_id: 0
+                custom_id: 'mat_smithy_resin'
+                data: 0
+                count: 2
+        
+        # Checked 10/8/13
+        - id: 'mat_carbide_steel_plate'
+          item_id: 265
+          item_data: 0
+          name: 'T3 Carbide Steel Plate'
+          craftable: true
+          shaped: false
+          category: '<lightpurple>Tier 3 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_sticky_resin'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_clay_molding'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_carbide_steel_ingot'
+                data: 0
+                count: 1
+
+
+#=================================<<< TIER 4 >>>=================================================
+
+        # Checked 10/8/13
+        - id: 'mat_artisan_leather'
+          item_id: 31
+          item_data: 0
+          name: 'T4 Artisan Leather'
+          craftable: true
+          shaped: false
+          category: '<gold>Tier 4 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_leather_straps'
+                data: 0
+                count: 2
+              - type_id: 5
+                custom_id: 'mat_reinforced_braid'
+                data: 0
+                count: 2
+
+        # Checked 10/8/13
+        - id: 'mat_tungsten_plate'
+          item_id: 405
+          item_data: 0
+          name: 'T4 Tungsten Plate'
+          craftable: true
+          shaped: false
+          category: '<gold>Tier 4 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_clay_tungsten_casting'
+                data: 0
+                count: 1
+              - type_id: 0
+                custom_id: 'mat_smithy_resin'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_tungsten_ingot'
+                data: 0
+                count: 1
+
+        # Checked 10/8/13
+        - id: 'mat_tungsten_sword_blade'
+          item_id: 57
+          item_data: 0
+          name: 'T4 Tungsten Sword Blade'
+          craftable: true
+          shaped: false
+          category: '<gold>Tier 4 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_clay_tungsten_casting'
+                data: 0
+                count: 3
+              - type_id: 0
+                custom_id: 'mat_smithy_resin'
+                data: 0
+                count: 3
+              - type_id: 0
+                custom_id: 'mat_tungsten_ingot'
+                data: 0
+                count: 3
+
+        # Checked 10/8/13
+        - id: 'mat_tungsten_sword_hilt'
+          item_id: 280
+          item_data: 0
+          name: 'T4 Tungsten Sword Hilt'
+          craftable: true
+          shaped: false
+          category: '<gold>Tier 4 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_clay_tungsten_casting'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_smithy_resin'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_tungsten_ingot'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_artisan_leather'
+                data: 0
+                count: 2
+
+        # Checked 10/8/13
+        - id: 'mat_composite_bow_stave'
+          item_id: 280
+          item_data: 0
+          name: 'T4 Composite Bow Stave'
+          craftable: true
+          shaped: false
+          category: '<gold>Tier 4 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_longbow_stave'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_leather_straps'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_reinforced_braid'
+                data: 0
+                count: 2
+
+        # Checked 10/8/13
+        - id: 'mat_composite_bow_string'
+          item_id: 287
+          item_data: 0
+          name: 'T4 Composite Bow String'
+          craftable: true
+          shaped: false
+          category: '<gold>Tier 4 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_smithy_resin'
+                data: 0
+                count: 3
+              - type_id: 0
+                custom_id: 'mat_reinforced_braid'
+                data: 0
+                count: 3
+
+        # Checked 10/8/13 RJ
+        - id: 'mat_cannon_wheel'
+          item_id: 163
+          item_data: 0
+          name: 'T4 Cannon Wheel'
+          craftable: true
+          shaped: false
+          category: '<gold>Tier 4 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_milled_lumber'
+                data: 0
+                count: 9
+
+        - id: 'mat_cannon_barrel_part'
+          item_id: 171
+          item_data: 15
+          name: 'T4 Cannon Barrel Part'
+          craftable: true
+          shaped: true
+          category: '<gold>Tier 4 Materials'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_carbide_steel_plate'
+                letter: 'p'
+          shape:
+              - "ppp"
+              - "ppp"
+              - " p "
+
+# Special Recipes  ===========================================            
+        # Checked 10/8/13
+        - id: 'mat_found_civ'
+          item_id: 369
+          item_data: 0
+          name: 'Founding Civilization Flag'
+          craftable: true
+          shaped: true
+          category: 'Special'
+          components:
+              - name: 'FoundCivilization'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_masonry_mortar'
+                letter: 'm'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_royal_crown'
+                letter: 'r'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_compacted_stone'
+                letter: 's'
+          shape:
+              - "srs"
+              - "sss"
+              - "mmm"
+
+       
+          # XXX mat ID hard coded for camp refund. with /camp undo 
+        # Checked 10/8/13
+        - id: 'mat_found_camp'
+          item_id: 324
+          item_data: 0
+          name: 'Camp'
+          craftable: true
+          shaped: true
+          category: 'Special'
+          components:
+              - name: 'FoundCamp'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_milled_lumber'
+                letter: 'l'
+              - type_id: 173
+                data: 0
+                letter: 'c'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_chieftains_headdress'
+                letter: 'h'
+          shape:
+              - " h "
+              - "lll"
+              - "ccc"
+        
+        - id: 'mat_found_warcamp'
+          item_id: 7
+          item_data: 0
+          name: 'War Camp'
+          craftable: true
+          shaped: true
+          category: 'Special'
+          components:
+              - name: 'FoundWarCamp'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_masonry_mortar'
+                letter: 'm'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_milled_lumber'
+                letter: 'l'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_compacted_stone'
+                letter: 'c'
+          shape:
+              - "lll"
+              - "cmc"
+              - "ccc"
+        
+        - id: 'mat_build_cannon'
+          item_id: 154
+          item_data: 0
+          name: 'War Cannon'
+          craftable: true
+          shaped: true
+          category: 'Special'
+          components:
+              - name: 'BuildCannon'
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_cannon_barrel_part'
+                letter: 'p'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_cannon_wheel'
+                letter: 'w'
+          shape:
+              - "ppp"
+              - "ppp"
+              - "wpw"
+
+# Wood Gear & Leather Gear =========================================
+
+        # Checked 10/8/13
+        - id: 'mat_wood_sword'
+          item_id: 268
+          item_data: 0
+          name: 'Training Sword'
+          craftable: true
+          shaped: true
+          category: '<lightgreen>Gear Tier 1'
+          components:
+              - name: 'Attack'
+                value: '4'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 5
+                data: -1
+                letter: 'p'
+              - type_id: 280
+                data: 0
+                letter: 's'
+          shape:
+              - " p "
+              - " p "
+              - " s "
+
+        # Checked 10/8/13
+        - id: 'mat_leather_helmet'
+          item_id: 298
+          item_data: 0
+          name: 'Leather Helmet'
+          craftable: true
+          shaped: true
+          category: '<lightgreen>Gear Tier 1'
+          components:
+              - name: 'Defense'
+                value: '2'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 334
+                data: 0
+                letter: 'l'
+          shape:
+              - "lll"
+              - "l l"
+              - "   "
+
+        # Checked 10/8/13
+        - id: 'mat_leather_chestplate'
+          item_id: 299
+          item_data: 0
+          name: 'Leather Jacket'
+          craftable: true
+          shaped: true
+          category: '<lightgreen>Gear Tier 1'
+          components:
+              - name: 'Defense'
+                value: '3'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 334
+                data: 0
+                letter: 'l'
+          shape:
+              - "l l"
+              - "lll"
+              - "lll"
+
+        # Checked 10/8/13
+        - id: 'mat_leather_leggings'
+          item_id: 300
+          item_data: 0
+          name: 'Leather Pants'
+          craftable: true
+          shaped: true
+          category: '<lightgreen>Gear Tier 1'
+          components:
+              - name: 'Defense'
+                value: '2'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 334
+                data: 0
+                letter: 'l'
+          shape:
+              - "lll"
+              - "l l"
+              - "l l"
+
+        # Checked 10/8/13
+        - id: 'mat_leather_Boots'
+          item_id: 301
+          item_data: 0
+          name: 'Leather Moccasins'
+          craftable: true
+          shaped: true
+          category: '<lightgreen>Gear Tier 1'
+          components:
+              - name: 'Defense'
+                value: '1'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 334
+                data: 0
+                letter: 'l'
+          shape:
+              - "   "
+              - "l l"
+              - "l l"
+
+# Refined leather Gear =============================================
+
+        # Checked 10/8/13
+        - id: 'mat_refined_leather_helmet'
+          item_id: 298
+          item_data: 0
+          name: 'Refined Leather Cap'
+          craftable: true
+          required_techs: 'tech_leather_refinement'
+          shaped: true
+          category: '<lightblue>Gear Tier 2'
+          components:
+              - name: 'Defense'
+                value: '3.5'
+              - name: 'LeatherColor'
+                color: 'AB8618'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+              - name: 'NoCauldronWash'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_carved_leather'
+                letter: 'c'
+          shape:
+              - "ccc"
+              - "c c"
+              - "   "
+
+        # Checked 10/8/13
+        - id: 'mat_refined_leather_chestplate'
+          item_id: 299
+          item_data: 0
+          name: 'Refined Leather Chestplate'
+          craftable: true
+          required_techs: 'tech_leather_refinement'
+          shaped: true
+          category: '<lightblue>Gear Tier 2'
+          components:
+              - name: 'Defense'
+                value: '4.5'
+              - name: 'LeatherColor'
+                color: 'AB8618'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+              - name: 'NoCauldronWash'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_carved_leather'
+                letter: 'c'
+          shape:
+              - "c c"
+              - "ccc"
+              - "ccc"
+
+        # Checked 10/8/13
+        - id: 'mat_refined_leather_leggings'
+          item_id: 300
+          item_data: 0
+          name: 'Refined Leather Leggings'
+          craftable: true
+          required_techs: 'tech_leather_refinement'
+          shaped: true
+          category: '<lightblue>Gear Tier 2'
+          components:
+              - name: 'Defense'
+                value: '3.5'
+              - name: 'LeatherColor'
+                color: 'AB8618'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+              - name: 'NoCauldronWash'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_carved_leather'
+                letter: 'c'
+          shape:
+              - "ccc"
+              - "c c"
+              - "c c"
+
+        # Checked 10/8/13
+        - id: 'mat_refined_leather_boots'
+          item_id: 301
+          item_data: 0
+          name: 'Refined Leather Moccasins'
+          craftable: true
+          required_techs: 'tech_leather_refinement'
+          shaped: true
+          category: '<lightblue>Gear Tier 2'
+          components:
+              - name: 'Defense'
+                value: '2.5'
+              - name: 'LeatherColor'
+                color: 'AB8618'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+              - name: 'NoCauldronWash'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_carved_leather'
+                letter: 'c'
+          shape:
+              - "   "
+              - "c c"
+              - "c c"
+
+# Composite Leather Gear recipes ===================================
+
+        # Checked 10/8/13
+        - id: 'mat_hardened_leather_helmet'
+          item_id: 298
+          item_data: 0
+          name: 'Hardened Leather Cap'
+          craftable: true
+          required_techs: 'tech_tanning'
+          shaped: true
+          category: '<lightpurple>Gear Tier 3'
+          components:
+              - name: 'Defense'
+                value: '5'
+              - name: 'LeatherColor'
+                color: '339933'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+              - name: 'NoCauldronWash'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_leather_straps'
+                letter: 'l'
+          shape:
+              - "lll"
+              - "l l"
+              - "   "
+
+        # Checked 10/8/13
+        - id: 'mat_hardened_leather_chestplate'
+          item_id: 299
+          item_data: 0
+          name: 'Hardened Leather Jacket'
+          craftable: true
+          required_techs: 'tech_tanning'
+          shaped: true
+          category: '<lightpurple>Gear Tier 3'
+          components:
+              - name: 'Defense'
+                value: '6.0'
+              - name: 'LeatherColor'
+                color: '339933'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+              - name: 'NoCauldronWash'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_leather_straps'
+                letter: 'l'
+          shape:
+              - "l l"
+              - "lll"
+              - "lll"
+
+        # Checked 10/8/13
+        - id: 'mat_hardened_leather_leggings'
+          item_id: 300
+          item_data: 0
+          name: 'Hardened Leather Pants'
+          craftable: true
+          required_techs: 'tech_tanning'
+          shaped: true
+          category: '<lightpurple>Gear Tier 3'
+          components:
+              - name: 'Defense'
+                value: '5.0'
+              - name: 'LeatherColor'
+                color: '339933'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+              - name: 'NoCauldronWash'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_leather_straps'
+                letter: 'l'
+          shape:
+              - "lll"
+              - "l l"
+              - "l l"
+
+        # Checked 10/8/13
+        - id: 'mat_hardened_leather_boots'
+          item_id: 301
+          item_data: 0
+          name: 'Hardened Leather Moccasins'
+          craftable: true
+          required_techs: 'tech_tanning'
+          shaped: true
+          category: '<lightpurple>Gear Tier 3'
+          components:
+              - name: 'Defense'
+                value: '4'
+              - name: 'LeatherColor'
+                color: '339933'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+              - name: 'NoCauldronWash'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_leather_straps'
+                letter: 'l'
+          shape:
+              - "   "
+              - "l l"
+              - "l l"
+
+# Composit Leather Gear Recipes
+
+        # Checked 10/8/13
+        - id: 'mat_composite_leather_helmet'
+          item_id: 298
+          item_data: 0
+          name: 'Composite Leather Cap'
+          craftable: true
+          required_techs: 'tech_composites'
+          shaped: true
+          category: '<gold>Gear Tier 4'
+          components:
+              - name: 'Defense'
+                value: '6.5'
+              - name: 'LeatherColor'
+                color: 'FF0000'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+              - name: 'NoCauldronWash'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_artisan_leather'
+                letter: 'a'
+          shape:
+              - "aaa"
+              - "a a"
+              - "   "
+
+        # Checked 10/8/13
+        - id: 'mat_composite_leather_chestplate'
+          item_id: 299
+          item_data: 0
+          name: 'Composite Leather Jacket'
+          craftable: true
+          required_techs: 'tech_composites'
+          shaped: true
+          category: '<gold>Gear Tier 4'
+          components:
+              - name: 'Defense'
+                value: '8'
+              - name: 'LeatherColor'
+                color: 'FF0000'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+              - name: 'NoCauldronWash'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_artisan_leather'
+                letter: 'a'
+          shape:
+              - "a a"
+              - "aaa"
+              - "aaa"
+
+        # Checked 10/8/13
+        - id: 'mat_composite_leather_leggings'
+          item_id: 300
+          item_data: 0
+          name: 'Composite Leather Pants'
+          craftable: true
+          required_techs: 'tech_composites'
+          shaped: true
+          category: '<gold>Gear Tier 4'
+          components:
+              - name: 'Defense'
+                value: '6.5'
+              - name: 'LeatherColor'
+                color: 'FF0000'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+              - name: 'NoCauldronWash'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_artisan_leather'
+                letter: 'a'
+          shape:
+              - "aaa"
+              - "a a"
+              - "a a"
+
+        # Checked 10/8/13
+        - id: 'mat_composite_leather_boots'
+          item_id: 301
+          item_data: 0
+          name: 'Composite Leather Moccasins'
+          craftable: true
+          required_techs: 'tech_composites'
+          shaped: true
+          category: '<gold>Gear Tier 4'
+          components:
+              - name: 'Defense'
+                value: '5'
+              - name: 'LeatherColor'
+                color: 'FF0000'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+              - name: 'NoCauldronWash'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_artisan_leather'
+                letter: 'a'
+          shape:
+              - "   "
+              - "a a"
+              - "a a"
+
+# Bow Recipes ------------------------------------------------------
+
+        # Checked 10/8/13
+        - id: 'mat_hunting_bow'
+          item_id: 261
+          item_data: 0
+          name: 'Hunting Bow'
+          craftable: true
+          required_techs: 'tech_archery'
+          shaped: true
+          category: '<lightgreen>Gear Tier 1'
+          components:
+              - name: 'RangedAttack'
+                value: '18'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 287
+                data: 0
+                letter: 's'
+              - type_id: 280
+                data: 0
+                letter: 'w'
+          shape:
+              - "sw "
+              - "s w"
+              - "sw "
+
+        # Checked 10/8/13
+        - id: 'mat_recurve_bow'
+          item_id: 261
+          item_data: 0
+          name: 'Recurve Bow'
+          craftable: true
+          required_techs: 'tech_fletching'
+          shaped: true
+          category: '<lightblue>Gear Tier 2'
+          components:
+              - name: 'RangedAttack'
+                value: '24'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_aged_wood_stave'
+                letter: 'a'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_crafted_string'
+                letter: 's'
+          shape:
+              - "sa "
+              - "s a"
+              - "sa "
+
+        # Checked 10/8/13
+        - id: 'mat_longbow'
+          item_id: 261
+          item_data: 0
+          name: 'Longbow'
+          craftable: true
+          required_techs: 'tech_tillering'
+          shaped: true
+          category: '<lightpurple>Gear Tier 3'
+          components:
+              - name: 'RangedAttack'
+                value: '30'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_longbow_stave'
+                letter: 'l'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_reinforced_braid'
+                letter: 'b'
+          shape:
+              - "bl "
+              - "b l"
+              - "bl "
+
+        # Checked 10/8/13
+        - id: 'mat_marksmen_bow'
+          item_id: 261
+          item_data: 0
+          name: 'Marksmen Bow'
+          craftable: true
+          required_techs: 'tech_laminates'
+          shaped: true
+          category: '<gold>Gear Tier 4'
+          components:
+              - name: 'RangedAttack'
+                value: '36'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_composite_bow_stave'
+                letter: 'c'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_composite_bow_string'
+                letter: 's'
+          shape:
+              - "sc "
+              - "s c"
+              - "sc "
+
+# Stone Gear -------------------------------------------------------
+
+        # Checked 10/8/13
+        - id: 'mat_stone_sword'
+          item_id: 272
+          item_data: 0
+          name: 'Stone Shank'
+          craftable: true
+          shaped: true
+          category: '<lightgreen>Gear Tier 1'
+          components:
+              - name: 'Attack'
+                value: '5'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 4
+                data: 0
+                letter: 'c'
+              - type_id: 280
+                data: 0
+                letter: 's'
+          shape:
+              - " c "
+              - " c "
+              - " s "
+
+# Iron Gear recipes -------------------------------------------------
+
+        # Checked 10/8/13
+        - id: 'mat_iron_sword'
+          item_id: 267
+          item_data: 0
+          name: 'Iron Shortsword'
+          craftable: true
+          required_techs: 'tech_metal_casting'
+          shaped: true
+          category: '<lightgreen>Gear Tier 1'
+          components:
+              - name: 'Attack'
+                value: '12'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 265
+                data: 0
+                letter: 'i'
+              - type_id: 280
+                data: 0
+                letter: 's'
+          shape:
+              - " i "
+              - " i "
+              - " s "
+
+        # Checked 10/8/13
+        - id: 'mat_iron_helmet'
+          item_id: 306
+          item_data: 0
+          name: 'Iron Helmet'
+          craftable: true
+          required_techs: 'tech_blacksmithing'
+          shaped: true
+          category: '<lightgreen>Gear Tier 1'
+          components:
+              - name: 'Defense'
+                value: '2.5'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 265
+                data: 0
+                letter: 'i'
+          shape:
+              - "iii"
+              - "i i"
+              - "   "
+
+        # Checked 10/8/13
+        - id: 'mat_iron_chestplate'
+          item_id: 307
+          item_data: 0
+          name: 'Iron Chestplate'
+          craftable: true
+          required_techs: 'tech_blacksmithing'
+          shaped: true
+          category: '<lightgreen>Gear Tier 1'
+          components:
+              - name: 'Defense'
+                value: '3.5'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 265
+                data: 0
+                letter: 'i'
+          shape:
+              - "i i"
+              - "iii"
+              - "iii"
+
+        # Checked 10/8/13
+        - id: 'mat_iron_leggings'
+          item_id: 308
+          item_data: 0
+          name: 'Iron Leggings'
+          craftable: true
+          required_techs: 'tech_blacksmithing'
+          shaped: true
+          category: '<lightgreen>Gear Tier 1'
+          components:
+              - name: 'Defense'
+                value: '2.5'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 265
+                data: 0
+
+                letter: 'i'
+          shape:
+              - "iii"
+              - "i i"
+              - "i i"
+
+        # Checked 10/8/13
+        - id: 'mat_iron_boots'
+          item_id: 309
+          item_data: 0
+          name: 'Iron Boots'
+          craftable: true
+          required_techs: 'tech_blacksmithing'
+          shaped: true
+          category: '<lightgreen>Gear Tier 1'
+          components:
+              - name: 'Defense'
+                value: '1.5'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 265
+                data: 0
+                letter: 'i'
+          shape:
+              - "   "
+              - "i i"
+              - "i i"
+
+
+# Steel Gear recipes ================================================
+
+        # Checked 10/8/13
+        - id: 'mat_steel_helmet'
+          item_id: 302
+          item_data: 0
+          name: 'Steel Helmet'
+          craftable: true
+          required_techs: 'tech_alloys'
+          shaped: true
+          category: '<lightblue>Gear Tier 2'
+          components:
+              - name: 'Defense'
+                value: '4'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_steel_plate'
+                letter: 's'
+          shape:
+              - "sss"
+              - "s s"
+              - "   "
+
+        # Checked 10/8/13
+        - id: 'mat_steel_boots'
+          item_id: 305
+          item_data: 0
+          name: 'Steel Assault Boots'
+          craftable: true
+          required_techs: 'tech_alloys'
+          shaped: true
+          category: '<lightblue>Gear Tier 2'
+          components:
+              - name: 'Defense'
+                value: '3'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_steel_plate'
+                letter: 's'
+          shape:
+              - "   "
+              - "s s"
+              - "s s"
+        
+        # Checked 10/8/13
+        - id: 'mat_steel_chestplate'
+          item_id: 303
+          item_data: 0
+          name: 'Steel Chestplate'
+          craftable: true
+          required_techs: 'tech_alloys'
+          shaped: true
+          category: '<lightblue>Gear Tier 2'
+          components:
+              - name: 'Defense'
+                value: '5' 
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_steel_plate'
+                letter: 's'
+          shape:
+              - "s s"
+              - "sss"
+              - "sss"
+        
+        # Checked 10/8/13
+        - id: 'mat_steel_leggings'
+          item_id: 304
+          item_data: 0
+          name: 'Steel Leggings'
+          craftable: true
+          required_techs: 'tech_alloys'
+          shaped: true
+          category: '<lightblue>Gear Tier 2'
+          components:
+              - name: 'Defense'
+                value: '4' 
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_steel_plate'
+                letter: 's'
+          shape:
+              - "sss"
+              - "s s"
+              - "s s"
+
+        # Checked 10/8/13
+        - id: 'mat_steel_sword'
+          item_id: 267
+          item_data: 0
+          name: 'Steel Longsword'
+          craftable: true
+          required_techs: 'tech_sword_smithing'
+          shaped: true
+          category: '<lightblue>Gear Tier 2'
+          components:
+              - name: 'Attack'
+                value: '18'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_steel_sword_blade'
+                letter: 'b'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_steel_sword_hilt'
+                letter: 'h'
+          shape:
+              - " b "
+              - " b "
+              - " h "
+
+
+## Carbide steel - -- -                  -----------------------------------------
+
+        # Checked 10/8/13
+        - id: 'mat_carbide_steel_sword'
+          item_id: 283
+          item_data: 0
+          name: 'Carbide Steel sword'
+          craftable: true
+          required_techs: 'tech_folded_steel'
+          shaped: true
+          category: '<lightpurple>Gear Tier 3'
+          components:
+              - name: 'Attack'
+                value: '24'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_carbide_steel_sword_blade'
+                letter: 'b'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_carbide_steel_sword_hilt'
+                letter: 'h'
+          shape:
+              - " b "
+              - " b "
+              - " h "
+
+
+        # Checked 10/8/13
+        - id: 'mat_carbide_steel_helmet'
+          item_id: 314
+          item_data: 0
+          name: 'Carbide Steel Helmet'
+          craftable: true
+          required_techs: 'tech_chemical_bonding'
+          shaped: true
+          category: '<lightpurple>Gear Tier 3'
+          components:
+              - name: 'Defense'
+                value: '5.5'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_carbide_steel_plate'
+                letter: 'c'
+          shape:
+              - "ccc"
+              - "c c"
+              - "   "
+
+        # Checked 10/8/13
+        - id: 'mat_carbide_steel_chestplate'
+          item_id: 315
+          item_data: 0
+          name: 'Carbide Steel Chestplate'
+          craftable: true
+          required_techs: 'tech_chemical_bonding'
+          shaped: true
+          category: '<lightpurple>Gear Tier 3'
+          components:
+              - name: 'Defense'
+                value: '6.5'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_carbide_steel_plate'
+                letter: 'c'
+          shape:
+              - "c c"
+              - "ccc"
+              - "ccc"
+
+        # Checked 10/8/13
+        - id: 'mat_carbide_steel_leggings'
+          item_id: 316
+          item_data: 0
+          name: 'Carbide Steel leggings'
+          craftable: true
+          required_techs: 'tech_chemical_bonding'
+          shaped: true
+          category: '<lightpurple>Gear Tier 3'
+          components:
+              - name: 'Defense'
+                value: '5.5'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_carbide_steel_plate'
+                letter: 'c'
+          shape:
+              - "ccc"
+              - "c c"
+              - "c c"
+
+        # Checked 10/8/13
+        - id: 'mat_carbide_steel_boots'
+          item_id: 317
+          item_data: 0
+          name: 'Carbide Steel Boots'
+          craftable: true
+          required_techs: 'tech_chemical_bonding'
+          shaped: true
+          category: '<lightpurple>Gear Tier 3'
+          components:
+              - name: 'Defense'
+                value: '4.5'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_carbide_steel_plate'
+                letter: 'c'
+          shape:
+              - "   "
+              - "c c"
+              - "c c"
+
+# Tungsten Gear recipes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        
+        # Checked 10/8/13
+        - id: 'mat_tungsten_sword'
+          item_id: 276
+          item_data: 0
+          name: 'Tungsten Broadsword'
+          craftable: true
+          required_techs: 'tech_tempering'
+          shaped: true
+          category: '<gold>Gear Tier 4'
+          components:
+              - name: 'Attack'
+                value: '30'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_tungsten_sword_blade'
+                letter: 'b'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_tungsten_sword_hilt'
+                letter: 'h'
+          shape:
+              - " b "
+              - " b "
+              - " h "
+
+        # Checked 10/8/13
+        - id: 'mat_tungsten_boots'
+          item_id: 313
+          item_data: 0
+          name: 'Tungsten Boots'
+          craftable: true
+          required_techs: 'tech_forging'
+          shaped: true
+          category: '<gold>Gear Tier 4'
+          components:
+              - name: 'Defense'
+                value: '5.5'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_tungsten_plate'
+                letter: 't'
+          shape:
+              - "   "
+              - "t t"
+              - "t t"
+
+        # Checked 10/8/13
+        - id: 'mat_tungsten_chestplate'
+          item_id: 311 
+          item_data: 0
+          name: 'Tungsten Chestplate'
+          craftable: true
+          required_techs: 'tech_forging'
+          shaped: true
+          category: '<gold>Gear Tier 4'
+          components:
+              - name: 'Defense'
+                value: '8.5'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_tungsten_plate'
+                letter: 't'
+          shape:
+              - "t t"
+              - "ttt"
+              - "ttt"
+
+        # Checked 10/8/13
+        - id: 'mat_tungsten_leggings'
+          item_id: 312
+          item_data: 0
+          name: 'Tungsten Leggings'
+          craftable: true
+          required_techs: 'tech_forging'
+          shaped: true
+          category: '<gold>Gear Tier 4'
+          components:
+              - name: 'Defense'
+                value: '7'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_tungsten_plate'
+                letter: 't'
+          shape:
+              - "ttt"
+              - "t t"
+              - "t t"
+
+        # Checked 10/8/13
+        - id: 'mat_tungsten_helmet'
+          item_id: 310
+          item_data: 0
+          name: 'Tungsten Helmet'
+          craftable: true
+          required_techs: 'tech_forging'
+          shaped: true
+          category: '<gold>Gear Tier 4'
+          components:
+              - name: 'Defense'
+                value: '7'
+              - name: 'NoVanillaDurability'
+              - name: 'DurabilityOnDeath'
+                value: '0.1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_tungsten_plate'
+                letter: 't'
+          shape:
+              - "ttt"
+              - "t t"
+              - "   "
+
+# Catalyst/Crystal ingredients
+        - id: 'mat_metallic_crystal_fragment_1'
+          item_id: 370
+          item_data: 0
+          name: 'Common Metallic Crystal Fragment'
+          shaped: false
+          craftable: false
+          category: '<lightgreen>Tier 1 Materials'
+        
+        - id: 'mat_metallic_crystal_1'
+          item_id: 399
+          item_data: 0
+          name: 'T1 Common Metallic Crystal'
+          shaped: false
+          craftable: true
+          category: '<lightgreen>Tier 1 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_metallic_crystal_fragment_1'
+                data: 0
+                count: 9
+          
+        - id: 'mat_ionic_crystal_fragment_1'
+          item_id: 377
+          item_data: 0
+          name: 'Common Ionic Crystal Fragment'
+          shaped: false
+          craftable: false
+          components:
+              - name: 'NoRightClick'
+          category: '<lightgreen>Tier 1 Materials'
+        
+        - id: 'mat_ionic_crystal_1'
+          item_id: 378
+          item_data: 0
+          name: 'T1 Common Ionic Crystal'
+          shaped: false
+          craftable: true
+          category: '<lightgreen>Tier 1 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_ionic_crystal_fragment_1'
+                data: 0
+                count: 9
+        
+        - id: 'mat_metallic_crystal_fragment_2'
+          item_id: 370
+          item_data: 0
+          name: 'Uncommon Metallic Crystal Fragment'
+          shaped: false
+          craftable: false
+          category: '<lightgreen>Tier 2 Materials'
+        
+        - id: 'mat_metallic_crystal_2'
+          item_id: 399
+          item_data: 0
+          name: 'T2 Uncommon Metallic Crystal'
+          shaped: false
+          craftable: true
+          category: '<lightgreen>Tier 2 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_metallic_crystal_fragment_2'
+                data: 0
+                count: 9
+          
+        - id: 'mat_ionic_crystal_fragment_2'
+          item_id: 377
+          item_data: 0
+          name: 'Uncommon Ionic Crystal Fragment'
+          shaped: false
+          craftable: false
+          components:
+              - name: 'NoRightClick'
+          category: '<lightgreen>Tier 2 Materials'
+        
+        - id: 'mat_ionic_crystal_2'
+          item_id: 378
+          item_data: 0
+          name: 'T2 Uncommon Ionic Crystal'
+          shaped: false
+          craftable: true
+          category: '<lightgreen>Tier 2 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_ionic_crystal_fragment_2'
+                data: 0
+                count: 9
+        
+        - id: 'mat_metallic_crystal_fragment_3'
+          item_id: 370
+          item_data: 0
+          name: 'Rare Metallic Crystal Fragment'
+          shaped: false
+          craftable: false
+          category: '<lightgreen>Tier 3 Materials'
+        
+        - id: 'mat_metallic_crystal_3'
+          item_id: 399
+          item_data: 0
+          name: 'T3 Rare Metallic Crystal'
+          shaped: false
+          craftable: true
+          category: '<lightgreen>Tier 3 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_metallic_crystal_fragment_3'
+                data: 0
+                count: 9
+          
+        - id: 'mat_ionic_crystal_fragment_3'
+          item_id: 377
+          item_data: 0
+          name: 'Rare Ionic Crystal Fragment'
+          shaped: false
+          craftable: false
+          components:
+              - name: 'NoRightClick'
+          category: '<lightgreen>Tier 3 Materials'
+        
+        - id: 'mat_ionic_crystal_3'
+          item_id: 378
+          item_data: 0
+          name: 'T3 Rare Ionic Crystal'
+          shaped: false
+          craftable: true
+          category: '<lightgreen>Tier 3 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_ionic_crystal_fragment_3'
+                data: 0
+                count: 9
+        
+        - id: 'mat_metallic_crystal_fragment_4'
+          item_id: 370
+          item_data: 0
+          name: 'Legendary Metallic Crystal Fragment'
+          shaped: false
+          craftable: false
+          category: '<lightgreen>Tier 4 Materials'
+        
+        - id: 'mat_metallic_crystal_4'
+          item_id: 399
+          item_data: 0
+          name: 'T4 Legendary Metallic Crystal'
+          shaped: false
+          craftable: true
+          category: '<lightgreen>Tier 4 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_metallic_crystal_fragment_4'
+                data: 0
+                count: 9
+          
+        - id: 'mat_ionic_crystal_fragment_4'
+          item_id: 377
+          item_data: 0
+          name: 'Legendary Ionic Crystal Fragment'
+          shaped: false
+          craftable: false
+          components:
+              - name: 'NoRightClick'
+          category: '<lightgreen>Tier 4 Materials'
+        
+        - id: 'mat_ionic_crystal_4'
+          item_id: 378
+          item_data: 0
+          name: 'T4 Legendary Ionic Crystal'
+          shaped: false
+          craftable: true
+          category: '<lightgreen>Tier 4 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_ionic_crystal_fragment_4'
+                data: 0
+                count: 9
+
+         # hardcoded pufferfish to give more mercury and clowfish to give bath.
+#        - id: 'mat_vanilla_clownfish'
+#         item_id: 349
+#          item_data: 2
+#          name: 'Clownfish'
+#          shaped: false
+#          craftable: false
+#          category: '<lightgreen>Tier 1 Materials'
+#          components:
+#              - name: 'RightClickForItem'
+#                custom_id: 'mat_mercury_bath'
+#                amount: '1'
+        
+#        - id: 'mat_vanilla_pufferfish'
+#          item_id: 349
+#          item_data: 3
+#          name: 'Pufferfish'
+#          shaped: false
+#          craftable: false
+#          category: '<lightgreen>Tier 1 Materials'
+#          components:
+#              - name: 'RightClickForItem'
+#                custom_id: 'mat_mercury'
+#                amount: '4'
+        
+        - id: 'mat_mercury'
+          item_id: 362
+          item_data: 0
+          name: 'Mercury'
+          shaped: false
+          craftable: true
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 349
+                data: 3 #pufferfish
+                count: 1
+
+        - id: 'mat_mercury_bath'
+          item_id: 368
+          item_data: 0
+          name: 'T2 Mercury Bath'
+          shaped: false
+          craftable: true
+          category: '<lightblue>Tier 2 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_mercury'
+                data: 0
+                count: 9
+
+        - id: 'mat_industrial_diamond'
+          item_id: 264
+          item_data: 0
+          name: 'T2 Industrial Diamond'
+          shaped: false
+          craftable: true
+          category: '<lightblue>Tier 2 Materials'
+          components:
+              - name: 'NoRightClick'
+          ingredients:
+              - type_id: 57
+                data: 0
+                count: 3
+
+# --======================= Catalysts ====================================
+        - id: 'mat_common_attack_catalyst'
+          item_id: 340
+          item_data: 0
+          name: 'Common Attack Catalyst'
+          craftable: true
+          shaped: true
+          category: '<lightgreen>Catalyst Tier 1'
+          components:
+              - name: 'NoRightClick'
+              - name: 'Catalyst'
+                enhancement: 'LoreEnhancementAttack'
+                allowed_materials: 'mat_iron_sword, mat_hunting_bow'
+                chance: '50'
+                amount: '1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_metallic_crystal_1'
+                letter: 'c'
+              - type_id: 57
+                data: 0
+                letter: 'd'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_mercury_bath'
+                letter: 'm'
+          shape:
+              - "ccc"
+              - "d d"
+              - "mmm"
+        
+        - id: 'mat_common_defense_catalyst'
+          item_id: 340
+          item_data: 0
+          name: 'Common Defense Catalyst'
+          craftable: true
+          shaped: true
+          category: '<lightgreen>Catalyst Tier 1'
+          components:
+              - name: 'NoRightClick'
+              - name: 'Catalyst'
+                enhancement: 'LoreEnhancementDefense'
+                allowed_materials: 'mat_iron_chestplate, mat_iron_leggings, mat_iron_helmet, mat_iron_boots, mat_leather_chestplate, mat_leather_Boots, mat_leather_leggings, mat_leather_helmet'
+                chance: '66'
+                amount: '0.25'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_ionic_crystal_1'
+                letter: 'c'
+              - type_id: 57
+                data: 0
+                letter: 'd'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_mercury_bath'
+                letter: 'm'
+          shape:
+              - "ccc"
+              - "d d"
+              - "mmm"
+
+#  Uncommon Defense and Attack catalysts
+
+        - id: 'mat_uncommon_attack_catalyst'
+          item_id: 387
+          item_data: 0
+          name: 'Uncommon Attack Catalyst'
+          craftable: true
+          shaped: true
+          category: '<lightblue>Catalyst Tier 2'
+          components:
+              - name: 'NoRightClick'
+              - name: 'Catalyst'
+                enhancement: 'LoreEnhancementAttack'
+                allowed_materials: 'mat_steel_sword, mat_recurve_bow'
+                chance: '50'
+                amount: '1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_metallic_crystal_2'
+                letter: 'c'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_industrial_diamond'
+                letter: 'd'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_mercury_bath'
+                letter: 'm'
+          shape:
+              - "ccc"
+              - " d "
+              - "mmm"
+
+        - id: 'mat_uncommon_defense_catalyst'
+          item_id: 387
+          item_data: 0
+          name: 'Uncommon Defense Catalyst'
+          craftable: true
+          shaped: true
+          category: '<lightblue>Catalyst Tier 2'
+          components:
+              - name: 'NoRightClick'
+              - name: 'Catalyst'
+                enhancement: 'LoreEnhancementDefense'
+                allowed_materials: 'mat_steel_chestplate, mat_steel_leggings, mat_steel_helmet, mat_steel_boots, mat_refined_leather_helmet, mat_refined_leather_chestplate, mat_refined_leather_leggings, mat_refined_leather_boots'
+                chance: '66'
+                amount: '0.25'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_ionic_crystal_2'
+                letter: 'c'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_industrial_diamond'
+                letter: 'd'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_mercury_bath'
+                letter: 'm'
+          shape:
+              - "ccc"
+              - " d "
+              - "mmm"
+
+# Rare Defense and Attack catalysts
+
+
+        - id: 'mat_rare_attack_catalyst'
+          item_id: 387
+          item_data: 0
+          name: 'Rare Attack Catalyst'
+          craftable: true
+          shaped: true
+          category: '<lightpurple>Catalyst Tier 3'
+          components:
+              - name: 'NoRightClick'
+              - name: 'Catalyst'
+                enhancement: 'LoreEnhancementAttack'
+                allowed_materials: 'mat_carbide_steel_sword, mat_longbow'
+                chance: '50'
+                amount: '1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_metallic_crystal_3'
+                letter: 'c'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_industrial_diamond'
+                letter: 'd'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_mercury_bath'
+                letter: 'm'
+          shape:
+              - "ccc"
+              - "d d"
+              - "mmm"
+
+        - id: 'mat_rare_defense_catalyst'
+          item_id: 387
+          item_data: 0
+          name: 'Rare Defense Catalyst'
+          craftable: true
+          shaped: true
+          category: '<lightpurple>Catalyst Tier 3'
+          components:
+              - name: 'NoRightClick'
+              - name: 'Catalyst'
+                enhancement: 'LoreEnhancementDefense'
+                allowed_materials: 'mat_carbide_steel_chestplate, mat_carbide_steel_leggings, mat_carbide_steel_helmet, mat_carbide_steel_boots, mat_hardened_leather_helmet, mat_hardened_leather_chestplate, mat_hardened_leather_leggings, mat_hardened_leather_boots'
+                chance: '66'
+                amount: '0.25'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_ionic_crystal_3'
+                letter: 'c'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_industrial_diamond'
+                letter: 'd'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_mercury_bath'
+                letter: 'm'
+          shape:
+              - "ccc"
+              - "d d"
+              - "mmm"
+
+# Legendary Defense and Attack Catalysts
+
+        - id: 'mat_legendary_attack_catalyst'
+          item_id: 369
+          item_data: 0
+          name: 'Legendary Attack Catalyst'
+          craftable: true
+          shaped: true
+          category: '<gold>Catalyst Tier 4'
+          components:
+              - name: 'NoRightClick'              
+              - name: 'Catalyst'
+                enhancement: 'LoreEnhancementAttack'
+                allowed_materials: 'mat_tungsten_sword, mat_marksmen_bow'
+                chance: '50'
+                amount: '1'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_metallic_crystal_4'
+                letter: 'c'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_industrial_diamond'
+                letter: 'd'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_mercury_bath'
+                letter: 'm'
+          shape:
+              - "ccc"
+              - "ddd"
+              - "mmm"
+
+        - id: 'mat_legendary_defense_catalyst'
+          item_id: 369
+          item_data: 0
+          name: 'Legendary Defense Catalyst'
+          craftable: true
+          shaped: true
+          category: '<gold>Catalyst Tier 4'
+          components:
+              - name: 'NoRightClick'
+              - name: 'Catalyst'
+                enhancement: 'LoreEnhancementDefense'
+                allowed_materials: 'mat_tungsten_chestplate, mat_tungsten_leggings, mat_tungsten_helmet, mat_tungsten_boots, mat_composite_leather_helmet, mat_composite_leather_chestplate, mat_composite_leather_leggings, mat_composite_leather_boots'
+                chance: '66'
+                amount: '0.25'
+          ingredients:
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_ionic_crystal_4'
+                letter: 'c'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_industrial_diamond'
+                letter: 'd'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_mercury_bath'
+                letter: 'm'
+          shape:
+              - "ccc"
+              - "ddd"
+              - "mmm"
+
+#  Special Item Recipes -------------------------------------------------
+        
+        - id: 'mat_tutorial_book'
+          item_id: 340
+          item_data: 0
+          name: 'CivCraft Info'
+          craftable: false
+          shaped: false
+          components:
+              - name: 'TutorialBook'
+
+        - id: 'mat_vanilla_hopper'
+          item_id: 154
+          item_data: 0
+          name: 'Hopper'
+          craftable: true
+          shaped: true
+          vanilla: false
+          required_techs: 'tech_machinery'
+          components:
+              - name: 'AllowBlockPlace'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_carbide_steel_ingot'
+                data: 0
+                letter: 's'
+              - type_id: 54
+                data: 0
+                letter: 'c'
+          shape:
+              - "s s"
+              - "scs"
+              - " s "
+        
+        - id: 'mat_vanilla_slime'
+          item_id: 341
+          item_data: 0
+          name: 'T1 SlimeBall'
+          craftable: true
+          shaped: false
+          category: '<lightgreen>Tier 1 Materials'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_refined_sugar'
+                data: 0
+                count: 3
+              - type_id: 352
+                data: 0
+                count: 2
+        
+        - id: 'mat_vanilla_sticky_piston'
+          item_id: 29
+          item_data: 0
+          name: 'Sticky Piston'
+          craftable: true
+          vanilla: true
+          shaped: true
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_vanilla_slime'
+                data: 0
+                letter: 's'
+              - type_id: 33
+                data: 0
+                letter: 'p'
+          shape:
+              - "   "
+              - " s "
+              - " p "
+        
+        - id: 'mat_vanilla_magma_cream'
+          item_id: 378
+          item_data: 0
+          name: 'Magma Cream'
+          craftable: true
+          vanilla: true
+          shaped: false
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_vanilla_slime'
+                data: 0
+                count: 1
+              - type_id: 377
+                data: 0
+                count: 1
+        
+        - id: 'mat_vanilla_lead'
+          item_id: 420
+          item_data: 0
+          name: 'Lead'
+          craftable: true
+          vanilla: true
+          shaped: true
+          amount: 2
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_vanilla_slime'
+                data: 0
+                letter: 'l'
+              - type_id: 287
+                data: 0
+                letter: 's'
+          shape:
+              - "ss "
+              - "sl "
+              - "  s"
+
+        - id: 'mat_vanilla_stone_pickaxe'
+          item_id: 274
+          item_data: 0
+          name: 'Stone Pickaxe'
+          craftable: true
+          shaped: true
+          category: '<blue>Tools'
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '100.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 4
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mmm"
+              - " s "
+              - " s "
+        
+        - id: 'mat_vanilla_iron_pickaxe'
+          item_id: 257
+          item_data: 0
+          name: 'Iron Pickaxe'
+          craftable: true
+          shaped: true
+          category: '<blue>Tools'
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '1000.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 265
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mmm"
+              - " s "
+              - " s "
+        
+        - id: 'mat_vanilla_gold_pickaxe'
+          item_id: 285
+          item_data: 0
+          name: 'Gold Pickaxe'
+          craftable: true
+          shaped: true
+          category: '<blue>Tools'
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '500.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 266
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mmm"
+              - " s "
+              - " s "
+
+        - id: 'mat_vanilla_diamond_pickaxe'
+          item_id: 278
+          item_data: 0
+          name: 'Diamond Pickaxe'
+          craftable: true
+          shaped: true
+          category: '<blue>Tools'
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '2000.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 264
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mmm"
+              - " s "
+              - " s "
+              
+        - id: 'mat_vanilla_iron_shovel'
+          item_id: 256
+          item_data: 0
+          name: 'Iron Shovel'
+          craftable: true
+          shaped: true
+          category: '<blue>Tools'
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '200.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 265
+                data: 0
+                letter: 'm' 
+          shape:
+              - " m "
+              - " s "
+              - " s "
+        
+        - id: 'mat_vanilla_gold_shovel'
+          item_id: 284
+          item_data: 0
+          name: 'Gold Shovel'
+          craftable: true
+          shaped: true
+          category: '<blue>Tools'
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '100.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 266
+                data: 0
+                letter: 'm' 
+          shape:
+              - " m "
+              - " s "
+              - " s "
+
+        - id: 'mat_vanilla_diamond_shovel'
+          item_id: 277
+          item_data: 0
+          name: 'Diamond Shovel'
+          craftable: true
+          shaped: true
+          category: '<blue>Tools'
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '500.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 264
+                data: 0
+                letter: 'm' 
+          shape:
+              - " m "
+              - " s "
+              - " s "
+        - id: 'mat_vanilla_iron_axe'
+          item_id: 258
+          item_data: 0
+          name: 'Iron Axe'
+          craftable: true
+          shaped: true
+          category: '<blue>Tools'
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '400.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 265
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mm "
+              - "ms "
+              - " s "
+        
+        - id: 'mat_vanilla_gold_axe'
+          item_id: 286
+          item_data: 0
+          name: 'Gold Axe'
+          craftable: true
+          shaped: true
+          category: '<blue>Tools'
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '200.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 266
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mm "
+              - "ms "
+              - " s "
+
+        - id: 'mat_vanilla_diamond_axe'
+          item_id: 279
+          item_data: 0
+          name: 'Diamond Axe'
+          craftable: true
+          shaped: true
+          category: '<blue>Tools'
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '1000.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 264
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mm "
+              - "ms "
+              - " s "
+
+        - id: 'mat_vanilla_iron_hoe'
+          item_id: 292
+          item_data: 0
+          name: 'Iron Hoe'
+          craftable: true
+          shaped: true
+          vanilla: true
+          category: '<blue>Tools'
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '400.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 265
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mm "
+              - " s "
+              - " s "
+        
+        - id: 'mat_vanilla_gold_hoe'
+          item_id: 294
+          item_data: 0
+          name: 'Gold Hoe'
+          craftable: true
+          shaped: true
+          vanilla: true
+          category: '<blue>Tools'
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '200.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 266
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mm "
+              - " s "
+              - " s "
+
+        - id: 'mat_vanilla_diamond_hoe'
+          item_id: 293
+          item_data: 0
+          name: 'Diamond Hoe'
+          craftable: true
+          shaped: true
+          vanilla: true
+          category: '<blue>Tools'
+          components:
+              - name: 'Attack'
+                value: '0.5'
+              - name: 'RepairCost'
+                value: '500.0'
+          ingredients:
+              - type_id: 280 #stick
+                data: 0
+                letter: 's'
+              - type_id: 264
+                data: 0
+                letter: 'm' 
+          shape:
+              - "mm "
+              - " s "
+              - " s "
+              
+        - id: 'mat_vanilla_dispenser'
+          item_id: 23
+          item_data: 0
+          name: 'Dispenser'
+          craftable: true
+          vanilla: true
+          shaped: true
+          ingredients:
+              - type_id: 331 #redstone
+                data: 0
+                letter: 'r'
+              - type_id: 0
+                data: 0
+                custom_id: 'mat_hunting_bow'
+                letter: 'b'
+              - type_id: 4 #cobblestone
+                data: 0
+                letter: 'c' 
+          shape:
+              - "ccc"
+              - "cbc"
+              - "crc"
+              
+        - id: 'mat_vanilla_TNT'
+          item_id: 46
+          item_data: 0
+          name: 'TNT'
+          craftable: true
+          vanilla: true
+          shaped: false
+          components:
+              - name: 'AllowBlockPlace'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_refined_sulphur'
+                data: 0
+                count: 2
+              - type_id: 0
+                custom_id: 'mat_compacted_sand'
+                data: 0
+                count: 1
+                letter: 'g' 
+
+        - id: 'mat_vanilla_ender_chest'
+          item_id: 130
+          item_data: 0
+          name: 'Ender Chest'
+          craftable: true
+          shaped: true
+          vanilla: false         
+          components:
+              - name: 'AllowBlockPlace'
+          ingredients:
+              - type_id: 0
+                custom_id: 'mat_tungsten_plate'
+                data: 0
+                letter: 'p'
+              - type_id: 0
+                custom_id: 'mat_artisan_leather'
+                data: 0
+                letter: 'l'
+              - type_id: 54 #chest
+                data: 0
+                letter: 'c'
+          shape:
+              - "lpl"
+              - "pcp"
+              - "lpl"
+#
+# This is a list of removed recpies based on the typeID and 
+# data value of the vanilla item.
+#
+removed_recipes:
+
+    # iron sword
+    - type_id: 267
+      data: 0 
+    
+    # wood sword
+    - type_id: 268
+      data: 0
+ 
+    # stone sword
+    - type_id: 272
+      data: 0
+
+    # Diamond sword
+    - type_id: 276
+      data: 0
+
+    # gold sword
+    - type_id: 283
+      data: 0
+
+    # iron chestplate
+    - type_id: 307
+      data: 0
+
+    # enchantment table
+    - type_id: 116
+      data: 0
+    
+    # bow
+    - type_id: 261
+      data: 0
+
+    # Leather armor default
+    - type_id: 298
+      data: 0
+    - type_id: 299
+      data: 0
+    - type_id: 300
+      data: 0
+    - type_id: 301
+      data: 0
+    
+    # iron armor default
+    - type_id: 306
+      data: 0
+    - type_id: 307
+      data: 0
+    - type_id: 308
+      data: 0
+    - type_id: 309
+      data: 0
+    
+    # chain armor default
+    - type_id: 302
+      data: 0
+    - type_id: 303
+      data: 0
+    - type_id: 304
+      data: 0
+    - type_id: 305
+      data: 0
+    
+    # gold armor default
+    - type_id: 314
+      data: 0
+    - type_id: 315
+      data: 0
+    - type_id: 316
+      data: 0
+    - type_id: 317
+      data: 0
+
+    # diamond default
+    - type_id: 310
+      data: 0
+    - type_id: 311
+      data: 0
+    - type_id: 312
+      data: 0
+    - type_id: 313
+      data: 0
+
+    # ender pearl
+    - type_id: 368
+      data: 0
+    
+    # Hopper
+    - type_id: 154
+      data: 0
+
+    # Golden apples
+    - type_id: 322
+      data: 0
+
+    # Pickaxes
+    - type_id: 257
+      data: 0
+    - type_id: 274
+      data: 0
+    - type_id: 278
+      data: 0
+    - type_id: 285
+      data: 0
+    
+    # Shovels
+    - type_id: 256
+      data: 0
+    - type_id: 284
+      data: 0
+    - type_id: 277
+      data: 0
+
+    # Axes
+    - type_id: 258
+      data: 0
+    - type_id: 286
+      data: 0
+    - type_id: 279
+      data: 0
+      
+    # Hoe
+#    - type_id: 292
+#      data: 0
+#    - type_id: 294
+#      data: 0
+#    - type_id: 293
+#      data: 0
+        
+    # TNT
+    - type_id: 46
+      data: 0
+
+    # Ender Chest
+    - type_id: 130
+      data: 0
+
+      
+# Amount of tungston to drop
+tungsten_min_drop: 0
+tungsten_max_drop: 1
+tungsten_max_drop_with_fortune: 3

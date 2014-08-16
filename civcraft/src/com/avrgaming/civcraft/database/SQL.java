@@ -45,8 +45,6 @@ import com.avrgaming.civcraft.object.ProtectedBlock;
 import com.avrgaming.civcraft.object.Relation;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.SQLObject;
-import com.avrgaming.civcraft.object.StructureChest;
-import com.avrgaming.civcraft.object.StructureSign;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.object.TownChunk;
 import com.avrgaming.civcraft.object.TradeGood;
@@ -171,8 +169,6 @@ public class SQL {
 		WallBlock.init();
 		RoadBlock.init();
 		PermissionGroup.init();
-		StructureSign.init();
-		StructureChest.init();
 		TradeGood.init();
 		ProtectedBlock.init();
 		BonusGoodie.init();

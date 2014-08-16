@@ -54,6 +54,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
+import com.avrgaming.civcraft.main.CivGlobal;
+import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.util.NBTStaticHelper;
 import com.google.common.io.Files;
 
@@ -116,11 +118,12 @@ public class ImprovedOfflinePlayer {
     this.autosave = autosave;
   }
   /**@param Incomplete**/
-  public void copyDataTo(String playername) {
+public void copyDataTo(String playername) {
     try {
       if(!playername.equalsIgnoreCase(this.player)) {
-        Player to = Bukkit.getPlayerExact(playername);
-        Player from = Bukkit.getPlayerExact(this.player);
+    	Resident res = CivGlobal.getResident(playername);
+        Player to = Bukkit.getPlayer(res.getUUID());
+        Player from = Bukkit.getPlayer(res.getUUID());
         if(from != null) {
           from.saveData();
         }
@@ -131,7 +134,8 @@ public class ImprovedOfflinePlayer {
         }
       }
       else {
-        Player player = Bukkit.getPlayerExact(this.player);
+      	Resident res = CivGlobal.getResident(playername);
+        Player player = Bukkit.getPlayer(res.getUUID());
         if(player != null) {
           player.saveData();
         }

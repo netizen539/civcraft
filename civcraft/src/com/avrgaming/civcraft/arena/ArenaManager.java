@@ -160,6 +160,7 @@ public class ArenaManager implements Runnable {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void startArenaMatch(Arena activeArena, ArenaTeam team1, ArenaTeam team2) {
 
 		/* Set up objectives.. */

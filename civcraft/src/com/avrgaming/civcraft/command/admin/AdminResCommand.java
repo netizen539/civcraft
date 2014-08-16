@@ -18,6 +18,8 @@
  */
 package com.avrgaming.civcraft.command.admin;
 
+import java.sql.SQLException;
+
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -28,6 +30,8 @@ import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.config.ConfigPlatinumReward;
 import com.avrgaming.civcraft.exception.AlreadyRegisteredException;
 import com.avrgaming.civcraft.exception.CivException;
+import com.avrgaming.civcraft.exception.InvalidNameException;
+import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.object.Town;
@@ -45,7 +49,52 @@ public class AdminResCommand extends CommandBase {
 		commands.put("cleartown", "[resident] - clears this residents town.");
 		commands.put("enchant", "[enchant] [level] - Adds the enchantment with level to the item in your hand.");
 		commands.put("giveplat", "[player] [amount] - Gives this player the specified amount of platinum.");
-		commands.put("givereward", "[player] [rewardID] - Gives player this achievement with its plat rewards.");		
+		commands.put("givereward", "[player] [rewardID] - Gives player this achievement with its plat rewards.");
+		commands.put("rename", "[old_name] [new_name] - Rename this resident. Useful if players change their name.");
+	}
+	
+	public void rename_cmd() throws CivException {
+		Resident resident = getNamedResident(1);
+		String newName = getNamedString(2, "Enter a new name");
+
+		
+		
+		Resident newResident = CivGlobal.getResident(newName);
+		if (newResident != null) {
+			throw new CivException("Already another resident with the name:"+newResident.getName()+" cannot rename "+resident.getName());
+		}
+		
+		/* Create a dummy resident to make sure name is valid. */
+		try {
+			new Resident(null, newName);
+		} catch (InvalidNameException e1) {
+			throw new CivException("Invalid name. Pick again.");
+		}
+		
+		/* Delete the old resident object. */
+		try {
+			resident.delete();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new CivException(e.getMessage());
+		}
+		
+		/* Remove resident from CivGlobal tables. */
+		CivGlobal.removeResident(resident);
+		
+		/* Change the resident's name. */
+		try {
+			resident.setName(newName);
+		} catch (InvalidNameException e) {
+			e.printStackTrace();
+			throw new CivException("Internal error:"+e.getMessage());
+		}
+		
+		/* Resave resident to DB and global tables. */
+		CivGlobal.addResident(resident);
+		resident.save();
+		
+		CivMessage.send(sender, "Resident renamed.");
 	}
 	
 	public void givereward_cmd() throws CivException {

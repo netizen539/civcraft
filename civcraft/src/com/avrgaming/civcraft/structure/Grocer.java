@@ -143,14 +143,12 @@ public class Grocer extends Structure {
 					     getNonResidentFeeString());
 			
 			sign.update();
-			sign.save();
 		}
 		
 		for (; count < getSigns().size(); count++) {
 			StructureSign sign = getSignFromSpecialId(count);
 			sign.setText("Grocer Shelf\nEmpty");
 			sign.update();
-			sign.save();
 		}
 		
 	}

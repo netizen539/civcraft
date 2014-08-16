@@ -217,7 +217,6 @@ public class Market extends Structure {
 		signs.add(structSign);
 		this.signIndex.put(id, signs);
 		this.setSignText(structSign, item);
-		structSign.save();
 	}
 	
 	@Override

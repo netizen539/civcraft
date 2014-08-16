@@ -1,0 +1,182 @@
+#
+# This file contains the configuration information about
+# wonders.
+
+
+
+# Wonders
+#
+#  This is a standard configuration for a structure. See structures.yml for details.
+#  Any option for structures is also available for wonders.
+wonders:
+  - id: w_pyramid
+    template: the_great_pyramid
+    template_y_shift: 0
+    displayName: The Great Pyramid
+    require_tech: 'tech_great_pyramid'
+    require_upgrade:
+    check_event:
+    effect_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 750000.0
+    upkeep: 0.0
+    # 168 = one week
+    hammer_cost: 508000.0
+    max_hitpoints: 5000
+    points: 190000
+    regen_rate: 6
+  
+  - id: w_greatlibrary
+    template: the_great_library
+    template_y_shift: 0
+    displayName: The Great Library
+    require_tech: 'tech_great_library'
+    require_upgrade:
+    check_event:
+    effect_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 500000.0
+    upkeep: 0.0
+    # 168 = one week
+    hammer_cost: 448000.0
+    points: 220000
+    max_hitpoints: 5000
+    regen_rate: 6
+  
+  - id: w_hanginggardens
+    template: the_hanging_gardens
+    template_y_shift: 0
+    displayName: The Hanging Gardens
+    require_tech: 'tech_hanging_gardens'
+    require_upgrade:
+    check_event:
+    effect_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 1000000.0
+    upkeep: 0.0
+    # 336 = two weeks
+    hammer_cost: 666000.0
+    points: 220000
+    max_hitpoints: 5000
+    regen_rate: 6
+
+  - id: w_colossus
+    template: the_colossus
+    template_y_shift: 0
+    displayName: The Colossus
+    require_tech: 'tech_colossus'
+    require_upgrade:
+    check_event:
+    effect_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 750000.0
+    upkeep: 0.0
+    hammer_cost: 625000.0
+    points: 235000
+    max_hitpoints: 5000
+    regen_rate: 6
+
+  - id: w_notre_dame
+    template: notre_dame
+    template_y_shift: 0
+    displayName: Notre Dame
+    require_tech: 'tech_notre_dame'
+    require_upgrade:
+    check_event:
+    effect_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 1750000.0
+    upkeep: 0.0
+    hammer_cost: 805000.0
+    points: 275000
+    max_hitpoints: 5000
+    regen_rate: 6
+
+  - id: w_chichen_itza
+    template: chichen_itza
+    template_y_shift: 0
+    displayName: Chichen Itza
+    require_tech: 'tech_chichen_itza'
+    require_upgrade:
+    check_event:
+    effect_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 800000.0
+    upkeep: 0.0
+    hammer_cost: 550000.0
+    points: 250000
+    max_hitpoints: 5000
+    regen_rate: 6
+  
+  - id: w_council_of_eight
+    template: council_of_eight
+    template_y_shift: 0
+    displayName: Council Of Eight
+    require_tech: 'tech_council_of_eight'
+    require_upgrade:
+    check_event:
+    effect_event:
+    update_event:
+    onBuild_event:
+    limit: 1
+    cost: 2000000.0
+    upkeep: 0.0
+    hammer_cost: 900000.0
+    points: 250000
+    max_hitpoints: 5000
+    regen_rate: 6
+# Wonder Buffs
+#
+# To de-complicate the structure/wonder relationship the buffs for wonders
+# are configured here. To add new wonder, add a new id with the id for the 
+# wonder configured above, then add a buff per line under the buffs section
+# as shown below.
+#
+# To configure new buffs use buffs.yml
+#
+#
+wonder_buffs:
+   - id: w_pyramid
+     buffs: 
+         - buff_pyramid_cottage_consume
+         - buff_pyramid_cottage_bonus
+         - buff_pyramid_culture
+         - buff_pyramid_leech
+
+   - id: w_greatlibrary
+     buffs:
+         - buff_greatlibrary_extra_beakers
+         - buff_greatlibrary_double_tax_beakers
+    
+   - id: w_hanginggardens
+     buffs: 
+         - buff_hanging_gardens_growth
+         - buff_hanging_gardens_regen
+   
+   - id: w_colossus
+     buffs:
+         - buff_colossus_reduce_upkeep
+         - buff_colossus_coins_from_culture
+
+   - id: w_notre_dame
+     buffs:
+         - buff_notre_dame_no_anarchy
+         - buff_notre_dame_coins_from_peace
+         - buff_notre_dame_extra_war_penalty
+   
+   - id: w_chichen_itza
+     buffs:
+         - buff_chichen_itza_tower_hp
+         - buff_chichen_itza_regen_rate

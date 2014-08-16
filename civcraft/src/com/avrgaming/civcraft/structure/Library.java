@@ -199,7 +199,6 @@ public class Library extends Structure {
 			StructureSign sign = getSignFromSpecialId(count);
 			sign.setText("Library Slot\nEmpty");
 			sign.update();
-			sign.save();
 		}
 	}
 	

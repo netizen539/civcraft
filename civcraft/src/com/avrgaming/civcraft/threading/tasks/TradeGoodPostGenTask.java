@@ -104,10 +104,24 @@ public class TradeGoodPostGenTask implements Runnable {
 		int totalSize = picksQueue.size();
 		while (picksQueue.peek() != null) {
 			CivMessage.console(playerName, "|- Placing/Picking Goods:"+count+"/"+totalSize+" current size:"+picksQueue.size());
-			TaskMaster.syncTask(new SyncTradeGenTask(picksQueue, amount));
-			count += amount;
+			
+			Queue<TradeGoodPick> processQueue = new LinkedList<TradeGoodPick>();
+			for (int i = 0; i < amount; i++) {
+				TradeGoodPick pick = picksQueue.poll();
+				if (pick == null) {
+					break;
+				}
+				
+				count++;
+				processQueue.add(pick);
+			}
+			
+			TaskMaster.syncTask(new SyncTradeGenTask(processQueue, amount));
+			
 			try {
-				Thread.sleep(500);
+				while (processQueue.peek() != null) {
+					Thread.sleep(500);
+				}
 			} catch (InterruptedException e) {
 				return;
 			}

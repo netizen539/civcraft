@@ -108,7 +108,6 @@ public class GreatLibrary extends Wonder {
 			}
 			
 			sign.update();
-			sign.save();
 		}
 	}
 	

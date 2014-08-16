@@ -259,7 +259,6 @@ public class Bank extends Structure {
 				
 			
 			sign.update();
-			sign.save();
 		}
 	}
 

@@ -33,6 +33,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.bukkit.Bukkit;
@@ -167,13 +168,13 @@ public class Resident extends SQLObject {
 	public HashMap<String, Perk> perks = new HashMap<String, Perk>();
 	private Date lastKilledTime = null;
 	private String lastIP = "";
-	private String uuid = null;
+	private UUID uid;
 	
 	private boolean onRoad = false;
 	
-	public Resident(String name, String uuid) throws InvalidNameException {
+	public Resident(UUID uid, String name) throws InvalidNameException {
 		this.setName(name);
-		this.setUuid(uuid);
+		this.uid = uid;		
 		this.treasury = new EconObject(this);
 		setTimezoneToServerDefault();
 		loadSettings();
@@ -194,7 +195,8 @@ public class Resident extends SQLObject {
 			String table_create = "CREATE TABLE " + SQL.tb_prefix + TABLE_NAME+" (" + 
 					"`id` int(11) unsigned NOT NULL auto_increment," +
 					"`name` VARCHAR(64) NOT NULL," +
-					"`uuid` VARCHAR(256) NOT NULL,"+
+					"`uuid` VARCHAR(256) NOT NULL DEFAULT 'UNKNOWN',"+
+					"`currentName` VARCHAR(64) DEFAULT NULL,"+
 					"`town_id` int(11)," + 
 					"`lastOnline` BIGINT NOT NULL," +
 					"`registered` BIGINT NOT NULL," + 
@@ -224,7 +226,12 @@ public class Resident extends SQLObject {
 			
 			if (!SQL.hasColumn(TABLE_NAME, "uuid")) {
 				CivLog.info("\tCouldn't find `uuid` for resident.");
-				SQL.addColumn(TABLE_NAME, "`uuid` VARCHAR(64) NOT NULL");
+				SQL.addColumn(TABLE_NAME, "`uuid` VARCHAR(256) NOT NULL DEFAULT 'UNKNOWN'");
+			}	
+			
+			if (!SQL.hasColumn(TABLE_NAME, "currentName")) {
+				CivLog.info("\tCouldn't find `currentName` for resident.");
+				SQL.addColumn(TABLE_NAME, "`currentName` VARCHAR(64) DEFAULT NULL");
 			}	
 			
 			if (!SQL.hasColumn(TABLE_NAME, "banned")) {
@@ -276,7 +283,12 @@ public class Resident extends SQLObject {
 		this.townID = rs.getInt("town_id");
 		this.campID = rs.getInt("camp_id");
 		this.lastIP = rs.getString("last_ip");
-		this.uuid = rs.getString("uuid");
+
+		if (rs.getString("uuid").equalsIgnoreCase("UNKNOWN")) {
+			this.uid = null;
+		} else {
+			this.uid = UUID.fromString(rs.getString("uuid"));
+		}
 		
 		this.treasury = new EconObject(this);
 		this.getTreasury().setBalance(rs.getDouble("coins"), false);
@@ -425,7 +437,7 @@ public class Resident extends SQLObject {
 		HashMap<String, Object> hashmap = new HashMap<String, Object>();
 		
 		hashmap.put("name", this.getName());
-		hashmap.put("uuid", this.getUuid());
+		hashmap.put("uuid", this.getUUIDString());
 		if (this.getTown() != null) {
 			hashmap.put("town_id", this.getTown().getId());
 		} else {
@@ -501,7 +513,8 @@ public class Resident extends SQLObject {
 	}
 
 	@Override
-	public void delete() {	
+	public void delete() throws SQLException {	
+		SQL.deleteByName(this.getName(), TABLE_NAME);
 	}
 
 	public EconObject getTreasury() {
@@ -843,6 +856,7 @@ public class Resident extends SQLObject {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void setScoreboardValue(String name, String key, int value) {
 		if (this.scoreboard == null) {
 			return;
@@ -1641,45 +1655,38 @@ public class Resident extends SQLObject {
 					p.configPerk.type_id, 
 					p.configPerk.data, CivColor.Gold+"<Click To Activate>",
 					CivColor.LightBlue+"Count: "+p.count);
-			stack = LoreGuiItem.setAction(stack, "activatePerk:"+p.configPerk.id);
-			
+			stack = LoreGuiItem.setAction(stack, "ActivatePerk");
+			stack = LoreGuiItem.setActionData(stack, "perk", p.configPerk.id);
+
 			inv.addItem(stack);
 		}
 		
 		if (paginator.hasPrevPage) {
 			ItemStack stack = LoreGuiItem.build("Prev Page", ItemManager.getId(Material.PAPER), 0, "");
-			stack = LoreGuiItem.setAction(stack, "showperkpage:"+(pageNumber-1));
+			stack = LoreGuiItem.setAction(stack, "ShowPerkPage");
+			stack = LoreGuiItem.setActionData(stack, "page", ""+(pageNumber-1));
 			inv.setItem(9*5, stack);
 		}
 		
 		if (paginator.hasNextPage) {
 			ItemStack stack = LoreGuiItem.build("Next Page", ItemManager.getId(Material.PAPER), 0, "");
-			stack = LoreGuiItem.setAction(stack, "showperkpage:"+(pageNumber+1));
+			stack = LoreGuiItem.setAction(stack, "ShowPerkPage");
+			stack = LoreGuiItem.setActionData(stack, "page", ""+(pageNumber+1));
 			inv.setItem((CivTutorial.MAX_CHEST_SIZE*9)-1, stack);
 		}
 		
 		player.openInventory(inv);
 	}
 
-	public String getUuid() {
-		if (uuid == null || uuid.isEmpty()) {
-			Player player;
-			try {
-				player = CivGlobal.getPlayer(this);
-			} catch (CivException e) {
-				CivLog.error("Tried to get UUID of offline player and couldn't find a last known UUID.");
-				e.printStackTrace();
-				return "";
-			}
-			setUuid(player.getUniqueId().toString());
-			this.save();
-			return uuid;
-		}
-		
-		return uuid;
+	public UUID getUUID() {
+		return uid;
 	}
-
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
+	
+	public String getUUIDString() {
+		return uid.toString();
+	}
+	
+	public void setUUID(UUID uid) {
+		this.uid = uid;
 	}
 }

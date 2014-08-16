@@ -38,8 +38,6 @@ import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.Resident;
-import com.avrgaming.civcraft.object.StructureChest;
-import com.avrgaming.civcraft.object.StructureSign;
 import com.avrgaming.civcraft.object.Town;
 import com.avrgaming.civcraft.road.Road;
 import com.avrgaming.civcraft.template.Template;
@@ -429,16 +427,6 @@ public class Structure extends Buildable {
 					outpost.getGood().setCiv(null);
 					outpost.getGood().save();
 				}
-			}
-				
-			/* Remove StructureSigns */
-			for (StructureSign sign : this.getSigns()) {
-				sign.delete();
-			}
-			
-			/* Remove StructureChests */
-			for (StructureChest chest : this.getChests()) {
-				chest.delete();
 			}
 			
 			try {

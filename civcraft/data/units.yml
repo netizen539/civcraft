@@ -1,0 +1,67 @@
+# 
+# Unit configuration
+#
+
+# Base rates and information for items 
+# without any units attached.
+#
+base:
+    # T1 Leather speed bonus, greater than 1 is an increase
+    T1_leather_speed: 1.05
+
+    # T2 Leather speed bonus, greater than 1 is an increase
+    T2_leather_speed: 1.1
+
+    # T3 Leather speed bonus, greater than 1 is an increase
+    T3_leather_speed: 1.15
+
+    # T4 Leather speed bonus, greater than 1 is an increase
+    T4_leather_speed: 1.2
+
+    # T1 'Metal' speed bonus
+    T1_metal_speed: 0.95
+
+    # T2 'Metal' speed bonus
+    T2_metal_speed: 0.9
+
+    # T3 'Metal' speed bonus
+    T3_metal_speed: 0.85
+
+    # T4 'Metal' speed bonus
+    T4_metal_speed: 0.8
+
+# Special information per unit
+unit_info:
+    # Percentage of damage increase for warrior unit.
+    warrior_damage: 1.00
+
+    # Percentage of damage increase for archer unit.
+    archer_damage: 1.5
+
+units:
+
+  - id: 'u_spy'
+    name: "Spy"
+    class_name: 'com.avrgaming.civcraft.items.units.Spy'
+    require_tech: 'tech_nationalism'
+    require_struct:
+    require_upgrade:
+    cost: 5000.0
+    hammer_cost: 500.0
+    limit: 1
+    item_id: 381
+    item_data: 0
+    
+  - id: 'u_settler'
+    name: "Settler"
+    class_name: 'com.avrgaming.civcraft.items.units.Settler'
+    require_tech:
+    require_struct:
+    require_upgrade:
+    cost: 25000.0
+    hammer_cost: 500.0
+    limit: 0
+    item_id: 330
+    item_data: 0
+    
+

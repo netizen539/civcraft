@@ -21,12 +21,13 @@ package com.avrgaming.civcraft.threading.tasks;
 import gpl.AttributeUtil;
 import net.minecraft.server.v1_7_R4.Material;
 
-import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
+import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.loreenhancements.LoreEnhancement;
 import com.avrgaming.civcraft.lorestorage.LoreMaterial;
+import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.BuildableDamageBlock;
 import com.avrgaming.civcraft.util.BlockCoord;
@@ -57,7 +58,13 @@ public class StructureBlockHitEvent implements Runnable {
 		if (playerName == null) {
 			return;
 		}
-		Player player = Bukkit.getPlayer(playerName);
+		Player player;
+		try {
+			player = CivGlobal.getPlayer(playerName);
+		} catch (CivException e) {
+			//Player offline now?
+			return;
+		}
 		if (dmgBlock.allowDamageNow(player)) {
 			/* Do our damage. */
 			int damage = 1;

@@ -64,6 +64,7 @@ public class WarListener implements Listener {
 		event.setCancelled(true);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.HIGH)
     public void onBlockPlace(BlockPlaceEvent event) {
 		if (event.isCancelled()) {
@@ -104,9 +105,6 @@ public class WarListener implements Listener {
 			event.getBlock().getWorld().spawnFallingBlock(event.getBlock().getLocation(), event.getBlock().getType(), (byte) 0);
 			event.getBlock().setType(Material.AIR);
 			
-//			event.getBlock().getLocation().getWorld().spawnFallingBlock(event.getBlock().getLocation(), 
-//					ItemManager.getId(event.getBlock()), ItemManager.getData(event.getBlock()));			
-								
 			return;
 		}
 		

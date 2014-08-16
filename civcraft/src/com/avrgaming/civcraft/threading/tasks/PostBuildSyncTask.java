@@ -181,7 +181,6 @@ public class PostBuildSyncTask implements Runnable {
 				if (structSign == null) {
 					structSign = new StructureSign(absCoord, buildable);
 				}
-				structSign.setText(sb.message);
 				block = absCoord.getBlock();
 				ItemManager.setTypeId(block, sb.getType());
 				ItemManager.setData(block, sb.getData());
@@ -197,7 +196,6 @@ public class PostBuildSyncTask implements Runnable {
 				buildable.addStructureSign(structSign);
 				CivGlobal.addStructureSign(structSign);
 				
-				structSign.save();
 				break;
 			case "/chest":
 				StructureChest structChest = CivGlobal.getStructureChest(absCoord);
@@ -222,7 +220,6 @@ public class PostBuildSyncTask implements Runnable {
 					chest.update();
 				}
 				
-				structChest.save();
 				break;
 			}
 			

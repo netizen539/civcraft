@@ -273,7 +273,6 @@ public class Stable extends Structure {
 			structSign.update();
 			this.addStructureSign(structSign);
 			CivGlobal.addStructureSign(structSign);			
-			structSign.save();	
 			break;
 		case "/item":
 			ItemManager.setTypeId(absCoord.getBlock(), sb.getType());
@@ -288,9 +287,7 @@ public class Stable extends Structure {
 						
 			this.addStructureSign(structSign);
 			CivGlobal.addStructureSign(structSign);
-			
-			structSign.save();
-			
+						
 			selectorIndex = Integer.valueOf(sb.keyvalues.get("id"));
 			signComp = signSelectors.get(selectorIndex);
 			if (signComp != null) {
@@ -314,7 +311,6 @@ public class Stable extends Structure {
 			this.addStructureSign(structSign);
 			CivGlobal.addStructureSign(structSign);
 			
-			structSign.save();
 			break;
 		case "/horsespawn":
 			this.horseSpawnCoord = absCoord;

@@ -1,0 +1,29 @@
+# 
+# This file contains any custom enchantments used on items
+#
+
+enchants:
+   - id: 'ench_fire_aspect'
+     name: 'Fire Aspect'
+     cost: 10000.0
+     description: 'Adds fire aspect to your weapon.'
+     enchant_id: 'FIRE_ASPECT'
+
+   - id: 'ench_fire_protection'
+     name: 'Fire Protection'
+     cost: 20000.0
+     description: 'Adds fire protection to your armor.'
+     enchant_id: 'PROTECTION_FIRE'  
+ 
+   - id: 'ench_flame'
+     name: 'Flame (Bow)'
+     cost: 10000.0
+     description: 'Adds flame enchantment to your bow.'
+     enchant_id: 'ARROW_FIRE'
+   
+   - id: 'ench_punchout'
+     name: 'Punchout'
+     cost: 50000.0
+     description: '% chance to do extra damage to a structure.'
+     enchant_id: 'LoreEnhancementPunchout'
+

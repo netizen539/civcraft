@@ -21,6 +21,7 @@ package com.avrgaming.civcraft.database;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -35,8 +36,18 @@ public class SQLUpdate implements Runnable {
 	public static ReentrantLock lock = new ReentrantLock();
 	
 	private static Queue<SQLObject> saveObjects = new LinkedList<SQLObject>();
-	
+	public static ConcurrentHashMap<String, Integer> saveObjectCounts = new ConcurrentHashMap<String, Integer>();
+
 	public static void add(SQLObject obj) {
+		Integer count = saveObjectCounts.get(obj.getClass().getSimpleName());
+		if (count == null) {
+			count = 1;
+		} else {
+			count++;
+		}
+		saveObjectCounts.put(obj.getClass().getSimpleName(), count);
+		
+		
 		/* XXX dont wait here, could be in sync thread */
 		if (lock.tryLock()) {
 			try {
@@ -79,14 +90,22 @@ public class SQLUpdate implements Runnable {
 	@Override
 	public void run() {
 		lock.lock();
+		
 		try {
 			for (int i = 0; i < UPDATE_LIMIT; i++) {
 				SQLObject obj = saveObjects.poll();
 				if (obj == null) {
 					break;
 				}
+
 							
 				try {
+					Integer count = saveObjectCounts.get(obj.getClass().getSimpleName());
+					if (count != null) {
+						count--;
+						saveObjectCounts.put(obj.getClass().getSimpleName(), count);
+					}
+					
 					obj.saveNow();
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -95,6 +114,5 @@ public class SQLUpdate implements Runnable {
 		} finally {
 			lock.unlock();
 		}
-	}
-
+	}	
 }

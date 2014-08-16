@@ -222,19 +222,14 @@ public class CivTutorial {
 						0, 
 						CivColor.LightBlue+cat.materials.size()+" Items",
 						CivColor.Gold+"<Click To Open>");
-						infoRec = LoreGuiItem.setAction(infoRec, "openinv:showGuiInv:"+cat.name+" Recipies");
+						infoRec = LoreGuiItem.setAction(infoRec, "OpenInventory");
+						infoRec = LoreGuiItem.setActionData(infoRec, "invType", "showGuiInv");
+						infoRec = LoreGuiItem.setActionData(infoRec, "invName", cat.name+" Recipes");
+						
 						craftingHelpInventory.addItem(infoRec);
 						
-//				/* Build a new GUI Inventory. */
-//				for (ConfigMaterial mat : cat.materials.values()) {
-//					LoreCraftableMaterial craftMat = LoreCraftableMaterial.getCraftMaterialFromId(mat.id);
-//					ItemStack stack = LoreMaterial.spawn(craftMat);
-//					stack = LoreGuiItem.asGuiItem(stack);
-//					stack = LoreGuiItem.setAction(stack, "spawn");
-//					inv.addItem(stack);
-//				}
 						
-				Inventory inv = Bukkit.createInventory(player, LoreGuiItem.MAX_INV_SIZE, cat.name+" Recipies");
+				Inventory inv = Bukkit.createInventory(player, LoreGuiItem.MAX_INV_SIZE, cat.name+" Recipes");
 				for (ConfigMaterial mat : cat.materials.values()) {
 
 					ItemStack stack = getInfoBookForItem(mat.id);
@@ -258,13 +253,15 @@ public class CivTutorial {
 			ItemStack infoRec = LoreGuiItem.build("CivCraft Info", 
 					ItemManager.getId(Material.WRITTEN_BOOK), 
 							0, CivColor.Gold+"<Click To View>");
-			infoRec = LoreGuiItem.setAction(infoRec, "openinv:showTutorialInventory");
+			infoRec = LoreGuiItem.setAction(infoRec, "OpenInventory");
+			infoRec = LoreGuiItem.setActionData(infoRec, "invType", "showTutorialInventory");
 			guiInventory.addItem(infoRec);
 			
 			ItemStack craftRec = LoreGuiItem.build("Crafting Recipes", 
 					ItemManager.getId(Material.WRITTEN_BOOK), 
 					0, CivColor.Gold+"<Click To View>");
-			craftRec = LoreGuiItem.setAction(craftRec, "openinv:showCraftingHelp");
+			infoRec = LoreGuiItem.setAction(infoRec, "OpenInventory");
+			infoRec = LoreGuiItem.setActionData(infoRec, "invType", "showCraftingHelp");
 			guiInventory.addItem(craftRec);
 			LoreGuiItemListener.guiInventories.put(guiInventory.getName(), guiInventory);
 		}

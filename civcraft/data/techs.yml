@@ -1,0 +1,440 @@
+
+# This file contains all of the information about technologies.
+#
+# 1 beaker = 1 min worth of research with no extra perks.
+# For beta phase 2, starting off the first technologies at 3 hours. (180 mins)
+# 
+# ---- Tech restricted items
+# This is a list of items and which techs they are craftable at
+items:
+   - id: 417
+     name: 'Iron Horse Armor'
+     require_tech: 'tech_global_trade'
+   - id: 418
+     name: 'Gold Horse Armor'
+     require_tech: 'tech_global_trade'
+   - id: 419
+     name: 'Diamond Horse Armor'
+     require_tech: 'tech_global_trade'
+
+potions:
+   - name: 'Fire Resist'
+     data: 8195
+     require_tech: 'tech_alchemy'
+
+   - name: 'Swiftness'
+     data: 8194
+     require_tech: 'tech_malting' 
+
+   - name: 'Healing I'
+     data: 8197
+     require_tech: 'tech_brewing'
+
+   - name: 'Healing II'
+     data: 8229
+     require_tech: 'tech_fermentation'
+
+# ------------------------------------------
+# the amount to multiply cottage coins once taxation is researched
+taxation_cottage_buff: 2.0
+
+# Definitions for technologies.
+techs:
+   - id: 'tech_agriculture'
+     name: 'Agriculture'
+     beaker_cost: 500.0
+     cost: 5000.0
+     points: 125
+     require_techs:
+
+   - id: 'tech_armory'
+     name: 'Armory'
+     beaker_cost: 500.0
+     cost: 5000.0
+     points: 125
+     require_techs:
+     
+   - id: 'tech_mining'
+     name: 'Mining'
+     beaker_cost: 500.0
+     cost: 5000.0
+     points: 125
+     require_techs:
+   
+   - id: 'tech_religion'
+     name: 'Religion'
+     beaker_cost: 500.0
+     cost: 5000.0
+     points: 125
+     require_techs:
+
+   - id: 'tech_archery'
+     name: 'Archery'
+     beaker_cost: 1000.0
+     cost: 7500.0
+     points: 250
+     require_techs: 'tech_armory'
+
+   - id: 'tech_blacksmithing'
+     name: 'Blacksmithing'
+     beaker_cost: 1000.0
+     cost: 7500.0
+     points: 250
+     require_techs: 'tech_armory'
+
+   - id: 'tech_metal_casting'
+     name: 'Metal Casting'
+     beaker_cost: 1000.0
+     cost: 7500.0
+     points: 250
+     require_techs: 'tech_armory'
+
+   - id: 'tech_masonry'
+     name: 'Masonry'
+     beaker_cost: 1000.0
+     cost: 7500.0
+     points: 250
+     require_techs: 'tech_mining'
+
+   - id: 'tech_productivity'
+     name: 'Productivity'
+     beaker_cost: 1000.0
+     cost: 7500.0
+     points: 250
+     require_techs: 'tech_mining'
+   
+   - id: 'tech_pottery'
+     name: 'Pottery'
+     beaker_cost: 1000.0
+     cost: 7500.0
+     points: 250
+     require_techs: 'tech_agriculture'
+
+   - id: 'tech_hunting'
+     name: 'Hunting'
+     beaker_cost: 1000.0
+     cost: 7500.0
+     points: 250
+     require_techs: 'tech_agriculture'
+
+   - id: 'tech_code_of_laws'
+     name: 'Code of Laws'
+     beaker_cost: 1000.0
+     cost: 7500.0
+     points: 250
+     require_techs: 'tech_religion'
+
+   - id: 'tech_brewing'
+     name: 'Brewing'
+     beaker_cost: 1000.0
+     cost: 7500.0
+     points: 250
+     require_techs: 'tech_religion'
+
+   - id: 'tech_advanced_masonry'
+     name: 'Advanced Masonry'
+     beaker_cost: 2000.0
+     cost: 10000.0
+     points: 500
+     require_techs: 'tech_masonry'
+   
+   - id: 'tech_sailing'
+     name: 'Sailing'
+     beaker_cost: 2000.0
+     cost: 10000.0
+     points: 500
+     require_techs: 'tech_productivity'
+   
+   - id: 'tech_automation'
+     name: 'Automation'
+     beaker_cost: 2000.0
+     cost: 10000.0
+     points: 500
+     require_techs: 'tech_pottery'
+   
+   - id: 'tech_trade'
+     name: 'Trade'
+     beaker_cost: 2000.0
+     cost: 10000.0
+     points: 500
+     require_techs: 'tech_hunting'
+   
+   - id: 'tech_writing'
+     name: 'Writing'
+     beaker_cost: 2000.0
+     cost: 10000.0
+     points: 500
+     require_techs: 'tech_code_of_laws'
+   
+   - id: 'tech_priesthood'
+     name: 'Priesthood'
+     beaker_cost: 2000.0
+     cost: 10000.0
+     points: 500
+     require_techs: 'tech_brewing'
+
+   - id: 'tech_leather_refinement'
+     name: 'Leather Refinement'
+     beaker_cost: 2500.0
+     cost: 15000.0
+     points: 625
+     require_techs: 'tech_archery:tech_advanced_masonry:tech_automation'
+
+   - id: 'tech_fletching'
+     name: 'Fletching'
+     beaker_cost: 2500.0
+     cost: 15000.0
+     points: 625
+     require_techs: 'tech_archery:tech_advanced_masonry:tech_automation'
+
+   - id: 'tech_alloys'
+     name: 'Alloys'
+     beaker_cost: 2500.0
+     cost: 15000.0
+     points: 625
+     require_techs: 'tech_blacksmithing:tech_advanced_masonry:tech_automation'
+
+   - id: 'tech_sword_smithing'
+     name: 'Sword Smithing'
+     beaker_cost: 2500.0
+     cost: 15000.0
+     points: 625
+     require_techs: 'tech_metal_casting:tech_advanced_masonry:tech_automation'
+   
+   - id: 'tech_artillery'
+     name: 'Artillery'
+     beaker_cost: 2500.0
+     cost: 15000.0
+     points: 625
+     require_techs: 'tech_advanced_masonry'
+
+   - id: 'tech_commerce'
+     name: 'Commerce'
+     beaker_cost: 2500.0
+     cost: 15000.0
+     points: 625
+     require_techs: 'tech_trade'
+ 
+   - id: 'tech_monarchy'
+     name: 'Monarchy'
+     beaker_cost: 2500.0
+     cost: 15000.0
+     points: 625
+     require_techs: 'tech_writing'
+  
+   - id: 'tech_fermentation'
+     name: 'Fermentation'
+     beaker_cost: 2500.0
+     cost: 15000.0
+     points: 625
+     require_techs: 'tech_priesthood'
+   
+   - id: 'tech_taxation'
+     name: 'Taxation'
+     beaker_cost: 10000.0
+     cost: 40000.0
+     points: 2500
+     require_techs: 'tech_sailing'
+   
+   - id: 'tech_currency'
+     name: 'Currency'
+     beaker_cost: 10000.0
+     cost: 40000.0
+     points: 2500
+     require_techs: 'tech_monarchy'
+   
+   - id: 'tech_effenciency'
+     name: 'Effenciency'
+     beaker_cost: 20000.0
+     cost: 75000.0
+     points: 5000
+     require_techs: 'tech_taxation'
+   
+   - id: 'tech_global_trade'
+     name: 'Global Trade'
+     beaker_cost: 20000.0
+     cost: 75000.0
+     points: 5000
+     require_techs: 'tech_commerce'
+   
+   - id: 'tech_economics'
+     name: 'Economics'
+     beaker_cost: 20000.0
+     cost: 100000.0
+     points: 5000
+     require_techs: 'tech_currency'
+
+   - id: 'tech_malting'
+     name: 'Malting'
+     beaker_cost: 20000.0
+     cost: 75000.0
+     points: 5000
+     require_techs: 'tech_fermentation'
+   
+   - id: 'tech_tanning'
+     name: 'Tanning'
+     beaker_cost: 17500.0
+     cost: 75000.0
+     points: 4375
+     require_techs: 'tech_effenciency:tech_malting:tech_leather_refinement'
+
+   - id: 'tech_tillering'
+     name: 'Tillering'
+     beaker_cost: 17500.0
+     cost: 75000.0
+     points: 4375
+     require_techs: 'tech_effenciency:tech_malting:tech_fletching'
+
+   - id: 'tech_chemical_bonding'
+     name: 'Chemical Bonding'
+     beaker_cost: 17500.0
+     cost: 75000.0
+     points: 4375
+     require_techs: 'tech_effenciency:tech_malting:tech_alloys'
+
+   - id: 'tech_folded_steel'
+     name: 'Folded Steel'
+     beaker_cost: 17500.0
+     cost: 75000.0
+     points: 4375
+     require_techs: 'tech_effenciency:tech_malting:tech_sword_smithing'
+
+   - id: 'tech_advanced_artillery'
+     name: 'Advanced Artillery'
+     beaker_cost: 35000.0
+     cost: 150000.0
+     points: 8750
+     require_techs: 'tech_artillery'
+
+   - id: 'tech_machinery'
+     name: 'Machinery'
+     beaker_cost: 35000.0
+     cost: 150000.0
+     points: 8750
+     require_techs: 'tech_effenciency'
+
+   - id: 'tech_nationalism'
+     name: 'Nationalism'
+     beaker_cost: 35000.0
+     cost: 300000.0
+     points: 8750
+     require_techs: 'tech_economics'
+
+   - id: 'tech_alchemy'
+     name: 'Alchemy'
+     beaker_cost: 35000.0
+     cost: 150000.0
+     points: 8750
+     require_techs: 'tech_malting'
+
+   - id: 'tech_construction'
+     name: 'Construction'
+     beaker_cost: 70000.0
+     cost: 1000000.0
+     points: 17500
+     require_techs: 'tech_nationalism'
+
+   - id: 'tech_advanced_effenciency'
+     name: 'Advanced Effenciency'
+     beaker_cost: 35000.0
+     cost: 150000.0
+     points: 8750
+     require_techs: 'tech_machinery'
+
+   - id: 'tech_innovation'
+     name: 'Innovation'
+     beaker_cost: 200000.0
+     cost: 1500000.0
+     points: 50000
+     require_techs: 'tech_construction'
+
+   - id: 'tech_composites'
+     name: 'Composites'
+     beaker_cost: 175000.0
+     cost: 2500000.0
+     points: 43750
+     require_techs: 'tech_advanced_effenciency:tech_innovation:tech_tanning'
+
+   - id: 'tech_laminates'
+     name: 'Laminates'
+     beaker_cost: 175000.0
+     cost: 2500000.0
+     points: 43750
+     require_techs: 'tech_advanced_effenciency:tech_innovation:tech_tillering'
+
+   - id: 'tech_forging'
+     name: 'Forging'
+     beaker_cost: 175000.0
+     cost: 2500000.0
+     points: 43750
+     require_techs: 'tech_advanced_effenciency:tech_innovation:tech_chemical_bonding'
+
+   - id: 'tech_tempering'
+     name: 'Tempering'
+     beaker_cost: 175000.0
+     cost: 2500000.0
+     points: 43750
+     require_techs: 'tech_advanced_effenciency:tech_innovation:tech_folded_steel'
+
+   - id: 'tech_scientific_method'
+     name: 'Scientific Method'
+     beaker_cost: 350000.0
+     cost: 2500000.0
+     points: 87500
+     require_techs: 'tech_innovation'
+
+   - id: 'tech_enlightenment'
+     name: 'Enlightenment'
+     beaker_cost: 1500000.0
+     cost: 10000000.0
+     points: 375000
+     require_techs: 'tech_composites:tech_laminates:tech_forging:tech_tempering:tech_advanced_artillery:tech_advanced_effenciency:tech_scientific_method:tech_alchemy:tech_automation:tech_global_trade'
+
+   - id: 'tech_great_pyramid'
+     name: 'Great Pyramid'
+     beaker_cost: 75000.0
+     cost: 75000.0
+     points: 18750
+     require_techs: 'tech_sailing:tech_advanced_masonry:tech_automation'
+
+   - id: 'tech_hanging_gardens'
+     name: 'Hanging Gardens'
+     beaker_cost: 100000.0
+     cost: 100000.0
+     points: 25000
+     require_techs: 'tech_automation:tech_commerce'
+
+   - id: 'tech_colossus'
+     name: 'Colossus'
+     beaker_cost: 75000.0
+     cost: 75000.0
+     points: 18750
+     require_techs: 'tech_advanced_artillery:tech_global_trade:tech_nationalism'
+
+   - id: 'tech_chichen_itza'
+     name: 'Chichen Itza'
+     beaker_cost: 80000.0
+     cost: 80000.0
+     points: 40000
+     require_techs: 'tech_tanning:tech_tillering:tech_chemical_bonding:tech_folded_steel'
+
+   - id: 'tech_great_library'
+     name: 'Great Library'
+     beaker_cost: 50000.0
+     cost: 50000.0
+     points: 12500
+     require_techs: 'tech_advanced_artillery:tech_machinery'
+
+   - id: 'tech_notre_dame'
+     name: 'Notre Dame'
+     beaker_cost: 175000.0
+     cost: 175000.0
+     points: 43750
+     require_techs: 'tech_construction:tech_global_trade:tech_productivity'
+
+   - id: 'tech_council_of_eight'
+     name: 'Council of Eight'
+     beaker_cost: 175000.0
+     cost: 175000.0
+     points: 43750
+     require_techs: 'tech_alchemy:tech_global_trade:tech_scientific_method:tech_advanced_effenciency' 

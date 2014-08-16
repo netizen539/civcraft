@@ -162,7 +162,6 @@ public class Blacksmith extends Structure {
 			}
 				
 			sign.update();
-			sign.save();
 		}
 	}
 	

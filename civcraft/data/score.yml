@@ -1,0 +1,27 @@
+#
+# This file contains information how how to calculate civ scores and town scores.
+# Each object that a town or civilization owns can contribute to its score. The 
+# weight of each of these objects is set here. Scores are integers.
+#
+# Structures and wonders are worth points as well, but are configured in the structure.yml
+# The technologies are also worth points, but are configured in techs.yml
+
+# The Civ score is the sum of all of the towns scores underneath them,
+# plus this extra stuff.
+town_scores:
+    # How many points is each town chunk worth
+    town_chunk: 200
+
+    # How many points is each culture chunk this town owns is worth
+    culture_chunk: 100
+
+    # Points per resident in town
+    resident: 5000
+
+    # Points per coin in town treasury
+    coins: 25
+
+
+# Amount of coins each score point is worth, which determines the town's
+# worth during selling.
+coins_per_point: 5.0  

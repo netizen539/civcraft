@@ -564,6 +564,7 @@ public abstract class CommandBase implements CommandExecutor {
 		return args[index];
 	}
 	
+	@SuppressWarnings("deprecation")
 	protected OfflinePlayer getNamedOfflinePlayer(int index) throws CivException {
 		if (args.length < (index+1)) {
 			throw new CivException("Enter a player name");

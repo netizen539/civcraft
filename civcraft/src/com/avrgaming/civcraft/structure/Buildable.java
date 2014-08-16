@@ -396,7 +396,7 @@ public abstract class Buildable extends SQLObject {
 			ItemStack infoRec = LoreGuiItem.build("Default "+this.getDisplayName(), 
 					ItemManager.getId(Material.WRITTEN_BOOK), 
 					0, CivColor.Gold+"<Click To Build>");
-			infoRec = LoreGuiItem.setAction(infoRec, "buildWithDefaultTemplate");
+			infoRec = LoreGuiItem.setAction(infoRec, "BuildWithTemplate");
 			inv.addItem(infoRec);
 			
 			for (Perk perk : perkList) {
@@ -404,7 +404,8 @@ public abstract class Buildable extends SQLObject {
 						perk.configPerk.type_id, 
 						perk.configPerk.data, CivColor.Gold+"<Click To Build>",
 						CivColor.Gray+"Provided by: "+CivColor.LightBlue+perk.provider);
-				infoRec = LoreGuiItem.setAction(infoRec, "buildWithTemplate:"+perk.getIdent());
+				infoRec = LoreGuiItem.setAction(infoRec, "BuildWithTemplate");
+				infoRec = LoreGuiItem.setActionData(infoRec, "perk", perk.getIdent());
 				inv.addItem(infoRec);
 			}
 			
@@ -416,9 +417,10 @@ public abstract class Buildable extends SQLObject {
 						CivColor.Gray+"You own this template.",
 						CivColor.Gray+"The town is missing it.",
 						CivColor.Gray+"Click to bind to town first.",
-						CivColor.Gray+"Then build again.");
-				infoRec = LoreGuiItem.setAction(infoRec, "activateperk:"+perk.getIdent());
-				inv.addItem(infoRec);
+						CivColor.Gray+"Then build again.");				
+				infoRec = LoreGuiItem.setAction(infoRec, "ActivatePerk");
+				infoRec = LoreGuiItem.setActionData(infoRec, "perk", perk.getIdent());
+				
 			}
 			
 			/* We will resume by calling buildPlayerPreview with the template when a gui item is clicked. */
@@ -483,7 +485,7 @@ public abstract class Buildable extends SQLObject {
 			ItemStack infoRec = LoreGuiItem.build("Default "+info.displayName, 
 					ItemManager.getId(Material.WRITTEN_BOOK), 
 					0, CivColor.Gold+"<Click To Build>");
-			infoRec = LoreGuiItem.setAction(infoRec, "buildWithDefaultPersonalTemplate");
+			infoRec = LoreGuiItem.setAction(infoRec, "BuildWithDefaultPersonalTemplate");
 			inv.addItem(infoRec);
 			
 			for (Perk perk : perkList) {
@@ -491,7 +493,8 @@ public abstract class Buildable extends SQLObject {
 						perk.configPerk.type_id, 
 						perk.configPerk.data, CivColor.Gold+"<Click To Build>",
 						CivColor.Gray+"Provided by: "+CivColor.LightBlue+"Yourself :)");
-				infoRec = LoreGuiItem.setAction(infoRec, "buildWithPersonalTemplate:"+perk.getIdent());
+				infoRec = LoreGuiItem.setAction(infoRec, "BuildWithPersonalTemplate");
+				infoRec = LoreGuiItem.setActionData(infoRec, "perk", perk.getIdent());
 				inv.addItem(infoRec);
 				player.openInventory(inv);
 			}

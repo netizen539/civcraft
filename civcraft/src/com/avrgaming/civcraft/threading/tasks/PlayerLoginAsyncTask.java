@@ -60,10 +60,21 @@ public class PlayerLoginAsyncTask implements Runnable {
 			CivLog.info("Running PlayerLoginAsyncTask for "+playerName);
 			Resident resident = CivGlobal.getResident(playerName);
 			
+			/* 
+			 * Test to see if player has changed their name. If they have, these residents
+			 * will not match. Disallow players changing their name without admin approval. 
+			 */
+			if (CivGlobal.getResidentViaUUID(getPlayer().getUniqueId()) != resident) {
+				TaskMaster.syncTask(new PlayerKickBan(playerName, true, false, 
+						"Your user ID on record does not match the player name you're attempting to log in with."+
+						"If you changed your name, please change it back or contact an admin to request a name change."));
+				return;
+			}
+	
 			if (resident == null) {
 				CivLog.info("No resident found. Creating for "+playerName);
 				try {
-					resident = new Resident(playerName, getPlayer().getUniqueId().toString());
+					resident = new Resident(getPlayer().getUniqueId(), playerName);
 				} catch (InvalidNameException e) {
 					TaskMaster.syncTask(new PlayerKickBan(playerName, true, false, "You have an invalid name. Sorry."));
 					return;
@@ -85,6 +96,21 @@ public class PlayerLoginAsyncTask implements Runnable {
 				CivMessage.send(resident, CivColor.LightGray+"To remove it, type /resident pvptimer");
 	
 			} 
+			
+			/* 
+			 * Resident is present. Lets check the UUID against the stored UUID.
+			 * We are not going to allow residents to change names without admin permission.
+			 * If someone logs in with a name that does not match the stored UUID, we'll kick them.
+			 */
+			if (resident.getUUID() == null) {
+				/* This resident does not yet have a UUID stored. Free lunch. */
+				resident.setUUID(getPlayer().getUniqueId());
+				CivLog.info("Resident named:"+resident.getName()+" was acquired by UUID:"+resident.getUUIDString());
+			} else if (!resident.getUUID().equals(getPlayer().getUniqueId())) {
+				TaskMaster.syncTask(new PlayerKickBan(playerName, true, false, 
+						"You're attempting to log in with a name already in use. Please change your name."));
+				return;
+			}
 			
 			if (!resident.isGivenKit()) {
 				TaskMaster.syncTask(new GivePlayerStartingKit(resident.getName()));

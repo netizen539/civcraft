@@ -1,0 +1,121 @@
+# 
+# This file contains all of the different governments and related settings
+#
+
+# Number of hours to remain in anarchy after switching governments.
+anarchy_duration: 24
+
+######################################################################
+#               CivCraft Governments
+#       This is a basic configuration of governments, for now this is
+#       pretty basic, and I'll have to come up with a way to make things
+#       as configurable as possible.
+#
+#       id = unquie id for this government
+#       displayName = name shown to players
+#       good_rate = the amount at which each same-good type multiplies revenue
+#       trade_rate = total bonus percentage for all trade revenue
+#       beaker_rate = science rate, not used yet
+#       hammer_rate = production rate, not used yet
+#       upkeep multiplier = upkeep increases or decreases by this multiplier, not used yet.
+######################################################################
+governments:
+        - id: gov_anarchy
+          displayName: Anarchy
+          require_tech:
+          trade_rate: 0.0
+          cottage_rate: 0.0
+          upkeep_rate: 5.0
+          growth_rate: 0.3
+          maximum_tax_rate: 0.0
+          culture_rate: 0.0 
+          hammer_rate: 0.5
+          beaker_rate: 0.5
+          power_type: mayor_all_power
+
+        - id: gov_tribalism
+          displayName: Tribalism
+          require_tech:
+          trade_rate: 0.8
+          cottage_rate: 0.8
+          upkeep_rate: 1.0
+          growth_rate: 0.5
+          maximum_tax_rate: 0.05
+          culture_rate: 1.0 
+          hammer_rate: 1.0
+          beaker_rate: 1.0
+          power_type: mayor_all_power
+
+
+          #focus: Stong Mining, Poor everything else.
+        - id: gov_despotism
+          displayName: Despotism
+          require_tech: 'tech_productivity' 
+          trade_rate: 0.8
+          upkeep_rate: 1.25
+          cottage_rate: 0.8
+          growth_rate: 0.5
+          maximum_tax_rate: 0.10
+          culture_rate: 1.0 
+          hammer_rate: 1.10
+          beaker_rate: 1.0
+          power_type: mayor_all_power
+       
+
+          # focus: Strong  Taxs, Cottages, Farming
+        - id: gov_monarchy
+          displayName: Monarchy
+          require_tech: 'tech_monarchy'
+          trade_rate: 0.8
+          upkeep_rate: 1.5
+          cottage_rate: 1.5
+          growth_rate: 0.8
+          maximum_tax_rate: 0.30
+          culture_rate: 1.05
+          hammer_rate: 1.0
+          beaker_rate: 1.0
+          power_type: mayor_all_power
+            
+          # focus: Strong  Trade, Negative science, Weak Mining / Cottages
+        - id: gov_theocracy
+          displayName: Theocracy
+          require_tech: 'tech_global_trade'
+          trade_rate: 2.0
+          upkeep_rate: 1.15
+          cottage_rate: 0.8
+          growth_rate: 0.75
+          maximum_tax_rate: 0.5
+          culture_rate: 1.25 
+          hammer_rate: 1.0
+          beaker_rate: 1.0
+          power_type: mayor_all_power
+          
+          # focus: Strong  production, medium everything else
+        - id: gov_communism
+          displayName: Communism
+          require_tech: 'tech_construction'
+          good_rate: 1.00
+          trade_rate: 1.00
+          upkeep_rate: 0.75
+          cottage_rate: 1.0
+          growth_rate: 0.85
+          maximum_tax_rate: 0.20
+          culture_rate: 1.0
+          hammer_rate: 1.75
+          beaker_rate: 1.0
+          power_type: mayor_all_power
+
+          # TODO later
+        - id: gov_republic
+          displayName: Republic
+          require_tech: 'tech_republic'
+          trade_rate: 0.8
+          upkeep_rate: 1.5
+          cottage_rate: 0.8
+          growth_rate: 0.8
+          maximum_tax_rate: 0.40
+          culture_rate: 1.0
+          hammer_rate: 1.0
+          beaker_rate: 1.0
+          power_type: mayor_all_power
+

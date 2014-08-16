@@ -29,7 +29,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -651,6 +650,7 @@ public class Town extends SQLObject {
 		ConfigCultureLevel clc = CivSettings.cultureLevels.get(this.getCultureLevel());
 				
 		this.culture += generated;
+		this.save();
 		if (this.getCultureLevel() != CivSettings.getMaxCultureLevel()) {
 			if (this.culture >= clc.amount) {
 				CivGlobal.processCulture();
@@ -800,7 +800,7 @@ public class Town extends SQLObject {
 				throw new CivException("The town name of "+name+" is invalid, choose another.");
 			}
 			
-			Player player = Bukkit.getPlayer(resident.getName());
+			Player player = CivGlobal.getPlayer(resident.getName());
 			if (player == null) {
 				throw new CivException("Couldn't find you? Are you online? wat?");
 			}

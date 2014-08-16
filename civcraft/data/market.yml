@@ -1,0 +1,178 @@
+#
+# Stores information used by the global marketplace. 
+# Maps sign id's to in-game id's and gives a starting price
+# for each item.
+
+# The amount of coins to increase each market 'tick'
+step: 1
+
+# The number of items that need to be sold to initialize a market 'tick'
+step_count: 512
+
+# the percentage at which the buy price is above the sell price
+rate: 0.15
+
+# Shelf 1 left side, front id:0-4 back id:15-19
+
+items:
+    - id: 0
+      name: 'Cobblestone'
+      type_id: 4
+      data: 0
+      value: 1
+    
+    - id: 1
+      name: 'Clay'
+      type_id: 337
+      data: 0
+      value: 1
+    
+    - id: 2
+      name: 'Coal'
+      type_id: 263
+      data: 0
+      value: 1
+    
+    - id: 3
+      name: 'Flint'
+      type_id: 318
+      data: 0
+      value: 1
+    
+    - id: 4
+      name: 'CraftedReed'
+      custom_id: 'mat_crafted_reeds'
+      type_id: 0
+      data: 0
+      value: 1
+    
+    - id: 5
+      name: 'String'
+      type_id: 287
+      data: 0
+      value: 1
+    
+    - id: 7
+      name: 'Feather'
+      type_id: 288
+      data: 0
+      value: 1
+    
+    - id: 8
+      name: 'Nether Wart'
+      type_id: 372
+      data: 0
+      value: 1
+    
+    - id: 9
+      name: 'Wood Oak'
+      type_id: 17
+      data: 0
+      value: 1
+
+    - id: 10
+      name: 'Wood Spruce'
+      type_id: 17
+      data: 1
+      value: 1
+    
+    - id: 11
+      name: 'Wood Birch'
+      type_id: 17 
+      data: 2
+      value: 1
+
+    - id: 12
+      name: 'Wood Jungle'
+      type_id: 17 
+      data: 3
+      value: 1
+
+    - id: 13
+      name: 'Bones'
+      type_id: 352
+      data: 0
+      value: 20
+
+    - id: 14
+      name: 'Leather'
+      type_id: 334
+      data: 0
+      value: 1
+
+    - id: 15
+      name: 'Tungsten Ore'
+      type_id: 0
+      data: 0
+      custom_id: 'mat_tungsten_ore'
+      value: 1
+    
+    - id: 16
+      name: 'Chromium Ore'
+      type_id: 0
+      data: 0
+      custom_id: 'mat_chromium_ore'
+      value: 1
+
+# Floor 2 Left side Front Corner
+    - id: 122
+      name: 'Bread'
+      type_id: 297
+      data: 0
+      value: 12
+
+    - id: 123
+      name: 'Carrots'
+      type_id: 391
+      data: 0
+      value: 8
+ 
+    - id: 124
+      name: 'Potato'
+      type_id: 392
+      data: 0
+      value: 8
+ 
+    - id: 125
+      name: 'Pumpkin'
+      type_id: 86
+      data: 0
+      value: 4
+ 
+    - id: 126
+      name: 'Melon'
+      type_id: 103
+      data: 0
+      value: 3
+ 
+    - id: 127
+      name: 'Nether Wart'
+      type_id: 372
+      data: 0
+      value: 8
+ 
+ # Food Stuff 
+   
+    - id: 128
+      name: 'Fish'
+      type_id: 349
+      data: 0
+      value: 5
+ 
+    - id: 129
+      name: 'Raw Beef'
+      type_id: 363
+      data: 0
+      value: 5
+ 
+    - id: 130
+      name: 'Raw Porkchop'
+      type_id: 319
+      data: 0
+      value: 5
+ 
+    - id: 131
+      name: 'Raw Chicken'
+      type_id: 365
+      data: 0
+      value: 5

@@ -115,15 +115,6 @@ public class TradeGoodPopulator extends BlockPopulator {
     		structSign.setText(sign.getLines());
     		structSign.setDirection(ItemManager.getData(sign.getData()));
     		CivGlobal.addStructureSign(structSign);
-    		if (sync) {
-    			try {
-					structSign.saveNow();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-    		} else {
-        		structSign.save();
-    		}
     	}
     	if (sync) {
     	try {

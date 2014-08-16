@@ -113,7 +113,6 @@ public class Store extends Structure {
 				     "For "+(int)mat.price+" Coins\n"+
 		             getNonResidentFeeString());
 			sign.update();
-			sign.save();
 			count++;
 		}
 		
@@ -122,7 +121,6 @@ public class Store extends Structure {
 			StructureSign sign = getSignFromSpecialId(count);
 			sign.setText("Store Self\nEmpty");
 			sign.update();
-			sign.save();
 		}
 	}
 	

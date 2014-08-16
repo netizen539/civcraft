@@ -1,0 +1,563 @@
+# This configuration file contains all of the relevent town configuration information
+# Use this to configure global town costs/settings as well as town levels and culture 
+# levels for towns.
+town:
+    # Cost to start a town
+    cost: 10000.0
+
+    # Cost to claim a plot
+    plot_cost: 1000.0
+
+    # Min distance from another town
+    min_town_distance: 150.0
+    
+    # Min distance from another town that is your enemy
+    min_town_distance_enemy: 300.0
+
+    # Cost to claim an outpost.
+    outpost_cost: 5000.0
+
+    # upkeep per outpost plot per day.
+    outpost_upkeep: 1000.0
+    
+    # Grace distance that town will not calculate upkeep from.
+    upkeep_town_block_grace_distance: 8.0
+
+    # Amount of base upkeep to charge via 'square' of the distance
+    upkeep_town_block_base: 10.0
+
+    # Falloff for the upkeep. Upkeep per plot is:
+    # upkeep = base * (distance-grace_distance)^falloff
+    upkeep_town_block_falloff: 1.5
+
+    # Base hammer rate, usually 100, set higher to make building faster
+    base_hammer_rate: 1.0
+
+    # Base growth rate for towns.
+    base_growth_rate: 1.0
+
+    # Maximum number of blocks a town chunk can "protrude" from the main mass.
+    max_town_chunk_protrude: 3
+
+    # Amount of upkeep to charge per resident.
+    upkeep_per_resident: 500.0
+
+    # Number of mins players must wait between refresh.
+    buildable_refresh_cooldown: 30
+    
+    # Number of days a mayor must be inactive before being able to be reclaimed
+    mayor_inactive_days: 7
+
+# Town upgrade levels, determines 'size' of town.
+# level - the numeric level.
+# title - the display name for this level.
+# upkeep - the amount of coins it costs per day to maintain the town.
+# plots - number of town chunks this level is allowed
+# tile_improvements - number of tile improvements this level is allowed
+# TODO Balance/add appriopriate town levels.
+# 
+town_levels:
+    - level: 1
+      title: 'Settlement'
+      upkeep: 500.0
+      plots: 32
+      plot_cost: 500.0
+      tile_improvements: 4
+
+    - level: 2
+      title: 'Hamlet'
+      upkeep: 750.0
+      plots: 64
+      plot_cost: 1000.0
+      tile_improvements: 6
+
+    - level: 3
+      title: 'Village'
+      upkeep: 1250.0
+      plots: 80
+      plot_cost: 2000.0
+      tile_improvements: 8
+    
+    - level: 4
+      title: 'Large Village'
+      upkeep: 2000.0
+      plots: 128
+      plot_cost: 3500.0
+      tile_improvements: 12
+
+    - level: 5
+      title: 'Town'
+      upkeep: 3500.0
+      plots: 256
+      plot_cost: 5000.0
+      tile_improvements: 15
+
+
+    - level: 6
+      title: 'Large Town'
+      upkeep: 5500.0
+      plots: 512
+      plot_cost: 7500.0
+      tile_improvements: 17
+
+
+    - level: 7
+      title: 'City'
+      upkeep: 7000.0
+      plots: 1024
+      plot_cost: 15000.0
+      tile_improvements: 20
+
+
+    - level: 8
+      title: 'Large City'
+      upkeep: 8000.0
+      plots: 2048
+      plot_cost: 20000.0
+      tile_improvements: 25
+
+
+    - level: 9
+      title: 'Metropolis'
+      upkeep: 25000.0
+      plots: 4096
+      plot_cost: 30000.0
+      tile_improvements: 30
+
+
+
+# Town Upgrades
+# These are upgrades available to towns.
+# id - unquie id for this upgrade
+# name - name to display on list
+# cost - coins for this upgrade
+# hammers - hammers required to upgrade
+# require_upgrade - upgrade that must be finished
+# require_tech - technology that must be finished
+
+upgrades:
+    - id: 'upgrade_town_level_2'
+      name: 'Hamlet'
+      cost: 10000.0
+      action: 'set_town_level,2'
+      require_upgrade:
+      require_tech: 'tech_code_of_laws'
+      category: 'Town'
+      
+    - id: 'upgrade_town_level_3'
+      name: 'Village'
+      cost: 20000.0
+      action: 'set_town_level,3'
+      require_upgrade: 'upgrade_town_level_2'
+      require_tech: 'tech_priesthood'
+      category: 'Town'
+
+    - id: 'upgrade_town_level_4'
+      name: 'Large Village'
+      cost: 30000.0
+      action: 'set_town_level,4'
+      require_upgrade: 'upgrade_town_level_3'
+      require_tech: 'tech_monarchy'
+      category: 'Town'
+
+    - id: 'upgrade_town_level_5'
+      name: 'Town'
+      cost: 50000.0
+      action: 'set_town_level,5'
+      require_upgrade: 'upgrade_town_level_4'
+      require_tech: 'tech_currency'
+      category: 'Town'
+
+    - id: 'upgrade_town_level_6'
+      name: 'Large Town'
+      cost: 125000.0
+      action: 'set_town_level,6'
+      require_upgrade: 'upgrade_town_level_5'
+      require_tech: 'tech_alchemy'
+      category: 'Town'
+
+    - id: 'upgrade_town_level_7'
+      name: 'City'
+      cost: 250000.0
+      action: 'set_town_level,7'
+      require_upgrade: 'upgrade_town_level_6'
+      require_tech: 'tech_construction'
+      category: 'Town'
+
+    - id: 'upgrade_town_level_8'
+      name: 'Large City'
+      cost: 500000.0
+      action: 'set_town_level,8'
+      require_upgrade: 'upgrade_town_level_7'
+      require_tech: 'tech_innovation'
+      category: 'Town'
+
+    - id: 'upgrade_town_level_9'
+      name: 'Metropolis'
+      cost: 1000000.0
+      action: 'set_town_level,9'
+      require_upgrade: 'upgrade_town_level_8'
+      require_tech: 'tech_scientific_method'
+      category: 'Town'
+
+   
+    # Bank Upgrades 
+    - id: 'upgrade_bank_level_2'
+      name: 'Bank Level 2'
+      cost: 4000.0
+      action: 'set_bank_level,2'
+      require_upgrade:
+      require_tech: 'tech_code_of_laws'
+      require_structure: 's_bank'
+      category: 'Bank'
+    
+    - id: 'upgrade_bank_level_3'
+      name: 'Bank Level 3'
+      cost: 6000.0
+      action: 'set_bank_level,3'
+      require_upgrade: 'upgrade_bank_level_2'
+      require_tech: 'tech_writing'
+      require_structure: 's_bank'
+      category: 'Bank'
+    
+    - id: 'upgrade_bank_level_4'
+      name: 'Bank Level 4'
+      cost: 12000.0
+      action: 'set_bank_level,4'
+      require_upgrade: 'upgrade_bank_level_3'
+      require_tech: 'tech_monarchy'
+      require_structure: 's_bank'
+      category: 'Bank'
+    
+    - id: 'upgrade_bank_level_5'
+      name: 'Bank Level 5'
+      cost: 14000.0
+      action: 'set_bank_level,5'
+      require_upgrade: 'upgrade_bank_level_4'
+      require_tech: 'tech_currency'
+      require_structure: 's_bank'
+      category: 'Bank'
+    
+    - id: 'upgrade_bank_level_6'
+      name: 'Bank Level 6'
+      cost: 16000.0
+      action: 'set_bank_level,6'
+      require_upgrade: 'upgrade_bank_level_5'
+      require_tech: 'tech_economics'
+      require_structure: 's_bank'
+      category: 'Bank'
+    
+    - id: 'upgrade_bank_level_7'
+      name: 'Bank Level 7'
+      cost: 18000.0
+      action: 'set_bank_level,7'
+      require_upgrade: 'upgrade_bank_level_6'
+      require_tech: 'tech_nationalism'
+      require_structure: 's_bank'
+      category: 'Bank'
+    
+    - id: 'upgrade_bank_level_8'
+      name: 'Bank Level 8'
+      cost: 20000.0
+      action: 'set_bank_level,8'
+      require_upgrade: 'upgrade_bank_level_7'
+      require_tech: 'tech_construction'
+      require_structure: 's_bank'
+      category: 'Bank'
+    
+    - id: 'upgrade_bank_level_9'
+      name: 'Bank Level 9'
+      cost: 22000.0
+      action: 'set_bank_level,9'
+      require_upgrade: 'upgrade_bank_level_8'
+      require_tech: 'tech_innovation'
+      require_structure: 's_bank'
+      category: 'Bank'
+    
+    - id: 'upgrade_bank_level_10'
+      name: 'Bank Level 10'
+      cost: 24000.0
+      action: 'set_bank_level,10'
+      require_upgrade: 'upgrade_bank_level_9'
+      require_tech: 'tech_scientific_method'
+      require_structure: 's_bank'
+      category: 'Bank'
+
+    - id: 'upgrade_bank_interest_level_1'
+      name: 'Bank Interest I'
+      cost: 2000.0
+      action: 'set_bank_interest,0.0075'
+      require_upgrade: 'upgrade_bank_level_2'
+      require_tech: 'tech_writing'
+      require_structure: 's_bank'
+      category: 'Bank'
+    
+    - id: 'upgrade_bank_interest_level_2'
+      name: 'Bank Interest II'
+      cost: 4000.0
+      action: 'set_bank_interest,0.0100'
+      require_upgrade: 'upgrade_bank_interest_level_1'
+      require_tech: 'tech_currency'
+      require_structure: 's_bank'
+      category: 'Bank'
+    
+    - id: 'upgrade_bank_interest_level_3'
+      name: 'Bank Interest III'
+      cost: 8000.0
+      action: 'set_bank_interest,0.0150'
+      require_upgrade: 'upgrade_bank_interest_level_2'
+      require_tech: 'tech_nationalism'
+      require_structure: 's_bank'
+      category: 'Bank'
+    
+    - id: 'upgrade_bank_interest_level_4'
+      name: 'Bank Interest IV'
+      cost: 16000.0
+      action: 'set_bank_interest,0.0250'
+      require_upgrade: 'upgrade_bank_interest_level_3'
+      require_tech: 'tech_innovation'
+      require_structure: 's_bank'
+      category: 'Bank'
+
+   # Store upgrades
+   # Level 1 upgrades...
+#    - id: 'upgrade_store_material_dirt'
+#      name: 'Stock Store with Dirt'
+#      action: 'set_store_material, 3, 0, Dirt, 100'
+#      cost: 350.0
+#      require_upgrade:
+#      require_tech:
+#      require_structure: 's_store'
+#      category: 'Store'
+  
+   # Level 1 upgrades...
+   #
+   # Action numbers are:
+   # set_store_material, <itemId>, <itemData>, <DisplayName>, <itemCost>
+   # cost is UPGRADE cost.
+   # TODO Add require tech to specifc store upgrades
+   # TODO might not need 4 store levels.
+   #
+    - id: 'upgrade_store_material_soul_sand'
+      name: 'Stock Store with Soul Sand'
+      action: 'set_store_material, 88, 0, Soul Sand, 320'
+      cost: 350.0
+      require_upgrade:
+      require_tech:
+      require_structure: 's_store'
+      category: 'Store'
+
+    - id: 'upgrade_store_material_netherrack'
+      name: 'Stock Store with Netherrack'
+      action: 'set_store_material, 87, 0, Netherrack, 320'
+      cost: 350.0
+      require_upgrade:
+      require_tech:
+      require_structure: 's_store'
+      category: 'Store'
+
+    
+    # XXX This is the Single bricks. 
+    - id: 'upgrade_store_material_nether_brick'
+      name: 'Stock Store with Nether Brick'
+      action: 'set_store_material, 405, 0, Nether Brick, 250'
+      cost: 350.0
+      require_upgrade:
+      require_tech:
+      require_structure: 's_store'
+      category: 'Store'
+    
+    - id: 'upgrade_store_material_quartz'
+      name: 'Stock Store with Quartz'
+      action: 'set_store_material, 406, 0, Quartz, 320'
+      cost: 350.0
+      require_upgrade:
+      require_tech:
+      require_structure: 's_store'
+      category: 'Store'
+    
+    - id: 'upgrade_store_material_blaze_rod'
+      name: 'Stock Store with Blaze Rod'
+      action: 'set_store_material, 369, 0, Blaze Rod, 3000'
+      cost: 350.0
+      require_upgrade:
+      require_tech:
+      require_structure: 's_store'
+      category: 'Store' 
+   
+    - id: 'upgrade_store_material_magma_cream'
+      name: 'Stock Store with Magma Cream'
+      action: 'set_store_material, 378, 0, Magma Cream, 4500'
+      cost: 350.0
+      require_tech:
+      require_structure: 's_store'
+      category: 'Store'
+ 
+    - id: 'upgrade_store_material_glowstone_dust'
+      name: 'Stock Store with Glowstone Dust'
+      action: 'set_store_material, 348, 0, Glowstone Dust, 2500'
+      cost: 350.0
+      require_upgrade:
+      require_tech:
+      require_structure: 's_store'
+      category: 'Store'
+
+# XXX ghast tear not needed, no potions that are allowed use it. 
+# TODO in the future perhaps add catalysts for elemental arrows?!
+
+# Library Upgrades
+
+    - id: 'upgrade_library_level_2'
+      name: 'Upgrade Library Level 2'
+      action: 'set_library_level, 2'
+      cost: 5000.0
+      require_upgrade:
+      require_tech: 'tech_artillery'
+      require_structure: 's_library'
+      category: 'Library'
+  
+    - id: 'upgrade_library_level_3'
+      name: 'Upgrade Library Level 3'
+      action: 'set_library_level, 3'
+      cost: 10000.0
+      require_upgrade: 'upgrade_library_level_2'
+      require_tech: 'tech_effenciency'
+      require_structure: 's_library'
+      category: 'Library'
+  
+    - id: 'upgrade_library_level_4'
+      name: 'Upgrade Library Level 4'
+      action: 'set_library_level, 4'
+      cost: 15000.0
+      require_upgrade: 'upgrade_library_level_3'
+      require_tech: 'tech_advanced_effenciency'
+      require_structure: 's_library'
+      category: 'Library'
+  
+    - id: 'research_looting_1'
+      name: 'Research Looting I'
+      action: 'enable_library_enchantment, Looting, 1, 50'
+      cost: 125.0
+      require_upgrade:
+      require_tech:
+      require_structure: 's_library'
+      category: 'Library'
+  
+    - id: 'research_looting_2'
+      name: 'Research Looting II'
+      action: 'enable_library_enchantment, Looting, 2, 250'
+      cost: 375.0
+      require_upgrade: 'upgrade_library_level_2'
+      require_tech:
+      require_structure: 's_library'
+      category: 'Library'
+
+    - id: 'research_efficiency_1'
+      name: 'Research Efficiency I'
+      action: 'enable_library_enchantment, Efficiency, 1, 15'
+      cost: 75.0
+      require_upgrade:
+      require_tech:
+      require_structure: 's_library'
+      category: 'Library'
+   
+    - id: 'research_efficiency_2'
+      name: 'Research Efficiency II'
+      action: 'enable_library_enchantment, Efficiency, 2, 75'
+      cost: 500.0
+      require_upgrade: 'upgrade_library_level_2'
+      require_tech:
+      require_structure: 's_library'
+      category: 'Library'
+   
+    - id: 'research_efficiency_3'
+      name: 'Research Efficiency III'
+      action: 'enable_library_enchantment, Efficiency, 3, 200'
+      cost: 875.0
+      require_upgrade: 'upgrade_library_level_3'
+      require_tech:
+      require_structure: 's_library'
+      category: 'Library'
+  
+    - id: 'research_efficiency_4'
+      name: 'Research Efficiency IV'
+      action: 'enable_library_enchantment, Efficiency, 4, 750'
+      cost: 2500.0
+      require_upgrade: 'upgrade_library_level_3'
+      require_tech:
+      require_structure: 's_library'
+      category: 'Library'
+  
+    - id: 'research_efficiency_5'
+      name: 'Research Efficiency V'
+      action: 'enable_library_enchantment, Efficiency, 5, 1500'
+      cost: 3750.0
+      require_upgrade: 'upgrade_library_level_4'
+      require_tech:
+      require_structure: 's_library'
+      category: 'Library'
+
+    - id: 'research_fortune_1'
+      name: 'Research Fortune I'
+      action: 'enable_library_enchantment, Fortune, 1, 750'
+      cost: 1500.0
+      require_upgrade: 'upgrade_library_level_2'
+      require_tech:
+      require_structure: 's_library'
+      category: 'Library'
+  
+    - id: 'research_silk_touch_1'
+      name: 'Research Silk Touch I'
+      action: 'enable_library_enchantment, Silk_Touch, 1, 1000'
+      cost: 2500.0
+      require_upgrade: 'upgrade_library_level_2'
+      require_tech:
+      require_structure: 's_library'
+      category: 'Library'
+    
+    - id: 'research_soulbound'
+      name: 'Research SoulBound'
+      action: 'enable_library_enchantment, LoreEnhancementSoulBound, 1, 30000'
+      cost: 2500.0
+      require_upgrade: 'upgrade_library_level_2'
+      require_tech:
+      require_structure: 's_library'
+      category: 'Library'
+
+    - id: 'research_feather_falling_1'
+      name: 'Research Feather Falling I'
+      action: 'enable_library_enchantment, Feather_Falling, 1, 1000'
+      cost: 2500.0
+      require_upgrade: 'upgrade_library_level_4'
+      require_tech:
+      require_structure: 's_library'
+      category: 'Library'
+
+# Grocer upgrades
+    - id: 'upgrade_grocer_level_2'
+      name: 'Upgrade Grocer Level 2'
+      action: 'set_grocer_level, 2'
+      cost: 2500.0
+      require_upgrade:
+      require_tech: 'tech_trade'
+      require_structure: 's_grocer'
+      category: 'Grocer'
+
+    - id: 'upgrade_grocer_level_3'
+      name: 'Upgrade Grocer Level 3'
+      action: 'set_grocer_level, 3'
+      cost: 3000.0
+      require_upgrade: 'upgrade_grocer_level_2'
+      require_tech: 'tech_commerce'
+      require_structure: 's_grocer'
+      category: 'Grocer'
+
+    - id: 'upgrade_grocer_level_4'
+      name: 'Upgrade Grocer Level 4'
+      action: 'set_grocer_level, 4'
+      cost: 5000.0
+      require_upgrade: 'upgrade_grocer_level_3'
+      require_tech: 'tech_global_trade'
+      require_structure: 's_grocer'
+      category: 'Grocer'
+

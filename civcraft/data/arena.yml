@@ -1,0 +1,181 @@
+#
+# This yaml specifies the configurations for specific arena maps.
+#
+
+# 
+# Maximum number of players that can be in an arena team.
+#
+max_team_size: 5
+
+#
+# Amount of base ladder points to award for each match.
+base_ladder_points: 100
+
+#
+# Amount of points you need to be above an opponent to be consider slightly favored.
+slightly_favored_points: 400
+
+# Amount to adjust points based on winner. If winner is favored, this is a bonus, if 
+# loser if favored this much is taken away from the base to make the loss less harsh
+slightly_favored_modifier: 0.5
+
+# 
+# Amount of points you need to be above to be considered favored.
+favored_points: 1000
+favored_modifier: 0.2
+
+# Number of seconds until a winner is declared.
+timeout: 1800
+
+arenas:
+    - id: 'arena_desert'
+      name: 'Desert Sands'
+      world_folder: 'arena_desert_sands'
+      control_block_hp: 10
+      teams:
+        - number: 0
+          name: 'Team 1'
+          controlblocks:
+             - '1129,7,950'
+             - '1164,7,947'
+             - '1164,7,982'
+             - '1129,7,979'
+          revivepoints:
+             - '1136,5,985'
+             - '1152,5,985'
+             - '1169,5,964'
+             - '1152,5,944'
+             - '1136,5,944'
+          respawnpoints:
+             - '1164,29,964'
+             - '1129,29,964'
+          chests:
+             - '1128,30,967'
+             - '1128,30,962'
+             - '1165,30,962'
+             - '1165,30,967'
+             - '1125,5,958'
+             - '1125,5,971'
+          respawnsign: '1146,29,963'
+        - number: 1
+          name: 'Team 2'
+          controlblocks:
+             - '986,7,950'
+             - '951,7,947'
+             - '951,7,982'
+             - '986,7,979'
+          revivepoints:
+             - '979,5,985'
+             - '963,5,985'
+             - '964,5,944'
+             - '979,5,944'
+             - '946,5,965'
+          respawnpoints:
+             - '986,29,964'
+             - '951,29,964'
+          chests:
+             - '990,5,958'
+             - '990,5,971'
+             - '950,30,962'
+             - '950,30,967'
+             - '987,30,967'
+             - '987,30,962'
+          respawnsign: '969,29,966'
+    - id: 'arena_aztec'
+      name: 'Aztec Arena'
+      world_folder: 'aztec_arena'
+      control_block_hp: 10
+      teams:
+        - number: 0
+          name: 'Team 1'
+          controlblocks:
+             - '776,14,560'
+             - '779,14,557'
+             - '782,39,554'
+             - '773,39,563'
+          revivepoints:
+             - '794,4,548'
+             - '770,4,572'
+             - '761,13,541'
+             - '795,13,576'
+          respawnpoints:
+             - '778,4,536'
+          chests:
+             - '761,5,542'
+             - '794,5,542'
+             - '794,5,575'
+             - '761,5,575'
+             - '777,4,532' 
+             - '778,4,532' 
+          respawnsign: '781,5,537'
+        - number: 1
+          name: 'Team 2'
+          controlblocks:
+             - '567,14,558'
+             - '564,14,561'
+             - '561,39,564'
+             - '570,39,555'
+          revivepoints:
+             - '575,4,576'
+             - '549,4,547'
+             - '582,13,557'
+             - '548,13,542'
+          respawnpoints:
+             - '566,4,537'
+          chests:
+             - '549,5,543'
+             - '549,5,576'
+             - '582,5,576'
+             - '582,5,543'
+             - '565,4,533' 
+             - '566,4,533' 
+          respawnsign: '569,5,538'
+    - id: 'arena_roman'
+      name: 'Roman Arena'
+      world_folder: 'roman_arena'
+      control_block_hp: 10
+      teams:
+        - number: 0
+          name: 'Team 1'
+          controlblocks:
+             - '547,29,570'
+             - '547,29,551'
+             - '599,29,556'
+             - '599,29,565'
+          revivepoints:
+             - '574,27,570'
+             - '573,27,550'
+             - '594,5,546'
+             - '594,5,574'
+          respawnpoints:
+             - '547,27,562'
+          chests:
+             - '599,29,578'
+             - '599,29,543'
+             - '547,29,544'
+             - '547,29,578'
+             - '545,27,558'
+             - '549,27,558'
+          respawnsign: '547,28,558'
+        - number: 1
+          name: 'Team 2'
+          controlblocks:
+             - '766,29,565'
+             - '766,29,556'
+             - '818,29,551'
+             - '818,29,570'
+          revivepoints:
+             - '793,27,551'
+             - '793,27,570'
+             - '771,5,575'
+             - '771,5,546'
+          respawnpoints:
+             - '818,27,558'
+          chests:
+             - '818,29,578'
+             - '818,29,544'
+             - '766,29,543'
+             - '766,29,578'
+             - '820,27,558'
+             - '816,27,558'  
+          respawnsign: '818,28,558'

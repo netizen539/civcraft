@@ -1,0 +1,284 @@
+#
+# This files contains defines for buffs which can be applied to bonus goodies.
+# Eventually these buffs may also apply to governments and/or wonders
+#
+#
+
+buffs:
+    - id: 'buff_construction'
+      name: 'Construction'
+      description: 'Increases hammer production by <lightgreen>100<r> hammers. <gold>Stackable<r>'
+#      value: '0.25'
+      value: '100'
+      stackable: true
+      parent:
+   
+    - id: 'buff_year_of_plenty'
+      name: 'Year Of Plenty'
+      description: 'Increases growth rate of farms by <lightgreen>20%<r>. <gold>Stackable<r>'
+      value: '0.2'
+      stackable: true
+      parent:
+
+    - id: 'buff_innovation'
+      name: 'Innovation'
+      description: 'Increases Science rate for civilization by <lightgreen>10%<r> <gold>Stackable<r>'
+      value: '0.1'
+      stackable: true
+      parent:
+
+    - id: 'buff_monopoly'
+      name: 'Monopoly'
+      description: 'Increases coin output from all trade goods in use by <lightgreen>3%<r> <gold>Stackable<r>'
+      value: '0.3'
+      stackable: true
+      parent:
+    
+    - id: 'buff_preservative'
+      name: 'Preservative'
+      description: 'Reduces consumption of cottages by <lightgreen>50%<r>'
+      value: '0.5'
+      stackable: false
+      parent:
+
+    - id: 'buff_advanced_tooling'
+      name: 'Advanced Tooling'
+      description: 'Increases the mine improvement production by a <lightgreen>50%<r> <gold>Stackable<r>'
+      value: '0.5'
+      stackable: true
+      parent:
+
+    - id: 'buff_barricade'
+      name: 'Barricade'
+      description: 'Increases HP of defensive structures by <lightgreen>50%<r>'
+      value: '0.5'
+      stackable: false
+      parent:
+
+    - id: 'buff_barter'
+      name: 'Barter'
+      description: 'Increases the exchange rate of minerals exchanged at the bank by <lightgreen>5%<r> <gold>Stackable<r>'
+      value: '0.05'
+      stackable: true
+      parent:
+
+    - id: 'buff_fine_art'
+      name: 'Fine Art'
+      description: 'Increases culture output of a town by <lightgreen>25%<r>'
+      value: '0.25'
+      stackable: false
+      parent:
+
+    - id: 'buff_extraction'
+      name: 'Extraction'
+      description: 'Increases the Trommel chance of producing precious minerals by <lightgreen>50%<r> <gold>Stackable<r>'
+      value: '0.5'
+      stackable: false
+      parent:
+
+    - id: 'buff_fire_bomb'
+      name: 'Fire Bomb'
+      description: 'Increases damage of arrow/cannon towers by a <lightgreen>10%<r> Also makes arrow towers shoot flaming arrows <gold>Stackable<r>'
+      value: '1.0'
+      stackable: false
+      parent:
+
+    - id: 'buff_fishing'
+      name: 'Fishing'
+      description: 'Allows uncooked fish to replace the need for bread. <lightgreen>1 fish = 2 bread<r>'
+      value: '2'
+      stackable: false
+      parent:
+    
+    - id: 'buff_greed'
+      name: 'Greed'
+      description: 'Increases interest rates by <lightgreen>3%<r>'
+      value: '0.03'
+      stackable: false
+      parent:
+
+    - id: 'buff_medicine'
+      name: 'Medicine'
+      description: 'Decreases friendly respawn time during war by <lightgreen>50<r> seconds.'
+      value: '50'
+      stackable: false
+      parent:
+    
+    - id: 'buff_dirty_money'
+      name: 'Dirty Money'
+      description: 'Increases the chances of Steal Treasury by <lightgreen>50%<r>'
+      value: '0.5'
+      stackable: false
+      parent:
+
+    - id: 'buff_espionage'
+      name: 'Espionage'
+      description: 'Increases the chances of poison granary and incite revolt by <lightgreen>50%<r>'
+      value: '0.5'
+      stackable: false
+      parent:
+    
+    - id: 'buff_rush'
+      name: 'Rush'
+      description: 'Reduces the hammer cost of all structures, wonders and improvements by <lightgreen>15%<r>'
+      value: '0.15'
+      stackable: false
+      parent:
+    
+    - id: 'buff_sabotage'
+      name: 'Sabotage'
+      description: 'Greatly increases the effectivenes of sabotage missions by <lightgreen>50%<r>'
+      value: '0.5'
+      stackable: false
+      parent:
+
+    - id: 'buff_hedonism'
+      name: 'Hedonism'
+      description: 'Grants an extra <lightgreen>3<r> happiness'
+      value: '3.0'
+      stackable: true
+      parent:
+
+    - id: 'buff_noanarchy'
+      name: 'No Anarchy'
+      description: 'Civilization does not experience anarchy when switching governments.'
+      value: '0'
+      stackable: false
+      parent:
+
+# PYRAMID BUFFS
+    - id: 'buff_pyramid_cottage_consume'
+      name: 'Pyramid Reduced Bread Consumption'
+      description: 'Reduces cottage bread consumption by 1/4'
+      value: '0.25'
+      stackable: false
+      parent:
+
+    - id: 'buff_pyramid_cottage_bonus'
+      name: 'Pyramid Increased Cottage Output'
+      description: 'Increases cottage income by 10%'
+      value: '1.1'
+      stackable: false
+      parent:
+
+    - id: 'buff_pyramid_culture'
+      name: 'Pyramid Culture Bonus' 
+      description: 'Increases culture output from civilization by 10%'
+      value: '1.1'
+      stackable: false
+      parent:
+
+    - id: 'buff_pyramid_leech'
+      name: 'Pyramid Leech Culture'
+      description: 'Leeches 1% of the culture output from the nearest civilization.'
+      value: '0.01'
+      stackable: false
+      parent:
+
+    - id: 'debuff_pyramid_leech'
+      name: 'Pyramid Leech Culture'
+      description: 'Leeches 1% of your culture. Gives it to the town with the pyramid.'
+      value: '0.01'
+      stackable: false
+      parent:
+# Great library buffs
+    - id: 'buff_greatlibrary_extra_beakers'
+      name: 'Great Library Extra Beakers'
+      description: 'Grants 10% extra beakers for the civ.'
+      value: '0.1'
+      stackable: false
+      parent:
+
+    - id: 'buff_greatlibrary_double_tax_beakers'
+      name: 'Great Library Double Tax Beakers'
+      description: 'Doubles the effectiveness of tax coins spent on beakers'
+      value: '2'
+      stackable: false
+      parent:
+
+# Hanging Gardens buffs
+    - id: 'buff_hanging_gardens_growth'
+      name: 'Hanging Gardens Growth Bonus'
+      description: 'Grants a 25% bonus to growth rates across the civilization.'
+      value: '0.25'
+      stackable: false
+      parent:
+
+    - id: 'buff_hanging_gardens_regen'
+      name: 'Hanging Gardens Regen Bonus'
+      description: 'Grants a health regen rate of 1/2 heart per second in town.'
+      value: '0.5'
+      stackable: false
+      parent:
+    
+    - id: 'buff_hanging_gardens_additional_growth'
+      name: 'Hanging Gardens Additional Growth'
+      description: 'Grants an additional 10% growth rate for each Grapes good being used by the Civilization'
+      value: '0.1'
+      stackable: false
+      parent:
+
+# Colossus buffs
+    - id: 'debuff_colossus_leech_upkeep'
+      name: 'Colossus Leach Upkeep'
+      description: 'Leeches 2% of your upkeep payments and sends it to the town with the Colossus.'
+      value: '0.02'
+      stackable: false
+      parent:
+
+    - id: 'buff_colossus_reduce_upkeep'
+      name: 'Colossus Reduce Upkeep'
+      description: 'Reduces upkeep of your town by 25%'
+      value: '0.25'
+      stackable: false
+      parent:
+
+    - id: 'buff_colossus_coins_from_culture'
+      name: 'Colossus Coins From Culture'
+      description: 'Grants 5 coins per day to the civilization for every culture chunk owned by it.'
+      value: '5'
+      stackable: false
+      parent:
+# Notre Dame buffs
+    - id: 'buff_notre_dame_no_anarchy'
+      name: 'Notre Dame No Anarchy'
+      description: 'Civilization suffers no anarchy during government changes.'
+      value: '0'
+      stackable: false
+      parent: 'buff_noanarchy'
+
+    - id: 'buff_notre_dame_coins_from_peace'
+      name: 'Notre Dame Peace Coins'
+      description: 'Civilization collects coins from each town in each civilization not currently at war.'
+      value: '100'
+      stackable: false
+      parent:
+
+    - id: 'buff_notre_dame_extra_war_penalty'
+      name: 'Notre Dame No Anarchy'
+      description: 'Aggressors pay 2x war penalties when declaring war on this civilization or its allies.'
+      value: '2'
+      stackable: false
+      parent:
+
+# Chichen Itza buffs
+    - id: 'buff_chichen_itza_tower_hp'
+      name: 'Chichen Itza Tower HP'
+      description: 'Increases HP of towers by 15%'
+      value: '0.15'
+      stackable: false
+      parent:
+
+    - id: 'buff_chichen_itza_regen_rate'
+      name: 'Chichen Itza Regen Rate'
+      description: 'Increases regen rate of all structures by 2 HP per second.'
+      value: '2'
+      stackable: false
+      parent:
+      
+    - id: 'buff_chichen_itza_cp_bonus_hp'
+      name: 'Chichen Itza Control Point Bonus HP'
+      description: 'Increase the hitpoints of all Control Points of a town by 10 HP.'
+      value: '10'
+      stackable: false
+      parent:
