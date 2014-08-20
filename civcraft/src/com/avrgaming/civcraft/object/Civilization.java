@@ -29,6 +29,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.bukkit.Location;
@@ -187,8 +188,13 @@ public class Civilization extends SQLObject {
 	public void load(ResultSet rs) throws SQLException, InvalidNameException {
 		this.setId(rs.getInt("id"));
 		this.setName(rs.getString("name"));		
-		//debt
-		leaderName = rs.getString("leaderName");
+
+		if (CivGlobal.useUUID) {
+			leaderName = CivGlobal.getResidentViaUUID(UUID.fromString(rs.getString("leaderName"))).getName();
+		} else {
+			leaderName = rs.getString("leaderName");		
+		}
+		
 		capitolName = rs.getString("capitolName");
 		setLeaderGroupName(rs.getString("leaderGroupName"));
 		setAdvisersGroupName(rs.getString("advisersGroupName"));
@@ -238,7 +244,11 @@ public class Civilization extends SQLObject {
 	public void saveNow() throws SQLException {
 		HashMap<String, Object> hashmap = new HashMap<String, Object>();
 		hashmap.put("name", this.getName());
-		hashmap.put("leaderName", leaderName);
+		if (CivGlobal.useUUID) {
+			hashmap.put("leaderName", this.getLeader().getUUIDString());
+		} else {
+			hashmap.put("leaderName", leaderName);			
+		}
 		hashmap.put("capitolName", this.capitolName);
 		hashmap.put("leaderGroupName", this.getLeaderGroupName());
 		hashmap.put("advisersGroupName", this.getAdvisersGroupName());

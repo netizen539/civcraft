@@ -299,7 +299,9 @@ public class AdminCommand extends CommandBase {
 			throw new CivException("Enter a player name to ban");
 		}
 		
-		OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
+		Resident r = CivGlobal.getResident(args[1]);
+		
+		OfflinePlayer offplayer = Bukkit.getOfflinePlayer(r.getUUID());
 		if (offplayer != null && offplayer.isBanned()) {
 			offplayer.setBanned(false);
 			Resident resident = CivGlobal.getResident(offplayer.getName());

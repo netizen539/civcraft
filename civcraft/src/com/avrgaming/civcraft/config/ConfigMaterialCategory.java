@@ -30,5 +30,9 @@ public class ConfigMaterialCategory {
 	public static Collection<ConfigMaterialCategory> getCategories() {
 		return categories.values();
 	}
+
+	public static ConfigMaterialCategory getCategory(String key) {
+		return categories.get(key);
+	}
 	
 }

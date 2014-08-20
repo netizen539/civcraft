@@ -223,7 +223,7 @@ public class LoreCraftableMaterial extends LoreMaterial {
 				recipe.shape(configMaterial.shape[0], configMaterial.shape[1], configMaterial.shape[2]);
 				
 				/* Setup the ingredients. */
-				for (ConfigIngredient ingred : configMaterial.incredients.values()) {
+				for (ConfigIngredient ingred : configMaterial.ingredients.values()) {
 					ItemStack ingredStack = null;
 
 					if (ingred.custom_id == null) {
@@ -275,7 +275,7 @@ public class LoreCraftableMaterial extends LoreMaterial {
 				int matrixIndex = 0;
 				
 				/* Setup the ingredients. */
-				for (ConfigIngredient ingred : configMaterial.incredients.values()) {
+				for (ConfigIngredient ingred : configMaterial.ingredients.values()) {
 					ItemStack ingredStack = null;
 					
 					try {

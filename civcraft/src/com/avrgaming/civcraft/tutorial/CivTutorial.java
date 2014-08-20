@@ -10,13 +10,9 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.MaterialData;
 
-import com.avrgaming.civcraft.config.CivSettings;
-import com.avrgaming.civcraft.config.ConfigIngredient;
 import com.avrgaming.civcraft.config.ConfigMaterial;
 import com.avrgaming.civcraft.config.ConfigMaterialCategory;
-import com.avrgaming.civcraft.config.ConfigTech;
 import com.avrgaming.civcraft.lorestorage.LoreCraftableMaterial;
 import com.avrgaming.civcraft.lorestorage.LoreGuiItem;
 import com.avrgaming.civcraft.lorestorage.LoreGuiItemListener;
@@ -156,51 +152,7 @@ public class CivTutorial {
 		attrs.removeAll(); /* Remove all attribute modifiers to prevent them from displaying */
 		LinkedList<String> lore = new LinkedList<String>();
 		
-		if (!loreMat.isShaped()) {
-			lore.add(ChatColor.RESET+CivColor.Gold+"Shapeless");
-			for (ConfigIngredient cfgIngred : loreMat.getConfigMaterial().incredients.values()) {
-				String name;
-				
-				if (cfgIngred.custom_id == null) {
-					MaterialData data = ItemManager.getMaterialData(cfgIngred.type_id, cfgIngred.data);
-					name = data.getItemType().toString();
-				} else {
-					name = LoreMaterial.materialMap.get(cfgIngred.custom_id).getName();
-				}
-				
-				lore.add(ChatColor.RESET+CivColor.White+cfgIngred.count+" "+CivColor.LightBlue+name);
-			}
-			
-		} else {
-			lore.add(ChatColor.RESET+CivColor.Gold+"x"+CivColor.White+" is "+CivColor.LightBlue+"empty");
-			
-			for (ConfigIngredient cfgIngred : loreMat.getConfigMaterial().incredients.values()) {
-				String name;
-				
-				if (cfgIngred.custom_id == null) {
-					MaterialData data = ItemManager.getMaterialData(cfgIngred.type_id, cfgIngred.data);
-					name = data.getItemType().name();
-				} else {
-					name = LoreMaterial.materialMap.get(cfgIngred.custom_id).getName();
-				}
-				
-				lore.add(ChatColor.RESET+CivColor.Gold+cfgIngred.letter+CivColor.White+" is "+CivColor.LightBlue+name);
-			}
-			
-			for (String shapeStr : loreMat.getConfigMaterial().shape) {
-				String line;
-				line = CivColor.LightGreen+shapeStr.replace(" ", CivColor.LightGray+"x"+CivColor.LightGreen);
-				lore.add(ChatColor.RESET+line);
-			}
-			
-		}
-		
-		if (loreMat.getConfigMaterial().required_tech != null) {
-			ConfigTech tech = CivSettings.techs.get(loreMat.getConfigMaterial().required_tech);
-			if (tech != null) {
-				lore.add(CivColor.Rose+"Requires: "+CivColor.LightBlue+tech.name);
-			}
-		}
+		lore.add(""+ChatColor.RESET+ChatColor.BOLD+ChatColor.GOLD+"Click For Recipe");
 		
 		attrs.setLore(lore);				
 		stack = attrs.getStack();
@@ -231,12 +183,19 @@ public class CivTutorial {
 						
 				Inventory inv = Bukkit.createInventory(player, LoreGuiItem.MAX_INV_SIZE, cat.name+" Recipes");
 				for (ConfigMaterial mat : cat.materials.values()) {
-
 					ItemStack stack = getInfoBookForItem(mat.id);
 					if (stack != null) {
+						stack = LoreGuiItem.setAction(stack, "ShowRecipe");
 						inv.addItem(LoreGuiItem.asGuiItem(stack));
 					}
 				}
+				
+				/* Add back buttons. */
+				ItemStack backButton = LoreGuiItem.build("Back", ItemManager.getId(Material.MAP), 0, "Back to Categories");
+				backButton = LoreGuiItem.setAction(backButton, "OpenInventory");
+				backButton = LoreGuiItem.setActionData(backButton, "invType", "showCraftingHelp");
+				inv.setItem(LoreGuiItem.MAX_INV_SIZE-1, backButton);
+				
 				LoreGuiItemListener.guiInventories.put(inv.getName(), inv);
 			}
 			
@@ -260,8 +219,8 @@ public class CivTutorial {
 			ItemStack craftRec = LoreGuiItem.build("Crafting Recipes", 
 					ItemManager.getId(Material.WRITTEN_BOOK), 
 					0, CivColor.Gold+"<Click To View>");
-			infoRec = LoreGuiItem.setAction(infoRec, "OpenInventory");
-			infoRec = LoreGuiItem.setActionData(infoRec, "invType", "showCraftingHelp");
+			craftRec = LoreGuiItem.setAction(infoRec, "OpenInventory");
+			craftRec = LoreGuiItem.setActionData(infoRec, "invType", "showCraftingHelp");
 			guiInventory.addItem(craftRec);
 			LoreGuiItemListener.guiInventories.put(guiInventory.getName(), guiInventory);
 		}

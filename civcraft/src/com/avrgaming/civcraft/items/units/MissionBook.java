@@ -272,12 +272,12 @@ public class MissionBook extends UnitItemMaterial {
 				result += ", COMPROMISED";
 			}
 			
-			MissionLogger.logMission(resident.getTown(), target, player.getName(), mission.name, result);
+			MissionLogger.logMission(resident.getTown(), target, resident, mission.name, result);
 			CivMessage.send(player, CivColor.Rose+"Mission Failed! (Rolled "+failnext+" vs "+fail_rate+")");
 			return false;
 		}
 		
-		MissionLogger.logMission(resident.getTown(), target, player.getName(), mission.name, "Success");
+		MissionLogger.logMission(resident.getTown(), target, resident, mission.name, "Success");
 		return true;
 
 	}

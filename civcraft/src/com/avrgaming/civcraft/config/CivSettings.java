@@ -188,7 +188,7 @@ public class CivSettings {
 	
 	public static FileConfiguration fishingConfig; /* fishing.yml */
 	public static ArrayList<ConfigFishing> fishingDrops = new ArrayList<ConfigFishing>();
-	
+		
 	public static double iron_rate;
 	public static double gold_rate;
 	public static double diamond_rate;

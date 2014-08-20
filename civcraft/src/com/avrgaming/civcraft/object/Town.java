@@ -1068,7 +1068,8 @@ public class Town extends SQLObject {
 			return false;
 		}
 		
-		return grp.hasMember(player.getName());
+		Resident resident = CivGlobal.getResident(player);
+		return grp.hasMember(resident);
 	}
 
 	public EconObject getTreasury() {

@@ -302,7 +302,6 @@ public class Arena {
 		return this.scoreboards.get(name);
 	}
 
-	@SuppressWarnings("deprecation")
 	public void decrementScoreForTeamID(int teamID) {
 		ArenaTeam team = getTeamFromID(teamID);
 		
@@ -330,8 +329,7 @@ public class Arena {
 
 			for (ArenaTeam team : this.teams.values()) {	
 				Objective obj = objectives.get(team.getName()+";score");
-				@SuppressWarnings("deprecation")
-				Score score = obj.getScore(Bukkit.getOfflinePlayer("Time Left"));
+				Score score = obj.getScore("Time Left");
 				score.setScore(timeleft);
 			}
 		}

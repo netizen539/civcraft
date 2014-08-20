@@ -29,6 +29,7 @@ import com.avrgaming.civcraft.util.ItemManager;
 public class LoreGuiItem {
 			
 	public static final int MAX_INV_SIZE = 54;
+	public static final int INV_ROW_COUNT = 9;
 
 	public static ItemStack getGUIItem(String title, String[] messages, int type, int data) {
 		ItemStack stack = ItemManager.createItemStack(type, 1, (short)data);

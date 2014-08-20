@@ -19,7 +19,9 @@
 package com.avrgaming.civcraft.threading.tasks;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import com.avrgaming.anticheat.ACManager;
@@ -45,38 +47,38 @@ import com.avrgaming.global.perks.PlatinumManager;
 
 public class PlayerLoginAsyncTask implements Runnable {
 	
-	String playerName;
-	public PlayerLoginAsyncTask(String playerName) {
-		this.playerName = playerName;
+	UUID playerUUID;
+	public PlayerLoginAsyncTask(UUID playerUUID) {
+		this.playerUUID = playerUUID;
 	}
 	
 	public Player getPlayer() throws CivException {
-		return CivGlobal.getPlayer(playerName);
+		return Bukkit.getPlayer(playerUUID);
 	}
 	
 	@Override
 	public void run() {
 		try {
-			CivLog.info("Running PlayerLoginAsyncTask for "+playerName);
-			Resident resident = CivGlobal.getResident(playerName);
+			CivLog.info("Running PlayerLoginAsyncTask for "+getPlayer().getName()+" UUID("+playerUUID+")");
+			Resident resident = CivGlobal.getResident(getPlayer().getName());
 			
 			/* 
 			 * Test to see if player has changed their name. If they have, these residents
 			 * will not match. Disallow players changing their name without admin approval. 
 			 */
 			if (CivGlobal.getResidentViaUUID(getPlayer().getUniqueId()) != resident) {
-				TaskMaster.syncTask(new PlayerKickBan(playerName, true, false, 
+				TaskMaster.syncTask(new PlayerKickBan(getPlayer().getName(), true, false, 
 						"Your user ID on record does not match the player name you're attempting to log in with."+
 						"If you changed your name, please change it back or contact an admin to request a name change."));
 				return;
 			}
 	
 			if (resident == null) {
-				CivLog.info("No resident found. Creating for "+playerName);
+				CivLog.info("No resident found. Creating for "+getPlayer().getName());
 				try {
-					resident = new Resident(getPlayer().getUniqueId(), playerName);
+					resident = new Resident(getPlayer().getUniqueId(), getPlayer().getName());
 				} catch (InvalidNameException e) {
-					TaskMaster.syncTask(new PlayerKickBan(playerName, true, false, "You have an invalid name. Sorry."));
+					TaskMaster.syncTask(new PlayerKickBan(getPlayer().getName(), true, false, "You have an invalid name. Sorry."));
 					return;
 				}
 				
@@ -107,7 +109,7 @@ public class PlayerLoginAsyncTask implements Runnable {
 				resident.setUUID(getPlayer().getUniqueId());
 				CivLog.info("Resident named:"+resident.getName()+" was acquired by UUID:"+resident.getUUIDString());
 			} else if (!resident.getUUID().equals(getPlayer().getUniqueId())) {
-				TaskMaster.syncTask(new PlayerKickBan(playerName, true, false, 
+				TaskMaster.syncTask(new PlayerKickBan(getPlayer().getName(), true, false, 
 						"You're attempting to log in with a name already in use. Please change your name."));
 				return;
 			}
@@ -120,7 +122,7 @@ public class PlayerLoginAsyncTask implements Runnable {
 				if (getPlayer().isOp() || getPlayer().hasPermission(CivSettings.MINI_ADMIN)) {
 					//Allowed to connect since player is OP or mini admin.
 				} else if (!resident.hasTown() || !resident.getTown().getCiv().getDiplomacyManager().isAtWar()) {
-					TaskMaster.syncTask(new PlayerKickBan(playerName, true, false, "Only players in civilizations at war can connect right now. Sorry."));
+					TaskMaster.syncTask(new PlayerKickBan(getPlayer().getName(), true, false, "Only players in civilizations at war can connect right now. Sorry."));
 					return;
 				}
 			}

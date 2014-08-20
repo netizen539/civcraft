@@ -26,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.UUID;
 
 import com.avrgaming.civcraft.database.SQL;
 import com.avrgaming.civcraft.main.CivGlobal;
@@ -55,13 +56,18 @@ public class MissionLogger {
 	}
 	
 	
-	public static void logMission(Town town, Town target, String playerName, String missionName, String result) {
+	public static void logMission(Town town, Town target, Resident resident, String missionName, String result) {
 		HashMap<String, Object> hashmap = new HashMap<String, Object>();
 		
 		hashmap.put("town_id", town.getId());
 		hashmap.put("target_id", target.getId());
 		hashmap.put("time", new Date());
-		hashmap.put("playerName", playerName);
+		if (CivGlobal.useUUID) {
+			hashmap.put("playerName", resident.getUUIDString());
+		} else {
+			hashmap.put("playerName", resident.getName());		
+		}
+		
 		hashmap.put("missionName", missionName);
 		hashmap.put("result", result);
 		
@@ -91,6 +97,11 @@ public class MissionLogger {
 					Town target = CivGlobal.getTownFromId(rs.getInt("target_id"));
 					if (target == null) {
 						continue;
+					}
+					
+					String playerName = rs.getString("playerName");
+					if (CivGlobal.useUUID) {
+						playerName = CivGlobal.getResidentViaUUID(UUID.fromString(playerName)).getName();
 					}
 					
 					String str = sdf.format(date)+" - "+rs.getString("playerName")+":"+target.getName()+":"+rs.getString("missionName")+" -- "+rs.getString("result");

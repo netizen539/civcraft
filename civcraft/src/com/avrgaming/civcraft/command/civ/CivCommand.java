@@ -439,7 +439,7 @@ public class CivCommand extends CommandBase {
 		Civilization civ = getSenderCiv();
 		Resident resident = getResident();
 		
-		if (!civ.getLeaderGroup().hasMember(resident.getName())) {
+		if (!civ.getLeaderGroup().hasMember(resident)) {
 			throw new CivException("Only leaders can use this command.");
 		}
 		

@@ -160,7 +160,6 @@ public class ArenaManager implements Runnable {
 		
 	}
 	
-	@SuppressWarnings("deprecation")
 	public static void startArenaMatch(Arena activeArena, ArenaTeam team1, ArenaTeam team2) {
 
 		/* Set up objectives.. */
@@ -177,7 +176,7 @@ public class ArenaManager implements Runnable {
 		
 		Score score1Team1 = points1.getScore(team1.getTeamScoreboardName());
 		Score score1Team2 = points1.getScore(team2.getTeamScoreboardName());
-		Score timeout1 = points1.getScore(Bukkit.getOfflinePlayer("Time Left"));
+		Score timeout1 = points1.getScore("Time Left");
 		try {
 			timeout1.setScore(CivSettings.getInteger(CivSettings.arenaConfig, "timeout"));
 		} catch (IllegalStateException e1) {
@@ -191,7 +190,7 @@ public class ArenaManager implements Runnable {
 		
 		Score score2Team1 = points2.getScore(team1.getTeamScoreboardName());
 		Score score2Team2 = points2.getScore(team2.getTeamScoreboardName());
-		Score timeout2 = points1.getScore(Bukkit.getOfflinePlayer("Time Left"));
+		Score timeout2 = points1.getScore("Time Left");
 		try {
 			timeout2.setScore(CivSettings.getInteger(CivSettings.arenaConfig, "timeout"));
 		} catch (IllegalStateException e1) {

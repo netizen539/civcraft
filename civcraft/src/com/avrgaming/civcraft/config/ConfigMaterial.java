@@ -29,7 +29,7 @@ public class ConfigMaterial {
 	public boolean craftable = false;
 	public String required_tech = null;
 	public boolean shaped = false;
-	public HashMap<String, ConfigIngredient> incredients;
+	public HashMap<String, ConfigIngredient> ingredients;
 	public String[] shape;
 	public List<HashMap<String, String>> components = new LinkedList<HashMap<String, String>>();
 	public boolean vanilla = false;
@@ -121,7 +121,7 @@ public class ConfigMaterial {
 			
 			List<Map<?, ?>> configIngredients = (List<Map<?,?>>)b.get("ingredients");
 			if (configIngredients != null) {
-				mat.incredients = new HashMap<String, ConfigIngredient>();
+				mat.ingredients = new HashMap<String, ConfigIngredient>();
 				
 				for (Map<?, ?> ingred : configIngredients) {
 					ConfigIngredient ingredient = new ConfigIngredient();
@@ -157,7 +157,7 @@ public class ConfigMaterial {
 					
 					
 					
-					mat.incredients.put(key, ingredient);
+					mat.ingredients.put(key, ingredient);
 					//ConfigIngredient.ingredientMap.put(ingredient.custom_id, ingredient);
 				}
 			}
