@@ -45,6 +45,7 @@ public class ACManager implements PluginMessageListener {
 	static HashMap<String, Long> acceptedMods = new HashMap<String, Long>();
 	static HashMap<String, Long> ivSpecs = new HashMap<String, Long>();
 	static byte[] decrypted;
+	static boolean enabled = true;
 	
 	public static void init() {
         Bukkit.getMessenger().registerOutgoingPluginChannel(CivCraft.getPlugin(), "CAC");
@@ -53,6 +54,12 @@ public class ACManager implements PluginMessageListener {
         try {
 			versionNumber = CivSettings.getString(CivSettings.nocheatConfig, "civcraft_ac_version");
 			key = CivSettings.getString(CivSettings.nocheatConfig, "civcraft_ac_key");
+			
+			String enabledString = CivSettings.getString(CivSettings.nocheatConfig, "civcraft_ac_enabled");
+			if (enabledString != null && enabledString.equalsIgnoreCase("false")) {
+				enabled = false;
+			}
+			
 			decrypted = new byte[32768];
 		} catch (InvalidConfiguration e) {
 			e.printStackTrace();
@@ -284,6 +291,10 @@ public class ACManager implements PluginMessageListener {
 			}
 		}
 		
+	}
+
+	public static boolean isEnabled() {
+		return enabled;
 	}
 	
 	

@@ -3,6 +3,7 @@ package com.avrgaming.civcraft.war;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import com.avrgaming.anticheat.ACManager;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
 import com.avrgaming.civcraft.main.CivMessage;
@@ -19,8 +20,16 @@ public class WarAntiCheat {
 			return;
 		}
 		
+		if (!ACManager.isEnabled()) {
+			return;
+		}
+		
 		for (Player player : Bukkit.getOnlinePlayers()) {
 			if (player.isOp()) {
+				continue;
+			}
+			
+			if (player.hasPermission("civ.ac_exempt")) {
 				continue;
 			}
 			

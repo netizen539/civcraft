@@ -11,6 +11,7 @@ nocheatplus:
 
 civcraft_ac_version: '1'
 civcraft_ac_key: 'FGAZFWAQ'
+civcraft_ac_enabled: 'true'
 
 valid_mods:
     - name: 'CivCraft Anti-Cheat'
