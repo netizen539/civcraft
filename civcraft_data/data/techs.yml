@@ -243,8 +243,8 @@ techs:
      points: 2500
      require_techs: 'tech_monarchy'
    
-   - id: 'tech_effenciency'
-     name: 'Effenciency'
+   - id: 'tech_efficiency'
+     name: 'Efficiency'
      beaker_cost: 20000.0
      cost: 75000.0
      points: 5000
@@ -276,28 +276,28 @@ techs:
      beaker_cost: 17500.0
      cost: 75000.0
      points: 4375
-     require_techs: 'tech_effenciency:tech_malting:tech_leather_refinement'
+     require_techs: 'tech_efficiency:tech_malting:tech_leather_refinement'
 
    - id: 'tech_tillering'
      name: 'Tillering'
      beaker_cost: 17500.0
      cost: 75000.0
      points: 4375
-     require_techs: 'tech_effenciency:tech_malting:tech_fletching'
+     require_techs: 'tech_efficiency:tech_malting:tech_fletching'
 
    - id: 'tech_chemical_bonding'
      name: 'Chemical Bonding'
      beaker_cost: 17500.0
      cost: 75000.0
      points: 4375
-     require_techs: 'tech_effenciency:tech_malting:tech_alloys'
+     require_techs: 'tech_efficiency:tech_malting:tech_alloys'
 
    - id: 'tech_folded_steel'
      name: 'Folded Steel'
      beaker_cost: 17500.0
      cost: 75000.0
      points: 4375
-     require_techs: 'tech_effenciency:tech_malting:tech_sword_smithing'
+     require_techs: 'tech_efficiency:tech_malting:tech_sword_smithing'
 
    - id: 'tech_advanced_artillery'
      name: 'Advanced Artillery'
@@ -311,7 +311,7 @@ techs:
      beaker_cost: 35000.0
      cost: 150000.0
      points: 8750
-     require_techs: 'tech_effenciency'
+     require_techs: 'tech_efficiency'
 
    - id: 'tech_nationalism'
      name: 'Nationalism'
@@ -334,8 +334,8 @@ techs:
      points: 17500
      require_techs: 'tech_nationalism'
 
-   - id: 'tech_advanced_effenciency'
-     name: 'Advanced Effenciency'
+   - id: 'tech_advanced_efficiency'
+     name: 'Advanced Efficiency'
      beaker_cost: 35000.0
      cost: 150000.0
      points: 8750
@@ -353,28 +353,28 @@ techs:
      beaker_cost: 175000.0
      cost: 2500000.0
      points: 43750
-     require_techs: 'tech_advanced_effenciency:tech_innovation:tech_tanning'
+     require_techs: 'tech_advanced_efficiency:tech_innovation:tech_tanning'
 
    - id: 'tech_laminates'
      name: 'Laminates'
      beaker_cost: 175000.0
      cost: 2500000.0
      points: 43750
-     require_techs: 'tech_advanced_effenciency:tech_innovation:tech_tillering'
+     require_techs: 'tech_advanced_efficiency:tech_innovation:tech_tillering'
 
    - id: 'tech_forging'
      name: 'Forging'
      beaker_cost: 175000.0
      cost: 2500000.0
      points: 43750
-     require_techs: 'tech_advanced_effenciency:tech_innovation:tech_chemical_bonding'
+     require_techs: 'tech_advanced_efficiency:tech_innovation:tech_chemical_bonding'
 
    - id: 'tech_tempering'
      name: 'Tempering'
      beaker_cost: 175000.0
      cost: 2500000.0
      points: 43750
-     require_techs: 'tech_advanced_effenciency:tech_innovation:tech_folded_steel'
+     require_techs: 'tech_advanced_efficiency:tech_innovation:tech_folded_steel'
 
    - id: 'tech_scientific_method'
      name: 'Scientific Method'
@@ -388,7 +388,7 @@ techs:
      beaker_cost: 1500000.0
      cost: 10000000.0
      points: 375000
-     require_techs: 'tech_composites:tech_laminates:tech_forging:tech_tempering:tech_advanced_artillery:tech_advanced_effenciency:tech_scientific_method:tech_alchemy:tech_automation:tech_global_trade'
+     require_techs: 'tech_composites:tech_laminates:tech_forging:tech_tempering:tech_advanced_artillery:tech_advanced_efficiency:tech_scientific_method:tech_alchemy:tech_automation:tech_global_trade'
 
    - id: 'tech_great_pyramid'
      name: 'Great Pyramid'
@@ -437,4 +437,4 @@ techs:
      beaker_cost: 175000.0
      cost: 175000.0
      points: 43750
-     require_techs: 'tech_alchemy:tech_global_trade:tech_scientific_method:tech_advanced_effenciency' 
+     require_techs: 'tech_alchemy:tech_global_trade:tech_scientific_method:tech_advanced_efficiency' 

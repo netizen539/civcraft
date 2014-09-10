@@ -421,7 +421,7 @@ upgrades:
       action: 'set_library_level, 3'
       cost: 10000.0
       require_upgrade: 'upgrade_library_level_2'
-      require_tech: 'tech_effenciency'
+      require_tech: 'tech_efficiency'
       require_structure: 's_library'
       category: 'Library'
   
@@ -430,7 +430,7 @@ upgrades:
       action: 'set_library_level, 4'
       cost: 15000.0
       require_upgrade: 'upgrade_library_level_3'
-      require_tech: 'tech_advanced_effenciency'
+      require_tech: 'tech_advanced_efficiency'
       require_structure: 's_library'
       category: 'Library'
   
