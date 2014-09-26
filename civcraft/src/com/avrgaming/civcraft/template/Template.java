@@ -200,6 +200,13 @@ public class Template {
 		return ("templates/themes/"+theme+"/"+typeStr+"/"+template_file+"/"+template_file+"_"+direction+".def").toLowerCase();
 	}
 	
+	public void buildConstructionScaffolding(Location center, Player player) 
+	{
+		//this.buildScaffolding(center);
+		
+		Block block = center.getBlock();
+		ItemManager.setTypeIdAndData(block, ItemManager.getId(Material.CHEST), 0, false);
+	}
 	
 	public void buildPreviewScaffolding(Location center, Player player) {
 		Resident resident = CivGlobal.getResident(player);

@@ -4,6 +4,10 @@
 # nocheat, others may be custom anti-cheat measures implemented
 # directly into civcraft.
 
+# Anti-Cheat related permission nodes:
+# ac_valid - Player will always validate as using the anti-cheat
+# ac_exempt - Player will not be kicked during war if anti-cheat is not detected.
+
 nocheatplus:
    survivalfly:
       # Violation levels that we'll let 'slide' useful for iron armor speed dependencies.

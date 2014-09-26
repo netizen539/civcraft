@@ -211,6 +211,9 @@ public class CivSettings {
 	public static void init(JavaPlugin plugin) throws FileNotFoundException, IOException, InvalidConfigurationException, InvalidConfiguration {
 		CivSettings.plugin = (CivCraft)plugin;
 		
+		// Check for required data folder, if it's not there export it.
+		CivSettings.validateFiles();
+		
 		initRestrictedItems();
 		initRestrictedUndoBlocks();
 		initSwitchItems();
@@ -294,34 +297,43 @@ public class CivSettings {
 	}
 	
 	public static void validateFiles() {
-		//File data = new File(plugin.getDataFolder().getPath()+"/data");
-		//if (!data.exists()) {
-		//	
-		//}
-		
+//		if (plugin == null) {
+//			CivLog.debug("null plugin");
+//		}
+//		
+//		if (plugin.getDataFolder() == null) {
+//			CivLog.debug("null data folder");
+//		}
+//		
+//		if (plugin.getDataFolder().getPath() == null) {
+//			CivLog.debug("path null");
+//		}
+		File data = new File(plugin.getDataFolder().getPath()+"/data");
+		if (!data.exists()) {
+			data.mkdirs();
+		}
+//		
 	}
 	
 	public static void streamResourceToDisk(String filepath) throws IOException {
-		URL inputUrl = filepath.getClass().getResource("/"+filepath);
-		File dest = new File(plugin.getDataFolder().getPath()+"/"+filepath);
+		URL inputUrl = plugin.getClass().getResource(filepath);
+		File dest = new File(plugin.getDataFolder().getPath()+filepath);
 		FileUtils.copyURLToFile(inputUrl, dest);
 	}
 
 	public static FileConfiguration loadCivConfig(String filepath) throws FileNotFoundException, IOException, InvalidConfigurationException {
 
 		File file = new File(plugin.getDataFolder().getPath()+"/data/"+filepath);
-		if (file.exists()) {
-			CivLog.info("Loading Configuration file:"+filepath);
-
-			// read the config.yml into memory
-			YamlConfiguration cfg = new YamlConfiguration(); 
-			cfg.load(file);
-			return cfg;
-		} else {
+		if (!file.exists()) {
 			CivLog.warning("Configuration file:"+filepath+" was missing. Streaming to disk from Jar.");
-			streamResourceToDisk("data/"+filepath);
+			streamResourceToDisk("/data/"+filepath);
 		}
-		return null;
+		
+		CivLog.info("Loading Configuration file:"+filepath);
+		// read the config.yml into memory
+		YamlConfiguration cfg = new YamlConfiguration(); 
+		cfg.load(file);
+		return cfg;
 	}
 	
 		

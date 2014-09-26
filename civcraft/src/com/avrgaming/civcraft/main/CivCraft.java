@@ -246,10 +246,6 @@ public final class CivCraft extends JavaPlugin {
 	public void onEnable() {
 		setPlugin(this);
 		this.saveDefaultConfig();
-
-		// Check for required data folder, if it's not there export it.
-		CivSettings.validateFiles();
-		
 		
 		CivLog.init(this);
 		BukkitObjects.initialize(this);
@@ -259,6 +255,7 @@ public final class CivCraft extends JavaPlugin {
 				
 		try {
 			CivSettings.init(this);
+			
 			SQL.initialize();
 			SQL.initCivObjectTables();
 			ChunkCoord.buildWorldList();

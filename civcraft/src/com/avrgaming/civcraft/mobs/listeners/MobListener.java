@@ -2,6 +2,7 @@ package com.avrgaming.civcraft.mobs.listeners;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.event.EventHandler;
@@ -23,6 +24,11 @@ public class MobListener implements Listener {
 		
 		for (Entity e : event.getChunk().getEntities()) {
 			if (e instanceof Monster) {
+				e.remove();
+				return;
+			}
+			
+			if (e instanceof IronGolem) {
 				e.remove();
 				return;
 			}

@@ -3,6 +3,7 @@ package com.avrgaming.civcraft.mobs;
 import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.UUID;
@@ -47,6 +48,7 @@ public abstract class CommonCustomMob implements ICustomMob {
 
 	public static HashMap<UUID, CommonCustomMob> customMobs = new HashMap<UUID, CommonCustomMob>();
 	public static HashMap<String, LinkedList<TypeLevel>> biomes = new HashMap<String, LinkedList<TypeLevel>>();
+	public static HashSet<String> disabledMobs = new HashSet<String>();
 	
 	private CustomMobType type;
 	private CustomMobLevel level;
