@@ -221,7 +221,6 @@ public class Ruffian extends CommonCustomMob implements ICustomMob {
 				//setFireAt(loc, spread);		
 			}
 			
-			@SuppressWarnings("deprecation")
 			private void damagePlayers(Location loc, int radius) {
 				double x = loc.getX()+0.5;
 				double y = loc.getY()+0.5;

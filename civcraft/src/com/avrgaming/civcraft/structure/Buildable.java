@@ -446,9 +446,11 @@ public abstract class Buildable extends SQLObject {
 		buildPlayerPreview(player, centerLoc, tpl);
 	}
 	
+	
 	public void buildPlayerPreview(Player player, Location centerLoc, Template tpl) throws CivException, IOException {
 		centerLoc = repositionCenter(centerLoc, tpl.dir(), tpl.size_x, tpl.size_z);
 		tpl.buildPreviewScaffolding(centerLoc, player);
+		
 		this.setCorner(new BlockCoord(centerLoc));
 		
 		CivMessage.sendHeading(player, "Building a Structure");
@@ -456,6 +458,7 @@ public abstract class Buildable extends SQLObject {
 				" the structure's location.");
 		CivMessage.send(player, CivColor.LightGreen+ChatColor.BOLD+"If this location looks good, type 'yes'. Otherwise, type anything else to cancel building.");
 		Resident resident = CivGlobal.getResident(player);
+		resident.startPreviewTask(tpl, centerLoc.getBlock(), player.getUniqueId());
 		
 		/* Run validation on position. */
 		//validate(player, this, tpl, centerLoc, null);

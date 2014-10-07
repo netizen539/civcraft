@@ -41,6 +41,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -77,6 +78,7 @@ import com.avrgaming.civcraft.structure.Buildable;
 import com.avrgaming.civcraft.structure.TownHall;
 import com.avrgaming.civcraft.template.Template;
 import com.avrgaming.civcraft.threading.TaskMaster;
+import com.avrgaming.civcraft.threading.tasks.BuildPreviewAsyncTask;
 import com.avrgaming.civcraft.tutorial.CivTutorial;
 import com.avrgaming.civcraft.util.BlockCoord;
 import com.avrgaming.civcraft.util.CallbackInterface;
@@ -128,6 +130,7 @@ public class Resident extends SQLObject {
 	
 	private boolean interactiveMode = false;
 	private InteractiveResponse interactiveResponse = null;
+	private BuildPreviewAsyncTask previewTask = null;
 	
 	private double spyExposure = 0.0;
 	public static int MAX_SPY_EXPOSURE = 1000;
@@ -1008,11 +1011,25 @@ public class Resident extends SQLObject {
 	public void setShowMap(boolean showMap) {
 		this.showMap = showMap;
 	}
-
+	
+	public void startPreviewTask(Template tpl, Block block, UUID uuid) {
+		this.previewTask = new BuildPreviewAsyncTask(tpl, block, uuid);
+		TaskMaster.asyncTask(previewTask, 0);
+	}
+	
 	public void undoPreview() {
 		if (this.previewUndo == null) {
 			this.previewUndo = new HashMap<BlockCoord, SimpleBlock>();
 			return;
+		}
+		
+		if (this.previewTask != null) {
+			previewTask.lock.lock();
+			try {
+				previewTask.aborted = true;
+			} finally {
+				previewTask.lock.unlock();
+			}
 		}
 		
 		try {

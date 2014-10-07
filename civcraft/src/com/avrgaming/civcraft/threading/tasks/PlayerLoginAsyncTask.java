@@ -185,8 +185,12 @@ public class PlayerLoginAsyncTask implements Runnable {
 			
 			
 			/* Send Anti-Cheat challenge to player. */
-			resident.setUsesAntiCheat(false);
-			ACManager.sendChallenge(getPlayer());
+			if (!getPlayer().hasPermission("civ.ac_valid")) {
+				resident.setUsesAntiCheat(false);
+				ACManager.sendChallenge(getPlayer());
+			} else {
+				resident.setUsesAntiCheat(true);
+			}
 	
 			// Check for pending respawns.
 			ArrayList<SessionEntry> entries = CivGlobal.getSessionDB().lookup("global:respawnPlayer");

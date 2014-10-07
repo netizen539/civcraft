@@ -92,6 +92,14 @@ public class MobSpawner {
 			return;
 		}
 		
+		LinkedList<TypeLevel> removeUs = new LinkedList<TypeLevel>();
+		for (TypeLevel v : validMobs) {
+			if (CommonCustomMob.disabledMobs.contains(v.type.toString())) {
+				removeUs.add(v);
+			}
+		}
+		validMobs.removeAll(removeUs);
+		
 		Random random = new Random();
 		int idx = random.nextInt(validMobs.size());
 		

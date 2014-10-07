@@ -89,6 +89,12 @@ public class AdminCommand extends CommandBase {
 		commands.put("endworld", "Starts the Apocalypse.");
 		commands.put("arena", "Arena management commands.");
 		commands.put("perk", "Admin perk management.");
+		commands.put("mob", "Mob management commands");
+	}
+	
+	public void mob_cmd() {
+		AdminMobCommand cmd = new AdminMobCommand();	
+		cmd.onCommand(sender, null, "mob", this.stripArgs(args, 1));
 	}
 	
 	public void perk_cmd() {
