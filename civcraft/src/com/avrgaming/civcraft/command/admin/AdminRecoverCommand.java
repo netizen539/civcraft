@@ -23,6 +23,7 @@ import java.sql.SQLException;
 import com.avrgaming.civcraft.command.CommandBase;
 import com.avrgaming.civcraft.exception.CivException;
 import com.avrgaming.civcraft.main.CivGlobal;
+import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.Civilization;
 import com.avrgaming.civcraft.object.Resident;
@@ -62,8 +63,28 @@ public class AdminRecoverCommand extends CommandBase {
 		commands.put("listnocaptials", "list all civs with no capitols");
 		commands.put("cleannocapitols", "clean out all civs with no capitols.");
 		
+		commands.put("fixtownresidents", "Restores all residents to the towns listed in their debug_town field.");
+
 	}
 	
+	public void fixtownresidents_cmd() {
+		for (Resident resident : CivGlobal.getResidents()) {
+			if (resident.debugTown != null && !resident.debugTown.equals("")) {
+				Town town = CivGlobal.getTown(resident.debugTown);
+				if (town == null) {
+					CivLog.error("Couldn't find town:"+resident.debugTown+" for resident:"+resident.getName()+" is this town deleted?");
+					continue;
+				}
+				
+				resident.setTown(town);
+				try {
+					resident.saveNow();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	public void listnocapitols_cmd() {
 		CivMessage.sendHeading(sender, "Defunct Civs");
 		for (Civilization civ : CivGlobal.getCivs()) {

@@ -127,7 +127,7 @@ public final class CivCraft extends JavaPlugin {
 	
 	private void startTimers() {
 		
-		TaskMaster.asyncTimer("SQLUpdate", new SQLUpdate(), 5);
+		TaskMaster.asyncTimer("SQLUpdate", new SQLUpdate(), 1);
 		
 		// Sync Timers
 		TaskMaster.syncTimer(SyncBuildUpdateTask.class.getName(), 

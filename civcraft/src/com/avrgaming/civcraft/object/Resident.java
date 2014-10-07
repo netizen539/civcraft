@@ -171,6 +171,7 @@ public class Resident extends SQLObject {
 	private UUID uid;
 	
 	private boolean onRoad = false;
+	public String debugTown;
 	
 	public Resident(UUID uid, String name) throws InvalidNameException {
 		this.setName(name);
@@ -283,6 +284,7 @@ public class Resident extends SQLObject {
 		this.townID = rs.getInt("town_id");
 		this.campID = rs.getInt("camp_id");
 		this.lastIP = rs.getString("last_ip");
+		this.debugTown = rs.getString("debug_town");
 
 		if (rs.getString("uuid").equalsIgnoreCase("UNKNOWN")) {
 			this.uid = null;
