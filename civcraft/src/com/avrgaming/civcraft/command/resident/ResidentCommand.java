@@ -229,8 +229,19 @@ public class ResidentCommand extends CommandBase {
 		
 		ItemStack stack = ItemManager.createItemStack(exchangeID, 1);
 		int total = 0;
-		for (ItemStack is : player.getInventory().all(ItemManager.getMaterial(exchangeID)).values()) {
-			total += is.getAmount();
+		for (int i = 0; i < player.getInventory().getContents().length; i++) {
+			ItemStack is = player.getInventory().getItem(i);
+			if (is == null) {
+				continue;
+			}
+			
+			if (LoreCraftableMaterial.isCustom(is)) {
+				continue;
+			}
+			
+			if (ItemManager.getId(is) == exchangeID) {
+				total += is.getAmount();
+			}
 		}
 		
 		if (total == 0) {

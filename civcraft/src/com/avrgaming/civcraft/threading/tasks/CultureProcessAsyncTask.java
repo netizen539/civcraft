@@ -20,6 +20,7 @@ package com.avrgaming.civcraft.threading.tasks;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.ReentrantLock;
@@ -27,6 +28,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import com.avrgaming.civcraft.config.CivSettings;
 import com.avrgaming.civcraft.config.ConfigCultureLevel;
 import com.avrgaming.civcraft.main.CivGlobal;
+import com.avrgaming.civcraft.main.CivLog;
 import com.avrgaming.civcraft.main.CivMessage;
 import com.avrgaming.civcraft.object.CultureChunk;
 import com.avrgaming.civcraft.object.Town;
@@ -41,7 +43,13 @@ public class CultureProcessAsyncTask extends CivAsyncTask {
 	public static boolean cultureProcessedSinceStartup = false;
 	
 	private void processTownCulture(Town town) {
-		ChunkCoord origin = town.getTownCultureOrigin();
+		ChunkCoord origin;
+		try {
+			origin = town.getTownCultureOrigin();
+		} catch (NoSuchElementException e) {
+			CivLog.error("Couldn't find town chunks for town:"+town.getName()+" could not process it's culture.");
+			return;
+		}
 		
 
 		HashSet<ChunkCoord> expanded = new HashSet<ChunkCoord>();
@@ -215,7 +223,12 @@ public class CultureProcessAsyncTask extends CivAsyncTask {
 		lock.lock();
 		try {
 			for (Town t : CivGlobal.getTowns()) {
+				try {
 				processTownCulture(t);
+				} catch (Exception e) {
+					CivLog.error("Exception generated during culture process for town:"+t.getName());
+					e.printStackTrace();
+				}
 			}
 			
 			recalculateTouchingCultures();

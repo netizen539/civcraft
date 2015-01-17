@@ -568,15 +568,25 @@ public class DebugCommand extends CommandBase {
 	
 	public void sql_cmd() {
 		HashMap<String, String> stats = new HashMap<String, String>();
-		stats.put("ConnectionsRequested", ""+SQL.gameDatabase.getStats().getConnectionsRequested());
-		stats.put("Free Pool Members", ""+SQL.gameDatabase.getStats().getTotalFree());
-		stats.put("Leased Pool Members", ""+SQL.gameDatabase.getStats().getTotalLeased());
-		stats.put("--------------", "------------");
-		
-		for (String key : SQLUpdate.saveObjectCounts.keySet()) {
-			Integer value = SQLUpdate.saveObjectCounts.get((key));
-			stats.put(key, "Count: "+value);
-			CivLog.debug("Object:"+key+" count:"+value);
+		CivMessage.send(sender, "ConnectionsRequested: "+SQL.gameDatabase.getStats().getConnectionsRequested());
+		CivMessage.send(sender,"Free Pool Members: "+SQL.gameDatabase.getStats().getTotalFree());
+		CivMessage.send(sender,"Leased Pool Members: "+SQL.gameDatabase.getStats().getTotalLeased());
+		CivMessage.send(sender,"--------------------------");
+
+		stats.clear();
+		for (String key : SQLUpdate.statSaveRequests.keySet()) {
+			Integer requests = SQLUpdate.statSaveRequests.get(key);
+			Integer completes = SQLUpdate.statSaveCompletions.get(key);
+			
+			if (requests == null) {
+				requests = 0;
+			}
+			
+			if (completes == null) {
+				completes = 0;
+			}
+			
+			CivMessage.send(sender, key+" requested:"+requests+" completed:"+completes);
 		}
 		
 		CivMessage.send(sender, makeInfoString(stats, CivColor.Green, CivColor.LightGreen));

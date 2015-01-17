@@ -18,101 +18,52 @@
  */
 package com.avrgaming.civcraft.database;
 
-import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.ReentrantLock;
-
-import com.avrgaming.civcraft.main.CivLog;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import com.avrgaming.civcraft.object.SQLObject;
-import com.avrgaming.civcraft.threading.TaskMaster;
 
 public class SQLUpdate implements Runnable {
 	
 //	public static final int QUEUE_SIZE = 4096;
-	public static final int UPDATE_LIMIT = 50;
-	public static ReentrantLock lock = new ReentrantLock();
+//	public static final int UPDATE_LIMIT = 50;
+//	public static ReentrantLock lock = new ReentrantLock();
 	
-	private static Queue<SQLObject> saveObjects = new LinkedList<SQLObject>();
-	public static ConcurrentHashMap<String, Integer> saveObjectCounts = new ConcurrentHashMap<String, Integer>();
+	private static ConcurrentLinkedQueue<SQLObject> saveObjects = new ConcurrentLinkedQueue<SQLObject>();
+	public static ConcurrentHashMap<String, Integer> statSaveRequests = new ConcurrentHashMap<String, Integer>();
+	public static ConcurrentHashMap<String, Integer> statSaveCompletions = new ConcurrentHashMap<String, Integer>();
 
 	public static void add(SQLObject obj) {
-		Integer count = saveObjectCounts.get(obj.getClass().getSimpleName());
+		
+		Integer count = statSaveRequests.get(obj.getClass().getSimpleName());
 		if (count == null) {
-			count = 1;
-		} else {
-			count++;
+			count = 0;
 		}
-		saveObjectCounts.put(obj.getClass().getSimpleName(), count);
+		statSaveRequests.put(obj.getClass().getSimpleName(), ++count);
 		
-		
-		/* XXX dont wait here, could be in sync thread */
-		if (lock.tryLock()) {
-			try {
-				saveObjects.add(obj);
-			} finally {
-				lock.unlock();
-			}
-		} else {
-			class AsyncRetrySQLUpdateTask implements Runnable {
-				SQLObject obj;
-				
-				public AsyncRetrySQLUpdateTask(SQLObject obj) {
-					this.obj = obj;
-				}
-				
-				@Override
-				public void run() {
-					while (true) {
-						try {
-							if (lock.tryLock(3, TimeUnit.SECONDS)) {
-								try {
-									saveObjects.add(obj);
-									return;
-								} finally {
-									lock.unlock();
-								}
-							} else {
-								CivLog.warning("Couldn't obtain lock to save SQL Object:"+obj+" after 3 seconds! Retrying.");
-							}
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
-			TaskMaster.asyncTask(new AsyncRetrySQLUpdateTask(obj), 0);
-		}
+		saveObjects.add(obj);
 	}
 	
 	@Override
-	public void run() {
-		lock.lock();
-		
-		try {
-			for (int i = 0; i < UPDATE_LIMIT; i++) {
+	public void run() {	
+		while(true) {
+			try {
+				
 				SQLObject obj = saveObjects.poll();
 				if (obj == null) {
-					break;
+					continue;
 				}
-
-							
-				try {
-					Integer count = saveObjectCounts.get(obj.getClass().getSimpleName());
-					if (count != null) {
-						count--;
-						saveObjectCounts.put(obj.getClass().getSimpleName(), count);
-					}
-					
-					obj.saveNow();
-				} catch (SQLException e) {
-					e.printStackTrace();
+				
+				obj.saveNow();
+				
+				Integer count = statSaveCompletions.get(obj.getClass().getSimpleName());
+				if (count == null) {
+					count = 0;
 				}
+				statSaveCompletions.put(obj.getClass().getSimpleName(), ++count);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} finally {
-			lock.unlock();
 		}
 	}	
 }

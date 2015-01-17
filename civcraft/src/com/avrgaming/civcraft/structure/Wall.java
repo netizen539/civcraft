@@ -27,6 +27,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
@@ -111,6 +112,12 @@ public class Wall extends Structure {
 		
 		double refund = 0.0;
 		for (WallBlock wb : wallBlocks.values()) {
+			
+			Material material = ItemManager.getMaterial(wb.getOldId());
+			if (CivSettings.restrictedUndoBlocks.contains(material)) {
+				continue;
+			}
+			
 			ItemManager.setTypeId(wb.getCoord().getBlock(), wb.getOldId());
 			ItemManager.setData(wb.getCoord().getBlock(), wb.getOldData());
 			refund += COST_PER_SEGMENT;

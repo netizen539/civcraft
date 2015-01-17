@@ -391,7 +391,7 @@ public class Town extends SQLObject {
 		this.setDaysInDebt(0);
 		this.setHammerRate(1.0);
 		this.setExtraHammers(0);	
-		this.addAccumulatedCulture(0);
+		this.setAccumulatedCulture(0);
 		this.setTreasury(new EconObject(this));	
 		this.getTreasury().setBalance(0, false);
 		this.created_date = new Date();

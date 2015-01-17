@@ -13,6 +13,7 @@ import org.bukkit.Color;
 import org.bukkit.Effect;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -105,6 +106,12 @@ public class Road extends Structure {
 		
 		for (BlockCoord bcoord : oldBlockData.keySet()) {
 			SimpleBlock sb = oldBlockData.get(bcoord);
+			
+			Material material = ItemManager.getMaterial(sb.getType());
+			if (CivSettings.restrictedUndoBlocks.contains(material)) {
+				continue;
+			}
+			
 			Block block = bcoord.getBlock();
 			ItemManager.setTypeId(block, sb.getType());
 			ItemManager.setData(block, sb.getData());

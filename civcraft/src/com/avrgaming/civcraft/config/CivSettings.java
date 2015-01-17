@@ -285,6 +285,7 @@ public class CivSettings {
 		restrictedUndoBlocks.add(Material.REDSTONE);
 		restrictedUndoBlocks.add(Material.REDSTONE_TORCH_OFF);
 		restrictedUndoBlocks.add(Material.REDSTONE_TORCH_ON);
+		restrictedUndoBlocks.add(Material.STRING);
 	}
 
 	private static void initPlayerEntityWeapons() {
