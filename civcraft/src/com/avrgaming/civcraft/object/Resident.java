@@ -167,7 +167,7 @@ public class Resident extends SQLObject {
 	private boolean insideArena = false;
 	private boolean isProtected = false;
 	
-	public HashMap<BlockCoord, SimpleBlock> previewUndo = null;
+	public ConcurrentHashMap<BlockCoord, SimpleBlock> previewUndo = null;
 	public HashMap<String, Perk> perks = new HashMap<String, Perk>();
 	private Date lastKilledTime = null;
 	private String lastIP = "";
@@ -1019,7 +1019,7 @@ public class Resident extends SQLObject {
 	
 	public void undoPreview() {
 		if (this.previewUndo == null) {
-			this.previewUndo = new HashMap<BlockCoord, SimpleBlock>();
+			this.previewUndo = new ConcurrentHashMap<BlockCoord, SimpleBlock>();
 			return;
 		}
 		
@@ -1046,7 +1046,7 @@ public class Resident extends SQLObject {
 		}
 		
 		this.previewUndo.clear();
-		this.previewUndo = new HashMap<BlockCoord, SimpleBlock>();
+		this.previewUndo = new ConcurrentHashMap<BlockCoord, SimpleBlock>();
 	}
 
 	public boolean isShowInfo() {

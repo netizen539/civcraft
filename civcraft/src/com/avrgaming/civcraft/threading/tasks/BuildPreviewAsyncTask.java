@@ -28,9 +28,13 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import com.avrgaming.civcraft.exception.CivException;
+import com.avrgaming.civcraft.main.CivGlobal;
+import com.avrgaming.civcraft.object.Resident;
 import com.avrgaming.civcraft.template.Template;
 import com.avrgaming.civcraft.threading.CivAsyncTask;
+import com.avrgaming.civcraft.util.BlockCoord;
 import com.avrgaming.civcraft.util.ItemManager;
+import com.avrgaming.civcraft.util.SimpleBlock;
 
 
 public class BuildPreviewAsyncTask extends CivAsyncTask {
@@ -48,11 +52,13 @@ public class BuildPreviewAsyncTask extends CivAsyncTask {
 	public ReentrantLock lock = new ReentrantLock();
 	private int blocksPerTick;
 	private int speed;
+	private Resident resident;
 		
 	public BuildPreviewAsyncTask(Template t, Block center, UUID playerUUID) {
 		tpl = t;
 		centerBlock = center;
 		this.playerUUID = playerUUID;
+		resident = CivGlobal.getResidentViaUUID(playerUUID);
 		//this.blocksPerTick = getBlocksPerTick();
 		//this.speed = getBuildSpeed();
 		this.blocksPerTick = 100;
@@ -66,7 +72,7 @@ public class BuildPreviewAsyncTask extends CivAsyncTask {
 		}
 		return player;
 	}
-		
+			
 	@Override
 	public void run() {
 		
@@ -89,6 +95,8 @@ public class BuildPreviewAsyncTask extends CivAsyncTask {
 							}
 							
 							ItemManager.sendBlockChange(getPlayer(), b.getLocation(), ItemManager.getId(Material.GLASS), 5);
+							resident.previewUndo.put(new BlockCoord(b.getLocation()), 
+									new SimpleBlock(ItemManager.getId(b), ItemManager.getData(b)));
 							count++;			
 						} finally {
 							lock.unlock();
