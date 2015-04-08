@@ -914,6 +914,10 @@ public class CivGlobal {
 	
 	public static Player getPlayer(String name) throws CivException {
 		Resident res = CivGlobal.getResident(name);
+		if (res == null) {
+			throw new CivException("No resident named "+name);
+		}
+		
 		Player player = Bukkit.getPlayer(res.getUUID());
 		if (player == null)
 			throw new CivException("No player named "+name);
