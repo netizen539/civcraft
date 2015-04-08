@@ -77,7 +77,7 @@ public class SLSManager implements Runnable {
 		try {
 			InetAddress address = InetAddress.getByName("atlas.civcraft.net");
 			String message = gen_id+";"+serverName+";"+serverDescription+";"+serverTimezone+";"+serverAddress+";"+
-					Bukkit.getOnlinePlayers().length+";"+Bukkit.getMaxPlayers()+";"+getParsedVersion();
+					Bukkit.getOnlinePlayers().size()+";"+Bukkit.getMaxPlayers()+";"+getParsedVersion();
 			
 			try {
 				if (CivSettings.getStringBase("debug_heartbeat").equalsIgnoreCase("true")) {

@@ -53,7 +53,12 @@ public class PlayerLoginAsyncTask implements Runnable {
 	}
 	
 	public Player getPlayer() throws CivException {
-		return Bukkit.getPlayer(playerUUID);
+		Player player = Bukkit.getPlayer(playerUUID);
+		if (player == null) {
+			throw new CivException("Player offline now. May have been kicked.");
+		}
+		
+		return player;
 	}
 	
 	@Override
@@ -250,6 +255,7 @@ public class PlayerLoginAsyncTask implements Runnable {
 			}
 		} catch (CivException playerNotFound) {
 			// Player logged out while async task was running.
+			CivLog.warning("Couldn't complete PlayerLoginAsyncTask. Player may have been kicked while async task was running.");
 		}
 	}
 	
